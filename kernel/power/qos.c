@@ -203,7 +203,8 @@ out:
 
 DEFINE_SHOW_ATTRIBUTE(pm_qos_debug);
 
-static inline void pm_qos_set_value_for_cpus(struct pm_qos_constraints *c)
+static inline void pm_qos_set_value_for_cpus(struct pm_qos_constraints *c,
+		struct cpumask *cpus)
 {
 	struct pm_qos_request *req = NULL;
 	int cpu;
@@ -226,8 +227,11 @@ static inline void pm_qos_set_value_for_cpus(struct pm_qos_constraints *c)
 		}
 	}
 
-	for_each_possible_cpu(cpu)
+	for_each_possible_cpu(cpu) {
+		if (c->target_per_cpu[cpu] != qos_val[cpu])
+			cpumask_set_cpu(cpu, cpus);
 		c->target_per_cpu[cpu] = qos_val[cpu];
+	}
 }
 
 /**
@@ -245,6 +249,7 @@ int pm_qos_update_target(struct pm_qos_constraints *c, struct plist_node *node,
 			 enum pm_qos_req_action action, int value)
 {
 	int prev_value, curr_value, new_value;
+	struct cpumask cpus;
 	int ret;
 
 	spin_lock(&pm_qos_lock);
@@ -276,18 +281,24 @@ int pm_qos_update_target(struct pm_qos_constraints *c, struct plist_node *node,
 	}
 
 	curr_value = pm_qos_get_value(c);
+	cpumask_clear(&cpus);
 	pm_qos_set_value(c, curr_value);
-	pm_qos_set_value_for_cpus(c);
+	pm_qos_set_value_for_cpus(c, &cpus);
 
 	spin_unlock(&pm_qos_lock);
 
 	trace_pm_qos_update_target(action, prev_value, curr_value);
-	if (prev_value != curr_value) {
+
+	/*
+	 * if cpu mask bits are set, call the notifier call chain
+	 * to update the new qos restriction for the cores
+	 */
+
+	if (!cpumask_empty(&cpus)) {
 		ret = 1;
 		if (c->notifiers)
 			blocking_notifier_call_chain(c->notifiers,
-						     (unsigned long)curr_value,
-						     NULL);
+				     (unsigned long)curr_value, &cpus);
 	} else {
 		ret = 0;
 	}
