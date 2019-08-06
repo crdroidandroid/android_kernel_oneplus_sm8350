@@ -996,6 +996,9 @@ KBUILD_LDFLAGS += $(LD_FLAGS_LTO_CLANG)
 KBUILD_LDFLAGS_MODULE += $(LD_FLAGS_LTO_CLANG)
 
 KBUILD_LDS_MODULE += $(srctree)/scripts/module-lto.lds
+
+# Set O3 optimization level for LTO
+KBUILD_LDFLAGS		+= --plugin-opt=O3
 endif
 
 ifdef CONFIG_LTO
