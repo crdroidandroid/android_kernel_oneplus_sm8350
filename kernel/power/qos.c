@@ -204,12 +204,20 @@ out:
 
 DEFINE_SHOW_ATTRIBUTE(pm_qos_debug);
 
-static inline void pm_qos_set_value_for_cpus(struct pm_qos_constraints *c,
+static inline int pm_qos_set_value_for_cpus(struct pm_qos_constraints *c,
 		struct cpumask *cpus)
 {
 	struct pm_qos_request *req = NULL;
 	int cpu;
 	s32 qos_val[NR_CPUS] = { [0 ... (NR_CPUS - 1)] = c->default_value };
+
+	/*
+	 * pm_qos_constraints can be from different classes,
+	 * Update cpumask only only for CPU_DMA_LATENCY classes
+	 */
+
+	if (c != pm_qos_array[PM_QOS_CPU_DMA_LATENCY]->constraints)
+		return -EINVAL;
 
 	plist_for_each_entry(req, &c->list, node) {
 		for_each_cpu(cpu, &req->cpus_affine) {
@@ -233,6 +241,8 @@ static inline void pm_qos_set_value_for_cpus(struct pm_qos_constraints *c,
 			cpumask_set_cpu(cpu, cpus);
 		c->target_per_cpu[cpu] = qos_val[cpu];
 	}
+
+	return 0;
 }
 
 /**
@@ -284,7 +294,7 @@ int pm_qos_update_target(struct pm_qos_constraints *c, struct plist_node *node,
 	curr_value = pm_qos_get_value(c);
 	cpumask_clear(&cpus);
 	pm_qos_set_value(c, curr_value);
-	pm_qos_set_value_for_cpus(c, &cpus);
+	ret = pm_qos_set_value_for_cpus(c, &cpus);
 
 	spin_unlock(&pm_qos_lock);
 
@@ -295,7 +305,8 @@ int pm_qos_update_target(struct pm_qos_constraints *c, struct plist_node *node,
 	 * to update the new qos restriction for the cores
 	 */
 
-	if (!cpumask_empty(&cpus)) {
+	if (!cpumask_empty(&cpus) ||
+	   (ret && prev_value != curr_value)) {
 		ret = 1;
 		if (c->notifiers)
 			blocking_notifier_call_chain(c->notifiers,
