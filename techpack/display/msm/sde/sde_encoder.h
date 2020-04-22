@@ -729,4 +729,11 @@ void sde_encoder_disable_autorefresh_handler(struct drm_encoder *drm_enc);
  */
 bool sde_encoder_is_disabled(struct drm_encoder *drm_enc);
 #endif
+
+/**
+ * sde_encoder_trigger_early_wakeup - trigger early wake up
+ * @drm_enc:    Pointer to drm encoder structure
+ */
+void sde_encoder_trigger_early_wakeup(struct drm_encoder *drm_enc);
+
 #endif /* __SDE_ENCODER_H__ */
