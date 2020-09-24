@@ -25,7 +25,7 @@
 #include <trace/events/sched.h>
 #include <trace/hooks/sched.h>
 
-#include "walt.h"
+#include "walt/walt.h"
 
 #ifdef CONFIG_OPCHAIN
 #include <oneplus/uxcore/opchain_helper.h>

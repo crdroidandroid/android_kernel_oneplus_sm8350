@@ -11,7 +11,7 @@
 
 #include <trace/events/sched.h>
 
-#include "walt.h"
+#include "walt/walt.h"
 #ifdef CONFIG_CONTROL_CENTER
 #include <linux/oem/control_center.h>
 #endif
