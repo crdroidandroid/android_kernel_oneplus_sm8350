@@ -2,36 +2,43 @@
 ifneq ($(CONFIG_ARCH_QTI_VM), y)
 ifeq ($(CONFIG_QTI_QUIN_GVM), y)
 include $(srctree)/techpack/audio/config/gvmauto.conf
+export $(shell sed 's/=.*//' $(srctree)/techpack/audio/config/gvmauto.conf)
 endif
 ifeq ($(CONFIG_ARCH_SDXPOORWILLS), y)
 include $(srctree)/techpack/audio/config/sdxpoorwillsauto.conf
-export
+export $(shell sed 's/=.*//' $(srctree)/techpack/audio/config/sdxpoorwillsauto.conf)
 endif
 ifeq ($(CONFIG_ARCH_SM8150), y)
 include $(srctree)/techpack/audio/config/sm8150auto.conf
-export
+export $(shell sed 's/=.*//' $(srctree)/techpack/audio/config/sm8150auto.conf)
 endif
 ifeq ($(CONFIG_ARCH_SDMSHRIKE), y)
 include $(srctree)/techpack/audio/config/sm8150auto.conf
-export
+export $(shell sed 's/=.*//' $(srctree)/techpack/audio/config/sm8150auto.conf)
 endif
 ifeq ($(CONFIG_ARCH_KONA), y)
 include $(srctree)/techpack/audio/config/konaauto.conf
+export $(shell sed 's/=.*//' $(srctree)/techpack/audio/config/konaauto.conf)
 endif
 ifeq ($(CONFIG_ARCH_LAHAINA), y)
 include $(srctree)/techpack/audio/config/lahainaauto.conf
+export $(shell sed 's/=.*//' $(srctree)/techpack/audio/config/lahainaauto.conf)
 endif
 ifeq ($(CONFIG_ARCH_HOLI), y)
 include $(srctree)/techpack/audio/config/holiauto.conf
+export $(shell sed 's/=.*//' $(srctree)/techpack/audio/config/holiauto.conf)
 endif
 ifeq ($(CONFIG_ARCH_SA8155), y)
 include $(srctree)/techpack/audio/config/sa8155auto.conf
+export $(shell sed 's/=.*//' $(srctree)/techpack/audio/config/sa8155auto.conf)
 endif
 ifeq ($(CONFIG_ARCH_SA6155), y)
 include $(srctree)/techpack/audio/config/sa6155auto.conf
+export $(shell sed 's/=.*//' $(srctree)/techpack/audio/config/sa6155auto.conf)
 endif
 ifeq ($(CONFIG_ARCH_SM6150), y)
 include $(srctree)/techpack/audio/config/sm6150auto.conf
+export $(shell sed 's/=.*//' $(srctree)/techpack/audio/config/sm6150auto.conf)
 endif
 endif
 # Use USERINCLUDE when you must reference the UAPI directories only.
