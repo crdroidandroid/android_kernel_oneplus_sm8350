@@ -351,5 +351,6 @@
 	/delete-property/ qcom,dsi-pll-ssc-en;
 	/delete-property/ qcom,dsi-pll-ssc-mode;
 	memory-region = <&dfps_data_memory>;
+	qcom,panel-allow-phy-poweroff;
 
 };
