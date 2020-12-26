@@ -297,19 +297,23 @@ static int panel_open(struct inode *inode, struct file *filp)
 	return 0;
 }
 
+#if defined(CONFIG_DEBUG_FS)
 extern ssize_t oplus_sde_evtlog_dump_read(struct file *file, char __user *buff,
 		size_t count, loff_t *ppos);
+#endif
 
 static ssize_t panel_read(struct file *filp, char __user *buffer,
 		size_t count, loff_t *offset)
 {
 	ssize_t lens = 0;
 
+#if defined(CONFIG_DEBUG_FS)
 	lens += oplus_sde_evtlog_dump_read(filp, buffer, count, offset);
 	if (lens < 0) {
 		lens = 0;
 	}
 	/*other dump add here, as for lens add*/
+#endif
 
 	return lens;
 }
