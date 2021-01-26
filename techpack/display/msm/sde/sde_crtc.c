@@ -1445,7 +1445,7 @@ static void _sde_crtc_blend_setup_mixer(struct drm_crtc *crtc,
 	struct drm_plane_state *state;
 	struct sde_crtc_state *cstate;
 	struct sde_plane_state *pstate = NULL;
-	struct plane_state *pstates = NULL;
+	struct plane_state pstates[SDE_PSTATES_MAX];
 	struct sde_format *format;
 	struct sde_hw_ctl *ctl;
 	struct sde_hw_mixer *lm;
@@ -1466,10 +1466,6 @@ static void _sde_crtc_blend_setup_mixer(struct drm_crtc *crtc,
 	ctl = mixer->hw_ctl;
 	lm = mixer->hw_lm;
 	cstate = to_sde_crtc_state(crtc->state);
-	pstates = kcalloc(SDE_PSTATES_MAX,
-			sizeof(struct plane_state), GFP_KERNEL);
-	if (!pstates)
-		return;
 
 	memset(fetch_active, 0, sizeof(fetch_active));
 	memset(zpos_cnt, 0, sizeof(zpos_cnt));
@@ -1503,7 +1499,7 @@ static void _sde_crtc_blend_setup_mixer(struct drm_crtc *crtc,
 		format = to_sde_format(msm_framebuffer_format(pstate->base.fb));
 		if (!format) {
 			SDE_ERROR("invalid format\n");
-			goto end;
+			return;
 		}
 
 		blend_type = sde_plane_get_property(pstate,
@@ -1595,13 +1591,13 @@ static void _sde_crtc_blend_setup_mixer(struct drm_crtc *crtc,
 			{
 				struct dsi_display *display = get_main_display();
 				if (!display || !display->panel)
-					goto end;
+					return;
 				if ((old_state->mode.vrefresh == 60 ||  old_state->mode.vrefresh == 90) &&
 									crtc->mode.vrefresh  == 120 && !display->panel->is_hbm_enabled) {
 					SDE_ATRACE_BEGIN("delay_config_dimlayer_one_frame");
 					pr_err("do not config dimlayer at the fps switch");
 					SDE_ATRACE_END("delay_config_dimlayer_one_frame");
-					goto end;
+					return;
 				}
 			}
 
@@ -1636,9 +1632,6 @@ static void _sde_crtc_blend_setup_mixer(struct drm_crtc *crtc,
 		}
 #endif
 	}
-
-end:
-	kfree(pstates);
 }
 
 static void _sde_crtc_swap_mixers_for_right_partial_update(
