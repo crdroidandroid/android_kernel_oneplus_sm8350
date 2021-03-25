@@ -3876,6 +3876,7 @@ int __kmem_cache_shutdown(struct kmem_cache *s)
 	return 0;
 }
 
+#ifdef CONFIG_PRINTK
 void kmem_obj_info(struct kmem_obj_info *kpp, void *object, struct page *page)
 {
 	void *base;
@@ -3915,6 +3916,7 @@ void kmem_obj_info(struct kmem_obj_info *kpp, void *object, struct page *page)
 #endif
 #endif
 }
+#endif
 
 /********************************************************************
  *		Kmalloc subsystem
