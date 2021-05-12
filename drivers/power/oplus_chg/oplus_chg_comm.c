@@ -1518,7 +1518,7 @@ oplus_chg_comm_get_ffc_temp_region(struct oplus_chg_mod *comm_ocm)
 		}
 		comm_dev->ffc_temp_region = temp_region;
 	} else if (comm_dev->ffc_temp_region < temp_region) {
-		for (i = 0; i < BATT_TEMP_INVALID - 1; i++) {
+		for (i = 0; i < FFC_TEMP_INVALID - 1; i++) {
 			if (i == (temp_region - 1))
 				comm_dev->ffc_temp_dynamic_thr[i] =
 					comm_dev->ffc_temp_dynamic_thr[i] -
