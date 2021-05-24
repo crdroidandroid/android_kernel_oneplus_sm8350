@@ -606,10 +606,15 @@ static void gic_show_resume_irq(struct gic_chip_data *gic)
 		struct irq_desc *desc = irq_to_desc(irq);
 		const char *name = "null";
 
+		if (i < 32)
+			continue;
+
 		if (desc == NULL)
 			name = "stray irq";
 		else if (desc->action && desc->action->name)
 			name = desc->action->name;
+		else if (desc->irq_data.chip && desc->irq_data.chip->name)
+			name = desc->irq_data.chip->name;
 
 		if (name != NULL)
 			log_irq_wakeup_reason(irq);
