@@ -301,7 +301,7 @@ static int __init get_dsi_panel_init(char *str)
 	} else if (!strcmp(buf, "qcom,mdss_dsi_samsung_amb655x_dsc_cmd:")) {
 		lcd_type = 2;
 	} else if ((!strcmp(buf, "qcom,mdss_dsi_samsung_amb670yf01_dsc_cmd:")) ||
-		(!strcmp(buf, "qcom,mdss_dsi_samsung_amb670yf01_o_dsc_cm"))) {
+		(!strcmp(buf, "qcom,mdss_dsi_samsung_amb670yf01_o_dsc_cmd:"))) {
 		lcd_type = 3;
 	}
 
