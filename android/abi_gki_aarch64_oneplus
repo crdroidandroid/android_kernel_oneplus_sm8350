@@ -2304,3 +2304,6 @@
   pinctrl_force_default
   pinctrl_force_sleep
   unregister_restart_handler
+
+# required by oplus_chg.ko
+  public_key_verify_signature
