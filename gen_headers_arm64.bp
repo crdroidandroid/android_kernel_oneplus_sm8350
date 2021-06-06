@@ -107,6 +107,7 @@ gen_headers_out_arm64 = [
     "drm/via_drm.h",
     "drm/virtgpu_drm.h",
     "drm/vmwgfx_drm.h",
+    "linux/netfilter_ipv4/ipt_NATTYPE.h",
     "linux/acct.h",
     "linux/adb.h",
     "linux/adfs_fs.h",
@@ -992,6 +993,7 @@ gen_headers_out_arm64 = [
     "camera/media/cam_icp.h",
     "camera/media/cam_isp.h",
     "camera/media/cam_isp_ife.h",
+    "camera/media/cam_isp_sfe.h",
     "camera/media/cam_isp_tfe.h",
     "camera/media/cam_isp_vfe.h",
     "camera/media/cam_jpeg.h",
@@ -1001,9 +1003,9 @@ gen_headers_out_arm64 = [
     "camera/media/cam_sensor.h",
     "camera/media/cam_sync.h",
     "camera/media/cam_tfe.h",
-    "camera/media/cam_isp_sfe.h",
-    "camera/oplus/media/oplus_cam_sensor.h",
     "camera/oplus/media/oplus_cam_defs.h",
+    "camera/oplus/media/oplus_cam_sensor.h",
+    "display/drm/msm_drm_iris.h",
     "display/drm/msm_drm_pp.h",
     "display/drm/sde_drm.h",
     "display/media/mmm_color_fmt.h",
@@ -1011,8 +1013,6 @@ gen_headers_out_arm64 = [
     "display/hdcp/msm_hdmi_hdcp_mgr.h",
     "vidc/media/msm_media_info.h",
     "vidc/media/msm_vidc_utils.h",
-    "display/drm/msm_drm_iris.h",
-    "linux/netfilter_ipv4/ipt_NATTYPE.h",
 ]
 
 genrule {
