@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
- * Copyright (c) 2016-2021, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2016-2020, The Linux Foundation. All rights reserved.
  */
 
 #include <linux/module.h>
@@ -165,11 +165,6 @@ int cam_mem_mgr_init(void)
 	int bitmap_size;
 
 	memset(tbl.bufq, 0, sizeof(tbl.bufq));
-
-	if (cam_smmu_need_force_alloc_cached(&tbl.force_cache_allocs)) {
-		CAM_ERR(CAM_MEM, "Error in getting force cache alloc flag");
-		return -EINVAL;
-	}
 
 	bitmap_size = BITS_TO_LONGS(CAM_MEM_BUFQ_MAX) * sizeof(long);
 	tbl.bitmap = kzalloc(bitmap_size, GFP_KERNEL);
@@ -420,9 +415,6 @@ static int cam_mem_util_get_dma_buf(size_t len,
 		return -EINVAL;
 	}
 
-	if (tbl.force_cache_allocs && (!(flags & ION_FLAG_SECURE)))
-		flags |= ION_FLAG_CACHED;
-
 	*buf = ion_alloc(len, heap_id_mask, flags);
 	if (IS_ERR_OR_NULL(*buf))
 		return -ENOMEM;
@@ -449,9 +441,6 @@ static int cam_mem_util_get_dma_buf_fd(size_t len,
 
 	if (tbl.alloc_profile_enable)
 		CAM_GET_TIMESTAMP(ts1);
-
-	if (tbl.force_cache_allocs && (!(flags & ION_FLAG_SECURE)))
-		flags |= ION_FLAG_CACHED;
 
 	*buf = ion_alloc(len, heap_id_mask, flags);
 	if (IS_ERR_OR_NULL(*buf))

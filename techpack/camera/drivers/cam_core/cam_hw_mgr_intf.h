@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: GPL-2.0-only */
 /*
- * Copyright (c) 2017-2021, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2017-2020, The Linux Foundation. All rights reserved.
  */
 
 #ifndef _CAM_HW_MGR_INTF_H_
@@ -53,9 +53,6 @@ typedef int (*cam_hw_pagefault_cb_func)(void *context,
 typedef int (*cam_ctx_info_dump_cb_func)(void *context,
 	enum cam_context_dump_id dump_id);
 
-/* message callback function type */
-typedef int (*cam_ctx_message_cb_func)(void *context,
-	uint32_t message_type, uint32_t *data);
 /**
  * struct cam_hw_update_entry - Entry for hardware config
  *
@@ -126,11 +123,13 @@ struct cam_hw_done_event_data {
  */
 struct cam_hw_acquire_args {
 	void                        *context_data;
+	uint32_t                     ctx_id;
 	cam_hw_event_cb_func         event_cb;
 	uint32_t                     num_acq;
 	uint32_t                     acquire_info_size;
 	uintptr_t                    acquire_info;
 	void                        *ctxt_to_hw_map;
+	uint32_t                     hw_mgr_ctx_id;
 	bool                         custom_enabled;
 	bool                         use_frame_header_ts;
 	bool                         support_consumed_addr;
@@ -182,12 +181,10 @@ struct cam_hw_stop_args {
 /**
  * struct cam_hw_mgr_dump_pf_data - page fault debug data
  *
- * @packet:     pointer to packet
- * @req:        pointer to req (HW specific)
+ * packet:     pointer to packet
  */
 struct cam_hw_mgr_dump_pf_data {
 	void    *packet;
-	void    *req;
 };
 
 /**
@@ -289,9 +286,9 @@ struct cam_hw_config_args {
 struct cam_hw_flush_args {
 	void                           *ctxt_to_hw_map;
 	uint32_t                        num_req_pending;
-	void                           *flush_req_pending[20];
+	void                           *flush_req_pending[40];
 	uint32_t                        num_req_active;
-	void                           *flush_req_active[20];
+	void                           *flush_req_active[40];
 	enum flush_type_t               flush_type;
 	uint32_t                        last_flush_req;
 };

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
- * Copyright (c) 2017-2021, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2017-2020, The Linux Foundation. All rights reserved.
  */
 
 #include <media/cam_defs.h>
@@ -141,14 +141,6 @@ static int cam_isp_update_dual_config(
 		}
 
 		hw_mgr_res = &res_list_isp_out[i];
-		if (!hw_mgr_res) {
-			CAM_ERR(CAM_ISP,
-				"Invalid isp out resource i %d num_out_res %d",
-				i, dual_config->num_ports);
-			rc = -EINVAL;
-			goto end;
-		}
-
 		for (j = 0; j < CAM_ISP_HW_SPLIT_MAX; j++) {
 			if (!hw_mgr_res->hw_res[j])
 				continue;
@@ -708,7 +700,6 @@ int cam_isp_add_io_buffers(
 			wm_update.num_buf   = plane_id;
 			wm_update.io_cfg    = &io_cfg[i];
 			wm_update.frame_header = 0;
-			wm_update.fh_enabled = false;
 
 			for (plane_id = 0; plane_id < CAM_PACKET_MAX_PLANES;
 				plane_id++)
@@ -718,8 +709,14 @@ int cam_isp_add_io_buffers(
 			if ((frame_header_info->frame_header_enable) &&
 				!(frame_header_info->frame_header_res_id)) {
 				wm_update.frame_header = iova_addr;
+				frame_header_info->frame_header_res_id =
+					res->res_id;
 				wm_update.local_id =
 					prepare->packet->header.request_id;
+				CAM_DBG(CAM_ISP,
+					"Frame header enabled for res: 0x%x iova: %pK",
+					frame_header_info->frame_header_res_id,
+					wm_update.frame_header);
 			}
 
 			update_buf.cmd.size = kmd_buf_remain_size;
@@ -739,16 +736,6 @@ int cam_isp_add_io_buffers(
 				rc = -ENOMEM;
 				return rc;
 			}
-
-			if (wm_update.fh_enabled) {
-				frame_header_info->frame_header_res_id =
-					res->res_id;
-				CAM_DBG(CAM_ISP,
-					"Frame header enabled for res: 0x%x iova: %pK",
-					frame_header_info->frame_header_res_id,
-					wm_update.frame_header);
-			}
-
 			io_cfg_used_bytes += update_buf.cmd.used_bytes;
 
 			if (!out_map_entries) {

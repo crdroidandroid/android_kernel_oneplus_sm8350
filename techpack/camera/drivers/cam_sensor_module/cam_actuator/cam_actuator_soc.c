@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
- * Copyright (c) 2017-2021, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2017-2020, The Linux Foundation. All rights reserved.
  */
 
 #include <linux/of.h>
@@ -56,9 +56,15 @@ int32_t cam_actuator_parse_dt(struct cam_actuator_ctrl_t *a_ctrl,
 		CAM_DBG(CAM_ACTUATOR, "cci-device %d", a_ctrl->cci_num);
 	}
 
-	rc = cam_sensor_util_regulator_powerup(soc_info);
-	if (rc < 0)
-		return rc;
+#ifdef OPLUS_FEATURE_CAMERA_COMMON
+	if (!of_property_read_bool(of_node, "need-check-pid")) {
+		CAM_ERR(CAM_ACTUATOR, "need-check-pid not defined for ultra wide camera");
+		a_ctrl->need_check_pid = false;
+	} else {
+		CAM_ERR(CAM_ACTUATOR, "need-check-pid defined for ultra wide camera");
+		a_ctrl->need_check_pid = true;
+	}
+#endif
 
 	if (!soc_info->gpio_data) {
 		CAM_DBG(CAM_ACTUATOR, "No GPIO found");

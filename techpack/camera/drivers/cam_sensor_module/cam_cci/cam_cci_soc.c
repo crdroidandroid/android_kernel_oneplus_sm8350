@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
- * Copyright (c) 2017-2021, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2017-2020, The Linux Foundation. All rights reserved.
  */
 
 #include "cam_cci_dev.h"
@@ -76,7 +76,6 @@ static int cam_cci_init_master(struct cci_device *cci_dev,
 
 		cci_dev->cci_master_info[master].status = 0;
 		cci_dev->cci_master_info[master].is_initilized = true;
-		cci_dev->is_burst_read[master] = false;
 	}
 
 	return 0;
@@ -194,7 +193,9 @@ int cam_cci_init(struct v4l2_subdev *sd,
 	}
 
 	cci_dev->cci_state = CCI_STATE_ENABLED;
-
+#ifdef OPLUS_FEATURE_CAMERA_COMMON
+	CAM_INFO(CAM_CCI, "cam_cci_init %x", cci_dev->cpas_handle);
+#endif
 	return 0;
 
 reset_complete_failed:
@@ -220,11 +221,11 @@ static void cam_cci_init_cci_params(struct cci_device *new_cci_dev)
 
 	for (i = 0; i < MASTER_MAX; i++) {
 		new_cci_dev->cci_master_info[i].status = 0;
-		new_cci_dev->cci_master_info[i].freq_ref_cnt = 0;
+		new_cci_dev->cci_master_info[i].is_first_req = true;
 		new_cci_dev->cci_master_info[i].is_initilized = false;
 		mutex_init(&new_cci_dev->cci_master_info[i].mutex);
 		sema_init(&new_cci_dev->cci_master_info[i].master_sem, 1);
-		spin_lock_init(&new_cci_dev->cci_master_info[i].freq_cnt_lock);
+		spin_lock_init(&new_cci_dev->cci_master_info[i].freq_cnt);
 		init_completion(
 			&new_cci_dev->cci_master_info[i].reset_complete);
 		init_completion(
@@ -441,5 +442,8 @@ int cam_cci_soc_release(struct cci_device *cci_dev,
 
 	cam_cpas_stop(cci_dev->cpas_handle);
 
+#ifdef OPLUS_FEATURE_CAMERA_COMMON
+	CAM_INFO(CAM_CCI, "cam_cci_soc_release %x", cci_dev->cpas_handle);
+#endif
 	return rc;
 }
