@@ -952,7 +952,7 @@ static int sla_skb_reroute(struct sk_buff *skb,
 {
 	int err;
 
-	err = ip_route_me_harder(state->net, skb, RTN_UNSPEC);
+	err = ip_route_me_harder(state->net, state->sk, skb, RTN_UNSPEC);
 	if (err < 0)
 		return NF_DROP_ERR(err);
 	if (op_sla_debug)
