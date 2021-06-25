@@ -53,6 +53,12 @@
 s64 memstart_addr __ro_after_init = -1;
 EXPORT_SYMBOL(memstart_addr);
 
+s64 physvirt_offset __ro_after_init;
+EXPORT_SYMBOL(physvirt_offset);
+
+struct page *vmemmap __ro_after_init;
+EXPORT_SYMBOL(vmemmap);
+
 phys_addr_t arm64_dma_phys_limit __ro_after_init;
 
 #ifdef CONFIG_KEXEC_CORE
@@ -454,16 +460,6 @@ void __init arm64_memblock_init(void)
 	update_memory_limit();
 
 	/*
-	 * If we are running with a 52-bit kernel VA config on a system that
-	 * does not support it, we have to place the available physical
-	 * memory in the 48-bit addressable part of the linear region, i.e.,
-	 * we have to move it upward. Since memstart_addr represents the
-	 * physical address of PAGE_OFFSET, we have to *subtract* from it.
-	 */
-	if (IS_ENABLED(CONFIG_ARM64_VA_BITS_52) && (vabits_actual != 52))
-		memstart_addr -= _PAGE_OFFSET(48) - _PAGE_OFFSET(52);
-
-	/*
 	 * Apply the memory limit if it was set. Since the kernel may be loaded
 	 * high up in memory, add back the kernel region that must be accessible
 	 * via the linear mapping.
@@ -517,6 +513,20 @@ void __init arm64_memblock_init(void)
 			memstart_addr -= ARM64_MEMSTART_ALIGN *
 					 ((range * memstart_offset_seed) >> 16);
 		}
+	}
+
+	physvirt_offset = PHYS_OFFSET - PAGE_OFFSET;
+
+	vmemmap = ((struct page *)VMEMMAP_START - (memstart_addr >> PAGE_SHIFT));
+
+	/*
+	 * If we are running with a 52-bit kernel VA config on a system that
+	 * does not support it, we have to offset our vmemmap and physvirt_offset
+	 * s.t. we avoid the 52-bit portion of the direct linear map
+	 */
+	if (IS_ENABLED(CONFIG_ARM64_VA_BITS_52) && (vabits_actual != 52)) {
+		vmemmap += (_PAGE_OFFSET(48) - _PAGE_OFFSET(52)) >> PAGE_SHIFT;
+		physvirt_offset = PHYS_OFFSET - _PAGE_OFFSET(48);
 	}
 
 	/*

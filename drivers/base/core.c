@@ -819,9 +819,7 @@ static void device_link_put_kref(struct device_link *link)
 void device_link_del(struct device_link *link)
 {
 	device_links_write_lock();
-	device_pm_lock();
 	device_link_put_kref(link);
-	device_pm_unlock();
 	device_links_write_unlock();
 }
 EXPORT_SYMBOL_GPL(device_link_del);
@@ -842,7 +840,6 @@ void device_link_remove(void *consumer, struct device *supplier)
 		return;
 
 	device_links_write_lock();
-	device_pm_lock();
 
 	list_for_each_entry(link, &supplier->links.consumers, s_node) {
 		if (link->consumer == consumer) {
@@ -851,7 +848,6 @@ void device_link_remove(void *consumer, struct device *supplier)
 		}
 	}
 
-	device_pm_unlock();
 	device_links_write_unlock();
 }
 EXPORT_SYMBOL_GPL(device_link_remove);
@@ -1070,10 +1066,8 @@ static ssize_t waiting_for_supplier_show(struct device *dev,
 	bool val;
 
 	device_lock(dev);
-	mutex_lock(&wfs_lock);
 	val = !list_empty(&dev->links.needs_suppliers)
 	      && dev->links.need_for_probe;
-	mutex_unlock(&wfs_lock);
 	device_unlock(dev);
 	return sprintf(buf, "%u\n", val);
 }
@@ -1394,7 +1388,7 @@ static void device_links_purge(struct device *dev)
 		return;
 
 	mutex_lock(&wfs_lock);
-	list_del(&dev->links.needs_suppliers);
+	list_del_init(&dev->links.needs_suppliers);
 	mutex_unlock(&wfs_lock);
 
 	/*

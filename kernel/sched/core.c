@@ -264,9 +264,8 @@ static enum hrtimer_restart hrtick(struct hrtimer *timer)
 static void __hrtick_restart(struct rq *rq)
 {
 	struct hrtimer *timer = &rq->hrtick_timer;
-	ktime_t time = rq->hrtick_time;
 
-	hrtimer_start(timer, time, HRTIMER_MODE_ABS_PINNED_HARD);
+	hrtimer_start_expires(timer, HRTIMER_MODE_ABS_PINNED_HARD);
 }
 
 /*
@@ -291,6 +290,7 @@ static void __hrtick_start(void *arg)
 void hrtick_start(struct rq *rq, u64 delay)
 {
 	struct hrtimer *timer = &rq->hrtick_timer;
+	ktime_t time;
 	s64 delta;
 
 	/*
@@ -298,7 +298,9 @@ void hrtick_start(struct rq *rq, u64 delay)
 	 * doesn't make sense and can cause timer DoS.
 	 */
 	delta = max_t(s64, delay, 10000LL);
-	rq->hrtick_time = ktime_add_ns(timer->base->get_time(), delta);
+	time = ktime_add_ns(timer->base->get_time(), delta);
+
+	hrtimer_set_expires(timer, time);
 
 	if (rq == this_rq()) {
 		__hrtick_restart(rq);
@@ -4769,12 +4771,13 @@ static inline int rt_effective_prio(struct task_struct *p, int prio)
 
 void set_user_nice(struct task_struct *p, long nice)
 {
-	bool queued, running;
+	bool queued, running, allowed = false;
 	int old_prio, delta;
 	struct rq_flags rf;
 	struct rq *rq;
 
-	if (task_nice(p) == nice || nice < MIN_NICE || nice > MAX_NICE)
+	trace_android_rvh_set_user_nice(p, &nice, &allowed);
+	if ((task_nice(p) == nice || nice < MIN_NICE || nice > MAX_NICE) && !allowed)
 		return;
 	/*
 	 * We have to be careful, if called from sys_setpriority(),
@@ -4782,7 +4785,6 @@ void set_user_nice(struct task_struct *p, long nice)
 	 */
 	rq = task_rq_lock(p, &rf);
 	update_rq_clock(rq);
-	trace_android_rvh_set_user_nice(p, &nice);
 
 	/*
 	 * The RT priorities are set via sched_setscheduler(), but we still
@@ -5329,6 +5331,7 @@ int sched_setattr_nocheck(struct task_struct *p, const struct sched_attr *attr)
 {
 	return __sched_setscheduler(p, attr, false, true);
 }
+EXPORT_SYMBOL_GPL(sched_setattr_nocheck);
 
 /**
  * sched_setscheduler_nocheck - change the scheduling policy and/or RT priority of a thread from kernelspace.

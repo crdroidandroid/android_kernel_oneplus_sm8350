@@ -557,8 +557,8 @@ static void ufshcd_print_host_state(struct ufs_hba *hba)
 	struct scsi_device *sdev_ufs = hba->sdev_ufs_device;
 
 	dev_err(hba->dev, "UFS Host state=%d\n", hba->ufshcd_state);
-	dev_err(hba->dev, "outstanding reqs=0x%lx tasks=0x%lx\n",
-		hba->outstanding_reqs, hba->outstanding_tasks);
+	dev_err(hba->dev, "lrb in use=0x%lx, outstanding reqs=0x%lx tasks=0x%lx\n",
+		hba->lrb_in_use, hba->outstanding_reqs, hba->outstanding_tasks);
 	dev_err(hba->dev, "saved_err=0x%x, saved_uic_err=0x%x\n",
 		hba->saved_err, hba->saved_uic_err);
 	dev_err(hba->dev, "Device power mode=%d, UIC link state=%d\n",
@@ -727,6 +727,40 @@ static inline bool ufshcd_is_device_present(struct ufs_hba *hba)
 static inline int ufshcd_get_tr_ocs(struct ufshcd_lrb *lrbp)
 {
 	return le32_to_cpu(lrbp->utr_descriptor_ptr->header.dword_2) & MASK_OCS;
+}
+
+/**
+ * ufshcd_get_tm_free_slot - get a free slot for task management request
+ * @hba: per adapter instance
+ * @free_slot: pointer to variable with available slot value
+ *
+ * Get a free tag and lock it until ufshcd_put_tm_slot() is called.
+ * Returns 0 if free slot is not available, else return 1 with tag value
+ * in @free_slot.
+ */
+static bool ufshcd_get_tm_free_slot(struct ufs_hba *hba, int *free_slot)
+{
+	int tag;
+	bool ret = false;
+
+	if (!free_slot)
+		goto out;
+
+	do {
+		tag = find_first_zero_bit(&hba->tm_slots_in_use, hba->nutmrs);
+		if (tag >= hba->nutmrs)
+			goto out;
+	} while (test_and_set_bit_lock(tag, &hba->tm_slots_in_use));
+
+	*free_slot = tag;
+	ret = true;
+out:
+	return ret;
+}
+
+static inline void ufshcd_put_tm_slot(struct ufs_hba *hba, int slot)
+{
+	clear_bit_unlock(slot, &hba->tm_slots_in_use);
 }
 
 /**
@@ -1371,24 +1405,6 @@ out:
 	return ret;
 }
 
-static bool ufshcd_is_busy(struct request *req, void *priv, bool reserved)
-{
-	int *busy = priv;
-
-	WARN_ON_ONCE(reserved);
-	(*busy)++;
-	return false;
-}
-
-/* Whether or not any tag is in use by a request that is in progress. */
-static bool ufshcd_any_tag_in_use(struct ufs_hba *hba)
-{
-	struct request_queue *q = hba->cmd_queue;
-	int busy = 0;
-
-	blk_mq_tagset_busy_iter(q->tag_set, ufshcd_is_busy, &busy);
-	return busy;
-}
 
 static int ufshcd_devfreq_get_dev_status(struct device *dev,
 		struct devfreq_dev_status *stat)
@@ -1750,7 +1766,7 @@ static void ufshcd_gate_work(struct work_struct *work)
 
 	if (hba->clk_gating.active_reqs
 		|| hba->ufshcd_state != UFSHCD_STATE_OPERATIONAL
-		|| ufshcd_any_tag_in_use(hba) || hba->outstanding_tasks
+		|| hba->lrb_in_use || hba->outstanding_tasks
 		|| hba->active_uic_cmd || hba->uic_async_done)
 		goto rel_lock;
 
@@ -1813,7 +1829,7 @@ static void __ufshcd_release(struct ufs_hba *hba)
 
 	if (hba->clk_gating.active_reqs || hba->clk_gating.is_suspended ||
 	    hba->ufshcd_state != UFSHCD_STATE_OPERATIONAL ||
-	    ufshcd_any_tag_in_use(hba) || hba->outstanding_tasks ||
+	    hba->lrb_in_use || hba->outstanding_tasks ||
 	    hba->active_uic_cmd || hba->uic_async_done)
 		return;
 
@@ -2588,9 +2604,22 @@ static int ufshcd_queuecommand(struct Scsi_Host *host, struct scsi_cmnd *cmd)
 
 	hba->req_abort_count = 0;
 
+	/* acquire the tag to make sure device cmds don't use it */
+	if (test_and_set_bit_lock(tag, &hba->lrb_in_use)) {
+		/*
+		 * Dev manage command in progress, requeue the command.
+		 * Requeuing the command helps in cases where the request *may*
+		 * find different tag instead of waiting for dev manage command
+		 * completion.
+		 */
+		err = SCSI_MLQUEUE_HOST_BUSY;
+		goto out;
+	}
+
 	err = ufshcd_hold(hba, true);
 	if (err) {
 		err = SCSI_MLQUEUE_HOST_BUSY;
+		clear_bit_unlock(tag, &hba->lrb_in_use);
 		goto out;
 	}
 	WARN_ON(ufshcd_is_clkgating_allowed(hba) &&
@@ -2620,6 +2649,7 @@ static int ufshcd_queuecommand(struct Scsi_Host *host, struct scsi_cmnd *cmd)
 	if (err) {
 		ufshcd_release(hba);
 		lrbp->cmd = NULL;
+		clear_bit_unlock(tag, &hba->lrb_in_use);
 		goto out;
 	}
 	/* Make sure descriptors are ready before ringing the doorbell */
@@ -2809,6 +2839,44 @@ static int ufshcd_wait_for_dev_cmd(struct ufs_hba *hba,
 }
 
 /**
+ * ufshcd_get_dev_cmd_tag - Get device management command tag
+ * @hba: per-adapter instance
+ * @tag_out: pointer to variable with available slot value
+ *
+ * Get a free slot and lock it until device management command
+ * completes.
+ *
+ * Returns false if free slot is unavailable for locking, else
+ * return true with tag value in @tag.
+ */
+static bool ufshcd_get_dev_cmd_tag(struct ufs_hba *hba, int *tag_out)
+{
+	int tag;
+	bool ret = false;
+	unsigned long tmp;
+
+	if (!tag_out)
+		goto out;
+
+	do {
+		tmp = ~hba->lrb_in_use;
+		tag = find_last_bit(&tmp, hba->nutrs);
+		if (tag >= hba->nutrs)
+			goto out;
+	} while (test_and_set_bit_lock(tag, &hba->lrb_in_use));
+
+	*tag_out = tag;
+	ret = true;
+out:
+	return ret;
+}
+
+static inline void ufshcd_put_dev_cmd_tag(struct ufs_hba *hba, int tag)
+{
+	clear_bit_unlock(tag, &hba->lrb_in_use);
+}
+
+/**
  * ufshcd_exec_dev_cmd - API for sending device management requests
  * @hba: UFS hba
  * @cmd_type: specifies the type (NOP, Query...)
@@ -2820,8 +2888,6 @@ static int ufshcd_wait_for_dev_cmd(struct ufs_hba *hba,
 static int ufshcd_exec_dev_cmd(struct ufs_hba *hba,
 		enum dev_cmd_type cmd_type, int timeout)
 {
-	struct request_queue *q = hba->cmd_queue;
-	struct request *req;
 	struct ufshcd_lrb *lrbp;
 	int err;
 	int tag;
@@ -2835,16 +2901,7 @@ static int ufshcd_exec_dev_cmd(struct ufs_hba *hba,
 	 * Even though we use wait_event() which sleeps indefinitely,
 	 * the maximum wait time is bounded by SCSI request timeout.
 	 */
-	req = blk_get_request(q, REQ_OP_DRV_OUT, 0);
-	if (IS_ERR(req)) {
-		err = PTR_ERR(req);
-		goto out_unlock;
-	}
-	tag = req->tag;
-	WARN_ON_ONCE(!ufshcd_valid_tag(hba, tag));
-	/* Set the timeout such that the SCSI error handler is not activated. */
-	req->timeout = msecs_to_jiffies(2 * timeout);
-	blk_mq_start_request(req);
+	wait_event(hba->dev_cmd.tag_wq, ufshcd_get_dev_cmd_tag(hba, &tag));
 
 	init_completion(&wait);
 	lrbp = &hba->lrb[tag];
@@ -2868,8 +2925,8 @@ static int ufshcd_exec_dev_cmd(struct ufs_hba *hba,
 			err ? "query_complete_err" : "query_complete");
 
 out_put_tag:
-	blk_put_request(req);
-out_unlock:
+	ufshcd_put_dev_cmd_tag(hba, tag);
+	wake_up(&hba->dev_cmd.tag_wq);
 	up_read(&hba->clk_scaling_lock);
 	return err;
 }
@@ -5126,6 +5183,7 @@ static void __ufshcd_transfer_req_compl(struct ufs_hba *hba,
 			/* Mark completed command as NULL in LRB */
 			lrbp->cmd = NULL;
 			lrbp->compl_time_stamp = ktime_get();
+			clear_bit_unlock(index, &hba->lrb_in_use);
 			/* Do not touch lrbp after scsi done */
 			cmd->scsi_done(cmd);
 			__ufshcd_release(hba);
@@ -5146,6 +5204,9 @@ static void __ufshcd_transfer_req_compl(struct ufs_hba *hba,
 	hba->outstanding_reqs ^= completed_reqs;
 
 	ufshcd_clk_scaling_update_busy(hba);
+
+	/* we might have free'd some tags above */
+	wake_up(&hba->dev_cmd.tag_wq);
 }
 
 /**
@@ -6175,27 +6236,6 @@ static irqreturn_t ufshcd_check_errors(struct ufs_hba *hba)
 	return retval;
 }
 
-struct ctm_info {
-	struct ufs_hba	*hba;
-	unsigned long	pending;
-	unsigned int	ncpl;
-};
-
-static bool ufshcd_compl_tm(struct request *req, void *priv, bool reserved)
-{
-	struct ctm_info *const ci = priv;
-	struct completion *c;
-
-	WARN_ON_ONCE(reserved);
-	if (test_bit(req->tag, &ci->pending))
-		return true;
-	ci->ncpl++;
-	c = req->end_io_data;
-	if (c)
-		complete(c);
-	return true;
-}
-
 /**
  * ufshcd_tmc_handler - handle task management function completion
  * @hba: per adapter instance
@@ -6206,14 +6246,16 @@ static bool ufshcd_compl_tm(struct request *req, void *priv, bool reserved)
  */
 static irqreturn_t ufshcd_tmc_handler(struct ufs_hba *hba)
 {
-	struct request_queue *q = hba->tmf_queue;
-	struct ctm_info ci = {
-		.hba	 = hba,
-		.pending = ufshcd_readl(hba, REG_UTP_TASK_REQ_DOOR_BELL),
-	};
+	u32 tm_doorbell;
 
-	blk_mq_tagset_busy_iter(q->tag_set, ufshcd_compl_tm, &ci);
-	return ci.ncpl ? IRQ_HANDLED : IRQ_NONE;
+	tm_doorbell = ufshcd_readl(hba, REG_UTP_TASK_REQ_DOOR_BELL);
+	hba->tm_condition = tm_doorbell ^ hba->outstanding_tasks;
+	if (hba->tm_condition) {
+		wake_up(&hba->tm_wq);
+		return IRQ_HANDLED;
+	} else {
+		return IRQ_NONE;
+	}
 }
 
 /**
@@ -6291,7 +6333,7 @@ static irqreturn_t ufshcd_intr(int irq, void *__hba)
 		intr_status = ufshcd_readl(hba, REG_INTERRUPT_STATUS);
 	}
 
-	if (retval == IRQ_NONE) {
+	if (enabled_intr_status && retval == IRQ_NONE) {
 		dev_err(hba->dev, "%s: Unhandled interrupt 0x%08x\n",
 					__func__, intr_status);
 		ufshcd_dump_regs(hba, 0, UFSHCI_REG_SPACE_SIZE, "host_regs: ");
@@ -6325,35 +6367,33 @@ out:
 static int __ufshcd_issue_tm_cmd(struct ufs_hba *hba,
 		struct utp_task_req_desc *treq, u8 tm_function)
 {
-	struct request_queue *q = hba->tmf_queue;
 	struct Scsi_Host *host = hba->host;
-	DECLARE_COMPLETION_ONSTACK(wait);
-	struct request *req;
 	unsigned long flags;
-	int task_tag, err;
+	int free_slot, task_tag, err;
 
 	/*
-	 * blk_get_request() is used here only to get a free tag.
+	 * Get free slot, sleep if slots are unavailable.
+	 * Even though we use wait_event() which sleeps indefinitely,
+	 * the maximum wait time is bounded by %TM_CMD_TIMEOUT.
 	 */
-	req = blk_get_request(q, REQ_OP_DRV_OUT, BLK_MQ_REQ_RESERVED);
-	req->end_io_data = &wait;
+	wait_event(hba->tm_tag_wq, ufshcd_get_tm_free_slot(hba, &free_slot));
 	ufshcd_hold(hba, false);
 
 	spin_lock_irqsave(host->host_lock, flags);
-	blk_mq_start_request(req);
+	task_tag = hba->nutrs + free_slot;
 
 	treq->req_header.dword_0 |= cpu_to_be32(task_tag);
 
-	memcpy(hba->utmrdl_base_addr + task_tag, treq, sizeof(*treq));
-	ufshcd_vops_setup_task_mgmt(hba, task_tag, tm_function);
+	memcpy(hba->utmrdl_base_addr + free_slot, treq, sizeof(*treq));
+	ufshcd_vops_setup_task_mgmt(hba, free_slot, tm_function);
 
 	/* send command to the controller */
-	__set_bit(task_tag, &hba->outstanding_tasks);
+	__set_bit(free_slot, &hba->outstanding_tasks);
 
 	/* Make sure descriptors are ready before ringing the task doorbell */
 	wmb();
 
-	ufshcd_writel(hba, 1 << task_tag, REG_UTP_TASK_REQ_DOOR_BELL);
+	ufshcd_writel(hba, 1 << free_slot, REG_UTP_TASK_REQ_DOOR_BELL);
 	/* Make sure that doorbell is committed immediately */
 	wmb();
 
@@ -6362,35 +6402,33 @@ static int __ufshcd_issue_tm_cmd(struct ufs_hba *hba,
 	ufshcd_add_tm_upiu_trace(hba, task_tag, "tm_send");
 
 	/* wait until the task management command is completed */
-	err = wait_for_completion_io_timeout(&wait,
+	err = wait_event_timeout(hba->tm_wq,
+			test_bit(free_slot, &hba->tm_condition),
 			msecs_to_jiffies(TM_CMD_TIMEOUT));
 	if (!err) {
-		/*
-		 * Make sure that ufshcd_compl_tm() does not trigger a
-		 * use-after-free.
-		 */
-		req->end_io_data = NULL;
 		ufshcd_add_tm_upiu_trace(hba, task_tag, "tm_complete_err");
 		dev_err(hba->dev, "%s: task management cmd 0x%.2x timed-out\n",
 				__func__, tm_function);
-		if (ufshcd_clear_tm_cmd(hba, task_tag))
-			dev_WARN(hba->dev, "%s: unable to clear tm cmd (slot %d) after timeout\n",
-					__func__, task_tag);
+		if (ufshcd_clear_tm_cmd(hba, free_slot))
+			dev_WARN(hba->dev, "%s: unable clear tm cmd (slot %d) after timeout\n",
+					__func__, free_slot);
 		err = -ETIMEDOUT;
 	} else {
 		err = 0;
-		memcpy(treq, hba->utmrdl_base_addr + task_tag, sizeof(*treq));
+		memcpy(treq, hba->utmrdl_base_addr + free_slot, sizeof(*treq));
 
 		ufshcd_add_tm_upiu_trace(hba, task_tag, "tm_complete");
 	}
 
 	spin_lock_irqsave(hba->host->host_lock, flags);
-	__clear_bit(task_tag, &hba->outstanding_tasks);
+	__clear_bit(free_slot, &hba->outstanding_tasks);
 	spin_unlock_irqrestore(hba->host->host_lock, flags);
 
-	ufshcd_release(hba);
-	blk_put_request(req);
+	clear_bit(free_slot, &hba->tm_condition);
+	ufshcd_put_tm_slot(hba, free_slot);
+	wake_up(&hba->tm_tag_wq);
 
+	ufshcd_release(hba);
 	return err;
 }
 
@@ -6464,8 +6502,6 @@ static int ufshcd_issue_devman_upiu_cmd(struct ufs_hba *hba,
 					int cmd_type,
 					enum query_opcode desc_op)
 {
-	struct request_queue *q = hba->cmd_queue;
-	struct request *req;
 	struct ufshcd_lrb *lrbp;
 	int err = 0;
 	int tag;
@@ -6475,13 +6511,7 @@ static int ufshcd_issue_devman_upiu_cmd(struct ufs_hba *hba,
 
 	down_read(&hba->clk_scaling_lock);
 
-	req = blk_get_request(q, REQ_OP_DRV_OUT, 0);
-	if (IS_ERR(req)) {
-		err = PTR_ERR(req);
-		goto out_unlock;
-	}
-	tag = req->tag;
-	WARN_ON_ONCE(!ufshcd_valid_tag(hba, tag));
+	wait_event(hba->dev_cmd.tag_wq, ufshcd_get_dev_cmd_tag(hba, &tag));
 
 	init_completion(&wait);
 	lrbp = &hba->lrb[tag];
@@ -6555,8 +6585,8 @@ static int ufshcd_issue_devman_upiu_cmd(struct ufs_hba *hba,
 		}
 	}
 
-	blk_put_request(req);
-out_unlock:
+	ufshcd_put_dev_cmd_tag(hba, tag);
+	wake_up(&hba->dev_cmd.tag_wq);
 	up_read(&hba->clk_scaling_lock);
 	return err;
 }
@@ -6842,8 +6872,6 @@ static int ufshcd_abort(struct scsi_cmnd *cmd)
 	}
 
 cleanup:
-	scsi_dma_unmap(cmd);
-
 	spin_lock_irqsave(host->host_lock, flags);
 	__ufshcd_transfer_req_compl(hba, (1UL << tag));
 	spin_unlock_irqrestore(host->host_lock, flags);
@@ -9027,7 +9055,8 @@ int ufshcd_system_suspend(struct ufs_hba *hba)
 	if ((ufs_get_pm_lvl_to_dev_pwr_mode(hba->spm_lvl) ==
 	     hba->curr_dev_pwr_mode) &&
 	    (ufs_get_pm_lvl_to_link_pwr_state(hba->spm_lvl) ==
-	     hba->uic_link_state))
+	     hba->uic_link_state) &&
+	     !hba->dev_info.b_rpm_dev_flush_capable)
 		goto out;
 
 	if (pm_runtime_suspended(hba->dev)) {
@@ -9223,10 +9252,8 @@ void ufshcd_remove(struct ufs_hba *hba)
 {
 	ufs_bsg_remove(hba);
 	ufs_sysfs_remove_nodes(hba->dev);
-	blk_cleanup_queue(hba->tmf_queue);
-	blk_mq_free_tag_set(&hba->tmf_tag_set);
-	blk_cleanup_queue(hba->cmd_queue);
 	scsi_remove_host(hba->host);
+	destroy_workqueue(hba->eh_wq);
 	/* disable interrupts */
 	ufshcd_disable_intr(hba, hba->intr_mask);
 	ufshcd_hba_stop(hba, true);
@@ -9305,18 +9332,6 @@ out_error:
 }
 EXPORT_SYMBOL(ufshcd_alloc_host);
 
-/* This function exists because blk_mq_alloc_tag_set() requires this. */
-static blk_status_t ufshcd_queue_tmf(struct blk_mq_hw_ctx *hctx,
-				     const struct blk_mq_queue_data *qd)
-{
-	WARN_ON_ONCE(true);
-	return BLK_STS_NOTSUPP;
-}
-
-static const struct blk_mq_ops ufshcd_tmf_ops = {
-	.queue_rq = ufshcd_queue_tmf,
-};
-
 /**
  * ufshcd_init - Driver initialization routine
  * @hba: per-adapter instance
@@ -9388,6 +9403,10 @@ int ufshcd_init(struct ufs_hba *hba, void __iomem *mmio_base, unsigned int irq)
 
 	hba->max_pwr_info.is_valid = false;
 
+	/* Initailize wait queue for task management */
+	init_waitqueue_head(&hba->tm_wq);
+	init_waitqueue_head(&hba->tm_tag_wq);
+
 	/* Initialize work queues */
 	snprintf(eh_wq_name, sizeof(eh_wq_name), "ufs_eh_wq_%d",
 		 hba->host->host_no);
@@ -9408,6 +9427,9 @@ int ufshcd_init(struct ufs_hba *hba, void __iomem *mmio_base, unsigned int irq)
 	mutex_init(&hba->dev_cmd.lock);
 
 	init_rwsem(&hba->clk_scaling_lock);
+
+	/* Initialize device management tag acquire wait queue */
+	init_waitqueue_head(&hba->dev_cmd.tag_wq);
 
 	ufshcd_init_clk_gating(hba);
 
@@ -9442,27 +9464,6 @@ int ufshcd_init(struct ufs_hba *hba, void __iomem *mmio_base, unsigned int irq)
 		goto exit_gating;
 	}
 
-	hba->cmd_queue = blk_mq_init_queue(&hba->host->tag_set);
-	if (IS_ERR(hba->cmd_queue)) {
-		err = PTR_ERR(hba->cmd_queue);
-		goto out_remove_scsi_host;
-	}
-
-	hba->tmf_tag_set = (struct blk_mq_tag_set) {
-		.nr_hw_queues	= 1,
-		.queue_depth	= hba->nutmrs,
-		.ops		= &ufshcd_tmf_ops,
-		.flags		= BLK_MQ_F_NO_SCHED,
-	};
-	err = blk_mq_alloc_tag_set(&hba->tmf_tag_set);
-	if (err < 0)
-		goto free_cmd_queue;
-	hba->tmf_queue = blk_mq_init_queue(&hba->tmf_tag_set);
-	if (IS_ERR(hba->tmf_queue)) {
-		err = PTR_ERR(hba->tmf_queue);
-		goto free_tmf_tag_set;
-	}
-
 	/* Reset the attached device */
 	ufshcd_vops_device_reset(hba);
 
@@ -9478,8 +9479,7 @@ int ufshcd_init(struct ufs_hba *hba, void __iomem *mmio_base, unsigned int irq)
 	if (err) {
 		dev_err(hba->dev, "Host controller enable failed\n");
 		ufshcd_print_host_state(hba);
-		ufshcd_print_host_regs(hba);
-		goto free_tmf_queue;
+		goto out_remove_scsi_host;
 	}
 
 	/*
@@ -9519,17 +9519,12 @@ int ufshcd_init(struct ufs_hba *hba, void __iomem *mmio_base, unsigned int irq)
 
 	return 0;
 
-free_tmf_queue:
-	blk_cleanup_queue(hba->tmf_queue);
-free_tmf_tag_set:
-	blk_mq_free_tag_set(&hba->tmf_tag_set);
-free_cmd_queue:
-	blk_cleanup_queue(hba->cmd_queue);
 out_remove_scsi_host:
 	scsi_remove_host(hba->host);
 exit_gating:
 	ufshcd_exit_clk_scaling(hba);
 	ufshcd_exit_clk_gating(hba);
+	destroy_workqueue(hba->eh_wq);
 out_disable:
 	hba->is_irq_enabled = false;
 	ufshcd_hba_exit(hba);

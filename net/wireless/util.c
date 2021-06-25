@@ -95,7 +95,7 @@ u32 ieee80211_channel_to_freq_khz(int chan, enum nl80211_band band)
 		/* see 802.11ax D6.1 27.3.23.2 */
 		if (chan == 2)
 			return MHZ_TO_KHZ(5935);
-		if (chan <= 253)
+		if (chan <= 233)
 			return MHZ_TO_KHZ(5950 + chan * 5);
 		break;
 	case NL80211_BAND_60GHZ:
@@ -263,6 +263,9 @@ bool cfg80211_valid_key_idx(struct cfg80211_registered_device *rdev,
 
 	if (pairwise)
 		max_key_idx = 3;
+	else if (wiphy_ext_feature_isset(&rdev->wiphy,
+				    NL80211_EXT_FEATURE_BEACON_PROTECTION))
+		max_key_idx = 7;
 	else if (cfg80211_igtk_cipher_supported(rdev))
 		max_key_idx = 5;
 	else
@@ -498,9 +501,9 @@ unsigned int ieee80211_get_mesh_hdrlen(struct ieee80211s_hdr *meshhdr)
 }
 EXPORT_SYMBOL(ieee80211_get_mesh_hdrlen);
 
-int ieee80211_data_to_8023_exthdr(struct sk_buff *skb, struct ethhdr *ehdr,
-				  const u8 *addr, enum nl80211_iftype iftype,
-				  u8 data_offset, bool is_amsdu)
+int ieee80211_data_to_8023_exthdr_bool(struct sk_buff *skb, struct ethhdr *ehdr,
+				       const u8 *addr, enum nl80211_iftype iftype,
+				       u8 data_offset, bool is_amsdu)
 {
 	struct ieee80211_hdr *hdr = (struct ieee80211_hdr *) skb->data;
 	struct {
@@ -605,6 +608,15 @@ int ieee80211_data_to_8023_exthdr(struct sk_buff *skb, struct ethhdr *ehdr,
 	memcpy(ehdr, &tmp, sizeof(tmp));
 
 	return 0;
+}
+EXPORT_SYMBOL_GPL(ieee80211_data_to_8023_exthdr_bool);
+
+int ieee80211_data_to_8023_exthdr(struct sk_buff *skb, struct ethhdr *ehdr,
+				  const u8 *addr, enum nl80211_iftype iftype,
+				  u8 data_offset)
+{
+	return ieee80211_data_to_8023_exthdr_bool(skb, ehdr, addr, iftype,
+						  data_offset, false);
 }
 EXPORT_SYMBOL(ieee80211_data_to_8023_exthdr);
 
