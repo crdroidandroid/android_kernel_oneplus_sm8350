@@ -7556,7 +7556,11 @@ done:
 	trace_sched_task_util(p, cpumask_bits(candidates)[0], best_energy_cpu,
 			sync, fbt_env.need_idle, fbt_env.fastpath,
 			task_boost_policy(p), start_t, boosted, is_rtg,
+#ifdef CONFIG_OPCHAIN
 			walt_get_rtg_status(p), is_uxtop);
+#else
+			walt_get_rtg_status(p), start_cpu);
+#endif
 
 	return best_energy_cpu;
 
