@@ -3,7 +3,7 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/list.h>
-#include "../techpack/sched/walt.h"
+#include "../../../kernel/sched/walt/qc_vas.h"
 
 struct task_list_entry {
 	int pid;

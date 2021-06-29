@@ -23,7 +23,7 @@
 #include <linux/oem/memory_monitor.h>
 #endif
 #include <linux/cpufreq.h>
-#include "../techpack/sched/walt.h"
+#include "../../../kernel/sched/walt/qc_vas.h"
 #include "../include/linux/cred.h"
 
 #define BUFFER_SIZE_S 256
