@@ -61,8 +61,8 @@
 		swr2 = &swr2;
 		usb0 = &usb0;
 		usb1 = &usb1;
-		i2c0 = &qupv3_se19_i2c; 
-		i2c4 = &qupv3_se4_i2c; 
+		i2c0 = &qupv3_se19_i2c;
+		i2c4 = &qupv3_se4_i2c;
 	};
 
 	firmware: firmware {};

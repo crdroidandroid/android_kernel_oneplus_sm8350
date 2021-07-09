@@ -16,14 +16,14 @@
 				cooling-device = <&CPU4 6 6>;
 			};
 
-			socd_cpu7 {
-				trip = <&socd_trip2>;
-				cooling-device = <&cpu7_isolate 1 1>;
-			};
-
 			socd_cpu6 {
 				trip = <&socd_trip>;
 				cooling-device = <&cpu6_isolate 1 1>;
+			};
+
+			socd_cpu7 {
+				trip = <&socd_trip2>;
+				cooling-device = <&cpu7_isolate 1 1>;
 			};
 		};
 	};
