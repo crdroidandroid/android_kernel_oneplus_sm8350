@@ -23,7 +23,6 @@ camera-y := \
 	cam_utils/cam_soc_util.o \
 	cam_utils/cam_io_util.o \
 	cam_utils/cam_packet_util.o \
-	cam_utils/cam_debug_util.o \
 	cam_utils/cam_trace.o \
 	cam_utils/cam_common_util.o \
 	cam_utils/cam_compat.o \
@@ -45,6 +44,9 @@ camera-y := \
 	cam_cdm/cam_cdm_core_common.o \
 	cam_cdm/cam_cdm_virtual_core.o \
 	cam_cdm/cam_cdm_hw_core.o
+
+camera-$(CONFIG_DEBUG_FS) += \
+	cam_utils/cam_debug_util.o
 
 ifneq (,$(filter $(CONFIG_QCOM_CX_IPEAK),y m))
 camera-y += cam_utils/cam_cx_ipeak.o

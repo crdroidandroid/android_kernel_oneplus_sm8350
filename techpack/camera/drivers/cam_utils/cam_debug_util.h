@@ -80,6 +80,8 @@ struct camera_debug_settings {
 	struct cam_cpas_debug_settings cpas_settings;
 };
 
+#if defined(CONFIG_DEBUG_FS)
+
 /*
  *  cam_debug_log()
  *
@@ -328,5 +330,65 @@ const struct camera_debug_settings *cam_debug_get_settings(void);
  */
 ssize_t cam_debug_sysfs_node_store(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t count);
+
+#else
+
+static inline void cam_debug_log(unsigned int module_id, const char *func,
+	const int line, const char *fmt, ...)
+{
+}
+
+static inline void cam_debug_trace(unsigned int tag, unsigned int module_id,
+	const char *func, const int line, const char *fmt, ...)
+{
+}
+
+static inline const char *cam_get_module_name(unsigned int module_id)
+{
+	return NULL;
+}
+
+#define CAM_TRACE(__module, fmt, args...) \
+	cam_debug_log(__module, __func__, __LINE__, fmt, ##args)
+
+#define CAM_ERR(__module, fmt, args...) \
+	cam_debug_log(__module, __func__, __LINE__, fmt, ##args)
+
+#define CAM_WARN(__module, fmt, args...) \
+	cam_debug_log(__module, __func__, __LINE__, fmt, ##args)
+
+#define CAM_INFO(__module, fmt, args...) \
+	cam_debug_log(__module, __func__, __LINE__, fmt, ##args)
+
+#define CAM_INFO_RATE_LIMIT(__module, fmt, args...) \
+	cam_debug_log(__module, __func__, __LINE__, fmt, ##args)
+
+#define CAM_DBG(__module, fmt, args...) \
+	cam_debug_log(__module, __func__, __LINE__, fmt, ##args)
+
+#define CAM_ERR_RATE_LIMIT(__module, fmt, args...) \
+	cam_debug_log(__module, __func__, __LINE__, fmt, ##args)
+
+#define CAM_WARN_RATE_LIMIT(__module, fmt, args...) \
+	cam_debug_log(__module, __func__, __LINE__, fmt, ##args)
+
+#define CAM_WARN_RATE_LIMIT_CUSTOM(__module, interval, burst, fmt, args...)
+
+#define CAM_INFO_RATE_LIMIT_CUSTOM(__module, interval, burst, fmt, args...)
+
+#define CAM_ERR_RATE_LIMIT_CUSTOM(__module, interval, burst, fmt, args...)
+
+static inline const struct camera_debug_settings *cam_debug_get_settings(void)
+{
+	return NULL;
+}
+
+static inline ssize_t cam_debug_sysfs_node_store(struct device *dev,
+		struct device_attribute *attr, const char *buf, size_t count)
+{
+	return 0;
+}
+
+#endif
 
 #endif /* _CAM_DEBUG_UTIL_H_ */
