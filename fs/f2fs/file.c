@@ -537,6 +537,10 @@ static int f2fs_file_mmap(struct file *file, struct vm_area_struct *vma)
 static int f2fs_file_open(struct inode *inode, struct file *filp)
 {
 	int err = fscrypt_file_open(inode, filp);
+#ifdef CONFIG_FUSE_DECOUPLING
+	struct fuse_package *fp = current->fpack;
+	char *iname;
+#endif
 
 	if (err)
 		return err;
@@ -550,7 +554,22 @@ static int f2fs_file_open(struct inode *inode, struct file *filp)
 
 	filp->f_mode |= FMODE_NOWAIT;
 
+#ifdef CONFIG_FUSE_DECOUPLING
+	err = dquot_file_open(inode, filp);
+	if (!err && fp && fp->fuse_open_req && !fp->filp && fp->iname) {
+		iname = inode_name(inode);
+		if (iname) {
+			if (strlen(iname) >= 6 && !strcasecmp(&iname[6], fp->iname)) {
+				fp->filp = filp;
+				get_file(filp);
+			}
+			__putname(iname);
+		}
+	}
+	return err;
+#else
 	return dquot_file_open(inode, filp);
+#endif
 }
 
 void f2fs_truncate_data_blocks_range(struct dnode_of_data *dn, int count)
@@ -989,6 +1008,12 @@ int f2fs_setattr(struct dentry *dentry, struct iattr *attr)
 				inode->i_mode = F2FS_I(inode)->i_acl_mode;
 			clear_inode_flag(inode, FI_ACL_MODE);
 		}
+#ifdef CONFIG_FS_HPB
+		if (__is_hpb_file(dentry->d_name.name, inode))
+			set_inode_flag(inode, FI_HPB_INODE);
+		else
+			clear_inode_flag(inode, FI_HPB_INODE);
+#endif
 	}
 
 	/* file size may changed here */
