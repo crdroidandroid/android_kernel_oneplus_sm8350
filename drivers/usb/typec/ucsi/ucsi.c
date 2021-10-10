@@ -35,9 +35,6 @@
  * partners that do not support USB Power Delivery, this should still work.
  */
 #define UCSI_SWAP_TIMEOUT_MS	5000
-static bool usb_compliance_mode;
-module_param(usb_compliance_mode, bool, 0644);
-MODULE_PARM_DESC(usb_compliance_mode, "USB3.1 compliance testing");
 
 static int ucsi_acknowledge_command(struct ucsi *ucsi)
 {
@@ -511,12 +508,6 @@ static void ucsi_partner_change(struct ucsi_connector *con)
 	if (!completion_done(&con->complete))
 		complete(&con->complete);
 
-	if (usb_compliance_mode) {
-		u_role = USB_ROLE_DEVICE;
-		dev_err(ucsi->dev, "%s: USB3.1 compliance test mode!\n",
-		__func__);
-	}
-
 	ret = usb_role_switch_set_role(ucsi->usb_role_sw, u_role);
 	if (ret)
 		dev_err(ucsi->dev, "%s(): failed to set role(%d):%d\n",
@@ -588,12 +579,6 @@ static void ucsi_handle_connector_change(struct work_struct *work)
 			ucsi_register_partner(con);
 		else
 			ucsi_unregister_partner(con);
-
-		if (usb_compliance_mode) {
-			u_role = USB_ROLE_DEVICE;
-			dev_err(ucsi->dev, "%s: USB3.1 compliance test mode!\n",
-			__func__);
-		}
 
 		ret = usb_role_switch_set_role(ucsi->usb_role_sw, u_role);
 		if (ret)
@@ -906,12 +891,6 @@ static int ucsi_register_port(struct ucsi *ucsi, int index)
 				  !!(con->status.flags & UCSI_CONSTAT_PWR_DIR));
 		ucsi_pwr_opmode_change(con);
 		ucsi_register_partner(con);
-	}
-
-	if (usb_compliance_mode) {
-		role = USB_ROLE_DEVICE;
-		dev_err(ucsi->dev, "%s: USB3.1 compliance test mode!\n",
-		__func__);
 	}
 
 	ret = usb_role_switch_set_role(ucsi->usb_role_sw, role);

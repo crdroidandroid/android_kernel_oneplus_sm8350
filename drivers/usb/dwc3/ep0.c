@@ -21,7 +21,9 @@
 #include <linux/usb/ch9.h>
 #include <linux/usb/gadget.h>
 #include <linux/usb/composite.h>
+#if IS_ENABLED(CONFIG_OPLUS_CHG)
 #include <linux/usb/dwc3-msm.h>
+#endif
 
 #include "core.h"
 #include "debug.h"
@@ -622,8 +624,9 @@ static int dwc3_ep0_set_address(struct dwc3 *dwc, struct usb_ctrlrequest *ctrl)
 	else
 		usb_gadget_set_state(&dwc->gadget, USB_STATE_DEFAULT);
 
+#if IS_ENABLED(CONFIG_OPLUS_CHG)
 	oplus_dwc3_notify_event(DWC3_ENUM_DONE);
-
+#endif
 	return 0;
 }
 
@@ -859,6 +862,7 @@ static int dwc3_ep0_std_request(struct dwc3 *dwc, struct usb_ctrlrequest *ctrl)
 	return ret;
 }
 
+#if IS_ENABLED(CONFIG_OPLUS_CHG)
 static void (*oplus_notify_event)(enum oplus_dwc3_notify_event);
 void oplus_dwc3_set_notifier(void (*notify)(enum oplus_dwc3_notify_event))
 {
@@ -878,6 +882,7 @@ int oplus_dwc3_notify_event(enum oplus_dwc3_notify_event event)
 	return ret;
 }
 EXPORT_SYMBOL(oplus_dwc3_notify_event);
+#endif
 
 static void dwc3_ep0_inspect_setup(struct dwc3 *dwc,
 		const struct dwc3_event_depevt *event)
