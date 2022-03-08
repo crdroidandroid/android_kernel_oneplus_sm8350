@@ -2199,6 +2199,11 @@ static int qcedev_suspend(struct platform_device *pdev, pm_message_t state)
 
 suspend_exit:
 	mutex_unlock(&qcedev_sent_bw_req);
+	if (qce_pm_table.suspend) {
+		qcedev_ce_high_bw_req(podev, true);
+		qce_pm_table.suspend(podev->qce);
+		qcedev_ce_high_bw_req(podev, false);
+	}
 	return 0;
 }
 
@@ -2211,6 +2216,12 @@ static int qcedev_resume(struct platform_device *pdev)
 
 	if (!podev)
 		return 0;
+
+	if (qce_pm_table.resume) {
+		qcedev_ce_high_bw_req(podev, true);
+		qce_pm_table.resume(podev->qce);
+		qcedev_ce_high_bw_req(podev, false);
+	}
 
 	mutex_lock(&qcedev_sent_bw_req);
 	if (podev->high_bw_req_count) {
