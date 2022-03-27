@@ -131,13 +131,6 @@
 	.endm
 
 /*
- * Clear Branch History instruction
- */
-	.macro clearbhb
-	hint	#22
-	.endm
-
-/*
  * Speculation barrier
  */
 	.macro	sb
@@ -796,9 +789,7 @@ USER(\label, ic	ivau, \tmp2)			// invalidate I line PoU
 
 	.macro __mitigate_spectre_bhb_loop      tmp
 #ifdef CONFIG_MITIGATE_SPECTRE_BRANCH_HISTORY
-alternative_cb  spectre_bhb_patch_loop_iter
-	mov	\tmp, #32		// Patched to correct the immediate
-alternative_cb_end
+	mov	\tmp, #32
 .Lspectre_bhb_loop\@:
 	b	. + 4
 	subs	\tmp, \tmp, #1
@@ -813,7 +804,7 @@ alternative_cb_end
 	stp	x0, x1, [sp, #-16]!
 	stp	x2, x3, [sp, #-16]!
 	mov	w0, #ARM_SMCCC_ARCH_WORKAROUND_3
-alternative_cb	arm64_update_smccc_conduit
+alternative_cb	smccc_patch_fw_mitigation_conduit
 	nop					// Patched to SMC/HVC #0
 alternative_cb_end
 	ldp	x2, x3, [sp], #16
