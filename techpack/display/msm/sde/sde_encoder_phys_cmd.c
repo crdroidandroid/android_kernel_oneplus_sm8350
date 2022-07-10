@@ -2045,7 +2045,7 @@ static void sde_encoder_phys_cmd_trigger_start(
 	mode = &phys_enc->cached_mode;
 	if (mode && sde_connector_get_qsync_mode(conn)) {
 		threshold_lines = _get_tearcheck_threshold(phys_enc);
-		sde_encoder_helper_get_pp_line_count(phys_enc->parent, info);
+		sde_encoder_helper_get_pp_line_count(phys_enc->parent, info, WRITE);
 		curr_rd_ptr_line_count = info[0].rd_ptr_line_count;
 
 		/*
