@@ -4774,12 +4774,6 @@ static int msm_pcie_enable(struct msm_pcie_dev_t *dev)
 		dev->i2c_ctrl.client_i2c_de_emphasis_wa(&dev->i2c_ctrl);
 		msleep(20);
 	}
-	/* bring eps out of reset */
-	if (dev->i2c_ctrl.client && dev->i2c_ctrl.client_i2c_reset
-			 && !dev->i2c_ctrl.ep_reset_postlinkup) {
-		dev->i2c_ctrl.client_i2c_reset(&dev->i2c_ctrl, false);
-		msleep(100);
-	}
 	msm_pcie_config_sid(dev);
 	msm_pcie_config_controller(dev);
 
@@ -4827,11 +4821,13 @@ static int msm_pcie_enable(struct msm_pcie_dev_t *dev)
 	if (dev->enumerated)
 		msm_msi_config(dev_get_msi_domain(&dev->dev->dev));
 
-	/* Bring pine EP out of reset*/
-	if (dev->i2c_ctrl.client && dev->i2c_ctrl.client_i2c_reset
-			 && dev->i2c_ctrl.ep_reset_postlinkup) {
+	/* Bring EP out of reset*/
+	if (dev->i2c_ctrl.client && dev->i2c_ctrl.client_i2c_reset) {
 		dev->i2c_ctrl.client_i2c_reset(&dev->i2c_ctrl, false);
-		msleep(100);
+		PCIE_DBG(dev,
+			 "PCIe: Bring EPs out of reset and then wait for link training.\n");
+		msleep(200);
+		PCIE_DBG(dev, "PCIe: Finish EPs link training wait.\n");
 	}
 	goto out;
 
@@ -7728,7 +7724,7 @@ static int msm_pcie_drv_send_rpmsg(struct msm_pcie_dev_t *pcie_dev,
 				   struct msm_pcie_drv_msg *msg)
 {
 	struct msm_pcie_drv_info *drv_info = pcie_dev->drv_info;
-	int ret;
+	int ret, re_try = 5; /* sleep 5 ms per re-try */
 	struct rpmsg_device *rpdev;
 
 	mutex_lock(&pcie_drv.rpmsg_lock);
@@ -7749,8 +7745,15 @@ static int msm_pcie_drv_send_rpmsg(struct msm_pcie_dev_t *pcie_dev,
 	PCIE_DBG(pcie_dev, "PCIe: RC%d: DRV: sending rpmsg: command: 0x%x\n",
 		pcie_dev->rc_idx, msg->pkt.dword[0]);
 
+retry:
 	ret = rpmsg_trysend(rpdev->ept, msg, sizeof(*msg));
 	if (ret) {
+		if (ret == -EBUSY && re_try) {
+			usleep_range(5000, 5001);
+			re_try--;
+			goto retry;
+		}
+
 		PCIE_ERR(pcie_dev,
 			 "PCIe: RC%d: DRV: failed to send rpmsg, ret:%d\n",
 			pcie_dev->rc_idx, ret);
