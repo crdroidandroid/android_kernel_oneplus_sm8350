@@ -460,6 +460,8 @@ LZMA		= lzma
 LZ4		= lz4c
 XZ		= xz
 
+export DISABLE_WRAPPER=1
+
 CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
 		  -Wbitwise -Wno-return-void -Wno-unknown-attribute $(CF)
 NOSTDINC_FLAGS :=
