@@ -71,7 +71,7 @@
 
 		/* SW Support Feature Control */
 		black_gesture_support;
-		//fw_edge_limit_support;
+		fw_edge_limit_support;
 		pressure_report_support;
 		charger_pump_support;
 		game_switch_support;
