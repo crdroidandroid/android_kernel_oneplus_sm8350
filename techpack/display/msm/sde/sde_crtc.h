@@ -1,5 +1,4 @@
 /*
- * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
  * Copyright (c) 2015-2021 The Linux Foundation. All rights reserved.
  * Copyright (C) 2013 Red Hat
  * Author: Rob Clark <robdclark@gmail.com>
@@ -400,6 +399,7 @@ struct sde_crtc {
 enum sde_crtc_dirty_flags {
 	SDE_CRTC_DIRTY_DEST_SCALER,
 	SDE_CRTC_DIRTY_DIM_LAYERS,
+	SDE_CRTC_DIRTY_UIDLE,
 	SDE_CRTC_DIRTY_MAX,
 };
 
