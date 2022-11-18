@@ -175,8 +175,9 @@ retry:
 		if (!__cpupri_find(cp, p, lowest_mask, idx))
 #else
 		if (!__cpupri_find(cp, p, lowest_mask, idx, drop_nopreempts))
-			continue;
 #endif
+			continue;
+
 
 		if (!lowest_mask || !fitness_fn)
 			return 1;
