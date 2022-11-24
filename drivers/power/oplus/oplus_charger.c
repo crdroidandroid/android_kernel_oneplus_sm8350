@@ -2780,29 +2780,11 @@ static void oplus_chg_awake_init(struct oplus_chg_chip *chip)
 	if (!chip) {
 		return;
 	}
-#if (LINUX_VERSION_CODE < KERNEL_VERSION(4, 9, 0))
-	wake_lock_init(&chip->suspend_lock, WAKE_LOCK_SUSPEND, "battery suspend wakelock");
-
-#else
 	chip->suspend_ws = wakeup_source_register(NULL, "battery suspend wakelock");
-#endif
 }
 
 static void oplus_chg_set_awake(struct oplus_chg_chip *chip, bool awake)
 {
-#if (LINUX_VERSION_CODE < KERNEL_VERSION(4, 9, 0))
-	if (chip->unwakelock_chg == 1 && awake == true) {
-		charger_xlog_printk(CHG_LOG_CRTI,
-			"error, unwakelock testing, can not set wakelock.\n");
-		return;
-	}
-
-	if (awake){
-		wake_lock(&chip->suspend_lock);
-	} else {
-		wake_unlock(&chip->suspend_lock);
-	}
-#else
 	static bool pm_flag = false;
 
 	if (chip->unwakelock_chg == 1 && awake == true) {
@@ -2815,12 +2797,11 @@ static void oplus_chg_set_awake(struct oplus_chg_chip *chip, bool awake)
 
 	if (awake && !pm_flag) {
 		pm_flag = true;
-		__pm_stay_awake(chip->suspend_ws);
+		__pm_wakeup_event(chip->suspend_ws, 500);
 	} else if (!awake && pm_flag) {
 		__pm_relax(chip->suspend_ws);
 		pm_flag = false;
 	}
-#endif
 }
 
 #if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 4, 0))
