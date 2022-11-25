@@ -65,3 +65,7 @@ qseecom-mod-$(CONFIG_COMPAT)	+= compat_qseecom.o
 obj-$(CONFIG_PROFILER)			+= profiler.o
 obj-$(CONFIG_WIGIG_SENSING_SPI)	+= wigig_sensing.o
 obj-$(CONFIG_HISI_HIKEY_USB)	+= hisi_hikey_usb.o
+
+obj-$(CONFIG_CS_F61_NDT)	+= cs_press/
+obj-y				+= tri_state_key/
+obj-$(CONFIG_AW8697_HAPTIC) += aw8697_haptic/
