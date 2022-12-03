@@ -17,6 +17,9 @@
 
 #include "msm_drv.h"
 #include "msm_mmu.h"
+#ifdef CONFIG_OPLUS_SYSTEM_CHANGE
+#include <soc/oplus/system/oplus_mm_kevent_fb.h>
+#endif /*CONFIG_OPLUS_SYSTEM_CHANGE*/
 
 struct msm_iommu {
 	struct msm_mmu base;
@@ -31,6 +34,9 @@ static int msm_fault_handler(struct iommu_domain *domain, struct device *dev,
 	if (iommu->base.handler)
 		return iommu->base.handler(iommu->base.arg, iova, flags);
 	pr_warn_ratelimited("*** fault: iova=%08lx, flags=%d\n", iova, flags);
+#ifdef CONFIG_OPLUS_SYSTEM_CHANGE
+	mm_fb_display_kevent("SMMU msm fault", MM_FB_KEY_RATELIMIT_1H, "iova=%08lx flags=%d", iova, flags);
+#endif /*CONFIG_OPLUS_SYSTEM_CHANGE*/
 	return 0;
 }
 

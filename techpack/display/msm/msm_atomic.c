@@ -16,6 +16,10 @@
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include <drm/drm_panel.h>
+#ifdef CONFIG_OPLUS_SYSTEM_CHANGE
+#include <linux/msm_drm_notify.h>
+#include <linux/notifier.h>
+#endif /* CONFIG_OPLUS_SYSTEM_CHANGE */
 
 #include "msm_drv.h"
 #include "msm_gem.h"

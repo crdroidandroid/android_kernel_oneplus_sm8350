@@ -1302,6 +1302,10 @@ int dsi_display_clk_ctrl(void *handle,
 	return rc;
 }
 
+#ifdef CONFIG_OPLUS_SYSTEM_CHANGE
+EXPORT_SYMBOL(dsi_display_clk_ctrl);
+#endif
+
 void *dsi_register_clk_handle(void *clk_mngr, char *client)
 {
 	void *handle = NULL;

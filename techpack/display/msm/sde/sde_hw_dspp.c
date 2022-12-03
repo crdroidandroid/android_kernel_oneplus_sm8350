@@ -66,17 +66,26 @@ static void dspp_pcc(struct sde_hw_dspp *c)
 	else if (c->cap->sblk->pcc.version ==
 			(SDE_COLOR_PROCESS_VER(0x4, 0x0))) {
 		ret = reg_dmav1_init_dspp_op_v4(SDE_DSPP_PCC, c->idx);
+#ifdef CONFIG_OPLUS_SYSTEM_CHANGE
+		if (!ret)
+			c->ops.setup_pcc = sde_setup_dspp_pccv4;
+#else
 		if (!ret)
 			c->ops.setup_pcc = reg_dmav1_setup_dspp_pccv4;
+#endif  /* CONFIG_OPLUS_SYSTEM_CHANGE */
 		else
 			c->ops.setup_pcc = sde_setup_dspp_pccv4;
 	} else if (c->cap->sblk->pcc.version ==
 			(SDE_COLOR_PROCESS_VER(0x5, 0x0))) {
 		ret = reg_dmav1_init_dspp_op_v4(SDE_DSPP_PCC, c->idx);
+#ifdef CONFIG_OPLUS_SYSTEM_CHANGE
+			c->ops.setup_pcc = sde_setup_dspp_pccv4;
+#else
 		if (!ret)
 			c->ops.setup_pcc = reg_dmav1_setup_dspp_pccv5;
 		else
 			c->ops.setup_pcc = NULL;
+#endif  /* CONFIG_OPLUS_SYSTEM_CHANGE */
 	}
 }
 
