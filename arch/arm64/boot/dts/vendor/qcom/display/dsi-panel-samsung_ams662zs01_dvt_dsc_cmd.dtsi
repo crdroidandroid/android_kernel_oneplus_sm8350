@@ -927,11 +927,6 @@
 };
 
 &dsi_samsung_ams662zs01_dvt_dsc_cmd {
-	oplus,apollo_backlight_enable;
-	oplus,apollo-sync-brightness-level = <540>;
-};
-
-&dsi_samsung_ams662zs01_dvt_dsc_cmd {
 	qcom,panel_voltage_vddi_name = "vddio";
 	qcom,panel_voltage_vddi = <0 1800000 1850000 1950000>;
 	qcom,panel_voltage_vddr_name = "vddio";
