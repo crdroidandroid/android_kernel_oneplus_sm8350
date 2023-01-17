@@ -273,7 +273,7 @@ static const struct file_operations cpu_max_freq_proc_ops = {
 	.release	= single_release,
 };
 
-int cpufreq_limits_init()
+int cpufreq_limits_init(void)
 {
 	int ret;
 
