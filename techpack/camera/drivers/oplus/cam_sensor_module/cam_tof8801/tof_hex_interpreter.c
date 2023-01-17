@@ -63,7 +63,7 @@ static unsigned int lastAddress;
 
 
 /* intel hex record functions */
-static void intelHexInitialise( void );
+static void intelHexInitialise(void);
 static char asciiToBinaryNibble( char a, char * error );
 static char asciiToBinaryByte( const char * * linePtr, char * error );
 
@@ -238,7 +238,7 @@ static char asciiToBinaryByte ( const char * * linePtr, char * error )
 }
 
 /* reset internal variables for intel hex interpreter */
-static void intelHexInitialise (  )
+static void intelHexInitialise(void)
 {
     int i;
     intelHexRecord.address = 0;
