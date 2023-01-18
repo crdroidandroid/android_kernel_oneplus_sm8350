@@ -34,13 +34,6 @@
 
 extern int charger_abnormal_log;
 extern int enable_charger_log;
-#define vooc_xlog_printk(num, fmt, ...) \
-	do { \
-		if (enable_charger_log >= (int)num) { \
-			printk(KERN_NOTICE pr_fmt("[OPLUS_CHG][%s]"fmt), __func__, ##__VA_ARGS__);\
-	} \
-} while (0)
-
 
 static struct oplus_vooc_chip *g_vooc_chip = NULL;
 static struct oplus_vooc_cp *g_vooc_cp = NULL;
@@ -256,7 +249,7 @@ static void check_charger_out_work_func(struct work_struct *work)
 		oplus_chg_clear_chargerid_info();
 		oplus_vooc_battery_update();
 		oplus_vooc_reset_temp_range(chip);
-		vooc_xlog_printk(CHG_LOG_CRTI, "charger out, chg_vol:%d\n", chg_vol);
+		pr_debug("charger out, chg_vol:%d\n", chg_vol);
 		oplus_chg_set_icon_debounce_false();
 	}
 }
@@ -451,7 +444,7 @@ static void vooc_watchdog_work_func(struct work_struct *work)
 
 static void oplus_vooc_check_charger_out(struct oplus_vooc_chip *chip)
 {
-	vooc_xlog_printk(CHG_LOG_CRTI, "  call\n");
+	pr_debug("  call\n");
 	schedule_delayed_work(&chip->check_charger_out_work,
 		round_jiffies_relative(msecs_to_jiffies(3000)));
 }
@@ -597,7 +590,7 @@ static int oplus_vooc_set_current_1_temp_normal_range(struct oplus_vooc_chip *ch
 	default:
 		break;
 	}
-	vooc_xlog_printk(CHG_LOG_CRTI, "the ret: %d, the temp =%d, status = %d\r\n", ret, vbat_temp_cur, chip->fastchg_batt_temp_status);
+	pr_debug("the ret: %d, the temp =%d, status = %d\r\n", ret, vbat_temp_cur, chip->fastchg_batt_temp_status);
 	return ret;
 }
 
@@ -821,7 +814,7 @@ static int oplus_vooc_set_current_when_bleow_setting_batt_temp
 		break;
 	}
 
-	vooc_xlog_printk(CHG_LOG_CRTI, "the ret: %d, the temp =%d, temp_status = %d, temp_range = %d\r\n", 
+	pr_debug("the ret: %d, the temp =%d, temp_status = %d, temp_range = %d\r\n", 
 			ret, vbat_temp_cur, chip->fastchg_batt_temp_status, chip->vooc_temp_cur_range);
 	return ret;
 }
@@ -909,7 +902,7 @@ static int oplus_vooc_set_current_2_temp_normal_range(struct oplus_vooc_chip *ch
 	default:
 		break;
 	}
-	vooc_xlog_printk(CHG_LOG_CRTI, "the ret: %d, the temp =%d\r\n", ret, vbat_temp_cur);
+	pr_debug("the ret: %d, the temp =%d\r\n", ret, vbat_temp_cur);
 	return ret;
 }
 static int oplus_vooc_set_current_when_up_setting_batt_temp
@@ -924,13 +917,13 @@ static int oplus_vooc_set_current_when_up_setting_batt_temp
 
 	ret = oplus_vooc_set_current_2_temp_normal_range(chip, vbat_temp_cur);
 
-	vooc_xlog_printk(CHG_LOG_CRTI, "the ret: %d, the temp =%d, temp_status = %d, temp_range = %d\r\n",
+	pr_debug("the ret: %d, the temp =%d, temp_status = %d, temp_range = %d\r\n",
 			ret, vbat_temp_cur, chip->fastchg_batt_temp_status, chip->vooc_temp_cur_range);
 	return ret;
 }
 
 static void oplus_vooc_recv_errcode(struct oplus_vooc_chip *chip){
-	vooc_xlog_printk(CHG_LOG_CRTI, "%s, recv 0x70  sleep 360ms\n", __func__);
+	pr_debug("%s, recv 0x70  sleep 360ms\n", __func__);
 
 	oplus_chg_set_chargerid_switch_val(0);
 	chip->vops->set_switch_mode(chip, NORMAL_CHARGER_MODE);
@@ -1171,22 +1164,22 @@ int vooc_hardware_init_cp(int data)
 	if (data == 0 || data == 0x13 || data == 0x19 || data == 0x29 || data == 0x34 || data == 0x41
 		|| data == 0x46 || data == 0x49 || data == 0x4e){
 		g_vooc_cp->cp_hardware_init_vooc();
-		vooc_xlog_printk(CHG_LOG_CRTI, "CHARGER_SUBTYPE_FASTCHG_VOOC data:0x%x\n", data);
+		pr_debug("CHARGER_SUBTYPE_FASTCHG_VOOC data:0x%x\n", data);
 
 		return CHARGER_SUBTYPE_FASTCHG_VOOC;
 	} else if (data == 0x11 || data == 0x12 || data == 0x21 || data == 0x31 || data == 0x33
 	|| data == 0x14 || data == 0x61 || data == 0x66 || data == 0x69 || data == 0x6e) {
 		g_vooc_cp->cp_hardware_init_svooc();
-		vooc_xlog_printk(CHG_LOG_CRTI, "CHARGER_SUBTYPE_FASTCHG_SVOOC data:0x%x\n", data);
+		pr_debug("CHARGER_SUBTYPE_FASTCHG_SVOOC data:0x%x\n", data);
 
 		if (oplus_vooc_get_fastchg_allow() == true){
 			oplus_chg_disable_charge();
 			oplus_chg_suspend_charger();
-			vooc_xlog_printk(CHG_LOG_CRTI, "oplus_chg_disable&suspend_charge\n");
+			pr_debug("oplus_chg_disable&suspend_charge\n");
 		}
 		return CHARGER_SUBTYPE_FASTCHG_SVOOC;
 	} else {
-		vooc_xlog_printk(CHG_LOG_CRTI, "CHARGER_SUBTYPE_DEFAULT data:0x%x\n", data);
+		pr_debug("CHARGER_SUBTYPE_DEFAULT data:0x%x\n", data);
 		return CHARGER_SUBTYPE_DEFAULT;
 	}
 }
@@ -1247,7 +1240,7 @@ static void oplus_vooc_fastchg_func(struct work_struct *work)
 */
 	usleep_range(2000, 2000);
 	if (chip->vops->get_gpio_ap_data(chip) != 1) {
-		/*vooc_xlog_printk(CHG_LOG_CRTI, "  Shield fastchg irq, return\r\n");*/
+		/*pr_debug("  Shield fastchg irq, return\r\n");*/
 		return;
 	}
 
@@ -1258,7 +1251,7 @@ static void oplus_vooc_fastchg_func(struct work_struct *work)
 		if (i == 2)
 			data_head = data;
 	}
-	vooc_xlog_printk(CHG_LOG_CRTI, " recv data:0x%x, ap:0x%x, mcu:0x%x\n",
+	pr_debug(" recv data:0x%x, ap:0x%x, mcu:0x%x\n",
 		data, chip->fw_data_version, chip->fw_mcu_version);
 
 	if(data_head == 0x70 && chip->vooc_reply_mcu_bits == 7) {
@@ -1268,7 +1261,7 @@ static void oplus_vooc_fastchg_func(struct work_struct *work)
 	}
 
 		if ((data_head != 0x50) && (!adapter_fw_ver_info) && (!adapter_model_factory)) {	/*data recvd not start from "0x50 && 0x70"*/
-			vooc_xlog_printk(CHG_LOG_CRTI, "  data err:0x%x\n", data);
+			pr_debug("  data err:0x%x\n", data);
 			oplus_chg_vooc_mcu_error(data);
 			chip->allow_reading = true;
 			if (chip->fastchg_started == true) {
@@ -1293,8 +1286,7 @@ static void oplus_vooc_fastchg_func(struct work_struct *work)
 					if (chg_vol >= 0 && chg_vol < 2000) {
 						chip->fastchg_dummy_started = false;
 						oplus_chg_clear_chargerid_info();
-						vooc_xlog_printk(CHG_LOG_CRTI,
-							"chg_vol:%d dummy_started:false\n", chg_vol);
+						pr_debug("chg_vol:%d dummy_started:false\n", chg_vol);
 					}
 				} else {
 					oplus_chg_clear_chargerid_info();
@@ -1432,13 +1424,12 @@ static void oplus_vooc_fastchg_func(struct work_struct *work)
 				chip->fastchg_dummy_started = false;
 				chip->fast_chg_type = FASTCHG_CHARGER_TYPE_UNKOWN;
 				oplus_chg_clear_chargerid_info();
-				vooc_xlog_printk(CHG_LOG_CRTI,
-					"chg_vol:%d dummy_started:false\n", chg_vol);
+				pr_debug("chg_vol:%d dummy_started:false\n", chg_vol);
 			}
 		} else {
 			if (oplus_chg_get_icon_debounce()) {
 				oplus_chg_set_icon_debounce_false();
-				vooc_xlog_printk(CHG_LOG_CRTI, " icon_debounce, set dummy_started true\n");
+				pr_debug(" icon_debounce, set dummy_started true\n");
 				chip->fastchg_dummy_started = true;
 				oplus_chg_set_charger_type_unknown();
 				oplus_vooc_check_charger_out(chip);
@@ -1450,8 +1441,7 @@ static void oplus_vooc_fastchg_func(struct work_struct *work)
 		if (chip->support_single_batt_svooc == 1) {
 			vooc_reset_cp();
 		}
-		vooc_xlog_printk(CHG_LOG_CRTI,
-			"fastchg stop unexpectly, switch off fastchg\n");
+		pr_debug("fastchg stop unexpectly, switch off fastchg\n");
 		oplus_chg_set_chargerid_switch_val(0);
 		chip->vops->set_switch_mode(chip, NORMAL_CHARGER_MODE);
 		//del_timer(&chip->watchdog);
@@ -1460,12 +1450,12 @@ static void oplus_vooc_fastchg_func(struct work_struct *work)
 		ret_info = 0x2;
 		oplus_vooc_cancel_bcc_work_exit_fastchg();
 	} else if (data == VOOC_NOTIFY_ADAPTER_MODEL_FACTORY) {
-		vooc_xlog_printk(CHG_LOG_CRTI, " VOOC_NOTIFY_ADAPTER_MODEL_FACTORY!\n");
+		pr_debug(" VOOC_NOTIFY_ADAPTER_MODEL_FACTORY!\n");
 		/*ready to get adapter_model_factory*/
 		adapter_model_factory = 1;
 		ret_info = 0x2;
 	} else if (adapter_model_factory) {
-		vooc_xlog_printk(CHG_LOG_CRTI, "VOOC_NOTIFY_ADAPTER_MODEL_FACTORY:0x%x, \n", data);
+		pr_debug("VOOC_NOTIFY_ADAPTER_MODEL_FACTORY:0x%x, \n", data);
 		//chip->fast_chg_type = data;
 		if (data == 0) {
 			chip->fast_chg_type = CHARGER_SUBTYPE_FASTCHG_VOOC;
@@ -1575,7 +1565,7 @@ static void oplus_vooc_fastchg_func(struct work_struct *work)
 			//don't read
 			chip->allow_reading = false;
 		}
-		vooc_xlog_printk(CHG_LOG_CRTI, " volt:%d,temp:%d,soc:%d,current_now:%d,rm:%d, i2c_err:%d\n",
+		pr_debug(" volt:%d,temp:%d,soc:%d,current_now:%d,rm:%d, i2c_err:%d\n",
 			volt, temp, soc, current_now, remain_cap, oplus_get_fg_i2c_err_occured());
 			//mod_timer(&chip->watchdog, jiffies+msecs_to_jiffies(25000));
 			oplus_vooc_setup_watchdog_timer(chip, 25000);
@@ -1596,7 +1586,7 @@ static void oplus_vooc_fastchg_func(struct work_struct *work)
 				&& chip->fast_chg_type == CHARGER_SUBTYPE_FASTCHG_VOOC)))
 				? ret_info : 0x01;
 				pr_info("%s:recheck cool_down ret_info=%d\n", __func__, ret_info);
-				vooc_xlog_printk(CHG_LOG_CRTI, "ret_info:%d\n", ret_info);
+				pr_debug("ret_info:%d\n", ret_info);
 		} else {
 			if ((chip->vooc_multistep_adjust_current_support
 				&& (!(chip->support_vooc_by_normal_charger_path
@@ -1673,14 +1663,14 @@ static void oplus_vooc_fastchg_func(struct work_struct *work)
 
 		oplus_vooc_wake_bcc_work_when_fastchg();
 
-		vooc_xlog_printk(CHG_LOG_CRTI, "temp_range[%d-%d-%d-%d-%d-%d]", chip->vooc_low_temp, chip->vooc_little_cold_temp,
+		pr_debug("temp_range[%d-%d-%d-%d-%d-%d]", chip->vooc_low_temp, chip->vooc_little_cold_temp,
 			chip->vooc_cool_temp, chip->vooc_little_cool_temp, chip->vooc_normal_low_temp, chip->vooc_normal_high_temp, chip->vooc_high_temp);
-		vooc_xlog_printk(CHG_LOG_CRTI, " volt:%d,temp:%d,soc:%d,current_now:%d,rm:%d, i2c_err:%d, ret_info:%d\n",
+		pr_debug(" volt:%d,temp:%d,soc:%d,current_now:%d,rm:%d, i2c_err:%d, ret_info:%d\n",
 			volt, temp, soc, current_now, remain_cap, oplus_get_fg_i2c_err_occured(), ret_info);
 	} else if (data == VOOC_NOTIFY_NORMAL_TEMP_FULL) {
 		oplus_chg_track_set_fastchg_break_code(
 			TRACK_MCU_VOOCPHY_NORMAL_TEMP_FULL);
-		vooc_xlog_printk(CHG_LOG_CRTI, "VOOC_NOTIFY_NORMAL_TEMP_FULL\r\n");
+		pr_debug("VOOC_NOTIFY_NORMAL_TEMP_FULL\r\n");
 		if (chip->support_single_batt_svooc == 1) {
 			vooc_reset_cp();
 		}
@@ -1711,8 +1701,7 @@ static void oplus_vooc_fastchg_func(struct work_struct *work)
 		} else {
 			oplus_chg_track_set_fastchg_break_code(
 				TRACK_MCU_VOOCPHY_LOW_TEMP_FULL);
-			vooc_xlog_printk(CHG_LOG_CRTI,
-				" fastchg low temp full, switch NORMAL_CHARGER_MODE\n");
+			pr_debug(" fastchg low temp full, switch NORMAL_CHARGER_MODE\n");
 			if (chip->support_single_batt_svooc == 1) {
 				vooc_reset_cp();
 			}
@@ -1726,8 +1715,7 @@ static void oplus_vooc_fastchg_func(struct work_struct *work)
 		}
 	} else if (data == VOOC_NOTIFY_BAD_CONNECTED ||
 		(chip->support_fake_vooc_check && data == VOOC_NOTIFY_DATA_UNKNOWN)) {
-		vooc_xlog_printk(CHG_LOG_CRTI,
-			" fastchg bad connected, switch NORMAL_CHARGER_MODE\n");
+		pr_debug(" fastchg bad connected, switch NORMAL_CHARGER_MODE\n");
 		oplus_chg_track_set_fastchg_break_code(
 			TRACK_MCU_VOOCPHY_BAD_CONNECTED);
 		/*usb bad connected, stop fastchg*/
@@ -1747,8 +1735,7 @@ static void oplus_vooc_fastchg_func(struct work_struct *work)
 		oplus_chg_track_set_fastchg_break_code(
 			TRACK_MCU_VOOCPHY_TEMP_OVER);
 		/*fastchg temp over 45 or under 20*/
-		vooc_xlog_printk(CHG_LOG_CRTI,
-			" fastchg temp > 45 or < 20, switch NORMAL_CHARGER_MODE\n");
+		pr_debug(" fastchg temp > 45 or < 20, switch NORMAL_CHARGER_MODE\n");
 		if (chip->support_single_batt_svooc == 1) {
 			vooc_reset_cp();
 		}
@@ -1761,7 +1748,7 @@ static void oplus_vooc_fastchg_func(struct work_struct *work)
 		ret_info = 0x2;
 		oplus_vooc_cancel_bcc_work_exit_fastchg();
 	} else if (data == VOOC_NOTIFY_BTB_TEMP_OVER) {
-		vooc_xlog_printk(CHG_LOG_CRTI, "  btb_temp_over\n");
+		pr_debug("  btb_temp_over\n");
 		chip->fastchg_ing = false;
 		chip->btb_temp_over = true;
 		chip->fastchg_dummy_started = false;
@@ -1825,14 +1812,12 @@ static void oplus_vooc_fastchg_func(struct work_struct *work)
 		adapter_fw_ver_info = false;
 		adapter_model_factory = false;
 		data_err = true;
-		vooc_xlog_printk(CHG_LOG_CRTI,
-			" data err, set 0x101, data=0x%x switch off fastchg\n", data);
+		pr_debug(" data err, set 0x101, data=0x%x switch off fastchg\n", data);
 		goto out;
 	}
 
 	if (chip->fastchg_batt_temp_status == BAT_TEMP_EXIT) {
-		vooc_xlog_printk(CHG_LOG_CRTI,
-			"The temperature is lower than 12 du during the fast charging process\n");
+		pr_debug("The temperature is lower than 12 du during the fast charging process\n");
 		oplus_chg_track_set_fastchg_break_code(
 			TRACK_MCU_VOOCPHY_BAT_TEMP_EXIT);
 		oplus_chg_set_chargerid_switch_val(0);
@@ -2406,7 +2391,7 @@ void oplus_vooc_print_log(void)
 	if (!g_vooc_chip) {
 		return;
 	}
-	vooc_xlog_printk(CHG_LOG_CRTI, "VOOC[ %d / %d / %d / %d / %d / %d]\n",
+	pr_debug("VOOC[ %d / %d / %d / %d / %d / %d]\n",
 		g_vooc_chip->fastchg_allow, g_vooc_chip->fastchg_started, g_vooc_chip->fastchg_dummy_started,
 		g_vooc_chip->fastchg_to_normal, g_vooc_chip->fastchg_to_warm, g_vooc_chip->btb_temp_over);
 }
