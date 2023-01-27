@@ -2660,31 +2660,12 @@ int dsi_display_oplus_set_power(struct drm_connector *connector,
 				}
 			}
 			#endif
-			if (sde_crtc_get_fingerprint_mode(connector->state->crtc->state) && oplus_dimlayer_hbm) {
-				mutex_lock(&display->panel->panel_lock);
-				dsi_display_clk_ctrl(display->dsi_clk_handle,
-							DSI_CORE_CLK, DSI_CLK_ON);
-
-				if (display->panel->panel_initialized) {
-					if ((!strcmp(display->panel->oplus_priv.vendor_name, "S6E3HC3") && (display->panel->panel_id2 >= 5)) ||
-						(!strcmp(display->panel->oplus_priv.vendor_name, "AMB670YF01") && (display->panel->panel_id2 >= 5))) {
-						rc = dsi_panel_tx_cmd_set(display->panel, DSI_CMD_AOD_HBM_ON_PVT);
-					} else {
-						rc = dsi_panel_tx_cmd_set(display->panel, DSI_CMD_AOD_HBM_ON);
-					}
-				} else {
-					pr_err("[%s][%d]failed to setting dsi command", __func__, __LINE__);
-				}
-
-				dsi_display_clk_ctrl(display->dsi_clk_handle,
-							DSI_CORE_CLK, DSI_CLK_OFF);
-				mutex_unlock(&display->panel->panel_lock);
-				set_oplus_display_scene(OPLUS_DISPLAY_AOD_HBM_SCENE);
-
-			} else {
-				rc = dsi_panel_set_nolp(display->panel);
-				set_oplus_display_scene(OPLUS_DISPLAY_NORMAL_SCENE);
+			if ((!strcmp(display->panel->oplus_priv.vendor_name, "S6E3HC3")) ||
+				(!strcmp(display->panel->oplus_priv.vendor_name, "AMB670YF01"))) {
+				display->panel->need_power_on_backlight = true;
 			}
+			rc = dsi_panel_set_nolp(display->panel);
+			set_oplus_display_scene(OPLUS_DISPLAY_NORMAL_SCENE);
 		}
 		if (!sde_crtc_get_fingerprint_mode(connector->state->crtc->state)) {
 			oplus_dsi_update_seed_mode(display);
