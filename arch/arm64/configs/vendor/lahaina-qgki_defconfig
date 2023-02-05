@@ -1,18 +1,19 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/arm64 5.4.228 Kernel Configuration
+# Linux/arm64 5.4.230 Kernel Configuration
 #
 
 #
-# Compiler: Android (8490178, based on r450784d) clang version 14.0.6 (https://android.googlesource.com/toolchain/llvm-project 4c603efb0cca074e9238af8b4106c30add4418f6)
+# Compiler: Android (9394278, based on r475365b) clang version 16.0.2 (https://android.googlesource.com/toolchain/llvm-project e1a2893d16330144736de1f4f0d06a844a03b9b0)
 #
 CONFIG_OPLUS_SYSTEM_KERNEL_QCOM=y
 # CONFIG_OPLUS_SYSTEM_KERNEL_MTK is not set
-CONFIG_CC_VERSION_TEXT="Android (8490178, based on r450784d) clang version 14.0.6 (https://android.googlesource.com/toolchain/llvm-project 4c603efb0cca074e9238af8b4106c30add4418f6)"
+CONFIG_CC_VERSION_TEXT="Android (9394278, based on r475365b) clang version 16.0.2 (https://android.googlesource.com/toolchain/llvm-project e1a2893d16330144736de1f4f0d06a844a03b9b0)"
 CONFIG_GCC_VERSION=0
 CONFIG_CC_IS_CLANG=y
 CONFIG_LD_IS_LLD=y
-CONFIG_CLANG_VERSION=140006
+CONFIG_CLANG_VERSION=160002
+CONFIG_CC_CAN_LINK=y
 CONFIG_CC_HAS_ASM_GOTO=y
 CONFIG_CC_HAS_ASM_GOTO_TIED_OUTPUT=y
 CONFIG_CC_HAS_ASM_GOTO_OUTPUT=y
@@ -27,6 +28,7 @@ CONFIG_THREAD_INFO_IN_TASK=y
 #
 CONFIG_INIT_ENV_ARG_LIMIT=32
 # CONFIG_COMPILE_TEST is not set
+# CONFIG_UAPI_HEADER_TEST is not set
 CONFIG_LOCALVERSION="-sigmaKernel"
 # CONFIG_LOCALVERSION_AUTO is not set
 CONFIG_BUILD_SALT=""
@@ -441,6 +443,8 @@ CONFIG_ARM64_VHE=y
 #
 # ARMv8.2 architectural features
 #
+CONFIG_AS_HAS_ARMV8_2=y
+CONFIG_AS_HAS_SHA3=y
 CONFIG_ARM64_UAO=y
 # CONFIG_ARM64_PMEM is not set
 CONFIG_ARM64_RAS_EXTN=y
@@ -696,6 +700,8 @@ CONFIG_CFI_CLANG_SHADOW=y
 CONFIG_HAVE_CONTEXT_TRACKING=y
 CONFIG_HAVE_VIRT_CPU_ACCOUNTING_GEN=y
 CONFIG_HAVE_IRQ_TIME_ACCOUNTING=y
+CONFIG_HAVE_MOVE_PUD=y
+CONFIG_HAVE_MOVE_PMD=y
 CONFIG_HAVE_ARCH_TRANSPARENT_HUGEPAGE=y
 CONFIG_HAVE_ARCH_HUGE_VMAP=y
 CONFIG_HAVE_MOD_ARCH_SPECIFIC=y
@@ -1524,6 +1530,7 @@ CONFIG_PCI_QUIRKS=y
 # CONFIG_PCI_DEBUG is not set
 # CONFIG_PCI_STUB is not set
 CONFIG_PCI_ECAM=y
+CONFIG_PCI_LOCKLESS_CONFIG=y
 # CONFIG_PCI_IOV is not set
 # CONFIG_PCI_PRI is not set
 # CONFIG_PCI_PASID is not set
@@ -6259,7 +6266,7 @@ CONFIG_LSM="lockdown,yama,loadpin,safesetid,integrity,selinux,smack,tomoyo,appar
 # Memory initialization
 #
 CONFIG_CC_HAS_AUTO_VAR_INIT_PATTERN=y
-CONFIG_CC_HAS_AUTO_VAR_INIT_ZERO_ENABLER=y
+CONFIG_CC_HAS_AUTO_VAR_INIT_ZERO_BARE=y
 CONFIG_CC_HAS_AUTO_VAR_INIT_ZERO=y
 # CONFIG_INIT_STACK_NONE is not set
 # CONFIG_INIT_STACK_ALL_PATTERN is not set
