@@ -550,7 +550,6 @@
 					39 01 00 00 00 00 03 F0 A5 A5
 				];
 				qcom,mdss-dsi-lp1-command = [
-					05 01 00 00 0C 00 01 28
 					/* AOD Mode ON Setting */
 					39 00 00 00 00 00 03 F0 5A 5A
 					15 00 00 00 00 00 02 53 24
@@ -2890,7 +2889,6 @@
 					39 01 00 00 00 00 03 F0 A5 A5
 				];
 				qcom,mdss-dsi-lp1-command = [
-					05 01 00 00 0C 00 01 28
 					/* AOD Mode ON Setting */
 					39 00 00 00 00 00 03 F0 5A 5A
 					15 00 00 00 00 00 02 53 24
