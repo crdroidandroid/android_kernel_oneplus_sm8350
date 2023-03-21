@@ -3494,8 +3494,6 @@ CONFIG_VIDEOBUF2_VMALLOC=y
 #
 # end of Media SPI Adapters
 
-CONFIG_MEDIA_TUNER=y
-
 #
 # Customize TV tuners
 #
