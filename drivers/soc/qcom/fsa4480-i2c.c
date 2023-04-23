@@ -673,9 +673,14 @@ static int fsa4480_parse_dt(struct fsa4480_priv *fsa_priv,
     struct device_node *dNode = dev->of_node;
     int ret = 0;
 
+<<<<<<< HEAD
         if (dNode == NULL) {
             return -ENODEV;
 	}
+=======
+    if (dNode == NULL)
+        return -ENODEV;
+>>>>>>> 1144ac0066b1 (drivers: soc: Import missing oplus changes for fsa4480 driver)
 
 	if (!fsa_priv) {
 		pr_err("%s: fsa_priv is NULL\n", __func__);
@@ -991,7 +996,11 @@ static int fsa4480_remove(struct i2c_client *i2c)
 	fsa4480_debug_remove(fsa_priv);
 #endif /* OPLUS_BUG_STABILITY */
 
+<<<<<<< HEAD
 	fsa4480_reset_and_check_switch(fsa_priv);
+=======
+	fsa4480_usbc_update_settings(fsa_priv, 0x18, 0x98);
+>>>>>>> 1144ac0066b1 (drivers: soc: Import missing oplus changes for fsa4480 driver)
 	cancel_work_sync(&fsa_priv->usbc_analog_work);
 	pm_relax(fsa_priv->dev);
 	mutex_destroy(&fsa_priv->notification_lock);
