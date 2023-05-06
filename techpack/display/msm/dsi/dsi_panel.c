@@ -788,7 +788,7 @@ int dsi_panel_tx_cmd_set(struct dsi_panel *panel,
 	if (type != DSI_CMD_READ_SAMSUNG_PANEL_REGISTER_ON
 		&& type != DSI_CMD_READ_SAMSUNG_PANEL_REGISTER_OFF) {
 			if (type != DSI_CMD_FAKEFRAME)
-				pr_err("<%s> dsi_cmd %s\n",panel->oplus_priv.vendor_name, cmd_set_prop_map[type]);
+				pr_debug("<%s> dsi_cmd %s\n",panel->oplus_priv.vendor_name, cmd_set_prop_map[type]);
 	}
 
 	if (oplus_seed_backlight) {

@@ -1599,7 +1599,7 @@ static void _sde_crtc_blend_setup_mixer(struct drm_crtc *crtc,
 				if ((old_state->mode.vrefresh == 60 ||  old_state->mode.vrefresh == 90) &&
 									crtc->mode.vrefresh  == 120 && !display->panel->is_hbm_enabled) {
 					SDE_ATRACE_BEGIN("delay_config_dimlayer_one_frame");
-					pr_err("do not config dimlayer at the fps switch");
+					pr_debug("do not config dimlayer at the fps switch");
 					SDE_ATRACE_END("delay_config_dimlayer_one_frame");
 					goto end;
 				}
