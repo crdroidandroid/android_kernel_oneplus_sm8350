@@ -26,37 +26,37 @@ extern unsigned int tp_debug;
 #define TPD_DEVICE "touchpanel"
 #endif
 
-#define TPD_INFO(a, arg...)  pr_err("[TP]"TPD_DEVICE ": " a, ##arg)
-#define TP_INFO(index, a, arg...)  pr_err("[TP""%x""]"TPD_DEVICE": " a, index, ##arg)
+#define TPD_INFO(a, arg...)  pr_debug("[TP]"TPD_DEVICE ": " a, ##arg)
+#define TP_INFO(index, a, arg...)  pr_debug("[TP""%x""]"TPD_DEVICE": " a, index, ##arg)
 
 #define TPD_DEBUG(a, arg...)\
 	do{\
 		if (LEVEL_DEBUG == tp_debug)\
-		pr_err("[TP]"TPD_DEVICE ": " a, ##arg);\
+		pr_debug("[TP]"TPD_DEVICE ": " a, ##arg);\
 	}while(0)
 
 #define TP_DEBUG(index, a, arg...)\
 			do{\
 				if (LEVEL_DEBUG == tp_debug)\
-					pr_err("[TP""%x""]"TPD_DEVICE": " a, index, ##arg);\
+					pr_debug("[TP""%x""]"TPD_DEVICE": " a, index, ##arg);\
 			}while(0)
 
 #define TPD_DETAIL(a, arg...)\
 	do{\
 		if (LEVEL_BASIC != tp_debug)\
-			pr_err("[TP]"TPD_DEVICE ": " a, ##arg);\
+			pr_debug("[TP]"TPD_DEVICE ": " a, ##arg);\
 	}while(0)
 
 #define TP_DETAIL(index, a, arg...)\
 			do{\
 				if (LEVEL_BASIC != tp_debug)\
-					pr_err("[TP""%x""]"TPD_DEVICE": " a, index, ##arg);\
+					pr_debug("[TP""%x""]"TPD_DEVICE": " a, index, ##arg);\
 			}while(0)
 
 #define TPD_SPECIFIC_PRINT(count, a, arg...)\
 	do{\
 		if (count++ == TPD_PRINT_POINT_NUM || LEVEL_DEBUG == tp_debug) {\
-			TPD_INFO(TPD_DEVICE ": " a, ##arg);\
+			pr_debug(TPD_DEVICE ": " a, ##arg);\
 			count = 0;\
 		}\
 	}while(0)
@@ -64,7 +64,7 @@ extern unsigned int tp_debug;
 #define TP_SPECIFIC_PRINT(index, count, a, arg...)\
 			do{\
 				if (count++ == TPD_PRINT_POINT_NUM || LEVEL_DEBUG == tp_debug) {\
-					TPD_INFO(TPD_DEVICE"%x"": " a, index, ##arg);\
+					pr_debug(TPD_DEVICE"%x"": " a, index, ##arg);\
 					count = 0;\
 				}\
 			}while(0)
