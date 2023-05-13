@@ -28,9 +28,6 @@
 #include <linux/uaccess.h>
 #include <linux/qpnp/qpnp-pbs.h>
 
-#undef dev_dbg
-#define dev_dbg dev_err
-
 /* status register definitions in HAPTICS_CFG module */
 #define HAP_CFG_REVISION2_REG			0x01
 #define HAP_CFG_V1				0x1
