@@ -4737,7 +4737,7 @@ void oplus_get_usbtemp_volt(struct oplus_chg_chip *chip)
 	bcdev = chip->pmic_spmi.bcdev_chip;
 
 	if (IS_ERR_OR_NULL(bcdev->iio.usbtemp_v_chan)) {
-		printk(KERN_ERR "[OPLUS_CHG][%s]: bcdev->iio.usbtemp_v_chan  is  NULL !\n", __func__);
+		no_printk(KERN_ERR "[OPLUS_CHG][%s]: bcdev->iio.usbtemp_v_chan  is  NULL !\n", __func__);
 		chip->usbtemp_volt_l = usbtemp_volt_l_pre;
 		goto usbtemp_next;
 	}
@@ -4763,7 +4763,7 @@ void oplus_get_usbtemp_volt(struct oplus_chg_chip *chip)
 usbtemp_next:
 	usbtemp_volt = 0;
 	if (IS_ERR_OR_NULL(bcdev->iio.usbtemp_sup_v_chan)) {
-		printk(KERN_ERR "[OPLUS_CHG][%s]: chg->iio.usbtemp_sup_v_chan  is  NULL !\n", __func__);
+		no_printk(KERN_ERR "[OPLUS_CHG][%s]: chg->iio.usbtemp_sup_v_chan  is  NULL !\n", __func__);
 		chip->usbtemp_volt_r = usbtemp_volt_r_pre;
 		return;
 	}
@@ -8784,7 +8784,7 @@ static void dump_regs(void)
 		dump_count = 0;
 
 		if (bcdev->pmic_is_pm7250b == false && oplus_chg_get_voocphy_support() == NO_VOOCPHY) {
-			printk(KERN_ERR "sm8350_st_dump: [chg_en=%d, suspend=%d, pd_svooc=%d, subtype=0x%02x],"
+			no_printk(KERN_ERR "sm8350_st_dump: [chg_en=%d, suspend=%d, pd_svooc=%d, subtype=0x%02x],"
 				"[0x%4x=0x%02x, 0x%4x=0x%02x, 0x%4x=0x%02x, 0x%4x=0x%02x], "
 				"[0x%4x=0x%02x, 0x%4x=0x%02x, 0x%4x=0x%02x, 0x%4x=0x%02x], "
 				"[0x%4x=0x%02x, 0x%4x=0x%02x, 0x%4x=0x%02x, 0x%4x=0x%02x], "
@@ -8813,7 +8813,7 @@ static void dump_regs(void)
 				bcdev->read_buffer_dump.data_buffer[extra_num + 33], bcdev->read_buffer_dump.data_buffer[extra_num + 34],
 				bcdev->read_buffer_dump.data_buffer[extra_num + 35], bcdev->read_buffer_dump.data_buffer[extra_num + 36]);
 		} else {
-			printk(KERN_ERR "sm8350_st_dump: [chg_en=%d, suspend=%d, pd_svooc=%d, subtype=0x%02x, is_abnormal_adapter=%d],\n",
+			no_printk(KERN_ERR "sm8350_st_dump: [chg_en=%d, suspend=%d, pd_svooc=%d, subtype=0x%02x, is_abnormal_adapter=%d],\n",
 				smbchg_get_charge_enable(),
 				bcdev->read_buffer_dump.data_buffer[9], bcdev->read_buffer_dump.data_buffer[11],
 				oplus_chg_get_charger_subtype(), chip->is_abnormal_adapter);
