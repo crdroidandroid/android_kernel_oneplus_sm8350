@@ -241,7 +241,7 @@ config NO_IOPORT_MAP
 	def_bool y if !PCI
 
 config STACKTRACE_SUPPORT
-	def_bool y
+	def_bool n
 
 config ILLEGAL_POINTER_VALUE
 	hex
