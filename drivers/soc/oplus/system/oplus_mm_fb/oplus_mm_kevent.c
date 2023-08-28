@@ -30,7 +30,7 @@ static spinlock_t mm_slock;
 static mm_kevent_recv_user_func mm_fb_kevent_recv_fb = NULL;
 
 /* record connect pid and modules*/
-void mm_fb_kevent_add_module(u32 pid, char* module) {
+void mm_fb_kevent_add_module(u32 pid, char *module) {
 	int i	= 0x0;
 	int len = 0x0;
 
@@ -59,7 +59,7 @@ void mm_fb_kevent_add_module(u32 pid, char* module) {
 }
 
 /* record connect pid and modules*/
-int mm_fb_kevent_get_pid(char* module) {
+int mm_fb_kevent_get_pid(char *module) {
 	int i = 0;
 
 	if (!module) {
@@ -239,6 +239,7 @@ static inline int genl_msg_mk_usr_msg(struct sk_buff *skb, int type, void *data,
 int mm_fb_kevent_send_to_user(struct mm_kevent_packet *userinfo) {
 	int ret;
 	int size_use;
+	int payload_size;
 	struct sk_buff *skbuff;
 	void * head;
 	int pid;
@@ -260,14 +261,15 @@ int mm_fb_kevent_send_to_user(struct mm_kevent_packet *userinfo) {
 		return MM_KEVENT_BAD_VALUE;
 	}
 
-	size_use = sizeof(struct mm_kevent_packet) + userinfo->len;
+	payload_size = sizeof(struct mm_kevent_packet) + userinfo->len;
+	size_use = nla_total_size(payload_size);
 	ret = genl_msg_prepare_usr_msg(MM_FB_CMD_GENL_UPLOAD, size_use, pid, &skbuff);
 	if (ret) {
 		pr_err("mm_kevent: genl_msg_prepare_usr_msg error, ret is %d \n", ret);
 		return ret;
 	}
 
-	ret = genl_msg_mk_usr_msg(skbuff, MM_FB_CMD_ATTR_MSG, userinfo, size_use);
+	ret = genl_msg_mk_usr_msg(skbuff, MM_FB_CMD_ATTR_MSG, userinfo, payload_size);
 	if (ret) {
 		pr_err("mm_kevent: genl_msg_mk_usr_msg error, ret is %d \n", ret);
 		kfree_skb(skbuff);
@@ -316,5 +318,5 @@ module_exit(mm_fb_kevent_module_exit);
 
 MODULE_DESCRIPTION("mm_kevent@1.0");
 MODULE_VERSION("1.0");
-MODULE_LICENSE("GPL");
+MODULE_LICENSE("GPL v2");
 

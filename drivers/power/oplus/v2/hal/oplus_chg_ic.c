@@ -26,19 +26,19 @@ static LIST_HEAD(ic_list);
 #ifdef CONFIG_OPLUS_CHG_IC_DEBUG
 static DEFINE_IDA(oplus_chg_ic_ida);
 #define OPLUS_CHG_IC_MAX 256
-static struct class *oplus_chg_ic_class;
+static struct class oplus_chg_ic_class;
 static dev_t oplus_chg_ic_devno;
 
 static const char * const err_type_text[] = {
 	[OPLUS_IC_ERR_UNKNOWN]		= "Unknown",
 	[OPLUS_IC_ERR_I2C]		= "I2C",
-	[OPLUS_IC_ERR_OCP]		= "OCP",
-	[OPLUS_IC_ERR_OVP]		= "OVP",
-	[OPLUS_IC_ERR_UCP]		= "UCP",
-	[OPLUS_IC_ERR_UVP]		= "UVP",
-	[OPLUS_IC_ERR_TIMEOUT]		= "Timeout",
-	[OPLUS_IC_ERR_OVER_HEAT]	= "Overheat",
-	[OPLUS_IC_ERR_COLD]		= "Cold",
+	[OPLUS_IC_ERR_GPIO]		= "GPIO",
+	[OPLUS_IC_ERR_PLAT_PMIC]	= "PlatformPMIC",
+	[OPLUS_IC_ERR_BUCK_BOOST]	= "Buck/Boost",
+	[OPLUS_IC_ERR_GAUGE]		= "Gauge",
+	[OPLUS_IC_ERR_WLS_RX]		= "WirelessRX",
+	[OPLUS_IC_ERR_CP]		= "ChargePump",
+	[OPLUS_IC_ERR_CC_LOGIC]		= "CCLogic",
 };
 
 int oplus_chg_ic_get_new_minor(void)
@@ -576,6 +576,19 @@ static struct device_attribute *oplus_chg_ic_attributes[] = {
 	&dev_attr_fw_id,
 	NULL
 };
+
+static ssize_t version_show(struct class *C, struct class_attribute *attr,
+			     char *buf)
+{
+	return sprintf(buf, "%s", OPLUS_CHG_IC_CFG_VERSION);
+}
+static CLASS_ATTR_RO(version);
+
+static struct attribute *oplus_chg_ic_class_attrs[] = {
+	&class_attr_version.attr,
+	NULL,
+};
+ATTRIBUTE_GROUPS(oplus_chg_ic_class);
 #endif /* CONFIG_OPLUS_CHG_IC_DEBUG */
 
 int oplus_chg_ic_virq_register(struct oplus_chg_ic_dev *ic_dev,
@@ -656,10 +669,10 @@ int oplus_chg_ic_virq_trigger(struct oplus_chg_ic_dev *ic_dev,
 	return -ENOTSUPP;
 }
 
-__printf(3, 4)
+__printf(4, 5)
 int oplus_chg_ic_creat_err_msg(struct oplus_chg_ic_dev *ic_dev,
-			     enum oplus_chg_ic_err err_type, const char *format,
-			     ...)
+			       enum oplus_chg_ic_err err_type, int sub_err_type,
+			       const char *format, ...)
 {
 	va_list args;
 	struct oplus_chg_ic_err_msg *err_msg;
@@ -677,6 +690,7 @@ int oplus_chg_ic_creat_err_msg(struct oplus_chg_ic_dev *ic_dev,
 
 	err_msg->ic = ic_dev;
 	err_msg->type = err_type;
+	err_msg->sub_type = sub_err_type;
 	va_start(args, format);
 	length = vsnprintf(err_msg->msg, IC_ERR_MSG_MAX - 1, format, args);
 	va_end(args);
@@ -772,10 +786,6 @@ __oplus_chg_ic_register(struct device *dev, struct oplus_chg_ic_cfg *cfg)
 #ifdef CONFIG_OPLUS_CHG_IC_DEBUG
 	mutex_init(&ic_dev->debug.overwrite_list_lock);
 	INIT_LIST_HEAD(&ic_dev->debug.overwrite_list);
-	if (IS_ERR_OR_NULL(oplus_chg_ic_class)) {
-		chg_err("oplus_chg_ic_class is null or error\n");
-		goto get_minor_err;
-	}
 
 	ic_dev->minor = oplus_chg_ic_get_new_minor();
 	if (ic_dev->minor < 0) {
@@ -785,7 +795,7 @@ __oplus_chg_ic_register(struct device *dev, struct oplus_chg_ic_cfg *cfg)
 	snprintf(ic_dev->cdev_name, sizeof(ic_dev->cdev_name), "vic-%d",
 		 ic_dev->minor);
 	ic_dev->debug_dev =
-		device_create(oplus_chg_ic_class, ic_dev->dev,
+		device_create(&oplus_chg_ic_class, ic_dev->dev,
 			      MKDEV(MAJOR(oplus_chg_ic_devno), ic_dev->minor),
 			      ic_dev, "vic-%d", ic_dev->minor);
 	if (IS_ERR(ic_dev->debug_dev)) {
@@ -839,7 +849,7 @@ name_err:
 device_create_file_err:
 	cdev_del(&ic_dev->cdev);
 cdev_add_err:
-	device_destroy(oplus_chg_ic_class,
+	device_destroy(&oplus_chg_ic_class,
 		       MKDEV(MAJOR(oplus_chg_ic_devno), ic_dev->minor));
 device_create_err:
 	oplus_chg_ic_free_minor(ic_dev->minor);
@@ -872,7 +882,7 @@ int oplus_chg_ic_unregister(struct oplus_chg_ic_dev *ic_dev)
 	while ((attr = *attrs++))
 		device_remove_file(ic_dev->debug_dev, attr);
 	cdev_del(&ic_dev->cdev);
-	device_destroy(oplus_chg_ic_class,
+	device_destroy(&oplus_chg_ic_class,
 		       MKDEV(MAJOR(oplus_chg_ic_devno), ic_dev->minor));
 	oplus_chg_ic_free_minor(ic_dev->minor);
 #endif /* CONFIG_OPLUS_CHG_IC_DEBUG */
@@ -897,7 +907,7 @@ static void devm_oplus_chg_ic_release(struct device *dev, void *res)
 	while ((attr = *attrs++))
 		device_remove_file(this->ic_dev->debug_dev, attr);
 	cdev_del(&this->ic_dev->cdev);
-	device_destroy(oplus_chg_ic_class,
+	device_destroy(&oplus_chg_ic_class,
 		       MKDEV(MAJOR(oplus_chg_ic_devno), this->ic_dev->minor));
 	oplus_chg_ic_free_minor(this->ic_dev->minor);
 #endif /* CONFIG_OPLUS_CHG_IC_DEBUG */
@@ -938,6 +948,7 @@ struct oplus_chg_ic_dev *devm_oplus_chg_ic_register(struct device *dev,
 
 	return ic_dev;
 }
+EXPORT_SYMBOL(devm_oplus_chg_ic_register);
 
 int devm_oplus_chg_ic_unregister(struct device *dev,
 				 struct oplus_chg_ic_dev *ic_dev)
@@ -958,17 +969,18 @@ int devm_oplus_chg_ic_unregister(struct device *dev,
 
 	return 0;
 }
+EXPORT_SYMBOL(devm_oplus_chg_ic_unregister);
 
 static __init int oplus_chg_ic_class_init(void)
 {
 	int rc = 0;
 
 #ifdef CONFIG_OPLUS_CHG_IC_DEBUG
-	oplus_chg_ic_class = class_create(THIS_MODULE, "virtual_ic");
-
-	if (IS_ERR(oplus_chg_ic_class)) {
-		rc = PTR_ERR(oplus_chg_ic_class);
-		chg_err("oplus_chg_ic_class create fail!\n");
+	oplus_chg_ic_class.name = "virtual_ic";
+	oplus_chg_ic_class.class_groups = oplus_chg_ic_class_groups;
+	rc = class_register(&oplus_chg_ic_class);
+	if (rc < 0) {
+		chg_err("Failed to create oplus_chg_ic_class, rc=%d\n", rc);
 		goto err;
 	}
 
@@ -981,7 +993,7 @@ static __init int oplus_chg_ic_class_init(void)
 
 	return 0;
 err:
-	class_destroy(oplus_chg_ic_class);
+	class_unregister(&oplus_chg_ic_class);
 #endif
 	return rc;
 }
@@ -990,7 +1002,7 @@ static __exit void oplus_chg_ic_class_exit(void)
 {
 #ifdef CONFIG_OPLUS_CHG_IC_DEBUG
 	unregister_chrdev_region(oplus_chg_ic_devno, OPLUS_CHG_IC_MAX);
-	class_destroy(oplus_chg_ic_class);
+	class_unregister(&oplus_chg_ic_class);
 #endif
 }
 

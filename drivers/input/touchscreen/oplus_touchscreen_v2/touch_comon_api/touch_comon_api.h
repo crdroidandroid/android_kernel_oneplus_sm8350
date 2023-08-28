@@ -82,6 +82,7 @@ extern unsigned int tp_debug;
 						.proc_write = write_func,	  \
 						.proc_read	= read_func,	  \
 						.proc_release = release_func, \
+						.proc_lseek	= default_llseek, \
 					}
 #else
 #define DECLARE_PROC_OPS(name, open_func, read_func, write_func, release_func) \

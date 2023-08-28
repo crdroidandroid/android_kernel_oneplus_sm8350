@@ -472,7 +472,7 @@ static int fts_fwupg_ecc_cal_host(u8 *buf, u32 len)
 	return (int)ecc;
 }
 
-int fts_fwupg_ecc_cal_tp(struct chip_data_ft3518 *ts_data, u32 saddr, u32 len)
+static int fts_fwupg_ecc_cal_tp(struct chip_data_ft3518 *ts_data, u32 saddr, u32 len)
 {
 	int ret = 0;
 	u8 wbuf[7] = { 0 };
@@ -2194,7 +2194,7 @@ static struct debug_info_proc_operations fts_debug_info_proc_ops = {
 	.self_delta_read   = fts_self_delta_read,
 };
 
-struct focal_debug_func focal_debug_ops = {
+static struct focal_debug_func focal_debug_ops = {
 	.esd_check_enable       = focal_esd_check_enable,
 	.get_esd_check_flag     = focal_get_esd_check_flag,
 	.get_fw_version         = focal_get_fw_version,

@@ -116,6 +116,7 @@ endif
 if TOUCHPANEL_HIMAX
 source "drivers/input/touchscreen/oplus_touchscreen_v2/Himax/Kconfig"
 endif
+
 if TOUCHPANEL_SAMSUNG
 source "drivers/input/touchscreen/oplus_touchscreen_v2/Samsung/Kconfig"
 endif
@@ -123,6 +124,7 @@ endif
 if TOUCHPANEL_ILITEK
 source "drivers/input/touchscreen/oplus_touchscreen_v2/ilitek/Kconfig"
 endif
+
 if TOUCHPANEL_ST
 source "drivers/input/touchscreen/oplus_touchscreen_v2/St/Kconfig"
 endif

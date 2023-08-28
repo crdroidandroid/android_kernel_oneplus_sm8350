@@ -2521,6 +2521,76 @@ int oplus_chg_parse_swarp_dt(struct oplus_chg_chip *chip)
 	return 0;
 }
 
+void oplus_chg_aging_ffc_variable_reset(struct oplus_chg_chip *chip)
+{
+	chip->limits.ffc1_normal_vfloat_sw_limit = chip->limits.default_ffc1_normal_vfloat_sw_limit;
+	chip->limits.ffc1_warm_vfloat_sw_limit = chip->limits.default_ffc1_warm_vfloat_sw_limit;
+	chip->limits.ffc2_normal_vfloat_sw_limit = chip->limits.default_ffc2_normal_vfloat_sw_limit;
+	chip->limits.ffc2_warm_vfloat_sw_limit = chip->limits.default_ffc2_warm_vfloat_sw_limit;
+}
+
+void oplus_chg_get_aging_ffc_offset(struct oplus_chg_chip *chip,
+		int *ffc1_offset, int *ffc2_offset)
+{
+	int batt_cc = 0;
+
+	if (!chip || !ffc1_offset || !ffc2_offset)
+		return;
+
+	*ffc1_offset = 0;
+	*ffc2_offset = 0;
+
+	if (chip->aging_ffc_version == AGING_FFC_NOT_SUPPORT)
+		return;
+
+	if (chip->debug_batt_cc)
+		batt_cc = chip->debug_batt_cc;
+	else
+		batt_cc = chip->batt_cc;
+
+	if (chip->vbatt_num == 2) {
+		if (batt_cc >= AGING2_STAGE_CYCLE) {
+			*ffc1_offset = AGING2_FFC1_DOUBLE_OFFSET_MV;
+			*ffc2_offset = AGING2_FFC2_DOUBLE_OFFSET_MV;
+		} else if (batt_cc >= AGING1_STAGE_CYCLE) {
+			*ffc1_offset = AGING1_FFC1_DOUBLE_OFFSET_MV;
+			*ffc2_offset = AGING1_FFC2_DOUBLE_OFFSET_MV;
+		}
+	} else {
+		if (batt_cc >= AGING2_STAGE_CYCLE) {
+			*ffc1_offset = AGING2_FFC1_SINGLE_OFFSET_MV;
+			*ffc2_offset = AGING2_FFC2_SINGLE_OFFSET_MV;
+		} else if (batt_cc >= AGING1_STAGE_CYCLE) {
+			*ffc1_offset = AGING1_FFC1_SINGLE_OFFSET_MV;
+			*ffc2_offset = AGING1_FFC2_SINGLE_OFFSET_MV;
+		}
+	}
+}
+
+void oplus_chg_aging_ffc_action(struct oplus_chg_chip *chip, bool ffc1_stage)
+{
+	int ffc1_voltage_offset = 0;
+	int ffc2_voltage_offset = 0;
+
+	if (chip->aging_ffc_version == AGING_FFC_NOT_SUPPORT)
+		return;
+
+	oplus_chg_aging_ffc_variable_reset(chip);
+
+	oplus_chg_get_aging_ffc_offset(chip, &ffc1_voltage_offset, &ffc2_voltage_offset);
+
+	chip->limits.ffc1_normal_vfloat_sw_limit = chip->limits.default_ffc1_normal_vfloat_sw_limit + ffc1_voltage_offset;
+	chip->limits.ffc1_warm_vfloat_sw_limit = chip->limits.default_ffc1_warm_vfloat_sw_limit + ffc1_voltage_offset;
+	chip->limits.ffc2_normal_vfloat_sw_limit = chip->limits.default_ffc2_normal_vfloat_sw_limit + ffc2_voltage_offset;
+	chip->limits.ffc2_warm_vfloat_sw_limit = chip->limits.default_ffc2_warm_vfloat_sw_limit + ffc2_voltage_offset;
+
+	chg_err("batt_cc=%d %d [%d %d %d %d]\n", chip->debug_batt_cc, chip->batt_cc,
+			chip->limits.ffc1_normal_vfloat_sw_limit,
+			chip->limits.ffc1_warm_vfloat_sw_limit,
+			chip->limits.ffc2_normal_vfloat_sw_limit,
+			chip->limits.ffc2_warm_vfloat_sw_limit);
+}
+
 int oplus_chg_parse_charger_dt(struct oplus_chg_chip *chip)
 {
 	int rc;
@@ -3394,6 +3464,11 @@ int oplus_chg_parse_charger_dt(struct oplus_chg_chip *chip)
 			= chip->limits.ffc_normal_vfloat_over_sw_limit;
 	}
 
+	chip->limits.default_ffc1_normal_vfloat_sw_limit = chip->limits.ffc1_normal_vfloat_sw_limit;
+	chip->limits.default_ffc1_warm_vfloat_sw_limit = chip->limits.ffc1_warm_vfloat_sw_limit;
+	chip->limits.default_ffc2_normal_vfloat_sw_limit = chip->limits.ffc2_normal_vfloat_sw_limit;
+	chip->limits.default_ffc2_warm_vfloat_sw_limit = chip->limits.ffc2_warm_vfloat_sw_limit;
+
 	charger_xlog_printk(CHG_LOG_CRTI,
 			"ff1_normal_fastchg_ma = %d, \
 			ffc2_temp_warm_decidegc = %d, \
@@ -3875,6 +3950,12 @@ int oplus_chg_parse_charger_dt(struct oplus_chg_chip *chip)
 	charger_xlog_printk(CHG_LOG_CRTI,"dual_charger_support=%d, slave_pct=%d, slave_chg_enable_ma=%d, slave_chg_disable_ma=%d\n",
 			chip->dual_charger_support, chip->slave_pct, chip->slave_chg_enable_ma, chip->slave_chg_disable_ma);
 
+	rc = of_property_read_u32(node, "oplus,aging_ffc_version",
+			&chip->aging_ffc_version);
+	if (rc) {
+		chip->aging_ffc_version = AGING_FFC_NOT_SUPPORT;
+	}
+
 	return 0;
 }
 
@@ -4047,6 +4128,8 @@ static void oplus_chg_set_charging_current(struct oplus_chg_chip *chip)
 		return;
 	}
 #endif
+	if(charging_current == 0)
+		charger_xlog_printk(CHG_LOG_CRTI, "set charging_current = 0\n");
 	chip->chg_ops->charging_current_write_fast(charging_current);
 }
 
@@ -4449,6 +4532,8 @@ void oplus_chg_turn_on_ffc1(struct oplus_chg_chip *chip)
 	chip->chg_ctrl_by_warp = false;
 	chip->recharge_after_ffc = true;
 
+	oplus_chg_aging_ffc_action(chip, true);
+
 	if (chip->temperature >= chip->limits.ffc2_temp_warm_decidegc) {
 		chip->limits.temp_normal_fastchg_current_ma
 			= chip->limits.ff1_warm_fastchg_ma;
@@ -4502,6 +4587,8 @@ void oplus_chg_turn_on_ffc2(struct oplus_chg_chip *chip)
 	chip->fastchg_ffc_status = 2;
 	chip->chg_ctrl_by_warp = false;
 	chip->recharge_after_ffc = true;
+
+	oplus_chg_aging_ffc_action(chip, false);
 
 	if (chip->temperature >= chip->limits.ffc2_temp_warm_decidegc) {
 		chip->limits.temp_normal_fastchg_current_ma
@@ -4656,7 +4743,7 @@ void oplus_chg_turn_off_charging(struct oplus_chg_chip *chip)
 #endif /* OPLUS_CHG_OP_DEF */
 
 	chip->chg_ops->charging_disable();
-	/*charger_xlog_printk(CHG_LOG_CRTI, "[BATTERY] oplus_chg_turn_off_charging !!\n");*/
+	charger_xlog_printk(CHG_LOG_CRTI, "[BATTERY] oplus_chg_turn_off_charging,tbatt_status =%d !!\n", chip->tbatt_status);
 }
 /*
 static int oplus_chg_check_suspend_or_disable(struct oplus_chg_chip *chip)
@@ -5663,6 +5750,7 @@ void oplus_chg_variables_reset(struct oplus_chg_chip *chip, bool in)
 #else
 		chip->mmi_chg = 1;
 #endif
+		charger_xlog_printk(CHG_LOG_CRTI, "set mmi_chg = [%d].\n", chip->mmi_chg);
 	}
 #endif //SELL_MODE
 	chip->unwakelock_chg = 0;
@@ -5772,6 +5860,7 @@ void oplus_chg_variables_reset(struct oplus_chg_chip *chip, bool in)
 		= chip->limits.default_pd_input_current_charger_ma;
 	chip->limits.qc_input_current_charger_ma
 		= chip->limits.default_qc_input_current_charger_ma;
+	oplus_chg_aging_ffc_variable_reset(chip);
 	reset_mcu_delay = 0;
 #ifndef CONFIG_OPLUS_CHARGER_MTK
 	chip->pmic_spmi.aicl_suspend = false;
@@ -6877,23 +6966,25 @@ static bool oplus_chg_soc_reduce_slow_when_1(struct oplus_chg_chip *chip)
 {
 	static int reduce_count = 0;
 	int reduce_count_limit = 0;
+	int chgr_vbatt_soc_1 = chip->vbatt_soc_1;
 
 	if (chip->batt_exist == false) {
 		return false;
 	}
 	if (chip->charger_exist) {
 		reduce_count_limit = 12;
+		chgr_vbatt_soc_1 = 3200;/*power off vbat set 3200mv when charging*/
 	} else {
 		reduce_count_limit = 4;
 	}
-	if (chip->batt_volt_min < chip->vbatt_soc_1) {
+	if (chip->batt_volt_min < chgr_vbatt_soc_1) {
 		reduce_count++;
 	} else {
 		reduce_count = 0;
 	}
 	charger_xlog_printk(CHG_LOG_CRTI,
-			"batt_vol:%d, batt_volt_min:%d, reduce_count:%d\n",
-			chip->batt_volt, chip->batt_volt_min, reduce_count);
+			"batt_vol:%d, batt_volt_min:%d, reduce_count:%d, chgr_vbatt_soc_1[%d]\n",
+			chip->batt_volt, chip->batt_volt_min, reduce_count, chgr_vbatt_soc_1);
 	if (reduce_count > reduce_count_limit) {
 		reduce_count = reduce_count_limit + 1;
 		return true;
@@ -7386,6 +7477,10 @@ static void oplus_chg_chargerid_switch_check(struct oplus_chg_chip *chip)
 
 #define RESET_MCU_DELAY_15S		3
 
+#ifdef OPLUS_CHG_OP_DEF
+extern bool oplus_get_pon_chg(void);
+extern void oplus_set_pon_chg(bool flag);
+#endif
 static void oplus_chg_qc_config(struct oplus_chg_chip *chip);
 static void oplus_chg_fast_switch_check(struct oplus_chg_chip *chip)
 {
@@ -7450,9 +7545,11 @@ static void oplus_chg_fast_switch_check(struct oplus_chg_chip *chip)
 #else
 	if (chip->charger_type == POWER_SUPPLY_TYPE_USB_DCP) {
 #endif
-		if (true == opchg_get_mcu_update_state()) {
+		if (true == opchg_get_mcu_update_state() || true == oplus_get_pon_chg()) {
+			chg_err("mcu_update need suspend charger to reset adapter\n");
 			reset_mcu_delay = 0;
 			mcu_update = true;
+			oplus_set_pon_chg(false);
 			return;
 		}
 		if (oplus_warp_get_fastchg_started() == false
@@ -7659,6 +7756,7 @@ static void oplus_chg_ffc_variable_reset(struct oplus_chg_chip *chip)
 	chip->limits.little_cool_vfloat_sw_limit = chip->limits.default_little_cool_vfloat_sw_limit;
 	chip->limits.temp_little_cool_vfloat_mv = chip->limits.default_temp_little_cool_vfloat_mv;
 	chip->limits.little_cool_vfloat_over_sw_limit = chip->limits.default_little_cool_vfloat_over_sw_limit;
+	oplus_chg_aging_ffc_variable_reset(chip);
 }
 
 

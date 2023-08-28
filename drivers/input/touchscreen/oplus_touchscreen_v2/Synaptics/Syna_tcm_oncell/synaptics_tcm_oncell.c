@@ -800,7 +800,7 @@ static int syna_set_gesture_report_config(struct syna_tcm_data *tcm_info)
 	return 0;
 }
 
-int syna_set_input_reporting(struct syna_tcm_data *tcm_info, bool suspend)
+static int syna_set_input_reporting(struct syna_tcm_data *tcm_info, bool suspend)
 {
 	int retval = 0;
 	struct touch_hcd *touch_hcd = tcm_info->touch_hcd;
@@ -6576,7 +6576,7 @@ static struct i2c_driver syna_i2c_driver = {
 };
 
 
-int __init tp_driver_init_syna_tcm(void)
+static int __init tp_driver_init_syna_tcm(void)
 {
 	TPD_INFO("%s is called\n", __func__);
 
@@ -6591,7 +6591,7 @@ int __init tp_driver_init_syna_tcm(void)
 	return 0;
 }
 
-void __exit tp_driver_exit_syna_tcm(void)
+static void __exit tp_driver_exit_syna_tcm(void)
 {
 	TPD_INFO("%s is called\n", __func__);
 

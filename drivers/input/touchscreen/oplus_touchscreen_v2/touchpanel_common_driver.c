@@ -56,6 +56,7 @@
 #if IS_ENABLED(CONFIG_TOUCHPANEL_NOTIFY)
 #include "touchpanel_notify/touchpanel_event_notify.h"
 #endif
+#define MAX_NODE_DATA_LENGTH         60
 
 /*******Part0:LOG TAG Declear************************/
 #if defined(CONFIG_TOUCHPANEL_MTK_PLATFORM) && defined(CONFIG_TOUCHIRQ_UPDATE_QOS)
@@ -72,6 +73,7 @@
 struct touchpanel_data *g_tp[TP_SUPPORT_MAX] = {NULL};
 static DEFINE_MUTEX(tp_core_lock);
 int cur_tp_index = 0;
+int chip_index = 0;
 EXPORT_SYMBOL(cur_tp_index);
 
 static int sigle_num = 0;
@@ -1486,6 +1488,223 @@ static int init_input_device(struct touchpanel_data *ts)
 	return 0;
 }
 
+static struct device_node* is_support_child_node (struct device *dev,  struct touchpanel_data *ts)
+{
+	struct device_node *child_node = NULL;
+	char *chip_name = NULL;
+	char *panel_node = kzalloc(MAX_NODE_DATA_LENGTH, GFP_KERNEL|GFP_DMA);
+	struct device_node *np = NULL;
+	if (!ts || !dev) {
+	    kfree(panel_node);
+	    return child_node;
+	}
+
+	np = dev->of_node;
+	if(chip_index > 0 && chip_index <= ts->panel_data.chip_num) {
+		chip_name = ts->panel_data.chip_name[chip_index];
+	} else {
+		chip_name = ts->panel_data.chip_name[0];
+	}
+	snprintf(panel_node, MAX_NODE_DATA_LENGTH, "%s_PANEL%d", chip_name, ts->panel_data.tp_type);
+	TPD_INFO("%s: panel_node = %s.\n", __func__, panel_node);
+	child_node = of_get_child_by_name(np, panel_node);
+
+	if (!child_node) {
+		TP_INFO(ts->tp_index, "child_node not defined.\n");
+	}
+
+	kfree(panel_node);
+	return child_node;
+}
+
+/**
+ * init_panel_config - parse panel dts, get resource defined in Dts
+ * If you want to configure multiple panels, you can combine them "chip_name"_"panle_name"
+ */
+static void init_panel_config(struct device *dev, struct touchpanel_data *ts)
+{
+	struct device_node *chip_np;
+	int temp_array[8];
+	int tx_rx_num[2];
+	int rc = 0;
+	int i = 0;
+	int val = 0;
+	chip_np = is_support_child_node(dev, ts);
+	if (!chip_np) {
+		return;
+	}
+
+	/* irq gpio*/
+	ts->hw_res.irq_gpio = of_get_named_gpio_flags(chip_np, "irq-gpio", 0,
+			      &(ts->irq_flags));
+	if (gpio_is_valid(ts->hw_res.irq_gpio)) {
+		rc = devm_gpio_request(dev, ts->hw_res.irq_gpio, "tp_irq_gpio");
+		if (rc) {
+			TP_INFO(ts->tp_index, "unable to request gpio [%d]\n", ts->hw_res.irq_gpio);
+		}
+	} else {
+		TP_INFO(ts->tp_index, "irq-gpio not specified in dts\n");
+	}
+
+	/* reset gpio*/
+	ts->hw_res.reset_gpio = of_get_named_gpio(chip_np, "reset-gpio", 0);
+	if (gpio_is_valid(ts->hw_res.reset_gpio)) {
+		rc = devm_gpio_request(dev, ts->hw_res.reset_gpio, "reset-gpio");
+		if (rc) {
+			TP_INFO(ts->tp_index, "unable to request gpio [%d]\n", ts->hw_res.reset_gpio);
+		}
+	} else {
+		TP_INFO(ts->tp_index, "ts->reset-gpio not specified\n");
+	}
+
+	TP_INFO(ts->tp_index, "%s : irq_gpio = %d, irq_flags = 0x%x, reset_gpio = %d\n",
+		 __func__, ts->hw_res.irq_gpio, ts->irq_flags, ts->hw_res.reset_gpio);
+		/* resolution info*/
+	rc = of_property_read_u32(chip_np, "touchpanel,max-num-support", &ts->max_num);
+
+	if (rc) {
+		TP_INFO(ts->tp_index, "ts->max_num not specified\n");
+		ts->max_num = 10;
+	}
+
+	rc = of_property_read_u32_array(chip_np, "touchpanel,tx-rx-num", tx_rx_num, 2);
+
+	if (rc) {
+		TP_INFO(ts->tp_index, "tx-rx-num not set\n");
+		ts->hw_res.tx_num = 0;
+		ts->hw_res.rx_num = 0;
+
+	} else {
+		ts->hw_res.tx_num = tx_rx_num[0];
+		ts->hw_res.rx_num = tx_rx_num[1];
+	}
+
+	TP_INFO(ts->tp_index, "tx_num = %d, rx_num = %d \n", ts->hw_res.tx_num, ts->hw_res.rx_num);
+
+	rc = of_property_read_u32_array(chip_np, "touchpanel,display-coords", temp_array, 2);
+
+	if (rc) {
+		TP_INFO(ts->tp_index, "Lcd size not set\n");
+		ts->resolution_info.LCD_WIDTH = 0;
+		ts->resolution_info.LCD_HEIGHT = 0;
+
+	} else {
+		ts->resolution_info.LCD_WIDTH = temp_array[0];
+		ts->resolution_info.LCD_HEIGHT = temp_array[1];
+	}
+
+	rc = of_property_read_u32_array(chip_np, "touchpanel,panel-coords", temp_array, 2);
+
+	if (rc) {
+		ts->resolution_info.max_x = 0;
+		ts->resolution_info.max_y = 0;
+
+	} else {
+		ts->resolution_info.max_x = temp_array[0];
+		ts->resolution_info.max_y = temp_array[1];
+	}
+
+	rc = of_property_read_u32_array(chip_np, "touchpanel,touchmajor-limit", temp_array,
+					2);
+
+	if (rc) {
+		ts->touch_major_limit.width_range = 0;
+		ts->touch_major_limit.height_range = 54;    /*set default value*/
+
+	} else {
+		ts->touch_major_limit.width_range = temp_array[0];
+		ts->touch_major_limit.height_range = temp_array[1];
+	}
+
+	TP_INFO(ts->tp_index, "LCD_WIDTH = %d, LCD_HEIGHT = %d, max_x = %d, max_y = %d, limit_witdh = %d, limit_height = %d\n",
+		 ts->resolution_info.LCD_WIDTH, ts->resolution_info.LCD_HEIGHT,
+		 ts->resolution_info.max_x, ts->resolution_info.max_y, \
+		 ts->touch_major_limit.width_range, ts->touch_major_limit.height_range);
+	rc = of_property_read_u32_array(chip_np, "touchpanel,smooth-level", temp_array, SMOOTH_LEVEL_NUM);
+	if (rc) {
+		TP_INFO(ts->tp_index, "smooth_level_array not specified %d\n", rc);
+	} else {
+		ts->smooth_level_array_support = true;
+		for (i=0; i < SMOOTH_LEVEL_NUM; i++) {
+			ts->smooth_level_array[i] = temp_array[i];
+		}
+
+		rc = of_property_read_u32_array(chip_np,
+						"touchpanel,smooth-level-charging",
+						temp_array,
+						SMOOTH_LEVEL_NUM);
+		if (rc) {
+			TP_INFO(ts->tp_index, "smooth_level_charging_array not specified %d\n", rc);
+			for (i=0; i < SMOOTH_LEVEL_NUM; i++) {
+				ts->smooth_level_charging_array[i] = ts->smooth_level_array[i];
+			}
+		} else {
+			for (i=0; i < SMOOTH_LEVEL_NUM; i++) {
+				ts->smooth_level_charging_array[i] = temp_array[i];
+			}
+		}
+		ts->smooth_level_used_array = (u32 *)&(ts->smooth_level_array);
+	}
+
+	rc = of_property_read_u32_array(chip_np, "touchpanel,sensitive-level", temp_array, SENSITIVE_LEVEL_NUM);
+	if (rc) {
+		TP_INFO(ts->tp_index, "sensitive_level_array not specified %d\n", rc);
+	} else {
+		ts->sensitive_level_array_support = true;
+		for (i=0; i < SENSITIVE_LEVEL_NUM; i++) {
+			ts->sensitive_level_array[i] = temp_array[i];
+		}
+
+		rc = of_property_read_u32_array(chip_np,
+						"touchpanel,sensitive-level-charging",
+						temp_array,
+						SENSITIVE_LEVEL_NUM);
+		if (rc) {
+			TP_INFO(ts->tp_index, "sensitive_charging_array not specified %d\n", rc);
+			for (i=0; i < SENSITIVE_LEVEL_NUM; i++) {
+				ts->sensitive_level_charging_array[i] = ts->sensitive_level_array[i];
+			}
+		} else {
+			for (i=0; i < SENSITIVE_LEVEL_NUM; i++) {
+				ts->sensitive_level_charging_array[i] = temp_array[i];
+			}
+		}
+		ts->sensitive_level_used_array = (u32 *)&(ts->sensitive_level_array);
+	}
+
+	rc = of_property_read_u32(chip_np, "touchpanel,single-optimized-time", &ts->single_optimized_time);
+	if (rc) {
+		TP_INFO(ts->tp_index, "ts->single_optimized_time not specified\n");
+		ts->single_optimized_time = 0;
+		ts->optimized_show_support = false;
+	} else {
+		ts->total_operate_times = 0;
+		ts->optimized_show_support = true;
+	}
+
+	rc = of_property_read_u32(chip_np, "touchpanel,high-frame-rate-time", &ts->high_frame_rate_time);
+	if (rc) {
+		TP_INFO(ts->tp_index, "ts->high_frame_rate_time not specified or support\n");
+		ts->high_frame_rate_time = 0;
+		ts->high_frame_rate_support = false;
+	} else {
+		ts->high_frame_rate_support = true;
+	}
+
+	/* interrupt mode*/
+	ts->int_mode = BANNABLE;
+	rc = of_property_read_u32(chip_np, "touchpanel,int-mode", &val);
+
+	if (rc) {
+		TP_INFO(ts->tp_index, "int-mode not specified\n");
+
+	} else {
+		if (val < INTERRUPT_MODE_MAX) {
+			ts->int_mode = val;
+		}
+	}
+}
+
 /**
  * init_parse_dts - parse dts, get resource defined in Dts
  * @dev: i2c_client->dev using to get device tree
@@ -1878,6 +2097,7 @@ static int init_parse_dts(struct device *dev, struct touchpanel_data *ts)
 
 	rc = tp_judge_ic_match_commandline(&ts->panel_data);
 	snprintf(data_buf, 32, "firmware-data-%d", rc);
+	chip_index = rc;
 
 	if (rc < 0) {
 		TP_INFO(ts->tp_index, "commandline not match, please update dts");
@@ -2135,14 +2355,16 @@ static int init_parse_dts(struct device *dev, struct touchpanel_data *ts)
 		ts->optimized_show_support = true;
 	}
 
-        rc = of_property_read_u32(np, "touchpanel,high-frame-rate-time", &ts->high_frame_rate_time);
-        if (rc) {
-                TP_INFO(ts->tp_index, "ts->high_frame_rate_time not specified or support\n");
-                ts->high_frame_rate_time = 0;
-                ts->high_frame_rate_support = false;
-        } else {
-                ts->high_frame_rate_support = true;
-        }
+	rc = of_property_read_u32(np, "touchpanel,high-frame-rate-time", &ts->high_frame_rate_time);
+	if (rc) {
+			TP_INFO(ts->tp_index, "ts->high_frame_rate_time not specified or support\n");
+			ts->high_frame_rate_time = 0;
+			ts->high_frame_rate_support = false;
+	} else {
+			ts->high_frame_rate_support = true;
+	}
+
+	init_panel_config(dev, ts);
 
 	return ret;
 
@@ -2756,7 +2978,8 @@ int register_common_touch_device(struct touchpanel_data *pdata)
 {
 	struct touchpanel_data *ts = pdata;
 	char name[TP_NAME_SIZE_MAX];
-
+	struct device_node *chip_np = NULL;
+	struct device_node *src_chip_np = NULL;
 	int ret = -1;
 #if IS_ENABLED(CONFIG_DRM_PANEL_NOTIFY)
 	void *cookie = NULL;
@@ -3083,6 +3306,16 @@ int register_common_touch_device(struct touchpanel_data *pdata)
 		INIT_DELAYED_WORK(&ts->freq_hop_info.freq_hop_work, tp_freq_hop_work);
 		ts->freq_hop_info.freq_hop_simulating = false;
 		ts->freq_hop_info.freq_hop_freq = 0;
+	}
+
+	chip_np = is_support_child_node(ts->dev, ts);
+
+	if (!chip_np) {
+		TP_INFO(ts->tp_index, "chip_np not defined.\n");
+	} else {
+		src_chip_np = ts->dev->of_node;
+		ts->dev->of_node = chip_np;
+		ts->dev->of_node = src_chip_np;
 	}
 
 	/*step 22 : createproc proc files interface*/
@@ -3490,7 +3723,8 @@ EXIT:
 static void tp_resume(struct device *dev)
 {
 	struct touchpanel_data *ts = dev_get_drvdata(dev);
-
+	struct device_node *chip_np = NULL;
+	struct device_node *src_chip_np = NULL;
 	TP_INFO(ts->tp_index, "%s start.\n", __func__);
 
 	if (!ts->is_suspended) {
@@ -3521,6 +3755,15 @@ static void tp_resume(struct device *dev)
 		if (ts->ts_ops->reinit_device) {
 			ts->ts_ops->reinit_device(ts->chip_data);
 		}
+	}
+
+	chip_np = is_support_child_node(ts->dev, ts);
+	if (!chip_np) {
+		TP_INFO(ts->tp_index, "chip_np not defined.\n");
+	} else {
+		src_chip_np = ts->dev->of_node;
+		ts->dev->of_node = chip_np;
+		ts->dev->of_node = src_chip_np;
 	}
 
 	queue_work(ts->speedup_resume_wq, &ts->speed_up_work);

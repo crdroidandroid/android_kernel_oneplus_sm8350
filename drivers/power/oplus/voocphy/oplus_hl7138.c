@@ -283,6 +283,7 @@ static void hl7138_update_data(struct oplus_voocphy_manager *chip)
 			| data_block[HL7138_REG_ADC_L_BIT_VSYS]) * HL7138_FACTOR_125_100;	/* vout_lsb=1.25mV; */
 	chip->cp_vbat = ((data_block[HL7138_REG_ADC_H_BIT_VBAT] << HL7138_REG_ADC_BIT_OFFSET_4)
 			| data_block[HL7138_REG_ADC_L_BIT_VBAT]) * HL7138_FACTOR_125_100;	/* vout_lsb=1.25mV; */
+	chip->cp_vac = chip->cp_vbus;
 	chg_debug("cp_ichg = %d cp_vbus = %d, cp_vsys = %d, cp_vbat = %d, int_flag = %d",
 		chip->cp_ichg, chip->cp_vbus, chip->cp_vsys, chip->cp_vbat, chip->int_flag);
 }
@@ -298,7 +299,7 @@ static int hl7138_reg_reset(struct oplus_voocphy_manager *chip, bool enable)
 	hl7138_write_byte(chip->client, HL7138_REG_0A, 0xAE);	/* set default mode; */
 	hl7138_write_byte(chip->client, HL7138_REG_0C, 0x03);	/* set default mode; */
 	hl7138_write_byte(chip->client, HL7138_REG_0F, 0x00);	/* set default mode; */
-	hl7138_write_byte(chip->client, HL7138_REG_13, 0x00);	/* set default mode; */
+	hl7138_write_byte(chip->client, HL7138_REG_13, 0x40);	/* set 100ms ucp debounce time; */
 	hl7138_write_byte(chip->client, HL7138_REG_15, 0x00);	/* set default mode; */
 	hl7138_write_byte(chip->client, HL7138_REG_17, 0x00);	/* set default mode; */
 	hl7138_write_byte(chip->client, HL7138_REG_37, 0x02);	/* reset VOOC PHY; */
@@ -309,7 +310,7 @@ static int hl7138_reg_reset(struct oplus_voocphy_manager *chip, bool enable)
 
 static u8 hl7138_get_int_value(struct oplus_voocphy_manager *chip)
 {
-	int ret = 0;
+	int int_data;
 	u8 data = 0;
 
 	if (!chip) {
@@ -317,11 +318,13 @@ static u8 hl7138_get_int_value(struct oplus_voocphy_manager *chip)
 		return -1;
 	}
 
-	ret = hl7138_read_byte(chip->client, HL7138_REG_01, &data);
-	if (ret < 0) {
-		chg_err(" read HL7138_REG_01 failed\n");
+	int_data = hl7138_read_word(chip->client, HL7138_REG_05);
+	if (int_data < 0) {
+		chg_err(" read HL7138_REG_05 failed\n");
 		return -1;
 	}
+	chip->int_flag = int_data;
+	data = int_data & 0xff;
 
 	return data;
 }
@@ -358,7 +361,9 @@ static int hl7138_set_chg_enable(struct oplus_voocphy_manager *chip, bool enable
 
 	if (enable) {
 		if (oplus_chg_check_pd_svooc_adapater()) {
-			return hl7138_write_byte(chip->client, HL7138_REG_12, HL7138_CHG_EN | HL7138_IBUS_UCP_DIS | HL7138_IBUS_UCP_DEFAULT);   /* is pdsvooc adapter: disable ucp */
+			hl7138_write_byte(chip->client, HL7138_REG_13,
+					  HL7138_IBUS_UCP_DEB_100ms << HL7138_IBUS_UCP_DEB_SHIFT); /* UCP debounce time 100ms */
+			return hl7138_write_byte(chip->client, HL7138_REG_12, HL7138_CHG_EN | HL7138_IBUS_UCP_EN | HL7138_IBUS_UCP_DEFAULT);   /* is pdsvooc adapter: disable ucp */
 		} else {
 			return hl7138_write_byte(chip->client, HL7138_REG_12, HL7138_CHG_EN | HL7138_IBUS_UCP_EN | HL7138_IBUS_UCP_DEFAULT);  /* is not pdsvooc adapter: enable ucp */
 		}
@@ -411,16 +416,18 @@ static void hl7138_set_pd_svooc_config(struct oplus_voocphy_manager *chip, bool 
 	}
 
 	if (enable)
-		hl7138_write_byte(chip->client, HL7138_REG_12, 0x01);		/* disable ucp */
+		hl7138_write_byte(chip->client, HL7138_REG_13,
+				  HL7138_IBUS_UCP_DEB_100ms << HL7138_IBUS_UCP_DEB_SHIFT); /* UCP debounce time 100ms */
 	else
-		hl7138_write_byte(chip->client, HL7138_REG_12, 0x85);		/* enable ucp */
+		hl7138_write_byte(chip->client, HL7138_REG_13,
+				  HL7138_IBUS_UCP_DEB_10ms << HL7138_IBUS_UCP_DEB_SHIFT);
 
-	ret = hl7138_read_byte(chip->client, HL7138_REG_12, &reg);
+	ret = hl7138_read_byte(chip->client, HL7138_REG_13, &reg);
 	if (ret < 0) {
-		chg_err("HL7138_REG_12\n");
+		chg_err("HL7138_REG_13\n");
 		return;
 	}
-	chg_debug("pd_svooc config HL7138_REG_12 = %d\n", reg);
+	chg_debug("pd_svooc config HL7138_REG_13 = %d\n", reg);
 }
 
 static bool hl7138_get_pd_svooc_config(struct oplus_voocphy_manager *chip)
@@ -433,15 +440,15 @@ static bool hl7138_get_pd_svooc_config(struct oplus_voocphy_manager *chip)
 		return false;
 	}
 
-	ret = hl7138_read_byte(chip->client, HL7138_REG_12, &data);
+	ret = hl7138_read_byte(chip->client, HL7138_REG_13, &data);
 	if (ret < 0) {
-		chg_err("HL7138_REG_12\n");
+		chg_err("HL7138_REG_13\n");
 		return false;
 	}
 
-	chg_debug("HL7138_REG_12 = 0x%0x\n", data);
+	chg_debug("HL7138_REG_13 = 0x%0x\n", data);
 
-	return !(data & (1 << 2));
+	return (data & HL7138_IBUS_UCP_DEB_MASK);
 }
 
 static int hl7138_get_adc_enable(struct oplus_voocphy_manager *chip, u8 *data)
@@ -532,6 +539,8 @@ void hl7138_send_handshake_seq(struct oplus_voocphy_manager *chip)
 
 int hl7138_reset_voocphy(struct oplus_voocphy_manager *chip)
 {
+	u8 data;
+
 	/*aviod exit fastchg vbus ovp drop out*/
 	hl7138_write_byte(chip->client, HL7138_REG_14, 0x08);
 
@@ -547,6 +556,8 @@ int hl7138_reset_voocphy(struct oplus_voocphy_manager *chip)
 
 	/* turn off mos */
 	hl7138_write_byte(chip->client, HL7138_REG_12, 0x05);	/* JL:Fsw=500KHz;07->12; */
+	/* set 100ms ucp debounce time; */
+	hl7138_write_byte(chip->client, HL7138_REG_13, 0x40);
 
 	/* clear tx data */
 	hl7138_write_byte(chip->client, HL7138_REG_38, 0x00);	/* JL:2C->38; */
@@ -559,7 +570,9 @@ int hl7138_reset_voocphy(struct oplus_voocphy_manager *chip)
 	/* hl7138_write_byte(chip->client, HL7138_REG_21, 0xc0);	//JL:No need in HL7138; */
 
 	/* disable vooc */
+	hl7138_read_byte(chip->client, HL7138_REG_3B, &data);	/* before disable vooc, 7138 need clear flag */
 	hl7138_write_byte(chip->client, HL7138_REG_37, 0x00);	/* JL:2B->37,Dis all; */
+	hl7138_read_byte(chip->client, HL7138_REG_3B, &data);	/* after disable vooc, 7138 need clear flag */
 	hl7138_set_predata(chip, 0);
 
 	chg_debug("oplus_vooc_reset_voocphy done");
@@ -612,7 +625,7 @@ static int hl7138_init_device(struct oplus_voocphy_manager *chip)
 	hl7138_write_byte(chip->client, HL7138_REG_10, 0xEC);	/* JL:Dis IIN_REG; */
 	hl7138_write_byte(chip->client, HL7138_REG_12, 0x05);	/* JL:Fsw=500KHz;07->12; */
 	hl7138_write_byte(chip->client, HL7138_REG_14, 0x08);	/* JL:dis WDG; */
-	hl7138_write_byte(chip->client, HL7138_REG_16, 0x3B);	/* JL:OV=600, UV=200 */
+	hl7138_write_byte(chip->client, HL7138_REG_16, 0x2C);	/* JL:OV=500, UV=250 */
 
 	return 0;
 }
@@ -741,13 +754,17 @@ static int hl7138_svooc_hw_setting(struct oplus_voocphy_manager *chip)
 	hl7138_write_byte(chip->client, HL7138_REG_0B, 0x88);	/* VBUS_OVP:12V */
 	hl7138_write_byte(chip->client, HL7138_REG_0C, 0x00);	/* VIN_OVP:10.2V,,JL:04-0C; */
 
-	hl7138_write_byte(chip->client, HL7138_REG_0E, 0x32);	/* IBUS_OCP:3.6A,UCP_DEB=5ms;JL:05-0E; */
+	if (chip->high_curr_setting)
+		hl7138_write_byte(chip->client, HL7138_REG_0E, 0xB2);	/* disable OCP */
+	else
+		hl7138_write_byte(chip->client, HL7138_REG_0E, 0x32);	/* IBUS_OCP:3.6A,UCP_DEB=5ms;JL:05-0E; */
 
 	hl7138_write_byte(chip->client, HL7138_REG_14, 0x02);	/* WD:1000ms,JL:09-14; */
 	hl7138_write_byte(chip->client, HL7138_REG_15, 0x00);	/* enter cp mode */
-	hl7138_write_byte(chip->client, HL7138_REG_16, 0x3B);	/* JL:OV=600, UV=200 */
+	hl7138_write_byte(chip->client, HL7138_REG_16, 0x2C);	/* JL:OV=500, UV=250 */
 
 	hl7138_write_byte(chip->client, HL7138_REG_3F, 0x91);	/* Loose_det=1,JL:33-3F; */
+
 	return 0;
 }
 
@@ -763,9 +780,9 @@ static int hl7138_vooc_hw_setting(struct oplus_voocphy_manager *chip)
 
 	hl7138_write_byte(chip->client, HL7138_REG_14, 0x02);	/* WD:1000ms,JL:09-14; */
 	hl7138_write_byte(chip->client, HL7138_REG_15, 0x80);	/* JL:bp mode; */
-	hl7138_write_byte(chip->client, HL7138_REG_16, 0x3B);	/* JL:OV=600, UV=200 */
-
+	hl7138_write_byte(chip->client, HL7138_REG_16, 0x2C);	/* JL:OV=500, UV=250 */
 	hl7138_write_byte(chip->client, HL7138_REG_3F, 0x91);	/* Loose_det=1,JL:33-3F; */
+
 	return 0;
 }
 
@@ -1008,6 +1025,8 @@ static int hl7138_parse_dt(struct oplus_voocphy_manager *chip)
 	}
 	chg_err("voocphy_vbus_high is %d\n", chip->voocphy_vbus_high);
 
+	chip->high_curr_setting = of_property_read_bool(node, "qcom,high_curr_setting");
+
 	return 0;
 }
 
@@ -1018,8 +1037,10 @@ static void hl7138_set_switch_fast_charger(struct oplus_voocphy_manager *chip)
 		return;
 	}
 
+	mutex_lock(&chip->voocphy_pinctrl_mutex);
 	pinctrl_select_state(chip->pinctrl, chip->charger_gpio_sw_ctrl2_high);
 	gpio_direction_output(chip->switch1_gpio, 1);	/* out 1*/
+	mutex_unlock(&chip->voocphy_pinctrl_mutex);
 
 	chg_err("switch switch2 %d to fast finshed\n", gpio_get_value(chip->switch1_gpio));
 
@@ -1033,10 +1054,12 @@ static void hl7138_set_switch_normal_charger(struct oplus_voocphy_manager *chip)
 		return;
 	}
 
+	mutex_lock(&chip->voocphy_pinctrl_mutex);
 	pinctrl_select_state(chip->pinctrl, chip->charger_gpio_sw_ctrl2_low);
 	if (chip->switch1_gpio > 0) {
 		gpio_direction_output(chip->switch1_gpio, 0);	/* in 0*/
 	}
+	mutex_unlock(&chip->voocphy_pinctrl_mutex);
 
 	chg_err("switch switch2 %d to normal finshed\n", gpio_get_value(chip->switch1_gpio));
 
@@ -1056,6 +1079,11 @@ static void hl7138_set_switch_mode(struct oplus_voocphy_manager *chip, int mode)
 	}
 
 	return;
+}
+
+static int hl7138_get_chip_id(void)
+{
+	return CHIP_ID_HL7138;
 }
 
 struct oplus_voocphy_operations oplus_hl7138_ops = {
@@ -1080,6 +1108,7 @@ struct oplus_voocphy_operations oplus_hl7138_ops = {
 	.set_pd_svooc_config	= hl7138_set_pd_svooc_config,
 	.get_pd_svooc_config	= hl7138_get_pd_svooc_config,
 	.clear_interrupts	= hl7138_clear_interrupts,
+	.get_chip_id		= hl7138_get_chip_id,
 };
 
 static int hl7138_charger_choose(struct oplus_voocphy_manager *chip)
@@ -1117,6 +1146,7 @@ static int hl7138_charger_probe(struct i2c_client *client,
 	chip->dev = &client->dev;
 	chip->client = client;
 	mutex_init(&i2c_rw_lock);
+	mutex_init(&chip->voocphy_pinctrl_mutex);
 
 	i2c_set_clientdata(client, chip);
 

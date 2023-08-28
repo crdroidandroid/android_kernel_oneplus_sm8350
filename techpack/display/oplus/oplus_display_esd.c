@@ -330,7 +330,7 @@ static int oplus_mdss_dsi_samsung_amb670yf01_dsc_panel_check_esd_status(struct d
 		}
 	} else {
 #else
-	{
+	 {
 #endif
 		rc = oplus_display_read_panel_reg(display, 0x0A, register1, 1);
 		if (rc < 0)
@@ -339,7 +339,7 @@ static int oplus_mdss_dsi_samsung_amb670yf01_dsc_panel_check_esd_status(struct d
 		rc = oplus_display_read_panel_reg(display, 0xA2, register2, 5);
 		if (rc < 0)
 			return 0;
-	}
+	 }
 	if ((register1[0] != 0x9F && register1[0] != 0x9d) || (register2[0] != 0x11) || (register2[1] != 0x00)
 		|| (register2[2] != 0x00) || (register2[3] != 0xAB) || (register2[4] != 0x30)) {
 		esd_black_count++;
@@ -456,9 +456,9 @@ int oplus_display_status_reg_read(struct dsi_display *display)
 
 	count = mode->priv_info->cmd_sets[DSI_CMD_READ_SAMSUNG_PANEL_REGISTER_ON].count;
 	if (!count) {
-		DSI_ERR("This panel does not support samsung panel register enable command\n");
+		DSI_DEBUG("This panel does not support samsung panel register enable command\n");
 	} else {
-		if(dsi_panel_tx_cmd_set(panel, DSI_CMD_READ_SAMSUNG_PANEL_REGISTER_ON)){
+		if (dsi_panel_tx_cmd_set(panel, DSI_CMD_READ_SAMSUNG_PANEL_REGISTER_ON)) {
 			DSI_ERR("Failed to send DSI_CMD_READ_SAMSUNG_PANEL_REGISTER_ON commands\n");
 			return 0;
 		}
@@ -480,7 +480,7 @@ int oplus_display_status_reg_read(struct dsi_display *display)
 
 	count = mode->priv_info->cmd_sets[DSI_CMD_READ_SAMSUNG_PANEL_REGISTER_OFF].count;
 	if (!count)
-		DSI_ERR("This panel does not support samsung panel register disable command\n");
+		DSI_DEBUG("This panel does not support samsung panel register disable command\n");
 	else {
 		if(dsi_panel_tx_cmd_set(panel, DSI_CMD_READ_SAMSUNG_PANEL_REGISTER_OFF)) {
 			DSI_ERR("Failed to send DSI_CMD_READ_SAMSUNG_PANEL_REGISTER_OFF commands\n");

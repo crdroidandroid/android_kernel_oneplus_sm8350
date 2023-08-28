@@ -210,6 +210,17 @@ enum {
 	NOTIFY_GAUGE_I2C_ERR,
 };
 
+enum oplus_chg_err_code {
+	OPLUS_ERR_CODE_I2C,
+	OPLUS_ERR_CODE_OCP,
+	OPLUS_ERR_CODE_OVP,
+	OPLUS_ERR_CODE_UCP,
+	OPLUS_ERR_CODE_UVP,
+	OPLUS_ERR_CODE_TIMEOUT,
+	OPLUS_ERR_CODE_OVER_HEAT,
+	OPLUS_ERR_CODE_COLD,
+};
+
 enum oplus_chg_qc_version {
 	OPLUS_CHG_QC_2_0,
 	OPLUS_CHG_QC_3_0
@@ -292,5 +303,7 @@ enum oplus_chg_wls_trx_status {
 
 bool oplus_is_power_off_charging(void);
 bool oplus_is_charger_reboot(void);
+struct timespec oplus_current_kernel_time(void);
+bool oplus_is_ptcrb_version(void);
 
 #endif /* __OPLUS_CHG_CORE_H__ */

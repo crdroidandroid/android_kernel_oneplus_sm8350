@@ -78,6 +78,11 @@ extern void mt_power_off(void);
 
 #define DEBUG_BY_FILE_OPS
 
+#define TRACK_LOCAL_T_NS_TO_S_THD		1000000000
+#define TRACK_UPLOAD_COUNT_MAX		10
+#define TRACK_DEVICE_ABNORMAL_UPLOAD_PERIOD	(24 * 3600)
+#define TRACK_I2CERROR_SAMEADDR_MIN_INTERVAL	3
+
 struct chip_mp2650 *charger_ic = NULL;
 int reg_access_allow = 0;
 int mp2650_reg = 0;
@@ -87,6 +92,17 @@ int mp2650_get_vbus_voltage(void);
 int mp2650_burst_mode_enable(bool enable);
 
 static DEFINE_MUTEX(mp2650_i2c_access);
+static int mp2650_chg_track_upload_icl_err_info(
+	struct chip_mp2650 *chip, int err_type);
+static int mp2650_track_upload_i2c_err_info(
+	struct chip_mp2650 *chip, int err_type, u8 reg);
+
+#ifndef CONFIG_REMOVE_OPLUS_FUNCTION
+int __attribute__((weak)) register_device_proc(char *name, char *version, char *vendor)
+{
+	return 0;
+}
+#endif /* CONFIG_REMOVE_OPLUS_FUNCTION */
 
 int __attribute__((weak)) oplus_get_charger_cycle(void)
 {
@@ -132,10 +148,16 @@ int __attribute__((weak)) oplus_set_bcc_curr_to_voocphy(int bcc_curr)
 {
 	return 0;
 }
+
 #ifdef CONFIG_OPLUS_CHARGER_MTK
-int __attribute__((weak)) oplus_chg_set_dischg_enable(bool en)
+int __attribute__((weak)) oplus_force_get_subboard_temp(void)
 {
 	return 0;
+}
+
+int __attribute__((weak)) oplus_check_cc_mode(void)
+{
+	return -EINVAL;
 }
 #endif
 
@@ -320,15 +342,18 @@ static int __mp2650_read_reg(int reg, int *returnData)
 			}
 		}
 
-}
-    if (ret < 0) {
-        chg_err("i2c read fail: can't read from %02x: %d\n", reg, ret);
-        return ret;
-    } else {
-        *returnData = ret;
-    }
+	}
 
-    return 0;
+	if (ret < 0 || chip->debug_force_i2c_err != 0) {
+		chg_err("i2c read fail: can't read from %02x: %d\n", reg, ret);
+		if (chip->track_init_done)
+			mp2650_track_upload_i2c_err_info(chip, ret, reg);
+		return ret;
+	} else {
+		*returnData = ret;
+	}
+
+	return 0;
 }
 
 static int mp2650_read_reg(int reg, int *returnData)
@@ -370,13 +395,15 @@ static int __mp2650_write_reg(int reg, int val)
 		}
 	}
 
-    if (ret < 0) {
-        chg_err("i2c write fail: can't write %02x to %02x: %d\n",
-        val, reg, ret);
-        return ret;
-    }
+	if (ret < 0 || chip->debug_force_i2c_err != 0) {
+		chg_err("i2c write fail: can't write %02x to %02x: %d\n",
+			val, reg, ret);
+		if (chip->track_init_done)
+			mp2650_track_upload_i2c_err_info(chip, ret, reg);
+		return ret;
+	}
 
-    return 0;
+	return 0;
 }
 
 /**********************************************************
@@ -479,6 +506,7 @@ int mp2650_set_vindpm_vol(int vol)//default 4.5V
 
 	tmp = (vol - REG01_MP2650_VINDPM_THRESHOLD_OFFSET)/REG01_MP2650_VINDPM_THRESHOLD_STEP;
 	rc = mp2650_config_interface(REG01_MP2650_ADDRESS, tmp << REG01_MP2650_VINDPM_THRESHOLD_SHIFT, REG01_MP2650_VINDPM_THRESHOLD_MASK);
+	chg_debug("vindpm_vol [%d] ret [%d]\n", vol, rc);
 
     return rc;
 }
@@ -568,7 +596,8 @@ int mp2650_get_charger_vol(void)
 
 #ifdef CONFIG_OPLUS_CHARGER_MTK
     static int chv_vol_pre = 0;
-    if (oplus_vooc_get_allow_reading() == true) {
+	if (oplus_vooc_get_allow_reading() == true && (oplus_pps_get_support_type() != PPS_SUPPORT_2CP &&
+		oplus_pps_get_support_type() != PPS_SUPPORT_3CP)) {
         chg_vol = mp2650_get_vbus_voltage();
         if (chg_vol >= 0) {
             chv_vol_pre = chg_vol;
@@ -637,10 +666,37 @@ int mp2650_input_current_limit_write(int current_ma)
     	int pre_icl_index = 0;
 	int sw_aicl_point = 0;
 	struct chip_mp2650 *chip = charger_ic;
+	struct oplus_chg_chip *oplus_chip = oplus_chg_get_chg_struct();
+	int tmp_aicl_hw_point;
+	int subtype = CHARGER_SUBTYPE_DEFAULT;
 
-	if(atomic_read(&chip->charger_suspended) == 1) {
+	if (!chip || !oplus_chip) {
+		chg_err("chip or oplus_chip is NULL\n");
 		return 0;
 	}
+
+	if (atomic_read(&chip->charger_suspended) == 1) {
+		return 0;
+	}
+
+	chg_vol = mp2650_get_charger_vol();
+	subtype = oplus_chip->chg_ops->get_charger_subtype();
+
+	if ((oplus_chip->pdqc_9v_voltage_adaptive) &&
+	    (oplus_vooc_get_fastchg_started() == false) &&
+	    ((subtype == CHARGER_SUBTYPE_PD) ||
+	    (subtype == CHARGER_SUBTYPE_QC)) &&
+	    (chg_vol > MP2762_AICL_POINT_SWITCH_THRE)) {
+		tmp_aicl_hw_point = MP2762_AICL_POINT_VOL_9V;
+		sw_aicl_point = MP2762_AICL_POINT_VOL_9V;
+	} else {
+		tmp_aicl_hw_point = chip->hw_aicl_point;
+		sw_aicl_point = chip->sw_aicl_point;
+	}
+
+	chg_debug("hw_sw_vol[%d %d] chg_vol [%d] pdqc_9v_voltage_adaptive %s\n",
+		tmp_aicl_hw_point, sw_aicl_point, chg_vol,
+		oplus_chip->pdqc_9v_voltage_adaptive == true ?"true":"false");
 
 	for (i = ARRAY_SIZE(mp2650_usbin_input_current_limit) - 1; i >= 0; i--) {
         	if (mp2650_usbin_input_current_limit[i] <= current_ma) {
@@ -705,8 +761,6 @@ int mp2650_input_current_limit_write(int current_ma)
           	}
 	}
 
-	sw_aicl_point = chip->sw_aicl_point;
-
 	i = INPUT_CURRENT_LIMIT_INDEX_0; /* 500 */
     	rc = mp2650_config_interface(REG00_MP2650_ADDRESS, REG00_MP2650_1ST_CURRENT_LIMIT_500MA, REG00_MP2650_1ST_CURRENT_LIMIT_MASK);
     	rc = mp2650_config_interface(REG0F_MP2650_ADDRESS, REG00_MP2650_1ST_CURRENT_LIMIT_500MA, REG0F_MP2650_2ND_CURRENT_LIMIT_MASK);
@@ -749,6 +803,7 @@ int mp2650_input_current_limit_write(int current_ma)
         	i = i - 2; //We DO NOT use 1.2A here
         	goto aicl_pre_step;
 	} else if (current_ma < 1200) {
+        	i = i - 1; /* We use 1A here */
         	goto aicl_end;
 	}
 
@@ -892,7 +947,16 @@ aicl_rerun:
 		break;
 	}
 
-	mp2650_set_vindpm_vol(chip->hw_aicl_point);
+	mp2650_set_vindpm_vol(tmp_aicl_hw_point);
+
+	if (chip->track_init_done &&
+	    ((oplus_chip->charger_type == POWER_SUPPLY_TYPE_USB_DCP &&
+	    current_ma >= OPLUS_CHG_TRACK_ICL_MONITOR_THD_MA &&
+	    aicl_result < OPLUS_CHG_TRACK_ICL_MONITOR_THD_MA) ||
+	    chip->debug_force_icl_err != 0))
+		mp2650_chg_track_upload_icl_err_info(
+			chip, TRACK_PMIC_ERR_ICL_VBUS_LOW_POINT);
+
 	return rc;
 }
 
@@ -934,16 +998,49 @@ int mp2650_chg_get_dyna_aicl_result(void)
 
 void mp2650_set_aicl_point(int vbatt)
 {
-    struct chip_mp2650 *chip = charger_ic;
+	struct chip_mp2650 *chip = charger_ic;
+	struct oplus_chg_chip *oplus_chip = oplus_chg_get_chg_struct();
+	int chg_vol;
+	int tmp_pdqc_hw_vol = 0;
+	int subtype = CHARGER_SUBTYPE_DEFAULT;
+	bool neend_check_vindpm = false;
 
-	if(chip->hw_aicl_point == 4440 && vbatt > 4140) {
-		chip->hw_aicl_point = 4520;
-		chip->sw_aicl_point = 4535;
-		mp2650_set_vindpm_vol(chip->hw_aicl_point);
-	} else if(chip->hw_aicl_point == 4520 && vbatt < 4000) {
-		chip->hw_aicl_point = 4440;
-		chip->sw_aicl_point = 4500;
-		mp2650_set_vindpm_vol(chip->hw_aicl_point);
+	if (!chip || !oplus_chip) {
+		chg_err("chip or oplus_chip is NULL\n");
+		return;
+	}
+
+	chg_vol = mp2650_get_charger_vol();
+	subtype = oplus_chip->chg_ops->get_charger_subtype();
+
+	if ((oplus_chip->pdqc_9v_voltage_adaptive) &&
+	    (oplus_vooc_get_fastchg_started() == false) &&
+	    ((subtype == CHARGER_SUBTYPE_PD) ||
+	    (subtype == CHARGER_SUBTYPE_QC)) &&
+	    (chg_vol > MP2762_AICL_POINT_SWITCH_THRE)) {
+		tmp_pdqc_hw_vol = MP2762_AICL_POINT_VOL_9V;
+		mp2650_set_vindpm_vol(tmp_pdqc_hw_vol);
+		chg_debug("pdqc_hw_volpont_vol [%d] chg_vol %d hw_sw_vbat [%d %d %d]\n",
+			tmp_pdqc_hw_vol, chg_vol, chip->hw_aicl_point,
+			chip->sw_aicl_point, vbatt);
+	} else {
+		if (chip->hw_aicl_point == MP2762_HW_AICL_POINT_5V_PHASE1 &&
+		    vbatt > MP2762_AICL_POINT_VOL_PHASE2) {
+			chip->hw_aicl_point = MP2762HW_AICL_POINT_5V_PHASE2;
+			chip->sw_aicl_point = MP2762SW_AICL_POINT_5V_PHASE2;
+			neend_check_vindpm = true;
+		} else if (chip->hw_aicl_point == MP2762HW_AICL_POINT_5V_PHASE2 &&
+			    vbatt < MP2762_AICL_POINT_VOL_PHASE1) {
+			chip->hw_aicl_point = MP2762_HW_AICL_POINT_5V_PHASE1;
+			chip->sw_aicl_point = MP2762_SW_AICL_POINT_5V_PHASE1;
+			neend_check_vindpm = true;
+		}
+
+		if (neend_check_vindpm || oplus_chip->pdqc_9v_voltage_adaptive)
+			mp2650_set_vindpm_vol(chip->hw_aicl_point);
+
+		chg_debug("chg_vol %d hw_sw_vbat [%d %d %d]\n", chg_vol,
+			chip->hw_aicl_point, chip->sw_aicl_point, vbatt);
 	}
 }
 
@@ -1471,9 +1568,10 @@ int mp2650_unsuspend_charger(void)
 	}
 
 #ifdef CONFIG_OPLUS_CHARGER_MTK
-	if (boot_mode == META_BOOT) {
+	if (boot_mode == META_BOOT || boot_mode == FACTORY_BOOT
+			|| boot_mode == ADVMETA_BOOT || boot_mode == ATE_FACTORY_BOOT) {
 		mp2650_config_interface(REG08_MP2650_ADDRESS, REG08_MP2650_LEARN_EN_ENABLE, REG08_MP2650_LEARN_EN_MASK);
-		chg_err("Meta mode stop charging!");
+		chg_err("Meta mode or FTM stop charging!");
 		return 0;
 	}
 #endif
@@ -1525,13 +1623,26 @@ int mp2650_otg_enable(void)
 {
 	int rc;
 	struct chip_mp2650 *chip = charger_ic;
+	int retry = 0;
 
 	if (!chip) {
 		chg_err("chip is NULL\n");
 		return 0;
 	}
-	if (atomic_read(&chip->charger_suspended) == 1) {
-		return 0;
+
+	while (retry <= WAIT_RESUME_MAX_TRY_TIME) {
+		/*mp2650 resume*/
+		if (atomic_read(&chip->charger_suspended) != 1) {
+			break;
+		}
+
+		msleep(10);
+
+		retry++;
+		if (retry == WAIT_RESUME_MAX_TRY_TIME) {
+			chg_err("wait charger_resume timeout \n");
+			return 0;
+		}
 	}
 
 	rc = mp2650_burst_mode_enable(true);
@@ -1563,13 +1674,26 @@ int mp2650_otg_disable(void)
 {
 	int rc;
 	struct chip_mp2650 *chip = charger_ic;
+	int retry = 0;
 
 	if (!chip) {
 		chg_err("chip is NULL\n");
 		return 0;
 	}
-	if (atomic_read(&chip->charger_suspended) == 1) {
-		return 0;
+
+	while (retry <= WAIT_RESUME_MAX_TRY_TIME) {
+		/*mp2650 resume*/
+		if (atomic_read(&chip->charger_suspended) != 1) {
+			break;
+		}
+
+		msleep(10);
+
+		retry++;
+		if (retry == WAIT_RESUME_MAX_TRY_TIME) {
+			chg_err("wait charger_resume timeout \n");
+			return 0;
+		}
 	}
 
 	mp2650_wireless_set_mps_otg_en_val(MP2650_GPIO_OTG_DIS);
@@ -2496,7 +2620,8 @@ struct oplus_chg_operations  mp2650_chg_ops = {
 #endif
     .get_charger_current = mp2650_get_ibus_current,
     .check_pdphy_ready = oplus_check_pdphy_ready,
-    .set_dischg_enable = oplus_chg_set_dischg_enable,
+    .get_subboard_temp = oplus_force_get_subboard_temp,
+    .check_cc_mode = oplus_check_cc_mode,
 #else /* CONFIG_OPLUS_CHARGER_MTK */
     .get_chargerid_volt = smbchg_get_chargerid_volt,
     .set_chargerid_switch_val = smbchg_set_chargerid_switch_val,
@@ -2627,6 +2752,7 @@ static int mp2650_mps_otg_en_gpio_init(struct chip_mp2650 *chip)
 		//gpio_direction_input(chg->wired_conn_gpio);
 	//}
 
+	gpio_direction_output(chip->mps_otg_en_gpio, 0);
 	pinctrl_select_state(chip->pinctrl, chip->mps_otg_en_sleep);
   	chg_err("gpio_val:%d\n", gpio_get_value(chip->mps_otg_en_gpio));
 
@@ -2869,6 +2995,302 @@ static void init_mp2650_read_log(void)
 }
 #endif /*DEBUG_BY_FILE_OPS*/
 
+static int mp2650_chg_track_get_local_time_s(void)
+{
+	int local_time_s;
+
+	local_time_s = local_clock() / TRACK_LOCAL_T_NS_TO_S_THD;
+	pr_info("local_time_s:%d\n", local_time_s);
+
+	return local_time_s;
+}
+
+static void mp2650_track_i2c_err_load_trigger_work(
+	struct work_struct *work)
+{
+	struct delayed_work *dwork = to_delayed_work(work);
+	struct chip_mp2650 *chip =
+		container_of(dwork, struct chip_mp2650, i2c_err_load_trigger_work);
+
+	if (!chip)
+		return;
+
+	oplus_chg_track_upload_trigger_data(*(chip->i2c_err_load_trigger));
+	mutex_lock(&chip->track_i2c_err_lock);
+	if (chip->i2c_err_load_trigger) {
+		kfree(chip->i2c_err_load_trigger);
+		chip->i2c_err_load_trigger = NULL;
+	}
+	chip->i2c_err_uploading = false;
+	mutex_unlock(&chip->track_i2c_err_lock);
+}
+
+static int mp2650_track_upload_i2c_err_info(
+	struct chip_mp2650 *chip, int err_type, u8 reg)
+{
+	int index = 0;
+	int curr_time;
+	static int upload_count = 0;
+	static int pre_upload_time = 0;
+	static int pre_reg = MP2650_MAX_ADDRESS;
+
+	if (!chip)
+		return -EINVAL;
+
+	if (atomic_read(&chip->charger_suspended) == 1) {
+		return 0;
+	}
+
+	mutex_lock(&chip->track_upload_lock);
+	curr_time = mp2650_chg_track_get_local_time_s();
+	if (curr_time - pre_upload_time > TRACK_DEVICE_ABNORMAL_UPLOAD_PERIOD)
+		upload_count = 0;
+
+	if (curr_time - pre_upload_time < TRACK_I2CERROR_SAMEADDR_MIN_INTERVAL
+	    && pre_reg == reg) {
+		mutex_unlock(&chip->track_upload_lock);
+		chg_debug("Recently 3s uploaded reg %02x\n", pre_reg);
+		return 0;
+	}
+
+	if (upload_count > TRACK_UPLOAD_COUNT_MAX) {
+		mutex_unlock(&chip->track_upload_lock);
+		chg_debug("upload_count %d > %d\n", upload_count, TRACK_UPLOAD_COUNT_MAX);
+		return 0;
+	}
+
+	if (chip->debug_force_i2c_err)
+		err_type = -chip->debug_force_i2c_err;
+
+	mutex_lock(&chip->track_i2c_err_lock);
+	if (chip->i2c_err_uploading) {
+		mutex_unlock(&chip->track_i2c_err_lock);
+		mutex_unlock(&chip->track_upload_lock);
+		chg_debug("i2c_err_uploading, should return\n");
+		return 0;
+	}
+
+	if (chip->i2c_err_load_trigger)
+		kfree(chip->i2c_err_load_trigger);
+	chip->i2c_err_load_trigger = kzalloc(sizeof(oplus_chg_track_trigger), GFP_KERNEL);
+	if (!chip->i2c_err_load_trigger) {
+		mutex_unlock(&chip->track_i2c_err_lock);
+		mutex_unlock(&chip->track_upload_lock);
+		chg_err("i2c_err_load_trigger memery alloc fail\n");
+		return -ENOMEM;
+	}
+	chip->i2c_err_load_trigger->type_reason =
+		TRACK_NOTIFY_TYPE_DEVICE_ABNORMAL;
+	chip->i2c_err_load_trigger->flag_reason =
+		TRACK_NOTIFY_FLAG_EXTERN_PMIC_ABNORMAL;
+	chip->i2c_err_uploading = true;
+	upload_count++;
+	pre_reg = reg;
+	pre_upload_time = mp2650_chg_track_get_local_time_s();
+	mutex_unlock(&chip->track_i2c_err_lock);
+
+	index += snprintf(
+		&(chip->i2c_err_load_trigger->crux_info[index]),
+		OPLUS_CHG_TRACK_CURX_INFO_LEN - index, "$$device_id@@%s",
+		"mp2762");
+	index += snprintf(
+		&(chip->i2c_err_load_trigger->crux_info[index]),
+		OPLUS_CHG_TRACK_CURX_INFO_LEN - index, "$$err_scene@@%s",
+		OPLUS_CHG_TRACK_SCENE_I2C_ERR);
+
+	memset(chip->track_temp, 0, sizeof(chip->track_temp));
+	memset(chip->err_reason, 0, sizeof(chip->err_reason));
+	oplus_chg_track_get_i2c_err_reason(err_type,
+				chip->err_reason, sizeof(chip->err_reason));
+	index += snprintf(
+		&(chip->i2c_err_load_trigger->crux_info[index]),
+		OPLUS_CHG_TRACK_CURX_INFO_LEN - index,
+		"$$err_reason@@%s", chip->err_reason);
+
+	oplus_chg_track_obtain_power_info(chip->track_temp, sizeof(chip->track_temp));
+	index += snprintf(&(chip->i2c_err_load_trigger->crux_info[index]),
+			OPLUS_CHG_TRACK_CURX_INFO_LEN - index, "%s", chip->track_temp);
+	index += snprintf(&(chip->i2c_err_load_trigger->crux_info[index]),
+			OPLUS_CHG_TRACK_CURX_INFO_LEN - index,
+			"$$access_reg@@0x%02x", reg);
+	schedule_delayed_work(&chip->i2c_err_load_trigger_work, 0);
+	mutex_unlock(&chip->track_upload_lock);
+	chg_debug("success reg %02x\n", reg);
+	return 0;
+}
+
+static void mp2650_chg_track_icl_err_load_trigger_work(
+	struct work_struct *work)
+{
+	struct delayed_work *dwork = to_delayed_work(work);
+	struct chip_mp2650 *chip =
+		container_of(dwork, struct chip_mp2650, icl_err_load_trigger_work);
+
+	if (!chip)
+		return;
+
+	oplus_chg_track_upload_trigger_data(*(chip->icl_err_load_trigger));
+	mutex_lock(&chip->track_icl_err_lock);
+	if (chip->icl_err_load_trigger) {
+		kfree(chip->icl_err_load_trigger);
+		chip->icl_err_load_trigger = NULL;
+	}
+	chip->icl_err_uploading = false;
+	mutex_unlock(&chip->track_icl_err_lock);
+}
+
+static int mp2650_chg_track_upload_icl_err_info(
+	struct chip_mp2650 *chip, int err_type)
+{
+	int index = 0;
+	int curr_time;
+	static int upload_count = 0;
+	static int pre_upload_time = 0;
+
+	if (!chip)
+		return -EINVAL;
+
+	if (atomic_read(&chip->charger_suspended) == 1)
+		return 0;
+
+	mutex_lock(&chip->track_upload_lock);
+	curr_time = mp2650_chg_track_get_local_time_s();
+	if (curr_time - pre_upload_time > TRACK_DEVICE_ABNORMAL_UPLOAD_PERIOD)
+		upload_count = 0;
+
+	if (err_type != TRACK_PMIC_ERR_ICL_VBUS_COLLAPSE &&
+	    err_type != TRACK_PMIC_ERR_ICL_VBUS_LOW_POINT) {
+		mutex_unlock(&chip->track_upload_lock);
+		return -EINVAL;
+	}
+
+	if (upload_count > TRACK_UPLOAD_COUNT_MAX) {
+		mutex_unlock(&chip->track_upload_lock);
+		chg_debug("upload_count %d > %d\n",
+			upload_count, TRACK_UPLOAD_COUNT_MAX);
+		return 0;
+	}
+
+	mutex_lock(&chip->track_icl_err_lock);
+	if (chip->icl_err_uploading) {
+		chg_debug("icl_err_uploading, should return\n");
+		mutex_unlock(&chip->track_icl_err_lock);
+		mutex_unlock(&chip->track_upload_lock);
+		return 0;
+	}
+
+	if (chip->icl_err_load_trigger)
+		kfree(chip->icl_err_load_trigger);
+	chip->icl_err_load_trigger = kzalloc(sizeof(oplus_chg_track_trigger), GFP_KERNEL);
+	if (!chip->icl_err_load_trigger) {
+		chg_err("icl_err_load_trigger memery alloc fail\n");
+		mutex_unlock(&chip->track_icl_err_lock);
+		mutex_unlock(&chip->track_upload_lock);
+		return -ENOMEM;
+	}
+	chip->icl_err_load_trigger->type_reason =
+		TRACK_NOTIFY_TYPE_DEVICE_ABNORMAL;
+	chip->icl_err_load_trigger->flag_reason =
+		TRACK_NOTIFY_FLAG_EXTERN_PMIC_ABNORMAL;
+	chip->icl_err_uploading = true;
+	upload_count++;
+	pre_upload_time = mp2650_chg_track_get_local_time_s();
+	mutex_unlock(&chip->track_icl_err_lock);
+
+	memset(chip->err_reason, 0, sizeof(chip->err_reason));
+	index += snprintf(
+		&(chip->icl_err_load_trigger->crux_info[index]),
+		OPLUS_CHG_TRACK_CURX_INFO_LEN - index, "$$device_id@@%s",
+		"mp2762");
+	index += snprintf(
+		&(chip->icl_err_load_trigger->crux_info[index]),
+		OPLUS_CHG_TRACK_CURX_INFO_LEN - index, "$$err_scene@@%s",
+		OPLUS_CHG_TRACK_SCENE_PMIC_ICL_ERR);
+
+	oplus_chg_track_get_pmic_err_reason(err_type,
+				chip->err_reason, sizeof(chip->err_reason));
+	index += snprintf(
+		&(chip->icl_err_load_trigger->crux_info[index]),
+		OPLUS_CHG_TRACK_CURX_INFO_LEN - index,
+		"$$err_reason@@%s", chip->err_reason);
+
+	memset(chip->track_temp, 0, sizeof(chip->track_temp));
+	oplus_chg_track_obtain_power_info(chip->track_temp, sizeof(chip->track_temp));
+	index += snprintf(&(chip->icl_err_load_trigger->crux_info[index]),
+			OPLUS_CHG_TRACK_CURX_INFO_LEN - index, "%s", chip->track_temp);
+
+	index += snprintf(&(chip->icl_err_load_trigger->crux_info[index]),
+			OPLUS_CHG_TRACK_CURX_INFO_LEN - index,
+			"$$reg_info@@%s", chip->track_temp);
+	schedule_delayed_work(&chip->icl_err_load_trigger_work, 0);
+	mutex_unlock(&chip->track_upload_lock);
+	chg_debug("success\n");
+
+	return 0;
+}
+
+
+static int mp2650_chg_track_debugfs_init(struct chip_mp2650 *chip)
+{
+	int ret = 0;
+	struct dentry *debugfs_root;
+	struct dentry *debugfs_mp2650;
+
+	debugfs_root = oplus_chg_track_get_debugfs_root();
+	if (!debugfs_root) {
+		ret = -ENOENT;
+		return ret;
+	}
+
+	debugfs_mp2650 = debugfs_create_dir("mp2762", debugfs_root);
+	if (!debugfs_mp2650) {
+		ret = -ENOENT;
+		return ret;
+	}
+
+	debugfs_create_u32("debug_force_icl_err", 0644,
+	    debugfs_mp2650, &(chip->debug_force_icl_err));
+
+	debugfs_create_u32("debug_force_i2c_err", 0644,
+	     debugfs_mp2650, &(chip->debug_force_i2c_err));
+
+	return ret;
+}
+
+static int mp2650_chg_track_init(struct chip_mp2650 *chip)
+{
+	int rc;
+
+	if (!chip)
+		return - EINVAL;
+
+	mutex_init(&chip->track_icl_err_lock);
+	mutex_init(&chip->track_upload_lock);
+	mutex_init(&chip->track_i2c_err_lock);
+	chip->icl_err_uploading = false;
+	chip->icl_err_load_trigger = NULL;
+
+	chip->i2c_err_uploading = false;
+	chip->i2c_err_load_trigger = NULL;
+
+	chip->debug_force_icl_err = 0;
+	chip->debug_force_i2c_err = 0;
+
+	INIT_DELAYED_WORK(&chip->icl_err_load_trigger_work,
+	    mp2650_chg_track_icl_err_load_trigger_work);
+
+	INIT_DELAYED_WORK(&chip->i2c_err_load_trigger_work,
+				mp2650_track_i2c_err_load_trigger_work);
+
+	rc = mp2650_chg_track_debugfs_init(chip);
+	if (rc < 0) {
+		pr_err("mp2762 debugfs init error, rc=%d\n", rc);
+	}
+
+	chip->track_init_done = true;
+	return rc;
+}
+
 static int mp2650_driver_probe(struct i2c_client *client, const struct i2c_device_id *id) 
 {
 	int ret = 0;
@@ -2887,6 +3309,8 @@ static int mp2650_driver_probe(struct i2c_client *client, const struct i2c_devic
 
 	charger_ic = chg_ic;
 	atomic_set(&chg_ic->charger_suspended, 0);
+	chg_ic->track_init_done = false;
+	mp2650_chg_track_init(chg_ic);
 	mp2650_dump_registers();
 	mp2650_vbus_avoid_electric_config();
 	chg_ic->probe_flag = true;
@@ -3008,7 +3432,7 @@ static const struct dev_pm_ops mp2650_pm_ops = {
 };
 #else
 static int mp2650_resume(struct i2c_client *client)
-{	
+{
     unsigned long resume_tm_sec = 0;
     unsigned long sleep_time = 0;
     int rc = 0;
