@@ -2354,14 +2354,6 @@
 };
 //#endif /*OPLUS_EDIT*/
 
-//#ifdef OPLUS_FEATURE_CHG_BASIC
-&usb0 {
-	dwc3@a600000 {
-		snps,usb2-lpm-disable;
-	};
-};
-//#endif /* OPLUS_FEATURE_CHG_BASIC */
-
 //#ifdef OPLUS_FEATURE_THERMAL
 &thermal_zones {
 	cpu-gold-0-0-step {

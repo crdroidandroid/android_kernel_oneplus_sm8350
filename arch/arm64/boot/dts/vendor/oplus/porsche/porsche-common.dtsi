@@ -2194,14 +2194,6 @@
 	};
 };
 
-//#ifdef OPLUS_FEATURE_CHG_BASIC
-&usb0 {
-	dwc3@a600000 {
-		snps,usb2-lpm-disable;
-	};
-};
-//#endif /* OPLUS_FEATURE_CHG_BASIC */
-
 //ifdef OPLUS_BUG_STABILITY
 &L6C {
 		regulator-max-microvolt = <1800000>;
