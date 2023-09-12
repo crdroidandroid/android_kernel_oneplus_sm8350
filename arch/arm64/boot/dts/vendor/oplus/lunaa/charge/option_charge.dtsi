@@ -750,7 +750,6 @@
 	dwc3@a600000 {
 		usb-phy = <&usb2_phy0>, <&usb_nop_phy>;
 		maximum-speed = "high-speed";
-		dr_mode = "otg";
 	};
 };
 
