@@ -5975,13 +5975,6 @@ CONFIG_INTERCONNECT_QCOM_RPMH=y
 # CONFIG_INTERCONNECT_QCOM_SDXLEMUR is not set
 CONFIG_INTERCONNECT_QCOM_QOS=y
 # CONFIG_COUNTER is not set
-
-#
-# KernelSU
-#
-# CONFIG_KSU is not set
-# CONFIG_KSU_DEBUG is not set
-# end of KernelSU
 # end of Device Drivers
 
 #
