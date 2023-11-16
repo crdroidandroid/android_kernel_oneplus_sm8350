@@ -823,6 +823,7 @@ static int rcu_print_task_exp_stall(struct rcu_node *rnp)
  */
 void synchronize_rcu_expedited(void)
 {
+	int no_wq;
 	bool boottime = (rcu_scheduler_active == RCU_SCHEDULER_INIT);
 	unsigned long flags;
 	struct rcu_exp_work rew;
