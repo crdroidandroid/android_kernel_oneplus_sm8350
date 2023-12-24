@@ -152,3 +152,6 @@ arch/arm/boot/dts/vendor
 
 # Build script
 buildfinal.sh
+
+# Build artifact
+Gato*.zip
