@@ -2289,6 +2289,7 @@ static int tdm_tx_ch_put(struct snd_kcontrol *kcontrol,
 	return ret;
 }
 
+#ifndef OPLUS_BUG_STABILITY
 static int tdm_get_slot_num_val(int slot_num)
 {
 	int slot_num_val;
@@ -2545,6 +2546,7 @@ static int tdm_tx_slot_mapping_put(struct snd_kcontrol *kcontrol,
 	}
 	return 0;
 }
+#endif
 
 static int tdm_slot_map_put(struct snd_kcontrol *kcontrol,
 			struct snd_ctl_elem_value *ucontrol)
