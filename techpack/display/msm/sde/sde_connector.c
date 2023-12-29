@@ -142,6 +142,7 @@ static int sde_backlight_device_update_status(struct backlight_device *bd)
 {
 	int brightness;
 	struct dsi_display *dsi_display;
+	struct dsi_display *display;
 	struct dp_panel *dp_panel;
 	struct sde_connector *c_conn = bl_get_data(bd);
 	int bl_lvl;
@@ -183,6 +184,7 @@ static int sde_backlight_device_update_status(struct backlight_device *bd)
 		}
 	}
 
+        display = (struct dsi_display *) c_conn->display;
 	if (brightness > bl_max_level)
 		brightness = bl_max_level;
 	if (brightness > c_conn->thermal_max_brightness)
@@ -369,6 +371,7 @@ static int sde_backlight_setup(struct sde_connector *c_conn,
 	struct dsi_display *display;
 	struct dp_panel *dp_panel;
 	struct dsi_backlight_config *dsi_bl_config;
+	struct dsi_backlight_config *bl_config;
 	struct sde_kms *sde_kms;
 	static int display_count;
 	char bl_node_name[BL_NODE_NAME_SIZE];
@@ -401,6 +404,7 @@ static int sde_backlight_setup(struct sde_connector *c_conn,
 		return 0;
 	}
 
+	bl_config = &display->panel->bl_config;
 
 	memset(&props, 0, sizeof(props));
 	props.type = BACKLIGHT_RAW;
