@@ -5971,7 +5971,7 @@ CONFIG_INTERCONNECT_QCOM_QOS=y
 #
 # KernelSU
 #
-CONFIG_KSU=y
+# CONFIG_KSU is not set
 # CONFIG_KSU_DEBUG is not set
 # end of KernelSU
 # end of Device Drivers
