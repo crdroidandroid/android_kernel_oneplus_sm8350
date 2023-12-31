@@ -5377,8 +5377,10 @@ static void __ufshcd_transfer_req_compl(struct ufs_hba *hba,
 				     cmd->cmnd[0], index, hba->outstanding_reqs);
 #endif
 #endif /* OPLUS_FEATURE_UFSPLUS */
+#ifdef CONFIG_TRACEPOINTS
 			trace_android_vh_ufs_compl_command(hba, lrbp);
 			ufshcd_add_command_trace(hba, index, "complete");
+#endif /*CONFIG_TRACEPOINTS*/
 			result = ufshcd_transfer_rsp_status(hba, lrbp);
 			scsi_dma_unmap(cmd);
 			cmd->result = result;
@@ -5405,9 +5407,11 @@ static void __ufshcd_transfer_req_compl(struct ufs_hba *hba,
 			lrbp->command_type == UTP_CMD_TYPE_UFS_STORAGE) {
 			lrbp->compl_time_stamp = ktime_get();
 			if (hba->dev_cmd.complete) {
+#ifdef CONFIG_TRACEPOINTS
 				trace_android_vh_ufs_compl_command(hba, lrbp);
 				ufshcd_add_command_trace(hba, index,
 						"dev_complete");
+#endif /*CONFIG_TRACEPOINTS*/
 				complete(hba->dev_cmd.complete);
 			}
 		}
