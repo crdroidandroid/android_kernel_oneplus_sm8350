@@ -17,6 +17,12 @@
 #define CAM_OEM_OIS_CALIB                       2
 #define CAM_OEM_RW_SIZE_MAX                     128
 
+#define VIDIOC_CAM_FTM_POWNER_UP                0
+#define VIDIOC_CAM_FTM_POWNER_DOWN              1
+
+#define VIDIOC_CAM_SENSOR_START                 0x9000
+#define VIDIOC_CAM_SENSOR_STOP                  0x9001
+
 struct cam_oem_i2c_reg_array {
 	unsigned int    reg_addr;
 	unsigned int    reg_data;
@@ -41,7 +47,3 @@ struct ois_hall_type {
 	unsigned int    timeStamp;
 };
 
-#define VIDIOC_CAM_FTM_POWNER_UP 0
-#define VIDIOC_CAM_FTM_POWNER_DOWN 1
-#define VIDIOC_CAM_SENSOR_STATR 0x9000
-#define VIDIOC_CAM_SENSOR_STOP 0x9001

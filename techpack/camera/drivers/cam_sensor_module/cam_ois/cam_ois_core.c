@@ -203,11 +203,7 @@ static int cam_ois_power_up(struct cam_ois_ctrl_t *o_ctrl)
 		(power_info->power_down_setting == NULL)) {
 		CAM_INFO(CAM_OIS,
 			"Using default power settings");
-#ifdef OPLUS_FEATURE_CAMERA_COMMON
-		rc = oplus_cam_ois_construct_default_power_setting(power_info);
-#else
 		rc = cam_ois_construct_default_power_setting(power_info);
-#endif
 		if (rc < 0) {
 			CAM_ERR(CAM_OIS,
 				"Construct default ois power setting failed.");

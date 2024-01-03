@@ -121,6 +121,7 @@ struct cam_actuator_ctrl_t {
 	enum camera_sensor_i2c_type addr_type;
 	enum camera_sensor_i2c_type data_type;
 	bool need_check_pid;
+	bool pid_data_updated;
 #endif
 };
 

@@ -102,9 +102,6 @@ static long cam_ois_subdev_ioctl(struct v4l2_subdev *sd,
 	unsigned int cmd, void *arg)
 {
 	int                       rc     = 0;
-#ifdef OPLUS_FEATURE_CAMERA_COMMON
-	uint32_t gyro_vendor = 0;
-#endif
 	struct cam_ois_ctrl_t *o_ctrl = v4l2_get_subdevdata(sd);
 
 	switch (cmd) {
@@ -114,43 +111,6 @@ static long cam_ois_subdev_ioctl(struct v4l2_subdev *sd,
 			CAM_ERR(CAM_OIS,
 				"Failed with driver cmd: %d", rc);
 		break;
-#ifdef OPLUS_FEATURE_CAMERA_COMMON
-	case VIDIOC_CAM_SENSOR_STATR:
-		if(arg)
-		{
-			if (copy_from_user(&gyro_vendor,(void  __user*)(arg),sizeof(gyro_vendor)))
-			{
-				CAM_ERR(CAM_OIS,"Failed to Copy User Handle");
-			}
-			CAM_DBG(CAM_OIS,"Gyro Vendor : %d",gyro_vendor);
-			o_ctrl->opcode.prog = gyro_vendor;
-		}
-		mutex_lock(&(o_ctrl->ois_mutex));
-		mutex_lock(&(o_ctrl->ois_power_down_mutex));
-		if (o_ctrl->ois_power_state == CAM_OIS_POWER_ON){
-			CAM_INFO(CAM_OIS, "do not need to create ois download fw thread");
-			o_ctrl->ois_power_down_thread_exit = true;
-			mutex_unlock(&(o_ctrl->ois_power_down_mutex));
-			o_ctrl->cam_ois_state = CAM_OIS_CONFIG;
-                        mutex_unlock(&(o_ctrl->ois_mutex));
-			return rc;
-		} else {
-			CAM_INFO(CAM_OIS, "create ois download fw thread");
-			o_ctrl->ois_downloadfw_thread = kthread_run(ois_download_fw_thread, o_ctrl, o_ctrl->ois_name);
-			if (!o_ctrl->ois_downloadfw_thread) {
-				CAM_ERR(CAM_OIS, "create ois download fw thread failed");
-				mutex_unlock(&(o_ctrl->ois_power_down_mutex));
-				mutex_unlock(&(o_ctrl->ois_mutex));
-				return -1;
-			}
-		}
-		mutex_unlock(&(o_ctrl->ois_power_down_mutex));
-		mutex_lock(&(o_ctrl->do_ioctl_ois));
-		o_ctrl->ois_fd_have_close_state = CAM_OIS_IS_OPEN;
-		mutex_unlock(&(o_ctrl->do_ioctl_ois));
-		mutex_unlock(&(o_ctrl->ois_mutex));
-		break;
-#endif
 	default:
 		CAM_ERR(CAM_OIS, "Wrong IOCTL cmd: %u", cmd);
 		rc = -ENOIOCTLCMD;

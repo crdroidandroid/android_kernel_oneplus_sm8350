@@ -16,6 +16,24 @@
 #define VALIDATE_VOLTAGE(min, max, config_val) ((config_val) && \
 	(config_val >= min) && (config_val <= max))
 
+#ifdef OPLUS_FEATURE_CAMERA_COMMON
+typedef enum {
+       EXT_NONE=-1,
+       EXT_LDO1,
+       EXT_LDO2,
+       EXT_LDO3,
+       EXT_LDO4,
+       EXT_LDO5,
+       EXT_LDO6,
+       EXT_LDO7,
+       EXT_MAX
+} EXT_SELECT;
+
+extern int wl2868c_check_ldo_status(void);
+extern int wl2868c_ldo_enable(EXT_SELECT ldonum,unsigned int value);
+extern int wl2868c_ldo_disable(EXT_SELECT ldonum,unsigned int value);
+#endif
+
 static struct i2c_settings_list*
 	cam_sensor_get_i2c_ptr(struct i2c_settings_array *i2c_reg_settings,
 		uint32_t size)
@@ -2246,6 +2264,34 @@ int cam_sensor_core_power_up(struct cam_sensor_power_ctrl_t *ctrl,
 				goto power_up_failed;
 			}
 			break;
+#ifdef OPLUS_FEATURE_CAMERA_COMMON
+		case SENSOR_EXT_L1:
+		case SENSOR_EXT_L2:
+		case SENSOR_EXT_L3:
+		case SENSOR_EXT_L4:
+		case SENSOR_EXT_L5:
+		case SENSOR_EXT_L6:
+		case SENSOR_EXT_L7:
+			if ((power_setting->seq_type - SENSOR_EXT_L1) >= 0 && (power_setting->seq_type - SENSOR_EXT_L1) <= 6)
+			{
+				if (true == wl2868c_check_ldo_status())
+				{
+					wl2868c_ldo_enable(power_setting->seq_type - SENSOR_EXT_L1 , power_setting->config_val);
+					CAM_INFO(CAM_SENSOR, "wl2868c seq type %d seq val %d config value %d ",
+						power_setting->seq_type, power_setting->seq_val, power_setting->config_val);
+				}
+				else
+				{
+					CAM_INFO(CAM_SENSOR, "wl2868c error status seq type %d seq val %d config value %d",
+						power_setting->seq_type, power_setting->seq_val, power_setting->config_val);
+				}
+			}
+			else
+			{
+				CAM_ERR(CAM_SENSOR, "error user_cnt overflow  power seq type %d",power_setting->seq_type);
+			}
+			break;
+#endif
 		default:
 			CAM_ERR(CAM_SENSOR, "error power seq type %d",
 				power_setting->seq_type);
@@ -2517,6 +2563,32 @@ int cam_sensor_util_power_down(struct cam_sensor_power_ctrl_t *ctrl,
 				CAM_ERR(CAM_SENSOR,
 					"Error disabling VREG GPIO");
 			break;
+#ifdef OPLUS_FEATURE_CAMERA_COMMON
+		case SENSOR_EXT_L1:
+		case SENSOR_EXT_L2:
+		case SENSOR_EXT_L3:
+		case SENSOR_EXT_L4:
+		case SENSOR_EXT_L5:
+		case SENSOR_EXT_L6:
+		case SENSOR_EXT_L7:
+			if ((pd->seq_type - SENSOR_EXT_L1) >= 0 && (pd->seq_type - SENSOR_EXT_L1) <= 6)
+			{
+				if (true == wl2868c_check_ldo_status())
+				{
+					CAM_INFO(CAM_SENSOR, "wl2868c disable seq type %d", pd->seq_type);
+					wl2868c_ldo_disable(pd->seq_type - SENSOR_EXT_L1, 0);
+				}
+				else
+				{
+					CAM_ERR(CAM_SENSOR, "wl2868c ERROR status");
+				}
+			}
+			else
+			{
+				CAM_ERR(CAM_SENSOR, "error cnt overflow seq type %d",pd->seq_type);
+			}
+			break;
+#endif
 		default:
 			CAM_ERR(CAM_SENSOR, "error power seq type %d",
 				pd->seq_type);
