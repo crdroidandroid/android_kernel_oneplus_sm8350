@@ -34,7 +34,7 @@ static long cam_sensor_subdev_ioctl(struct v4l2_subdev *sd,
 	case VIDIOC_CAM_FTM_POWNER_UP:
 		rc = cam_ftm_power_up(s_ctrl);
 		break;
-	case VIDIOC_CAM_SENSOR_STATR:
+	case VIDIOC_CAM_SENSOR_START:
 		rc = cam_sensor_start(s_ctrl);
 		break;
 	case VIDIOC_CAM_SENSOR_STOP:

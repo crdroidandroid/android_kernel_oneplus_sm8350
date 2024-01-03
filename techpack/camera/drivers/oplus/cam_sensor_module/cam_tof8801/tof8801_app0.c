@@ -817,6 +817,8 @@ int tof8801_app0_capture(void *tof_chip, int capture)
   struct tof_sensor_chip *chip = (struct tof_sensor_chip *)tof_chip;
   int error = 0;
   if (capture) {
+    chip->xtalk_peak  = 0;
+    chip->xtalk_count = 0;
     MEASURE_LOCK(chip->app0_app.measure_in_prog);
 
     (void) tof8801_app0_write_calibration(chip);

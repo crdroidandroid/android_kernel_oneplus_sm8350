@@ -18,9 +18,6 @@ struct proc_dir_entry *face_common_dir = NULL;
 struct proc_dir_entry *proc_file_entry = NULL;
 struct proc_dir_entry *proc_file_entry_tele = NULL;
 //bool is_wirte=false;
-struct proc_dir_entry *proc_file_entry_FW = NULL;
-int is_fw_dw = OIS_FW_DOWNLOAD_INTIAL;
-
 
 #define OIS_REGISTER_SIZE 100
 #define OIS_READ_REGISTER_DELAY 10
@@ -188,7 +185,7 @@ static ssize_t ois_write(struct file *p_file,
 	int result = 0;
 
 	if(puser_buf) {
-		if (count >= COMMAND_SIZE || copy_from_user(&data, puser_buf, count)) {
+		if (copy_from_user(&data, puser_buf, count)) {
 			CAM_ERR(CAM_OIS, "copy from user buffer error");
 			return -EFAULT;
 		}
@@ -235,7 +232,7 @@ static ssize_t ois_write_tele(struct file *p_file,
 	int result = 0;
 
 	if(puser_buf) {
-		if (count >= COMMAND_SIZE || copy_from_user(&data, puser_buf, count)) {
+		if (copy_from_user(&data, puser_buf, count)) {
 			CAM_ERR(CAM_OIS, "copy from user buffer error");
 			return -EFAULT;
 		}
@@ -264,25 +261,6 @@ static ssize_t ois_write_tele(struct file *p_file,
 	return count;
 }
 
-static ssize_t ois_read_fwstate(struct file *p_file,
-   char __user  *buf, size_t count, loff_t *p_offset)
-{
-
-	if(count > sizeof(is_fw_dw))
-	{
-		return 0;
-	}
-	if (copy_to_user(buf, &is_fw_dw,sizeof(is_fw_dw)))
-	{
-		CAM_ERR(CAM_OIS, "copy_to_user failed");
-	}
-	return count ;
-}
-
-void  ois_write_fwstate(int state )
-{
-	is_fw_dw = state ;
-}
 
 
 static const struct file_operations proc_file_fops = {
@@ -294,11 +272,6 @@ static const struct file_operations proc_file_fops_tele = {
 	.owner = THIS_MODULE,
 	.read  = ois_read_tele,
 	.write = ois_write_tele,
-};
-
-static const struct file_operations proc_file_fops_FW = {
-   .owner = THIS_MODULE,
-   .read = ois_read_fwstate,
 };
 
 int ois_start_read(void *arg, bool start)
@@ -871,7 +844,6 @@ static int Download124Or128FW(struct cam_ois_ctrl_t *o_ctrl)
 	         o_ctrl->ois_type, o_ctrl->ois_gyro_vendor, o_ctrl->ois_gyro_position, o_ctrl->ois_module_vendor, o_ctrl->ois_actuator_vendor, o_ctrl->ois_fw_flag);
 
 	if (strstr(o_ctrl->ois_name, "124")) {
-		is_fw_dw = OIS_FW_DOWNLOAD_START;
 		rc = SelectDownload(o_ctrl->ois_gyro_vendor, o_ctrl->ois_actuator_vendor, o_ctrl->ois_type, o_ctrl->ois_fw_flag);
 
 		if (0 == rc) {
@@ -902,7 +874,6 @@ static int Download124Or128FW(struct cam_ois_ctrl_t *o_ctrl)
 				RamWrite32A(0xf111, 0x00000001 );
 				//msleep(5);
 			}
-		is_fw_dw = OIS_FW_DOWNLOAD_COMPLETED;
 		} else {
 			switch (rc) {
 			case 0x01:
@@ -1025,8 +996,6 @@ int DownloadFW(struct cam_ois_ctrl_t *o_ctrl)
                         else if(o_ctrl->ois_type == CAM_OIS_SLAVE)
                                 o_ctrl->ois_gyro_vendor = 3;
                         ois_ctrls[CAM_OIS_MASTER]->ois_gyro_vendor = 6;
-			if(ois_ctrls[CAM_OIS_SLAVE])
-				ois_ctrls[CAM_OIS_SLAVE]->ois_gyro_vendor = 3;
                 }else if(o_ctrl->opcode.prog == 3){
                         CAM_INFO(CAM_OIS, "update gyro vendor to =%d",o_ctrl->opcode.prog);
                         if(o_ctrl->ois_type == CAM_OIS_MASTER)
@@ -1034,8 +1003,6 @@ int DownloadFW(struct cam_ois_ctrl_t *o_ctrl)
                         else if(o_ctrl->ois_type == CAM_OIS_SLAVE)
                                 o_ctrl->ois_gyro_vendor = 0;
                         ois_ctrls[CAM_OIS_MASTER]->ois_gyro_vendor = 0;
-			if(ois_ctrls[CAM_OIS_SLAVE])
-				ois_ctrls[CAM_OIS_SLAVE]->ois_gyro_vendor = 0;
                 }
 
 		if (CAM_OIS_INVALID == ois_state[o_ctrl->ois_type]) {
@@ -1511,7 +1478,7 @@ int WRITE_QTIMER_TO_OIS (struct cam_ois_ctrl_t *o_ctrl) {
                 return 0;
         }*/
 	memset(i2c_write_setting_gl, 0, sizeof(struct cam_sensor_i2c_reg_array)*MAX_DATA_NUM*2);
-        while(value>350000 && j<5 ){
+        while(value>350000){
 	        rc = cam_sensor_util_get_current_qtimer_ns(&qtime_ns);
 	        if (rc < 0) {
 		        CAM_ERR(CAM_OIS,
@@ -1599,11 +1566,6 @@ int OIS_READ_HALL_DATA_TO_UMD_NEW (struct cam_ois_ctrl_t *o_ctrl,struct i2c_sett
 
                         fifo_count = temp_buff[143];
                         read_buff[143]=temp_buff[143];
-                        if(fifo_count > SAMPLE_COUNT_IN_NCS_DATA) {
-                                CAM_ERR(CAM_OIS,"ois have drop data fifo_count=%d",fifo_count);
-                                fifo_count = SAMPLE_COUNT_IN_NCS_DATA;
-                        }
-
                         for(j=0;j<fifo_count;j++){
                                 read_buff[j*4]=temp_buff[(fifo_count-j-1)*4];
                                 read_buff[j*4+1]=temp_buff[(fifo_count-j-1)*4+1];
@@ -1626,6 +1588,10 @@ int OIS_READ_HALL_DATA_TO_UMD_NEW (struct cam_ois_ctrl_t *o_ctrl,struct i2c_sett
                         preqtime_ms=newqtime;
                         CAM_DBG(CAM_OIS,"READ fifo_count=%d",fifo_count);
                         CAM_DBG(CAM_OIS,"Rqtimer value: ms=0x%x us=0x%x",qtime_ms,qtime_us);
+                        if(fifo_count > SAMPLE_COUNT_IN_NCS_DATA) {
+                                CAM_ERR(CAM_OIS,"ois have drop data fifo_count=%d",fifo_count);
+                                fifo_count = SAMPLE_COUNT_IN_NCS_DATA;
+                        }
 
                         if(fifo_count > 0) {
                                 for(i=0 ; i<SAMPLE_COUNT_IN_NCS_DATA; i++){
@@ -1972,81 +1938,6 @@ void InitOISResource(struct cam_ois_ctrl_t *o_ctrl)
                 CAM_INFO(CAM_OIS, "Create successs");
                 }
         }
-
-		if(proc_file_entry_FW == NULL ){
-			proc_file_entry_FW = proc_create("OIS_FW_DOWNLOAD_STATE",0777,face_common_dir,&proc_file_fops_FW);
-			if(proc_file_entry_FW == NULL) {
-				CAM_ERR(CAM_OIS, "Create fail");
-			}else {
-				CAM_INFO(CAM_OIS, "Create successs");
-			}
-		}
-}
-
-int32_t oplus_cam_ois_construct_default_power_setting(
-	struct cam_sensor_power_ctrl_t *power_info)
-{
-	int rc = 0;
-
-	power_info->power_setting_size = 4;
-	power_info->power_setting =
-		kzalloc(sizeof(struct cam_sensor_power_setting)*4,
-			GFP_KERNEL);
-	if (!power_info->power_setting)
-		return -ENOMEM;
-
-	power_info->power_setting[0].seq_type = SENSOR_VAF;
-	power_info->power_setting[0].seq_val = CAM_VAF;
-	power_info->power_setting[0].config_val = 1;
-	power_info->power_setting[0].delay = 0;
-
-	power_info->power_setting[1].seq_type = SENSOR_VIO;
-	power_info->power_setting[1].seq_val = CAM_VIO;
-	power_info->power_setting[1].config_val = 1;
-	power_info->power_setting[1].delay = 0;
-
-	power_info->power_setting[2].seq_type = SENSOR_VDIG;
-	power_info->power_setting[2].seq_val = CAM_VDIG;
-	power_info->power_setting[2].config_val = 1;
-	power_info->power_setting[2].delay = 0;
-
-	power_info->power_setting[3].seq_type = SENSOR_CUSTOM_REG1;
-	power_info->power_setting[3].seq_val = CAM_V_CUSTOM1;
-	power_info->power_setting[3].config_val = 1;
-	power_info->power_setting[3].delay = 10;
-
-	power_info->power_down_setting_size = 4;
-	power_info->power_down_setting =
-		kzalloc(sizeof(struct cam_sensor_power_setting)*4,
-			GFP_KERNEL);
-	if (!power_info->power_down_setting) {
-		rc = -ENOMEM;
-		goto free_power_settings;
-	}
-
-	power_info->power_down_setting[0].seq_type = SENSOR_VAF;
-	power_info->power_down_setting[0].seq_val = CAM_VAF;
-	power_info->power_down_setting[0].config_val = 0;
-
-	power_info->power_down_setting[1].seq_type = SENSOR_VIO;
-	power_info->power_down_setting[1].seq_val = CAM_VIO;
-	power_info->power_down_setting[1].config_val = 0;
-
-	power_info->power_setting[2].seq_type = SENSOR_VDIG;
-	power_info->power_down_setting[2].seq_val = CAM_VDIG;
-	power_info->power_down_setting[2].config_val = 0;
-
-	power_info->power_down_setting[3].seq_type = SENSOR_CUSTOM_REG1;
-	power_info->power_down_setting[3].seq_val = CAM_V_CUSTOM1;
-	power_info->power_down_setting[3].config_val = 0;
-
-	return rc;
-
-free_power_settings:
-	kfree(power_info->power_setting);
-	power_info->power_setting = NULL;
-	power_info->power_setting_size = 0;
-	return rc;
 }
 
 

@@ -8,7 +8,6 @@
 
 #include "cam_actuator_dev.h"
 
-
 void cam_actuator_i2c_modes_util_oem(
 	struct camera_io_master *io_master_info,
 	struct i2c_settings_list *i2c_list);
@@ -18,9 +17,11 @@ void cam_actuator_poll_setting_apply(struct cam_actuator_ctrl_t *a_ctrl);
 
 int32_t oplus_cam_actuator_power_up(struct cam_actuator_ctrl_t *a_ctrl);
 int32_t cam_actuator_check_firmware(struct cam_actuator_ctrl_t *a_ctrl);
-int32_t cam_actuator_update_pid_to_v11(struct cam_actuator_ctrl_t *a_ctrl);
+int32_t cam_actuator_update_pid(struct cam_actuator_ctrl_t *a_ctrl);
+int32_t cam_AK7375c_actuator_check_pid(struct cam_actuator_ctrl_t *a_ctrl);
+int32_t cam_AK7375c_actuator_update_pid(struct cam_actuator_ctrl_t *a_ctrl);
+
 int RamWriteByte(struct cam_actuator_ctrl_t *a_ctrl,
 uint32_t addr, uint32_t data, unsigned short mdelay);
-int32_t oplus_cam_actuator_construct_default_power_setting(struct cam_sensor_power_ctrl_t *power_info);
 
 #endif /* _CAM_ACTUATOR_CORE_H_ */

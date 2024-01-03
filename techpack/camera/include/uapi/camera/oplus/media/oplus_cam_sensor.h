@@ -34,6 +34,8 @@ struct cam_write_eeprom_t {
     unsigned int    calibDataSize;
     unsigned int    isWRP;
     unsigned int    WRPaddr;
+    unsigned int    CloseWRP;
+    unsigned int    OpenWRP;
     unsigned char calibData[CALIB_DATA_LENGTH];
     char eepromName[EEPROM_NAME_LENGTH];
 } __attribute__ ((packed));

@@ -42,4 +42,7 @@ int camera_component_match_add_drivers(struct device *master_dev,
 int cam_csiphy_notify_secure_mode(struct csiphy_device *csiphy_dev,
 	bool protect, int32_t offset);
 
+#ifdef OPLUS_FEATURE_CAMERA_COMMON
+void dev_defer_supplier_debug(void *drv_ptr);
+#endif
 #endif /* _CAM_COMPAT_H_ */
