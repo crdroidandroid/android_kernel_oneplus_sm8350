@@ -23,6 +23,12 @@
 
 #include "u_os_desc.h"
 
+#ifdef OPLUS_FEATURE_CHG_BASIC
+static bool enable_l1_for_hs;
+module_param(enable_l1_for_hs, bool, S_IRUGO | S_IWUSR);
+MODULE_PARM_DESC(enable_l1_for_hs, "Enable support for L1 LPM for HS devices");
+#endif
+
 /**
  * struct usb_os_string - represents OS String to be reported by a gadget
  * @bLength: total length of the entire descritor, always 0x12
@@ -906,7 +912,7 @@ static int set_config(struct usb_composite_dev *cdev,
 		goto done;
 
 #ifdef CONFIG_QGKI_MSM_BOOT_TIME_MARKER
-	update_marker("M - USB device is enumerated");
+	place_marker("M - USB Device is enumerated");
 #endif
 	usb_gadget_set_state(gadget, USB_STATE_CONFIGURED);
 	cdev->config = c;
@@ -1752,15 +1758,31 @@ composite_setup(struct usb_gadget *gadget, const struct usb_ctrlrequest *ctrl)
 			cdev->desc.bMaxPacketSize0 =
 				cdev->gadget->ep0->maxpacket;
 			if (gadget_is_superspeed(gadget)) {
+#ifdef OPLUS_FEATURE_CHG_BASIC
+				if (gadget->speed >= USB_SPEED_SUPER) {
+					cdev->desc.bcdUSB = cpu_to_le16(0x0200);
+					cdev->desc.bMaxPacketSize0 = 9;
+				} else if (gadget->lpm_capable || enable_l1_for_hs)  {
+					cdev->desc.bcdUSB = cpu_to_le16(0x0200);
+				} else {
+					cdev->desc.bcdUSB = cpu_to_le16(0x0200);
+				}
+#else
 				if (gadget->speed >= USB_SPEED_SUPER) {
 					cdev->desc.bcdUSB = cpu_to_le16(0x0320);
 					cdev->desc.bMaxPacketSize0 = 9;
 				} else {
 					cdev->desc.bcdUSB = cpu_to_le16(0x0210);
 				}
+#endif
 			} else {
 				if (gadget->lpm_capable)
+#ifdef OPLUS_FEATURE_CHG_BASIC
+					cdev->desc.bcdUSB = cpu_to_le16(0x0200);
+#else
 					cdev->desc.bcdUSB = cpu_to_le16(0x0201);
+#endif
+
 				else
 					cdev->desc.bcdUSB = cpu_to_le16(0x0200);
 			}
@@ -1795,7 +1817,11 @@ composite_setup(struct usb_gadget *gadget, const struct usb_ctrlrequest *ctrl)
 				value = min(w_length, (u16) value);
 			break;
 		case USB_DT_BOS:
+#ifdef OPLUS_FEATURE_CHG_BASIC
+			if ((gadget_is_superspeed(gadget) && (gadget->speed >= USB_SPEED_SUPER)) ||
+#else
 			if (gadget_is_superspeed(gadget) ||
+#endif
 			    gadget->lpm_capable) {
 				value = bos_desc(cdev);
 				value = min(w_length, (u16) value);
@@ -2018,7 +2044,7 @@ unknown:
 					break;
 				interface = w_value >> 8;
 				if (interface >= MAX_CONFIG_INTERFACES ||
-				    !os_desc_cfg->interface[interface])
+					!os_desc_cfg->interface[interface])
 					break;
 				buf[6] = w_index;
 				count = count_ext_prop(os_desc_cfg,
@@ -2449,7 +2475,7 @@ void composite_resume(struct usb_gadget *gadget)
 	 */
 	INFO(cdev, "USB Resume end\n");
 #ifdef CONFIG_QGKI_MSM_BOOT_TIME_MARKER
-	update_marker("M - USB device is resumed");
+	place_marker("M - USB Device is resumed");
 #endif
 	if (cdev->driver->resume)
 		cdev->driver->resume(cdev);
