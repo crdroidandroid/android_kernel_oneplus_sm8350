@@ -946,6 +946,12 @@ gen_headers_out_arm = [
     "linux/netfilter/ipset/ip_set_bitmap.h",
     "linux/netfilter/ipset/ip_set_hash.h",
     "linux/netfilter/ipset/ip_set_list.h",
+    "camera/oplus/media/oplus_cam_defs.h",
+    "drm/sde_drm.h",
+    "scsi/ufs/ioctl.h",
+    "linux/watch_queue.h",
+    "camera/oplus/media/oplus_cam_sensor.h",
+    "display/drm/msm_drm_iris.h",
     "linux/wil6210_uapi.h",
 
     // From arch/arm/include/uapi/**/*.h

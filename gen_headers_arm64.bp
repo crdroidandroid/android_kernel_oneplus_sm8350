@@ -942,6 +942,13 @@ gen_headers_out_arm64 = [
     "linux/netfilter/ipset/ip_set_hash.h",
     "linux/netfilter/ipset/ip_set_list.h",
     "linux/wil6210_uapi.h",
+    "camera/oplus/media/oplus_cam_sensor.h",
+    "drm/sde_drm.h",
+    "scsi/ufs/ioctl.h",
+    "camera/oplus/media/oplus_cam_defs.h",
+    "display/drm/msm_drm_iris.h",
+    "linux/watch_queue.h",
+    "linux/netfilter_ipv4/ipt_TRIGGER.h",
 
     // From arch/arm64/include/uapi/**/*.h
 
