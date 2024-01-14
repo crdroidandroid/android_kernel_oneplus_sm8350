@@ -15,6 +15,7 @@ else ifeq ($(strip $(CONFIG_ARCH_YUPIK)), y)
 else
 	subdir-y += oplus/cupid
 	subdir-y += oplus/peacock
+	subdir-y += oplus/porsche
 	subdir-y += oplus/fussi
 	subdir-y += oplus/luwu
 	subdir-y += oplus/eva
