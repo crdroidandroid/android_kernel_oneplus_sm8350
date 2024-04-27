@@ -145,8 +145,8 @@
 	qcom,iterm_disabled = <0>;
 	qcom,iterm_ma = <125>;
 	qcom,recharge-mv = <100>;
-	qcom,batt_capacity_mah = <4300>;/*typical capacity*/
-	//qcom,batt_capacity_mah = <4400>; /*rated capacity*/
+	//qcom,batt_capacity_mah = <4300>;/*typical capacity*/
+	qcom,batt_capacity_mah = <4200>; /*rated capacity*/
 
 	qcom,removed_bat_decidegc = <190>;  /*<-19C*/
 
