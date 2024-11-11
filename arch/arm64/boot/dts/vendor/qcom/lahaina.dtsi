@@ -358,11 +358,7 @@
 
 	pil_cdsp_mem: pil_cdsp_region@89700000 {
 		no-map;
-		//#ifndef OPLUS_FEATURE_SENSOR_DRIVER
-		//reg = <0x0 0x89700000 0x0 0x1e00000>;
-		//#else
-		reg = <0x0 0x89700000 0x0 0x1400000>;
-		//#endif
+		reg = <0x0 0x89700000 0x0 0x1e00000>;
 	};
 
 	pil_ipa_fw_mem: pil_ipa_fw_region@8b500000 {
