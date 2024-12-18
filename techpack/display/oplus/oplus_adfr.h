@@ -19,6 +19,7 @@
 
 enum oplus_vsync_mode {
 	OPLUS_DOUBLE_TE_VSYNC = 0,
+	OPLUS_TE_TP_VSYNC = 1,
 	OPLUS_EXTERNAL_TE_TP_VSYNC = 8,
 	OPLUS_INVALID_VSYNC,
 };

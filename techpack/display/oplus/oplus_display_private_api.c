@@ -2800,7 +2800,7 @@ int dsi_display_oplus_set_power(struct drm_connector *connector,
 		/*switch to panel TP-VSYNC while exit aod scene*/
 		if (oplus_adfr_is_support()) {
 			if (power_mode == SDE_MODE_DPMS_LP1) {
-				if (oplus_adfr_get_vsync_mode() == OPLUS_TE_SOURCE_TP)
+				if (oplus_adfr_get_vsync_mode() == OPLUS_TE_TP_VSYNC)
 					sde_encoder_adfr_aod_fod_source_switch(display, OPLUS_TE_SOURCE_TE);
 			}
         }
