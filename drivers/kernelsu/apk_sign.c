@@ -314,8 +314,15 @@ module_param_cb(ksu_debug_manager_uid, &expected_size_ops,
 
 #endif
 
+// include custom manager header
+#include "manager_sign.h"
+
 bool is_manager_apk(char *path)
 {
 	return (check_v2_signature(path, EXPECTED_SIZE, EXPECTED_HASH) ||
-		check_v2_signature(path, EXPECTED_SIZE_CUST, EXPECTED_HASH_CUST));
+// 5ec1cff/KernelSU only works on GKI kernels
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 10, 0)
+		check_v2_signature(path, EXPECTED_SIZE_5EC1CFF, EXPECTED_HASH_5EC1CFF) ||
+#endif
+		check_v2_signature(path, EXPECTED_SIZE_RSUNTK, EXPECTED_HASH_RSUNTK));
 }

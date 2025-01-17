@@ -45,6 +45,11 @@
 #include "throne_tracker.h"
 #include "kernel_compat.h"
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 0, 0) ||	\
+	defined(KSU_COMPAT_GET_CRED_RCU)
+#define KSU_GET_CRED_RCU
+#endif
+
 static bool ksu_module_mounted = false;
 
 extern int handle_sepolicy(unsigned long arg3, void __user *arg4);
@@ -128,11 +133,32 @@ static void disable_seccomp(void)
 #endif
 }
 
+/* 
+ * If kernel devs not backport this, we'll enable this function
+ * (Must put this on kernel_compat.c, but anyway)
+ */
+#if !defined(KSU_GET_CRED_RCU)
+static inline const struct cred *get_cred_rcu(const struct cred *cred)
+{
+	struct cred *nonconst_cred = (struct cred *) cred;
+	if (!cred)
+		return NULL;
+#ifdef KSU_COMPAT_LONG_INC
+	if (!atomic_long_inc_not_zero(&nonconst_cred->usage))
+#else
+	if (!atomic_inc_not_zero(&nonconst_cred->usage))
+#endif		
+		return NULL;
+	validate_creds(cred);
+	nonconst_cred->non_rcu = 0;
+	return cred;
+}
+#endif
+
 void escape_to_root(void)
 {
 	struct cred *cred;
 
-#ifdef KSU_GET_CRED_RCU
 	rcu_read_lock();
 
 	do {
@@ -145,14 +171,6 @@ void escape_to_root(void)
 		rcu_read_unlock();
 		return;
 	}
-#else
-	cred = (struct cred *)__task_cred(current);
-
-	if (cred->euid.val == 0) {
-		pr_warn("Already root, don't escape!\n");
-		return;
-	}
-#endif
 
 	struct root_profile *profile = ksu_get_root_profile(cred->uid.val);
 
@@ -187,9 +205,7 @@ void escape_to_root(void)
 
 	setup_groups(profile, cred);
 	
-#ifdef KSU_GET_CRED_RCU
 	rcu_read_unlock();
-#endif
 
 	// Refer to kernel/seccomp.c: seccomp_set_mode_strict
 	// When disabling Seccomp, ensure that current->sighand->siglock is held during the operation.
@@ -480,14 +496,13 @@ static bool should_umount(struct path *path)
 	return false;
 }
 
-static int ksu_umount_mnt(struct path *path, int flags)
+static void ksu_umount_mnt(struct path *path, int flags)
 {
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 9, 0) || defined(KSU_UMOUNT)
-	return path_umount(path, flags);
-#else
-	// TODO: umount for non GKI kernel
-	return -ENOSYS;
-#endif
+	int err = path_umount(path, flags);
+	if (err) {
+		pr_info("umount %s failed, ret: %d\n",
+			path->dentry->d_iname, err);
+	}
 }
 
 static void try_umount(const char *mnt, bool check_mnt, int flags)
@@ -508,10 +523,7 @@ static void try_umount(const char *mnt, bool check_mnt, int flags)
 		return;
 	}
 
-	err = ksu_umount_mnt(&path, flags);
-	if (err) {
-		pr_warn("umount %s failed: %d\n", mnt, err);
-	}
+	ksu_umount_mnt(&path, flags);
 }
 
 int ksu_handle_setuid(struct cred *new, const struct cred *old)
@@ -656,7 +668,9 @@ static int ksu_task_prctl(int option, unsigned long arg2, unsigned long arg3,
 	return -ENOSYS;
 }
 // kernel 4.4 and 4.9
-#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 10, 0) || defined(CONFIG_IS_HW_HISI) || defined(CONFIG_KSU_ALLOWLIST_WORKAROUND)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 10, 0) ||	\
+	defined(CONFIG_IS_HW_HISI) ||	\
+	defined(CONFIG_KSU_ALLOWLIST_WORKAROUND)
 static int ksu_key_permission(key_ref_t key_ref, const struct cred *cred,
 			      unsigned perm)
 {
@@ -689,7 +703,9 @@ static struct security_hook_list ksu_hooks[] = {
 	LSM_HOOK_INIT(task_prctl, ksu_task_prctl),
 	LSM_HOOK_INIT(inode_rename, ksu_inode_rename),
 	LSM_HOOK_INIT(task_fix_setuid, ksu_task_fix_setuid),
-#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 10, 0) || defined(CONFIG_IS_HW_HISI) || defined(CONFIG_KSU_ALLOWLIST_WORKAROUND)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 10, 0) ||	\
+	defined(CONFIG_IS_HW_HISI) ||	\
+	defined(CONFIG_KSU_ALLOWLIST_WORKAROUND)
 	LSM_HOOK_INIT(key_permission, ksu_key_permission)
 #endif
 };
