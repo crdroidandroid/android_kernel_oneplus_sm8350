@@ -194,14 +194,10 @@ void escape_to_root(void)
 		profile->capabilities.effective | CAP_DAC_READ_SEARCH;
 	memcpy(&cred->cap_effective, &cap_for_ksud,
 	       sizeof(cred->cap_effective));
-	memcpy(&cred->cap_inheritable, &profile->capabilities.effective,
-	       sizeof(cred->cap_inheritable));
 	memcpy(&cred->cap_permitted, &profile->capabilities.effective,
 	       sizeof(cred->cap_permitted));
 	memcpy(&cred->cap_bset, &profile->capabilities.effective,
 	       sizeof(cred->cap_bset));
-	memcpy(&cred->cap_ambient, &profile->capabilities.effective,
-	       sizeof(cred->cap_ambient));
 
 	setup_groups(profile, cred);
 	
@@ -593,7 +589,7 @@ int ksu_handle_setuid(struct cred *new, const struct cred *old)
 }
 
 // Init functons
-
+#if 0
 static int handler_pre(struct kprobe *p, struct pt_regs *regs)
 {
 	struct pt_regs *real_regs = PT_REAL_REGS(regs);
@@ -660,6 +656,7 @@ __maybe_unused int ksu_kprobe_exit(void)
 	unregister_kprobe(&renameat_kp);
 	return 0;
 }
+#endif /* DEAD_CODE */
 
 static int ksu_task_prctl(int option, unsigned long arg2, unsigned long arg3,
 			  unsigned long arg4, unsigned long arg5)
@@ -895,9 +892,11 @@ void __init ksu_core_init(void)
 
 void ksu_core_exit(void)
 {
+#if 0
 #ifdef CONFIG_KPROBES
 	pr_info("ksu_core_kprobe_exit\n");
 	// we dont use this now
 	// ksu_kprobe_exit();
+#endif
 #endif
 }

@@ -19,9 +19,21 @@ ifneq ($(shell grep -q "int path_umount" $(srctree)/fs/namespace.c; echo $$?),0)
 $(error -- No path_umount detected !! Read: https://kernelsu.org/guide/how-to-integrate-for-non-gki.html#how-to-backport-path-umount)
 endif
 
+# GKI manual hook checks
+# https://github.com/Pzqqt/android_kernel_xiaomi_marble/commit/5b8596b5604bcd0e6e12697a01136a0bb9eb0257
+ifeq ($(CONFIG_KSU_MANUAL_HOOK),y)
+ifeq ($(CONFIG_KSU),m)
+$(error CONFIG_KSU_MANUAL_HOOK cannot be enabled when compiling KernelSU as LKM!)
+endif
+else
+ifeq ($(CONFIG_KPROBES),y)
+ccflags-y += -DKSU_HOOK_WITH_KPROBES
+endif
+endif
+
 obj-$(CONFIG_KSU) += kernelsu.o
 
-KSU_GIT_VERSION := 1834
+KSU_GIT_VERSION := 1844
 # ksu_version: major * 10000 + git version + 200 for historical reasons
 $(eval KSU_VERSION=$(shell expr 10000 + $(KSU_GIT_VERSION) + 200))
 $(info -- KernelSU version: $(KSU_VERSION))

@@ -2,7 +2,6 @@ menu "KernelSU"
 
 config KSU
 	tristate "KernelSU function support"
-	depends on OVERLAY_FS
 	default y
 	help
 	  Enable kernel-level root privileges on Android System.
@@ -31,5 +30,16 @@ config KSU_CMDLINE
 	help
 	  Enable a cmdline called kernelsu.enabled
 	  Value 1 means enabled, value 0 means disabled.
-	  
+
+config KSU_MANUAL_HOOK
+	bool "Manual hooking GKI kernels without kprobes"
+	depends on KSU && KSU != m
+	depends on KPROBES
+	default n
+	help
+	  Keep KPROBES enabled but do not use KPROBES to implement
+	  the hooks required by KernelSU, but instead hook them manually.
+	  This function only available on GKI kernels, non-GKI are not
+	  affected.
+
 endmenu

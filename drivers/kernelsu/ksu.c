@@ -24,12 +24,11 @@ static int __init read_kernelsu_state(char *s)
 }
 __setup("kernelsu.enabled=", read_kernelsu_state);
 
-#if 0
 unsigned int get_ksu_state(void)
 {
 	return enable_kernelsu;
 }
-#endif
+
 #endif
 
 static struct workqueue_struct *ksu_workqueue;
@@ -84,9 +83,11 @@ int __init kernelsu_init(void)
 
 	ksu_throne_tracker_init();
 
-#ifdef CONFIG_KPROBES
+#ifdef KSU_HOOK_WITH_KPROBES
 	ksu_sucompat_init();
 	ksu_ksud_init();
+#else
+	pr_debug("init ksu driver\n");
 #endif
 
 #ifdef MODULE
@@ -109,7 +110,7 @@ void kernelsu_exit(void)
 
 	destroy_workqueue(ksu_workqueue);
 
-#ifdef CONFIG_KPROBES
+#ifdef KSU_HOOK_WITH_KPROBES
 	ksu_ksud_exit();
 	ksu_sucompat_exit();
 #endif
