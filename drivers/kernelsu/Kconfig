@@ -2,11 +2,20 @@ menu "KernelSU"
 
 config KSU
 	tristate "KernelSU function support"
+	depends on OVERLAY_FS
 	default y
 	help
 	  Enable kernel-level root privileges on Android System.
 	  To compile as a module, choose M here: the
 	  module will be called kernelsu.
+
+config KSU_WITH_KPROBES
+	bool "Use kprobes for kernelsu"
+	depends on KSU
+	depends on KPROBES
+	default y
+	help
+	  Disable if you use manual hooks.
 
 config KSU_DEBUG
 	bool "KernelSU debug mode"
@@ -22,25 +31,6 @@ config KSU_ALLOWLIST_WORKAROUND
         help
           Enable session keyring init workaround for problematic devices.
           Useful for situations where the SU allowlist is not kept after a reboot.
-
-config KSU_CMDLINE
-	bool "Enable KernelSU cmdline"
-	depends on KSU
-	default n
-	help
-	  Enable a cmdline called kernelsu.enabled
-	  Value 1 means enabled, value 0 means disabled.
-
-config KSU_MANUAL_HOOK
-	bool "Manual hooking GKI kernels without kprobes"
-	depends on KSU && KSU != m
-	depends on KPROBES
-	default n
-	help
-	  Keep KPROBES enabled but do not use KPROBES to implement
-	  the hooks required by KernelSU, but instead hook them manually.
-	  This function only available on GKI kernels, non-GKI are not
-	  affected.
 
 menu "KernelSU - SUSFS"
 config KSU_SUSFS
@@ -174,7 +164,7 @@ config KSU_SUSFS_OPEN_REDIRECT
 
 config KSU_SUSFS_SUS_SU
     bool "Enable SUS-SU in runtime temporarily"
-    depends on KSU_SUSFS && KPROBES && HAVE_KPROBES && KPROBE_EVENTS && !KSU_MANUAL_HOOK
+    depends on KSU_SUSFS && KPROBES && HAVE_KPROBES && KPROBE_EVENTS
     default y
     help
       - Allow user to enable or disable core ksu kprobes hooks temporarily in runtime. There are 2 working modes for sus_su.

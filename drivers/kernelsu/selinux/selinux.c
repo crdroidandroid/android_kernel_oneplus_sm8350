@@ -51,6 +51,13 @@ void ksu_setup_selinux(const char *domain)
 		pr_err("transive domain failed.\n");
 		return;
 	}
+
+	/* we didn't need this now, we have change selinux rules when boot!
+if (!is_domain_permissive) {
+  if (set_domain_permissive() == 0) {
+      is_domain_permissive = true;
+  }
+}*/
 }
 
 void ksu_setenforce(bool enforce)
