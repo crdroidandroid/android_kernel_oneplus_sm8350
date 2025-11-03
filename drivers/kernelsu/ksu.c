@@ -36,7 +36,7 @@ int ksu_handle_execveat(int *fd, struct filename **filename_ptr, void *argv,
 					    flags);
 }
 
-extern void ksu_sucompat_init();
+extern void ksu_susfs_enable_sus_su();
 extern void ksu_sucompat_exit();
 extern void ksu_ksud_init();
 extern void ksu_ksud_exit();
@@ -66,7 +66,9 @@ int __init kernelsu_init(void)
 	ksu_throne_tracker_init();
 
 #ifdef CONFIG_KSU_KPROBES_HOOK
-	ksu_sucompat_init();
+#ifdef CONFIG_KSU_SUSFS_SUS_SU
+	ksu_susfs_enable_sus_su();
+#endif
 	ksu_ksud_init();
 #else
 	pr_alert("KPROBES is disabled, KernelSU may not work, please check https://kernelsu.org/guide/how-to-integrate-for-non-gki.html");
