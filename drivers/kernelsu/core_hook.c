@@ -51,6 +51,15 @@
 #include "kernel_compat.h"
 
 #ifdef CONFIG_KSU_SUSFS
+bool susfs_is_allow_su(void)
+{
+	if (is_manager()) {
+		// we are manager, allow!
+		return true;
+	}
+	return ksu_is_allow_uid(current_uid().val);
+}
+
 bool susfs_is_boot_completed_triggered = false;
 extern u32 susfs_zygote_sid;
 extern bool susfs_is_mnt_devname_ksu(struct path *path);
