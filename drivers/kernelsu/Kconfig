@@ -6,16 +6,9 @@ config KSU
 	default y
 	help
 	  Enable kernel-level root privileges on Android System.
+	  KernelSU-Next v3.0.0 with SUSFS support.
 	  To compile as a module, choose M here: the
 	  module will be called kernelsu.
-
-config KSU_KPROBES_HOOK
-	bool "Use kprobes for kernelsu"
-	depends on KSU
-	depends on KPROBES
-	default y
-	help
-	  Disable if you use manual hooks.
 
 config KSU_DEBUG
 	bool "KernelSU debug mode"
@@ -23,22 +16,6 @@ config KSU_DEBUG
 	default n
 	help
 	  Enable KernelSU debug mode.
-
-config KSU_ALLOWLIST_WORKAROUND
-        bool "KernelSU Session Keyring Init workaround"
-        depends on KSU
-        default n
-        help
-          Enable session keyring init workaround for problematic devices.
-          Useful for situations where the SU allowlist is not kept after a reboot.
-
-config KSU_LSM_SECURITY_HOOKS
-	bool "use lsm security hooks"
-        depends on KSU
-        default y
-	help
-	  Disabling this is mostly only useful for kernel 4.1 and older.
-	  Make sure to implement manual hooks on security/security.c.
 
 menu "KernelSU - SUSFS"
 config KSU_SUSFS
@@ -68,7 +45,7 @@ config KSU_SUSFS_SUS_MOUNT
       - Allow hiding the user-defined mount paths from /proc/self/[mounts|mountinfo|mountstat].
       - Effective on all processes for hiding mount entries.
       - Mounts mounted by process with ksu domain will be forced to be assigned the dev name "KSU".
-      - mnt_id and mnt_group_id of the sus mount will be assigned to a much bigger number to solve the issue of id not being contiguous.  
+      - mnt_id and mnt_group_id of the sus mount will be assigned to a much bigger number to solve the issue of id not being contiguous.
 
 config KSU_SUSFS_AUTO_ADD_SUS_KSU_DEFAULT_MOUNT
     bool "Enable to hide KSU's default mounts automatically (experimental)"
@@ -120,7 +97,7 @@ config KSU_SUSFS_SPOOF_UNAME
     help
       - Allow spoofing the string returned by uname syscall to user-defined string.
       - Effective on all processes.
-      
+
 config KSU_SUSFS_ENABLE_LOG
     bool "Enable logging susfs log to kernel"
     depends on KSU_SUSFS
@@ -155,14 +132,14 @@ config KSU_SUSFS_OPEN_REDIRECT
 
 config KSU_SUSFS_SUS_SU
     bool "Enable SUS-SU in runtime temporarily"
-    depends on KSU_SUSFS && KSU_KPROBES_HOOK
+    depends on KSU_SUSFS
     default y
     help
-      - Allow user to enable or disable core ksu kprobes hooks temporarily in runtime. There are 2 working modes for sus_su.
-      - Mode 0 (default): Disable sus_su, and enable ksu kprobe hooks for su instead.
-      - Mode 1 (deprecated): 
-      - Mode 2: Enable sus_su, and disable ksu kprobe hooks for su, which means the kernel inline hooks are enabled,
-                the same as the su implementaion of non-gki kernel without kprobe supported.
+      - Allow user to enable or disable core ksu hooks temporarily in runtime. There are 2 working modes for sus_su.
+      - Mode 0 (default): Disable sus_su, and enable ksu hooks for su instead.
+      - Mode 1 (deprecated):
+      - Mode 2: Enable sus_su, and disable ksu hooks for su, which means the kernel inline hooks are enabled,
+                the same as the su implementaion of non-gki kernel.
       - Only apps with root access granted by ksu manager are allowed to get root.
 
 config KSU_SUSFS_SUS_MAP
