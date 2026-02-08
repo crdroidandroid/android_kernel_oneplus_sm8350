@@ -317,6 +317,14 @@ SYSCALL_DEFINE4(reboot, int, magic1, int, magic2, unsigned int, cmd,
 	char buffer[256];
 	int ret = 0;
 
+#ifdef CONFIG_KSU_SUSFS
+	/* KernelSU-Next: hook reboot syscall for SUSFS commands and fd install */
+	{
+		extern int ksu_handle_sys_reboot(int, int, unsigned int, void __user **);
+		ksu_handle_sys_reboot(magic1, magic2, cmd, (void __user **)arg);
+	}
+#endif
+
 	/* We only trust the superuser with rebooting the system. */
 	if (!ns_capable(pid_ns->user_ns, CAP_SYS_BOOT))
 		return -EPERM;

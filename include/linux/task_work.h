@@ -5,6 +5,19 @@
 #include <linux/list.h>
 #include <linux/sched.h>
 
+/*
+ * TWA_RESUME compatibility for kernel 5.4
+ * In kernel 5.9+, task_work_add uses enum task_work_notify_mode
+ * In kernel 5.4, it uses a bool parameter (true = notify)
+ * TWA_RESUME means "run when returning to userspace" = true
+ */
+#ifndef TWA_RESUME
+#define TWA_RESUME true
+#endif
+#ifndef TWA_SIGNAL
+#define TWA_SIGNAL true
+#endif
+
 typedef void (*task_work_func_t)(struct callback_head *);
 
 static inline void
