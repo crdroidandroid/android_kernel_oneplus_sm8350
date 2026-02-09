@@ -164,6 +164,12 @@ int vfs_statx_fd(unsigned int fd, struct kstat *stat,
 				    request_mask, query_flags);
 		fdput(f);
 	}
+#ifdef CONFIG_KSU_SUSFS
+	if (!error) {
+		extern void ksu_handle_vfs_fstat(int fd, loff_t *kstat_size_ptr);
+		ksu_handle_vfs_fstat(fd, &stat->size);
+	}
+#endif
 	return error;
 }
 EXPORT_SYMBOL(vfs_statx_fd);
@@ -383,6 +389,11 @@ SYSCALL_DEFINE4(newfstatat, int, dfd, const char __user *, filename,
 	struct kstat stat;
 	int error;
 
+#ifdef CONFIG_KSU_SUSFS
+	extern int ksu_handle_stat(int *dfd, const char __user **filename_user,
+				   int *flags);
+	ksu_handle_stat(&dfd, &filename, &flag);
+#endif
 	error = vfs_fstatat(dfd, filename, &stat, flag);
 	if (error)
 		return error;
