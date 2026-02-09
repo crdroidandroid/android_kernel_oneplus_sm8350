@@ -1,0 +1,755 @@
+[    2.278994] KernelSU: susfs: mark no sucompat checks for pid: '445', exec: '/system/bin/init'
+[    2.309154] KernelSU: susfs: mark no sucompat checks for pid: '446', exec: '/system/bin/ueventd'
+[    2.315218] KernelSU: susfs: mark no sucompat checks for pid: '447', exec: '/system/bin/apexd'
+[    2.603420] KernelSU: susfs: mark no sucompat checks for pid: '545', exec: '/apex/com.android.runtime/bin/linkerconfig'
+[    2.649294] KernelSU: susfs: mark no sucompat checks for pid: '546', exec: '/vendor/bin/vendor_modprobe.sh'
+[    2.909992] KernelSU: susfs: mark no sucompat checks for pid: '728', exec: '/vendor/bin/modprobe'
+[    2.942151] KernelSU: susfs: mark no sucompat checks for pid: '756', exec: '/system/bin/aconfigd-system'
+[    2.968890] KernelSU: susfs: mark no sucompat checks for pid: '757', exec: '/system/bin/prng_seeder'
+[    2.970700] KernelSU: susfs: mark no sucompat checks for pid: '758', exec: '/vendor/bin/boringssl_self_test32'
+[    2.989496] KernelSU: susfs: mark no sucompat checks for pid: '759', exec: '/vendor/bin/boringssl_self_test64'
+[    2.996608] KernelSU: susfs: mark no sucompat checks for pid: '760', exec: '/vendor/bin/init.qti.media.sh'
+[    2.997941] KernelSU: susfs: mark no sucompat checks for pid: '761', exec: '/vendor/bin/init.qti.qcv.sh'
+[    3.062301] KernelSU: susfs: mark no sucompat checks for pid: '776', exec: '/system/bin/logd'
+[    3.064547] KernelSU: susfs: mark no sucompat checks for pid: '777', exec: '/system/bin/lmkd'
+[    3.065709] KernelSU: susfs: mark no sucompat checks for pid: '778', exec: '/system/bin/servicemanager'
+[    3.067739] KernelSU: susfs: mark no sucompat checks for pid: '779', exec: '/system/system_ext/bin/hwservicemanager'
+[    3.068632] KernelSU: susfs: mark no sucompat checks for pid: '780', exec: '/vendor/bin/vndservicemanager'
+[    3.087336] KernelSU: susfs: mark no sucompat checks for pid: '787', exec: '/system/bin/boringssl_self_test32'
+[    3.095445] KernelSU: susfs: mark no sucompat checks for pid: '788', exec: '/system/bin/boringssl_self_test64'
+[    3.101512] KernelSU: susfs: mark no sucompat checks for pid: '789', exec: '/vendor/bin/hw/android.hardware.keymaster@4.1-service-qti'
+[    3.103317] KernelSU: susfs: mark no sucompat checks for pid: '790', exec: '/vendor/bin/qseecomd'
+[    3.105004] KernelSU: susfs: mark no sucompat checks for pid: '791', exec: '/vendor/bin/hw/vendor.qti.hardware.qseecom@1.0-service'
+[    3.112686] KernelSU: susfs: mark no sucompat checks for pid: '792', exec: '/system/bin/vold'
+[    3.139226] KernelSU: susfs: mark no sucompat checks for pid: '811', exec: '/system/bin/vdc'
+[    3.149510] KernelSU: susfs: mark no sucompat checks for pid: '815', exec: '/system/bin/aconfigd-system'
+[    3.162082] KernelSU: susfs: mark no sucompat checks for pid: '816', exec: '/system/bin/recovery-refresh'
+[    3.165369] KernelSU: susfs: mark no sucompat checks for pid: '817', exec: '/system/bin/hw/android.system.suspend-service'
+[    3.168216] KernelSU: susfs: mark no sucompat checks for pid: '820', exec: '/system/bin/keystore2'
+[    3.170037] KernelSU: susfs: mark no sucompat checks for pid: '822', exec: '/vendor/bin/hw/android.hardware.boot-service.qti'
+[    3.171457] KernelSU: susfs: mark no sucompat checks for pid: '826', exec: '/vendor/bin/hw/android.hardware.gatekeeper@1.0-service-qti'
+[    3.173632] KernelSU: susfs: mark no sucompat checks for pid: '831', exec: '/vendor/bin/hw/android.hardware.nfc-service.nxp'
+[    3.175285] KernelSU: susfs: mark no sucompat checks for pid: '835', exec: '/vendor/bin/sscrpcd'
+[    3.177260] KernelSU: susfs: mark no sucompat checks for pid: '836', exec: '/system/bin/vdc'
+[    3.194098] KernelSU: susfs: mark no sucompat checks for pid: '846', exec: '/system/bin/vdc'
+[    3.689340] KernelSU: susfs: mark no sucompat checks for pid: '863', exec: '/system/bin/vdc'
+[    3.695941] KernelSU: susfs: mark no sucompat checks for pid: '864', exec: '/system/bin/vdc'
+[    3.727152] KernelSU: susfs: mark no sucompat checks for pid: '870', exec: '/system/bin/tombstoned'
+[    3.728989] KernelSU: susfs: mark no sucompat checks for pid: '871', exec: '/system/bin/vdc'
+[    3.756004] KernelSU: susfs: mark no sucompat checks for pid: '874', exec: '/system/bin/logd'
+[    3.760531] KernelSU: susfs: mark no sucompat checks for pid: '875', exec: '/system/bin/apexd'
+[    3.773396] KernelSU: susfs: mark no sucompat checks for pid: '912', exec: '/bin/rm'
+[    3.789044] KernelSU: susfs: mark no sucompat checks for pid: '913', exec: '/system/bin/chattr'
+[    3.892852] KernelSU: susfs: mark no sucompat checks for pid: '1051', exec: '/apex/com.android.runtime/bin/linkerconfig'
+[    3.914790] KernelSU: susfs: mark no sucompat checks for pid: '1052', exec: '/system/bin/aconfigd-system'
+[    3.916950] KernelSU: susfs: mark no sucompat checks for pid: '1053', exec: '/apex/com.android.configinfrastructure/bin/aconfigd-mainline'
+[    3.956089] KernelSU: susfs: mark no sucompat checks for pid: '1054', exec: '/apex/com.android.configinfrastructure/bin/aconfigd-mainline'
+[    3.957348] KernelSU: susfs: mark no sucompat checks for pid: '1055', exec: '/apex/com.android.sdkext/bin/derive_sdk'
+[    3.967025] KernelSU: susfs: mark no sucompat checks for pid: '1056', exec: '/system/bin/vdc'
+[    5.282242] KernelSU: susfs: mark no sucompat checks for pid: '1059', exec: '/apex/com.android.sdkext/bin/derive_classpath'
+[    5.304352] KernelSU: susfs: mark no sucompat checks for pid: '1060', exec: '/apex/com.android.art/bin/art_boot'
+[    5.315284] KernelSU: susfs: mark no sucompat checks for pid: '1061', exec: '/system/bin/odsign'
+[    5.467269] KernelSU: susfs: mark no sucompat checks for pid: '1066', exec: '/system/bin/apexd'
+[    5.483259] KernelSU: susfs: post_fs_data triggered (v2.0.0)
+[    5.559314] KernelSU: susfs: CMD_SUSFS_SHOW_ENABLED_FEATURES
+[    5.576809] KernelSU: susfs: CMD_SUSFS_SHOW_ENABLED_FEATURES
+[    5.585323] KernelSU: susfs: CMD_SUSFS_SHOW_ENABLED_FEATURES
+[    5.592093] susfs:[0][1137][susfs_set_hide_sus_mnts_for_non_su_procs] susfs_hide_sus_mnts_for_non_su_procs: 1
+[    5.592095] KernelSU: susfs: CMD_SUSFS_HIDE_SUS_MNTS_FOR_NON_SU_PROCS
+[    5.594410] susfs:[0][1138][susfs_set_avc_log_spoofing] enabled: 1
+[    5.594411] KernelSU: susfs: CMD_SUSFS_ENABLE_AVC_LOG_SPOOFING
+[    7.576471] KernelSU: susfs: mark no sucompat checks for pid: '1324', exec: '/system/bin/recovery-persist'
+[    7.579197] KernelSU: susfs: mark no sucompat checks for pid: '1325', exec: '/vendor/bin/init.qti.display_boot.sh'
+[    7.583656] KernelSU: susfs: mark no sucompat checks for pid: '1326', exec: '/vendor/bin/time_daemon'
+[    7.583996] KernelSU: susfs: mark no sucompat checks for pid: '1327', exec: '/system/vendor/bin/ipacm'
+[    7.589199] KernelSU: susfs: mark no sucompat checks for pid: '1329', exec: '/vendor/bin/tri-state-key-calibrate'
+[    7.600446] KernelSU: susfs: mark no sucompat checks for pid: '1340', exec: '/apex/com.android.tethering/bin/netbpfload'
+[    7.888392] KernelSU: susfs: mark no sucompat checks for pid: '1362', exec: '/system/bin/netd'
+[    7.914944] KernelSU: susfs: mark no sucompat checks for pid: '1382', exec: '/vendor/bin/init.qcom.usb.sh'
+[    8.194673] KernelSU: susfs: mark no sucompat checks for pid: '1505', exec: '/vendor/bin/init.qcom.early_boot.sh'
+[    8.294832] KernelSU: susfs: mark no sucompat checks for pid: '1530', exec: '/system/bin/kcmdlinectrl'
+[    8.302402] KernelSU: susfs: mark no sucompat checks for pid: '1537', exec: '/vendor/bin/ssgtzd'
+[    8.302852] KernelSU: susfs: mark no sucompat checks for pid: '1538', exec: '/odm/bin/init.oplus.sh'
+[    8.379000] KernelSU: susfs: mark no sucompat checks for pid: '1556', exec: '/vendor/bin/hw/android.hardware.audio.service'
+[    8.379190] KernelSU: susfs: mark no sucompat checks for pid: '1557', exec: '/system/system_ext/bin/hw/android.hidl.allocator@1.0-service'
+[    8.382603] KernelSU: susfs: mark no sucompat checks for pid: '1577', exec: '/vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti'
+[    8.387036] KernelSU: susfs: mark no sucompat checks for pid: '1581', exec: '/vendor/bin/hw/android.hardware.camera.provider@2.4-service_64'
+[    8.390404] KernelSU: susfs: mark no sucompat checks for pid: '1582', exec: '/vendor/bin/hw/android.hardware.cas@1.2-service'
+[    8.391757] KernelSU: susfs: mark no sucompat checks for pid: '1583', exec: '/vendor/bin/hw/android.hardware.drm-service.clearkey'
+[    8.393861] KernelSU: susfs: mark no sucompat checks for pid: '1584', exec: '/vendor/bin/hw/android.hardware.gnss@2.1-service-qti'
+[    8.395695] KernelSU: susfs: mark no sucompat checks for pid: '1585', exec: '/vendor/bin/hw/android.hardware.health-service.qti'
+[    8.401134] KernelSU: susfs: mark no sucompat checks for pid: '1586', exec: '/vendor/bin/hw/android.hardware.power-service-qti'
+[    8.408532] KernelSU: susfs: mark no sucompat checks for pid: '1587', exec: '/vendor/bin/hw/android.hardware.sensors-service.multihal'
+[    8.414258] KernelSU: susfs: mark no sucompat checks for pid: '1592', exec: '/vendor/bin/hw/android.hardware.thermal-service.qti'
+[    8.421682] KernelSU: susfs: mark no sucompat checks for pid: '1593', exec: '/vendor/bin/hw/android.hardware.usb-service.qti'
+[    8.434802] KernelSU: susfs: mark no sucompat checks for pid: '1598', exec: '/vendor/bin/hw/android.hardware.usb.gadget-service.qti'
+[    8.437695] KernelSU: susfs: mark no sucompat checks for pid: '1599', exec: '/vendor/bin/hw/android.hardware.wifi-service'
+[    8.445274] KernelSU: susfs: mark no sucompat checks for pid: '1600', exec: '/vendor/bin/hw/vendor.qti.hardware.memtrack-service'
+[    8.451568] KernelSU: susfs: mark no sucompat checks for pid: '1601', exec: '/vendor/bin/hw/qconfigservice'
+[    8.459259] KernelSU: susfs: mark no sucompat checks for pid: '1605', exec: '/vendor/bin/hw/vendor.display.color@1.0-service'
+[    8.471018] KernelSU: susfs: mark no sucompat checks for pid: '1610', exec: '/vendor/bin/hw/vendor.lineage.health-service.default'
+[    8.473204] KernelSU: susfs: mark no sucompat checks for pid: '1618', exec: '/vendor/bin/hw/vendor.lineage.powershare-service.oplus'
+[    8.479807] KernelSU: susfs: mark no sucompat checks for pid: '1620', exec: '/vendor/bin/hw/vendor.lineage.touch-service.oplus'
+[    8.491425] KernelSU: susfs: mark no sucompat checks for pid: '1621', exec: '/vendor/bin/hw/vendor.qti.hardware.alarm@1.0-service'
+[    8.498886] KernelSU: susfs: mark no sucompat checks for pid: '1624', exec: '/vendor/bin/hw/vendor.qti.hardware.capabilityconfigstore@1.0-service'
+[    8.507287] KernelSU: susfs: mark no sucompat checks for pid: '1627', exec: '/vendor/bin/hw/vendor.qti.hardware.display.allocator-service'
+[    8.514055] KernelSU: susfs: mark no sucompat checks for pid: '1628', exec: '/vendor/bin/hw/vendor.qti.hardware.display.composer-service'
+[    8.517695] KernelSU: susfs: mark no sucompat checks for pid: '1629', exec: '/vendor/bin/dspservice'
+[    8.524543] KernelSU: susfs: mark no sucompat checks for pid: '1630', exec: '/vendor/bin/hw/vendor.qti.hardware.perf@2.2-service'
+[    8.530939] KernelSU: susfs: mark no sucompat checks for pid: '1631', exec: '/vendor/bin/hw/vendor.qti.hardware.qteeconnector@1.0-service'
+[    8.538069] KernelSU: susfs: mark no sucompat checks for pid: '1632', exec: '/vendor/bin/hw/vendor.qti.hardware.sensorscalibrate@1.0-service'
+[    8.547671] KernelSU: susfs: mark no sucompat checks for pid: '1634', exec: '/vendor/bin/hw/vendor.qti.hardware.soter@1.0-service'
+[    8.555576] KernelSU: susfs: mark no sucompat checks for pid: '1638', exec: '/vendor/bin/hw/vendor.qti.hardware.tui_comm@1.0-service-qti'
+[    8.562030] KernelSU: susfs: mark no sucompat checks for pid: '1641', exec: '/vendor/bin/hw/vendor.qti.hardware.vibrator.service.oplus'
+[    8.570883] KernelSU: susfs: mark no sucompat checks for pid: '1642', exec: '/vendor/bin/hw/vendor.qti.media.c2@1.0-service'
+[    8.575927] KernelSU: susfs: mark no sucompat checks for pid: '1662', exec: '/vendor/bin/vendor.qti.qspmhal@1.0-service'
+[    8.584901] KernelSU: susfs: mark no sucompat checks for pid: '1701', exec: '/vendor/bin/vppservice'
+[    8.593529] KernelSU: susfs: mark no sucompat checks for pid: '1704', exec: '/odm/bin/hw/android.hardware.drm@1.3-service.widevine'
+[    8.595793] KernelSU: susfs: mark no sucompat checks for pid: '1725', exec: '/odm/bin/hw/vendor.pixelworks.hardware.display.iris-service'
+[    8.597289] KernelSU: susfs: mark no sucompat checks for pid: '1726', exec: '/odm/bin/hw/vendor.pixelworks.hardware.feature.irisfeature-service'
+[    8.609977] KernelSU: susfs: mark no sucompat checks for pid: '1728', exec: '/odm/bin/hw/vendor.qti.esepowermanager@1.1-service'
+[    8.620272] KernelSU: susfs: mark no sucompat checks for pid: '1733', exec: '/odm/bin/hw/vendor.qti.secure_element@1.2-service'
+[    8.632789] KernelSU: susfs: mark no sucompat checks for pid: '1734', exec: '/vendor/bin/qrtr-ns'
+[    8.646853] KernelSU: susfs: mark no sucompat checks for pid: '1737', exec: '/vendor/bin/irsc_util'
+[    8.652913] KernelSU: susfs: mark no sucompat checks for pid: '1743', exec: '/vendor/bin/pd-mapper'
+[    8.659300] KernelSU: susfs: mark no sucompat checks for pid: '1748', exec: '/vendor/bin/pm-service'
+[    8.661369] KernelSU: susfs: mark no sucompat checks for pid: '1750', exec: '/vendor/bin/sh'
+[    8.670391] KernelSU: susfs: mark no sucompat checks for pid: '1753', exec: '/system/bin/credstore'
+[    8.672366] KernelSU: susfs: mark no sucompat checks for pid: '1752', exec: '/system/bin/audioserver'
+[    8.677653] KernelSU: susfs: mark no sucompat checks for pid: '1755', exec: '/system/bin/gpuservice'
+[    8.680790] KernelSU: susfs: mark no sucompat checks for pid: '1764', exec: '/system/bin/misctrl'
+[    8.686521] KernelSU: susfs: mark no sucompat checks for pid: '1768', exec: '/system/bin/surfaceflinger'
+[    8.692459] KernelSU: susfs: mark no sucompat checks for pid: '1772', exec: '/vendor/bin/rmt_storage'
+[    8.696982] KernelSU: susfs: mark no sucompat checks for pid: '1776', exec: '/vendor/bin/tftp_server'
+[    8.702521] KernelSU: susfs: mark no sucompat checks for pid: '1784', exec: '/vendor/bin/sensors.qti'
+[    8.733443] KernelSU: susfs: mark no sucompat checks for pid: '1808', exec: '/vendor/bin/modprobe'
+[    8.736438] KernelSU: susfs: mark no sucompat checks for pid: '1809', exec: '/vendor/bin/modprobe'
+[    8.771038] KernelSU: susfs: mark no sucompat checks for pid: '1814', exec: '/system/bin/gsid'
+[    8.774562] KernelSU: susfs: mark no sucompat checks for pid: '1815', exec: '/vendor/bin/modprobe'
+[    8.808708] KernelSU: susfs: mark no sucompat checks for pid: '1821', exec: '/vendor/bin/modprobe'
+[    8.834662] KernelSU: susfs: mark no sucompat checks for pid: '1827', exec: '/vendor/bin/modprobe'
+[    8.852043] KernelSU: susfs: mark no sucompat checks for pid: '1838', exec: '/vendor/bin/modprobe'
+[    8.862311] KernelSU: susfs: mark no sucompat checks for pid: '1839', exec: '/vendor/bin/diag-router'
+[    8.864513] KernelSU: susfs: mark no sucompat checks for pid: '1840', exec: '/vendor/bin/init.qti.chg_policy.sh'
+[    8.907341] KernelSU: susfs: mark no sucompat checks for pid: '1856', exec: '/vendor/bin/pm-proxy'
+[    8.915088] KernelSU: susfs: mark no sucompat checks for pid: '1861', exec: '/apex/com.android.conscrypt/bin/boringssl_self_test32'
+[    8.983339] KernelSU: susfs: mark no sucompat checks for pid: '1906', exec: '/apex/com.android.conscrypt/bin/boringssl_self_test64'
+[    9.002695] KernelSU: susfs: mark no sucompat checks for pid: '1913', exec: '/system/bin/bootstat'
+[    9.006983] KernelSU: susfs: mark no sucompat checks for pid: '1914', exec: '/system/bin/drmserver'
+[    9.012270] KernelSU: susfs: mark no sucompat checks for pid: '1916', exec: '/system/bin/kcmdlinectrl'
+[    9.052782] KernelSU: susfs: mark no sucompat checks for pid: '1944', exec: '/system/bin/traced_probes'
+[    9.061688] KernelSU: susfs: mark no sucompat checks for pid: '1948', exec: '/system/bin/traced'
+[    9.071203] KernelSU: susfs: mark no sucompat checks for pid: '1959', exec: '/system/system_ext/bin/dpmd'
+[    9.087238] KernelSU: susfs: mark no sucompat checks for pid: '1961', exec: '/system/vendor/bin/dpmQmiMgr'
+[    9.092816] KernelSU: susfs: mark no sucompat checks for pid: '1962', exec: '/vendor/bin/feature_enabler_client'
+[    9.101673] KernelSU: susfs: mark no sucompat checks for pid: '1968', exec: '/vendor/bin/modprobe'
+[    9.157406] KernelSU: susfs: mark no sucompat checks for pid: '1990', exec: '/vendor/bin/modprobe'
+[    9.187500] KernelSU: susfs: mark no sucompat checks for pid: '2007', exec: '/system/bin/bootanimation'
+[    9.190372] KernelSU: susfs: mark no sucompat checks for pid: '2008', exec: '/vendor/bin/modprobe'
+[    9.231385] KernelSU: susfs: mark no sucompat checks for pid: '2026', exec: '/vendor/bin/modprobe'
+[    9.269848] KernelSU: susfs: mark no sucompat checks for pid: '2051', exec: '/vendor/bin/modprobe'
+[    9.321299] KernelSU: susfs: mark no sucompat checks for pid: '2061', exec: '/vendor/bin/modprobe'
+[    9.358581] KernelSU: susfs: mark no sucompat checks for pid: '2066', exec: '/system/vendor/bin/shsusrd'
+[    9.360235] KernelSU: susfs: mark no sucompat checks for pid: '2067', exec: '/vendor/bin/init.class_main.sh'
+[    9.360403] KernelSU: susfs: mark no sucompat checks for pid: '2065', exec: '/system/vendor/bin/qmipriod'
+[    9.365091] KernelSU: susfs: mark no sucompat checks for pid: '2069', exec: '/system/bin/cameraserver'
+[    9.393677] KernelSU: susfs: mark no sucompat checks for pid: '2073', exec: '/system/bin/incidentd'
+[    9.405233] KernelSU: susfs: mark no sucompat checks for pid: '2078', exec: '/system/bin/installd'
+[    9.418256] KernelSU: susfs: mark no sucompat checks for pid: '2071', exec: '/system/bin/idmap2d'
+[    9.420637] KernelSU: susfs: mark no sucompat checks for pid: '2082', exec: '/system/bin/mediaextractor'
+[    9.429202] KernelSU: susfs: mark no sucompat checks for pid: '2084', exec: '/system/bin/mediametrics'
+[    9.440742] KernelSU: susfs: mark no sucompat checks for pid: '2088', exec: '/system/bin/storaged'
+[    9.444989] KernelSU: susfs: mark no sucompat checks for pid: '2086', exec: '/system/bin/mediaserver'
+[    9.458958] KernelSU: susfs: mark no sucompat checks for pid: '2089', exec: '/system/bin/wificond'
+[    9.504290] KernelSU: susfs: mark no sucompat checks for pid: '2091', exec: '/vendor/bin/wfdhdcphalservice'
+[    9.504795] KernelSU: susfs: mark no sucompat checks for pid: '2105', exec: '/vendor/bin/mutualex'
+[    9.510355] KernelSU: susfs: mark no sucompat checks for pid: '2106', exec: '/system/vendor/bin/netmgrd'
+[    9.517912] KernelSU: susfs: mark no sucompat checks for pid: '2107', exec: '/system/vendor/bin/port-bridge'
+[    9.531578] KernelSU: susfs: mark no sucompat checks for pid: '2108', exec: '/vendor/bin/adsprpcd'
+[    9.540110] type=1400 audit(1770669424.777:472): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[    9.591561] KernelSU: susfs: mark no sucompat checks for pid: '2119', exec: '/vendor/bin/cdsprpcd'
+[    9.593174] KernelSU: susfs: mark no sucompat checks for pid: '2120', exec: '/vendor/bin/wfdvndservice'
+[    9.600430] KernelSU: susfs: mark no sucompat checks for pid: '2095', exec: '/vendor/bin/wifidisplayhalservice'
+[    9.600902] KernelSU: susfs: mark no sucompat checks for pid: '2093', exec: '/system/vendor/bin/cnd'
+[    9.601347] KernelSU: susfs: mark no sucompat checks for pid: '2096', exec: '/vendor/bin/ims_rtp_daemon'
+[    9.608380] KernelSU: susfs: mark no sucompat checks for pid: '2097', exec: '/vendor/bin/imsdaemon'
+[    9.608768] KernelSU: susfs: mark no sucompat checks for pid: '2103', exec: '/vendor/bin/thermal-engine'
+[    9.609167] KernelSU: susfs: mark no sucompat checks for pid: '2118', exec: '/vendor/bin/audioadsprpcd'
+[    9.619442] KernelSU: susfs: mark no sucompat checks for pid: '2121', exec: '/vendor/bin/sh'
+[    9.630411] KernelSU: susfs: mark no sucompat checks for pid: '2126', exec: '/apex/com.android.media.swcodec/bin/mediaswcodec'
+[    9.645716] KernelSU: susfs: mark no sucompat checks for pid: '2130', exec: '/apex/com.android.os.statsd/bin/statsd'
+[    9.709495] KernelSU: susfs: mark no sucompat checks for pid: '2165', exec: '/vendor/bin/init.qcom.sh'
+[    9.719199] KernelSU: susfs: mark no sucompat checks for pid: '2199', exec: '/system/bin/usbd'
+[    9.720804] KernelSU: susfs: mark no sucompat checks for pid: '2195', exec: '/system/bin/update_engine'
+[    9.727046] KernelSU: susfs: mark no sucompat checks for pid: '2149', exec: '/system/vendor/bin/loc_launcher'
+[    9.734263] KernelSU: susfs: mark no sucompat checks for pid: '2144', exec: '/vendor/bin/ssgqmigd'
+[    9.734513] KernelSU: susfs: mark no sucompat checks for pid: '2207', exec: '/vendor/bin/hw/android.hardware.biometrics.fingerprint@2.3-service.oplus'
+[    9.734713] KernelSU: susfs: mark no sucompat checks for pid: '2141', exec: '/system/vendor/bin/cnss-daemon'
+[    9.735303] KernelSU: susfs: mark no sucompat checks for pid: '2146', exec: '/vendor/bin/mlid'
+[    9.752380] KernelSU: susfs: mark no sucompat checks for pid: '2213', exec: '/vendor/bin/init.qcom.sensors.sh'
+[    9.767497] KernelSU: susfs: mark no sucompat checks for pid: '2227', exec: '/odm/bin/oplus_sensor_fb'
+[    9.781386] KernelSU: susfs: mark no sucompat checks for pid: '2230', exec: '/odm/bin/hw/vendor.oplus.hardware.biometrics.fingerprint@2.1-service'
+[    9.821606] KernelSU: susfs: mark no sucompat checks for pid: '2192', exec: '/system/bin/gatekeeperd'
+[    9.871283] KernelSU: susfs: mark no sucompat checks for pid: '2264', exec: '/vendor/bin/hw/android.hardware.usb.gadget-service.qti'
+[    9.872507] KernelSU: susfs: mark no sucompat checks for pid: '2219', exec: '/vendor/bin/wvmkiller'
+[    9.888913] KernelSU: susfs: mark no sucompat checks for pid: '2211', exec: '/vendor/bin/hw/vendor.lineage.livedisplay-service.oplus'
+[    9.912923] KernelSU: susfs: mark no sucompat checks for pid: '2248', exec: '/vendor/bin/hw/qcrilNrd'
+[    9.945627] KernelSU: susfs: mark no sucompat checks for pid: '2298', exec: '/system/vendor/bin/qti'
+[    9.985340] KernelSU: susfs: mark no sucompat checks for pid: '2317', exec: '/system/vendor/bin/adpl'
+[   10.117737] KernelSU: susfs: CMD_SUSFS_SHOW_ENABLED_FEATURES
+[   10.189323] KernelSU: susfs: mark no sucompat checks for pid: '2441', exec: '/system/bin/flags_health_check'
+[   10.244525] susfs: enable logging to kernel
+[   10.244529] KernelSU: susfs: CMD_SUSFS_ENABLE_LOG
+[   11.552508] type=1400 audit(1770669426.793:475): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   13.418104] KernelSU: susfs: mark no sucompat checks for pid: '2777', exec: '/vendor/bin/hw/android.hardware.thermal-service.qti'
+[   13.598053] KernelSU: susfs: mark no sucompat checks for pid: '2786', exec: '/odm/bin/hw/android.hardware.drm@1.3-service.widevine'
+[   14.897187] KernelSU: susfs: mark no sucompat checks for pid: '2840', exec: '/vendor/bin/modprobe'
+[   14.924777] KernelSU: susfs: mark no sucompat checks for pid: '2850', exec: '/vendor/bin/modprobe'
+[   14.967825] KernelSU: susfs: mark no sucompat checks for pid: '2881', exec: '/vendor/bin/modprobe'
+[   14.997375] KernelSU: susfs: mark no sucompat checks for pid: '2889', exec: '/vendor/bin/modprobe'
+[   15.032189] KernelSU: susfs: mark no sucompat checks for pid: '2911', exec: '/vendor/bin/modprobe'
+[   15.076357] KernelSU: susfs: mark no sucompat checks for pid: '2917', exec: '/vendor/bin/modprobe'
+[   15.098054] KernelSU: susfs: mark no sucompat checks for pid: '2933', exec: '/vendor/bin/modprobe'
+[   15.144626] KernelSU: susfs: mark no sucompat checks for pid: '2937', exec: '/vendor/bin/modprobe'
+[   15.197018] KernelSU: susfs: mark no sucompat checks for pid: '2946', exec: '/system/vendor/bin/shsusrd'
+[   15.198271] KernelSU: susfs: mark no sucompat checks for pid: '2947', exec: '/vendor/bin/modprobe'
+[   15.248210] KernelSU: susfs: mark no sucompat checks for pid: '2962', exec: '/vendor/bin/modprobe'
+[   15.273520] KernelSU: susfs: mark no sucompat checks for pid: '2977', exec: '/vendor/bin/ims_rtp_daemon'
+[   15.584263] type=1400 audit(1770669430.825:500): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   17.600214] type=1400 audit(1770669432.841:502): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   20.646286] KernelSU: susfs: mark no sucompat checks for pid: '3308', exec: '/system/bin/extra_free_kbytes.sh'
+[   21.632295] type=1400 audit(1770669436.873:507): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   27.680219] type=1400 audit(1770669442.921:581): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   27.787662] KernelSU: susfs: mark no sucompat checks for pid: '5965', exec: '/vendor/bin/hw/wpa_supplicant'
+[   29.440747] KernelSU: susfs: mark no sucompat checks for pid: '6185', exec: '/bin/rm'
+[   29.606538] KernelSU: susfs: mark no sucompat checks for pid: '6214', exec: '/vendor/bin/sh'
+[   29.607816] KernelSU: susfs: mark no sucompat checks for pid: '6216', exec: '/vendor/bin/sh'
+[   29.608772] KernelSU: susfs: mark no sucompat checks for pid: '6218', exec: '/system/bin/bootstat'
+[   29.616693] KernelSU: susfs: mark no sucompat checks for pid: '6226', exec: '/system/bin/auditctl'
+[   29.619180] KernelSU: susfs: mark no sucompat checks for pid: '6230', exec: '/system/bin/profcollectctl'
+[   29.626379] KernelSU: susfs: mark no sucompat checks for pid: '6224', exec: '/system/bin/lmkd'
+[   29.635118] KernelSU: susfs: CMD_SUSFS_SHOW_ENABLED_FEATURES
+[   29.698011] type=1400 audit(1770669444.937:583): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   29.824689] KernelSU: susfs: mark no sucompat checks for pid: '6303', exec: '/vendor/bin/thermal-engine'
+[   29.839347] KernelSU: susfs: mark no sucompat checks for pid: '6305', exec: '/system/bin/lmkd'
+[   29.844945] KernelSU: susfs: mark no sucompat checks for pid: '6306', exec: '/system/bin/lmkd'
+[   30.609665] susfs:[0][6547][susfs_add_sus_path]android_data_path is not configured yet
+[   30.609679] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   30.643960] susfs:[0][6549][susfs_add_sus_path]android_data_path is not configured yet
+[   30.643975] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   33.116632] KernelSU: susfs: mark no sucompat checks for pid: '6936', exec: '/vendor/bin/hw/vendor.qti.hardware.alarm@1.0-service'
+[   33.193365] KernelSU: susfs: mark no sucompat checks for pid: '6960', exec: '/system/bin/mdnsd'
+[   33.728537] type=1400 audit(1770669448.969:598): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   37.904858] KernelSU: susfs: mark no sucompat checks for pid: '7167', exec: '/system/bin/apexd'
+[   38.843026] susfs:[0][7436][susfs_set_i_state_on_external_dir] Set sdcard root dir: '/sdcard'
+[   38.843028] KernelSU: susfs: CMD_SUSFS_SET_SDCARD_ROOT_PATH
+[   38.846356] susfs:[0][7465][susfs_set_i_state_on_external_dir] Set android data root dir: '/sdcard/Android/data'
+[   38.846359] KernelSU: susfs: CMD_SUSFS_SET_ANDROID_DATA_ROOT_PATH
+[   39.777068] type=1400 audit(1770669455.017:604): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   40.033135] KernelSU: susfs: mark no sucompat checks for pid: '7721', exec: '/apex/com.android.art/bin/artd'
+[   40.114338] susfs:[0][7729][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/paket.altr', ino: '561593', is flagged as AS_FLAGS_SUS_PATH
+[   40.114347] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.118451] susfs:[0][7735][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.nperf.tester', ino: '414500', is flagged as AS_FLAGS_SUS_PATH
+[   40.118454] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.122867] susfs:[0][7736][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.floweq.equalizer', ino: '26142', is flagged as AS_FLAGS_SUS_PATH
+[   40.122870] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.138932] susfs:[0][7744][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.pawxy.browser', ino: '685129', is flagged as AS_FLAGS_SUS_PATH
+[   40.138936] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.197104] susfs:[0][7757][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/xcom.saplin.xOPS', ino: '743281', is flagged as AS_FLAGS_SUS_PATH
+[   40.197112] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.234007] susfs:[0][7780][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.deepl.mobiletranslator', ino: '458018', is flagged as AS_FLAGS_SUS_PATH
+[   40.234010] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.237294] susfs:[0][7781][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.xiaoji.egggame', ino: '941080', is flagged as AS_FLAGS_SUS_PATH
+[   40.237297] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.243952] susfs:[0][7782][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.deniscerri.ytdl', ino: '347797', is flagged as AS_FLAGS_SUS_PATH
+[   40.243955] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.255037] susfs:[0][7785][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.twitter.android', ino: '351610', is flagged as AS_FLAGS_SUS_PATH
+[   40.255039] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.269106] susfs:[0][7798][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.vega', ino: '434191', is flagged as AS_FLAGS_SUS_PATH
+[   40.269110] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.275449] susfs:[0][7800][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.fadcam', ino: '176776', is flagged as AS_FLAGS_SUS_PATH
+[   40.275452] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.278824] susfs:[0][7801][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/de.florianisme.wakeonlan', ino: '365238', is flagged as AS_FLAGS_SUS_PATH
+[   40.278827] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.293407] susfs:[0][7809][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.tplink.networktoolsbox', ino: '364643', is flagged as AS_FLAGS_SUS_PATH
+[   40.293410] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.310777] susfs:[0][7810][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/org.torproject.torbrowser', ino: '457692', is flagged as AS_FLAGS_SUS_PATH
+[   40.310780] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.313970] susfs:[0][7812][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.kiloo.subwaysurf', ino: '497038', is flagged as AS_FLAGS_SUS_PATH
+[   40.313973] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.338268] susfs:[0][7817][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.unept.leveldevil', ino: '226399', is flagged as AS_FLAGS_SUS_PATH
+[   40.338272] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.349182] susfs:[0][7820][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.nixgames.neverdid', ino: '690925', is flagged as AS_FLAGS_SUS_PATH
+[   40.349188] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.381508] susfs:[0][7823][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.gg.housedesign.draw.houseplan.free', ino: '388690', is flagged as AS_FLAGS_SUS_PATH
+[   40.381511] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.384572] susfs:[0][7829][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.osloalbet.light', ino: '504935', is flagged as AS_FLAGS_SUS_PATH
+[   40.384574] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.390887] susfs:[0][7831][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.github.whitescent.engine', ino: '537647', is flagged as AS_FLAGS_SUS_PATH
+[   40.390890] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.433798] susfs:[0][7835][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.particlesdevs.photoncamera', ino: '435970', is flagged as AS_FLAGS_SUS_PATH
+[   40.433826] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.447290] susfs:[0][7843][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.ianmaclarty.tilesnap', ino: '503809', is flagged as AS_FLAGS_SUS_PATH
+[   40.447292] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.471187] susfs:[0][7848][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.iett.otobusumnerede', ino: '215938', is flagged as AS_FLAGS_SUS_PATH
+[   40.471190] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.477971] susfs:[0][7852][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.appslab.nothing.widgetspro', ino: '583161', is flagged as AS_FLAGS_SUS_PATH
+[   40.477974] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.481639] susfs:[0][7853][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.amazon.avod.thirdpartyclient', ino: '243487', is flagged as AS_FLAGS_SUS_PATH
+[   40.481642] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.492577] susfs:[0][7854][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.simo.tgramhooks', ino: '690810', is flagged as AS_FLAGS_SUS_PATH
+[   40.492580] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.496515] susfs:[0][7857][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.decathlon.app', ino: '177040', is flagged as AS_FLAGS_SUS_PATH
+[   40.496518] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.499925] susfs:[0][7860][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.xp101.ava_rus', ino: '542125', is flagged as AS_FLAGS_SUS_PATH
+[   40.499928] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.524127] susfs:[0][7871][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.rhmsoft.code', ino: '171910', is flagged as AS_FLAGS_SUS_PATH
+[   40.524130] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.561927] susfs:[0][7877][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.abtnprojects.ambatana', ino: '798745', is flagged as AS_FLAGS_SUS_PATH
+[   40.561930] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.575095] susfs:[0][7878][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.dv.adm', ino: '52508', is flagged as AS_FLAGS_SUS_PATH
+[   40.575099] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.581453] susfs:[0][7891][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/epic.org.flappybird', ino: '879256', is flagged as AS_FLAGS_SUS_PATH
+[   40.581456] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.595551] susfs:[0][7896][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.github.tianma8023.xposed.smscode', ino: '363697', is flagged as AS_FLAGS_SUS_PATH
+[   40.595553] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.603701] susfs:[0][7897][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.microsoft.teams', ino: '376151', is flagged as AS_FLAGS_SUS_PATH
+[   40.603704] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.606915] susfs:[0][7900][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/net.bitplane.android.microphone', ino: '808719', is flagged as AS_FLAGS_SUS_PATH
+[   40.606918] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.610312] susfs:[0][7901][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/org.swiftapps.swiftbackup', ino: '7719', is flagged as AS_FLAGS_SUS_PATH
+[   40.610314] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.614756] susfs:[0][7902][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.ianmaclarty.dissembler', ino: '380550', is flagged as AS_FLAGS_SUS_PATH
+[   40.614758] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.618191] susfs:[0][7903][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/id.kuato.diskhealth', ino: '470586', is flagged as AS_FLAGS_SUS_PATH
+[   40.618193] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.628939] susfs:[0][7906][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.osloalbet.forest', ino: '377467', is flagged as AS_FLAGS_SUS_PATH
+[   40.628941] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.635229] susfs:[0][7909][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.dotgears.swing', ino: '743972', is flagged as AS_FLAGS_SUS_PATH
+[   40.635231] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.648158] susfs:[0][7916][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.genius.android', ino: '481226', is flagged as AS_FLAGS_SUS_PATH
+[   40.648160] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.653498] susfs:[0][7918][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/krypton.tbsafetychecker', ino: '758781', is flagged as AS_FLAGS_SUS_PATH
+[   40.653501] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.656502] susfs:[0][7919][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.google.android.calculator', ino: '431522', is flagged as AS_FLAGS_SUS_PATH
+[   40.656505] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.659386] susfs:[0][7920][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.google.android.apps.healthdata', ino: '688681', is flagged as AS_FLAGS_SUS_PATH
+[   40.659389] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.666140] susfs:[0][7922][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.akakce.akakce', ino: '378809', is flagged as AS_FLAGS_SUS_PATH
+[   40.666143] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.675594] susfs:[0][7925][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.dozingcatsoftware.bouncy', ino: '782921', is flagged as AS_FLAGS_SUS_PATH
+[   40.675596] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.682244] susfs:[0][7931][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/org.proninyaroslav.libretorrent', ino: '208381', is flagged as AS_FLAGS_SUS_PATH
+[   40.682247] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.707386] susfs:[0][7943][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.donanimhaber.dhandroid', ino: '201379', is flagged as AS_FLAGS_SUS_PATH
+[   40.707389] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.719112] susfs:[0][7948][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.noctuasoftware.stellarium_plus', ino: '838633', is flagged as AS_FLAGS_SUS_PATH
+[   40.719115] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.729055] susfs:[0][7957][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.somatch.android', ino: '834119', is flagged as AS_FLAGS_SUS_PATH
+[   40.729057] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.732694] susfs:[0][7960][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/ru.yandex.metro', ino: '347255', is flagged as AS_FLAGS_SUS_PATH
+[   40.732696] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.738795] susfs:[0][7968][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/nodomain.pacjo.smartspacer.plugin.livelygreeting', ino: '328455', is flagged as AS_FLAGS_SUS_PATH
+[   40.738797] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.746076] susfs:[0][7970][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.kick.mobile', ino: '509485', is flagged as AS_FLAGS_SUS_PATH
+[   40.746080] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.759722] susfs:[0][7975][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.airbnb.android', ino: '53713', is flagged as AS_FLAGS_SUS_PATH
+[   40.759725] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.764352] susfs:[0][7977][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.liteapks.androidapps', ino: '740829', is flagged as AS_FLAGS_SUS_PATH
+[   40.764356] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.767497] susfs:[0][7978][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.snapchat.android', ino: '411944', is flagged as AS_FLAGS_SUS_PATH
+[   40.767499] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.770838] susfs:[0][7979][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.google.android.apps.youtube.music', ino: '391363', is flagged as AS_FLAGS_SUS_PATH
+[   40.770841] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.773847] susfs:[0][7980][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.gardrops', ino: '365448', is flagged as AS_FLAGS_SUS_PATH
+[   40.773849] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.791012] susfs:[0][7985][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.androidexperiments.tunnelvision', ino: '329886', is flagged as AS_FLAGS_SUS_PATH
+[   40.791016] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.794681] susfs:[0][7986][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/rk.android.app.shortcutmaker', ino: '362039', is flagged as AS_FLAGS_SUS_PATH
+[   40.794683] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.798104] susfs:[0][7987][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/org.woheller69.audio_analyzer_for_android', ino: '374482', is flagged as AS_FLAGS_SUS_PATH
+[   40.798107] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.801848] susfs:[0][7988][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/io.itch.pirate_solitaire', ino: '189119', is flagged as AS_FLAGS_SUS_PATH
+[   40.801851] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.804725] susfs:[0][7989][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.istomgames.tappynyan', ino: '304102', is flagged as AS_FLAGS_SUS_PATH
+[   40.804727] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.815949] susfs:[0][7992][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.mi.earphone', ino: '335361', is flagged as AS_FLAGS_SUS_PATH
+[   40.815952] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.820048] susfs:[0][7993][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.cimrimobilevoyager', ino: '499027', is flagged as AS_FLAGS_SUS_PATH
+[   40.820051] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.829925] susfs:[0][8003][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/ai.x.grok', ino: '545203', is flagged as AS_FLAGS_SUS_PATH
+[   40.829929] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.836937] susfs:[0][8006][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.goodwy.filemanager', ino: '511951', is flagged as AS_FLAGS_SUS_PATH
+[   40.836940] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.847217] susfs:[0][8011][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.anthropic.claude', ino: '484348', is flagged as AS_FLAGS_SUS_PATH
+[   40.848829] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.855880] susfs:[0][8014][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.upscrolled.app', ino: '500129', is flagged as AS_FLAGS_SUS_PATH
+[   40.855884] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.862589] susfs:[0][8017][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.swenauk.seyirturk', ino: '383663', is flagged as AS_FLAGS_SUS_PATH
+[   40.862593] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.866617] susfs:[0][8024][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/org.fdroid.fdroid', ino: '368360', is flagged as AS_FLAGS_SUS_PATH
+[   40.866894] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.888575] susfs:[0][8035][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/net.upx.proxy.browser', ino: '233829', is flagged as AS_FLAGS_SUS_PATH
+[   40.888578] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.901050] susfs:[0][8040][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.zhenxi.hunter', ino: '473438', is flagged as AS_FLAGS_SUS_PATH
+[   40.901053] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.905928] susfs:[0][8041][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.trendyol.go', ino: '262896', is flagged as AS_FLAGS_SUS_PATH
+[   40.905931] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.911914] susfs:[0][8043][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/io.github.vvb2060.keyattestation', ino: '739208', is flagged as AS_FLAGS_SUS_PATH
+[   40.911919] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.915453] susfs:[0][8044][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.instagram.android', ino: '358891', is flagged as AS_FLAGS_SUS_PATH
+[   40.915456] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.920256] susfs:[0][8045][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/org.mozilla.fennec_fdroid', ino: '942475', is flagged as AS_FLAGS_SUS_PATH
+[   40.920259] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.949903] susfs:[0][8049][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.inovel.app.yemeksepeti', ino: '347646', is flagged as AS_FLAGS_SUS_PATH
+[   40.949906] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.965146] susfs:[0][8052][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.kodub.polytrack', ino: '373375', is flagged as AS_FLAGS_SUS_PATH
+[   40.965148] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.970417] susfs:[0][8054][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.fugo.wowzen', ino: '334118', is flagged as AS_FLAGS_SUS_PATH
+[   40.970421] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.982806] susfs:[0][8066][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/tr.gov.turkiye.edevlet.kapisi', ino: '383441', is flagged as AS_FLAGS_SUS_PATH
+[   40.982809] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.985961] susfs:[0][8067][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.rk.taskmanager', ino: '377853', is flagged as AS_FLAGS_SUS_PATH
+[   40.985964] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   40.995411] susfs:[0][8070][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/org.akanework.gramophone', ino: '366236', is flagged as AS_FLAGS_SUS_PATH
+[   40.995414] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.002247] susfs:[0][8072][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.google.ai.edge.gallery', ino: '179372', is flagged as AS_FLAGS_SUS_PATH
+[   41.002250] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.005398] susfs:[0][8073][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.teknotakipultraclient.android', ino: '262025', is flagged as AS_FLAGS_SUS_PATH
+[   41.005401] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.009127] susfs:[0][8074][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/ru.tech.imageresizershrinker', ino: '583130', is flagged as AS_FLAGS_SUS_PATH
+[   41.009130] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.012324] susfs:[0][8082][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.stremio.one', ino: '742681', is flagged as AS_FLAGS_SUS_PATH
+[   41.012327] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.036945] susfs:[0][8087][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/me.garfieldhan.holmes', ino: '600717', is flagged as AS_FLAGS_SUS_PATH
+[   41.036948] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.075381] susfs:[0][8097][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.tmob.teknosa', ino: '865536', is flagged as AS_FLAGS_SUS_PATH
+[   41.075385] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.086235] susfs:[0][8107][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/net.sourceforge.opencamera', ino: '573879', is flagged as AS_FLAGS_SUS_PATH
+[   41.086238] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.091990] susfs:[0][8116][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.dergoogler.mmrl.wx', ino: '335431', is flagged as AS_FLAGS_SUS_PATH
+[   41.091993] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.095946] susfs:[0][8117][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.google.android.apps.photos', ino: '358670', is flagged as AS_FLAGS_SUS_PATH
+[   41.095990] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.103697] susfs:[0][8120][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.rosan.installer.x.revived', ino: '818975', is flagged as AS_FLAGS_SUS_PATH
+[   41.103700] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.116314] susfs:[0][8121][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.tsng.applistdetector', ino: '583642', is flagged as AS_FLAGS_SUS_PATH
+[   41.116318] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.123734] susfs:[0][8122][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.turkcell.paycell', ino: '833658', is flagged as AS_FLAGS_SUS_PATH
+[   41.123737] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.149577] susfs:[0][8133][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/me.zhanghai.android.files', ino: '362581', is flagged as AS_FLAGS_SUS_PATH
+[   41.149579] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.152835] susfs:[0][8134][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/dev.imranr.obtainium', ino: '215229', is flagged as AS_FLAGS_SUS_PATH
+[   41.152837] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.155577] susfs:[0][8136][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.osloalbet.fb', ino: '751050', is flagged as AS_FLAGS_SUS_PATH
+[   41.155580] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.159107] susfs:[0][8137][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.roborock.smart', ino: '468878', is flagged as AS_FLAGS_SUS_PATH
+[   41.159110] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.163033] susfs:[0][8138][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.lemon.lvoverseas', ino: '244299', is flagged as AS_FLAGS_SUS_PATH
+[   41.163041] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.166417] susfs:[0][8140][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/ch.protonvpn.android', ino: '477431', is flagged as AS_FLAGS_SUS_PATH
+[   41.166420] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.169770] susfs:[0][8141][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/rikka.appops', ino: '563194', is flagged as AS_FLAGS_SUS_PATH
+[   41.169773] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.173076] susfs:[0][8142][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/de.szalkowski.activitylauncher.oss', ino: '752417', is flagged as AS_FLAGS_SUS_PATH
+[   41.173078] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.189494] susfs:[0][8149][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.fkjc.zcr', ino: '448645', is flagged as AS_FLAGS_SUS_PATH
+[   41.189497] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.198929] susfs:[0][8152][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.blizzard.messenger', ino: '355914', is flagged as AS_FLAGS_SUS_PATH
+[   41.198932] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.202211] susfs:[0][8153][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.thend.integritychecker', ino: '569040', is flagged as AS_FLAGS_SUS_PATH
+[   41.202217] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.211766] susfs:[0][8157][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.apk.editor', ino: '52549', is flagged as AS_FLAGS_SUS_PATH
+[   41.211772] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.219863] susfs:[0][8160][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.shazam.android', ino: '298977', is flagged as AS_FLAGS_SUS_PATH
+[   41.219870] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.235519] susfs:[0][8167][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.chuqniudetector', ino: '543472', is flagged as AS_FLAGS_SUS_PATH
+[   41.235522] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.238553] susfs:[0][8174][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/org.documentfoundation.libreoffice', ino: '535370', is flagged as AS_FLAGS_SUS_PATH
+[   41.238556] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.244799] susfs:[0][8176][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.google.android.apps.paidtasks', ino: '267336', is flagged as AS_FLAGS_SUS_PATH
+[   41.244801] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.262510] susfs:[0][8183][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.github.android', ino: '675282', is flagged as AS_FLAGS_SUS_PATH
+[   41.262513] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.294687] susfs:[0][8186][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.finestandroid.soundgenerator', ino: '354583', is flagged as AS_FLAGS_SUS_PATH
+[   41.294697] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.306885] susfs:[0][8205][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.mobilatolye.android.enuygun', ino: '179150', is flagged as AS_FLAGS_SUS_PATH
+[   41.306888] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.310960] susfs:[0][8208][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.gaurav.avnc', ino: '756622', is flagged as AS_FLAGS_SUS_PATH
+[   41.310963] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.316816] susfs:[0][8210][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.amazon.mShop.android.shopping', ino: '401802', is flagged as AS_FLAGS_SUS_PATH
+[   41.316819] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.319416] susfs:[0][8211][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.connected2.ozzy.c2m', ino: '809761', is flagged as AS_FLAGS_SUS_PATH
+[   41.319419] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.322139] susfs:[0][8212][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/org.ultimatum.ultimatum', ino: '354126', is flagged as AS_FLAGS_SUS_PATH
+[   41.322141] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.353888] susfs:[0][8216][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.bp.box', ino: '200024', is flagged as AS_FLAGS_SUS_PATH
+[   41.353892] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.365832] susfs:[0][8221][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.playstack.balatro.android', ino: '690668', is flagged as AS_FLAGS_SUS_PATH
+[   41.365835] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.399858] susfs:[0][8234][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.fenghenda.mahjong', ino: '26118', is flagged as AS_FLAGS_SUS_PATH
+[   41.399861] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.459857] susfs:[0][8241][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.lima.doodlejump', ino: '745333', is flagged as AS_FLAGS_SUS_PATH
+[   41.459860] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.470334] susfs:[0][8264][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/ru.zdevs.zarchiver', ino: '491869', is flagged as AS_FLAGS_SUS_PATH
+[   41.470337] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.477434] susfs:[0][8269][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.skgames.trafficrider', ino: '320128', is flagged as AS_FLAGS_SUS_PATH
+[   41.477436] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.484159] susfs:[0][8271][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.dn0ne.lotus', ino: '26598', is flagged as AS_FLAGS_SUS_PATH
+[   41.484162] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.499139] susfs:[0][8282][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.tools.netgel.netx', ino: '215292', is flagged as AS_FLAGS_SUS_PATH
+[   41.499142] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.501880] susfs:[0][8284][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/deckers.thibault.aves.libre', ino: '586928', is flagged as AS_FLAGS_SUS_PATH
+[   41.501882] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.504576] susfs:[0][8287][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.android.nativetest', ino: '43414', is flagged as AS_FLAGS_SUS_PATH
+[   41.504579] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.510479] susfs:[0][8289][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.google.android.keep', ino: '347593', is flagged as AS_FLAGS_SUS_PATH
+[   41.510482] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.513850] susfs:[0][8290][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.youmusic.magictiles', ino: '848557', is flagged as AS_FLAGS_SUS_PATH
+[   41.513853] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.517192] susfs:[0][8292][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.Saplin.CPDT', ino: '475094', is flagged as AS_FLAGS_SUS_PATH
+[   41.517194] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.519819] susfs:[0][8293][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.deepseek.chat', ino: '545487', is flagged as AS_FLAGS_SUS_PATH
+[   41.519822] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.525848] susfs:[0][8295][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.pd.vehiclemasters', ino: '331304', is flagged as AS_FLAGS_SUS_PATH
+[   41.525851] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.531751] susfs:[0][8300][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.valvesoftware.android.steam.friendsui', ino: '386188', is flagged as AS_FLAGS_SUS_PATH
+[   41.531754] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.553339] susfs:[0][8310][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.getir', ino: '368801', is flagged as AS_FLAGS_SUS_PATH
+[   41.553342] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.556772] susfs:[0][8312][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.gamovation.mahjongclub', ino: '210670', is flagged as AS_FLAGS_SUS_PATH
+[   41.556775] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.559926] susfs:[0][8313][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.zhiliaoapp.musically', ino: '319101', is flagged as AS_FLAGS_SUS_PATH
+[   41.559929] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.565777] susfs:[0][8315][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.inomera.sm', ino: '213536', is flagged as AS_FLAGS_SUS_PATH
+[   41.565779] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.569262] susfs:[0][8316][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.finestandroid.piano', ino: '568582', is flagged as AS_FLAGS_SUS_PATH
+[   41.569265] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.576156] susfs:[0][8318][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.lcwaikiki.android', ino: '200072', is flagged as AS_FLAGS_SUS_PATH
+[   41.576158] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.583203] susfs:[0][8321][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.tadaoyamaoka.vocalpitchmonitor', ino: '686027', is flagged as AS_FLAGS_SUS_PATH
+[   41.583205] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.588174] susfs:[0][8322][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/io.github.sds100.keymapper', ino: '539822', is flagged as AS_FLAGS_SUS_PATH
+[   41.588177] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.599769] susfs:[0][8334][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.minar.birday', ino: '572038', is flagged as AS_FLAGS_SUS_PATH
+[   41.599772] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.611095] susfs:[0][8339][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.whatsapp.w4b', ino: '45967', is flagged as AS_FLAGS_SUS_PATH
+[   41.611097] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.617459] susfs:[0][8346][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.tranzmate', ino: '214081', is flagged as AS_FLAGS_SUS_PATH
+[   41.617461] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.629081] susfs:[0][8354][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.xiaomi.wearable', ino: '535983', is flagged as AS_FLAGS_SUS_PATH
+[   41.629084] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.635852] susfs:[0][8362][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/us.zoom.videomeetings', ino: '350260', is flagged as AS_FLAGS_SUS_PATH
+[   41.635855] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.639230] susfs:[0][8363][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.vitastudio.mahjong', ino: '345615', is flagged as AS_FLAGS_SUS_PATH
+[   41.639233] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.643433] susfs:[0][8364][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.google.android.apps.translate', ino: '748420', is flagged as AS_FLAGS_SUS_PATH
+[   41.643435] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.646646] susfs:[0][8365][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.desmos.calculator', ino: '426570', is flagged as AS_FLAGS_SUS_PATH
+[   41.646649] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.653408] susfs:[0][8367][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.kiloo.metroland', ino: '391320', is flagged as AS_FLAGS_SUS_PATH
+[   41.653411] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.663218] susfs:[0][8374][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.basarsoft.eczenemNerede', ino: '748075', is flagged as AS_FLAGS_SUS_PATH
+[   41.663220] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.670408] susfs:[0][8377][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.funnycat.virustotal', ino: '749576', is flagged as AS_FLAGS_SUS_PATH
+[   41.670410] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.674707] susfs:[0][8378][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.looker.droidify', ino: '699852', is flagged as AS_FLAGS_SUS_PATH
+[   41.674710] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.687074] susfs:[0][8388][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.limasky.doodlejump2', ino: '537940', is flagged as AS_FLAGS_SUS_PATH
+[   41.687077] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.693318] susfs:[0][8393][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/flar2.devcheck', ino: '498097', is flagged as AS_FLAGS_SUS_PATH
+[   41.693321] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.697078] susfs:[0][8399][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.ahmed.security_tester', ino: '361010', is flagged as AS_FLAGS_SUS_PATH
+[   41.697081] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.718144] susfs:[0][8417][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/myluaapp.rootc', ino: '869356', is flagged as AS_FLAGS_SUS_PATH
+[   41.718147] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.732924] susfs:[0][8425][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/org.codeaurora.snapcam', ino: '194339', is flagged as AS_FLAGS_SUS_PATH
+[   41.732927] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.754366] susfs:[0][8431][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/org.woheller69.arity', ino: '374157', is flagged as AS_FLAGS_SUS_PATH
+[   41.754368] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.757759] susfs:[0][8433][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.limelight', ino: '750751', is flagged as AS_FLAGS_SUS_PATH
+[   41.757761] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.767223] susfs:[0][8437][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.tplink.tether', ino: '821972', is flagged as AS_FLAGS_SUS_PATH
+[   41.767226] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.770738] susfs:[0][8439][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/tr.gov.tcdd.tasimacilik', ino: '344482', is flagged as AS_FLAGS_SUS_PATH
+[   41.770740] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.774228] susfs:[0][8441][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.lb.contacts_sync', ino: '240677', is flagged as AS_FLAGS_SUS_PATH
+[   41.774231] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.777599] susfs:[0][8442][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.sahibinden', ino: '472339', is flagged as AS_FLAGS_SUS_PATH
+[   41.777601] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.788211] susfs:[0][8447][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.maxgames.aow2', ino: '53105', is flagged as AS_FLAGS_SUS_PATH
+[   41.788213] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.795742] susfs:[0][8454][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.dotgears.swingcopters2', ino: '367064', is flagged as AS_FLAGS_SUS_PATH
+[   41.795746] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.796400] type=1400 audit(1770669457.033:608): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   41.801257] susfs:[0][8455][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.opera.browser', ino: '366401', is flagged as AS_FLAGS_SUS_PATH
+[   41.801261] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.808813] susfs:[0][8466][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/uz.unnarsx.cherrygram', ino: '355943', is flagged as AS_FLAGS_SUS_PATH
+[   41.808817] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.812903] susfs:[0][8467][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.jndapp.nothing.widgets.pack', ino: '538781', is flagged as AS_FLAGS_SUS_PATH
+[   41.812907] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.817216] susfs:[0][8468][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.henrikherzig.playintegritychecker', ino: '750707', is flagged as AS_FLAGS_SUS_PATH
+[   41.817219] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.823672] susfs:[0][8471][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/net.alexbarry.calc_android', ino: '371914', is flagged as AS_FLAGS_SUS_PATH
+[   41.823678] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.827367] susfs:[0][8472][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.harmonicear', ino: '566306', is flagged as AS_FLAGS_SUS_PATH
+[   41.827369] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.833922] susfs:[0][8477][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.openai.chatgpt', ino: '377389', is flagged as AS_FLAGS_SUS_PATH
+[   41.833926] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.846033] susfs:[0][8484][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.android.chrome', ino: '798309', is flagged as AS_FLAGS_SUS_PATH
+[   41.846036] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.849712] susfs:[0][8486][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.google.android.apps.maps', ino: '212635', is flagged as AS_FLAGS_SUS_PATH
+[   41.849714] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.855955] susfs:[0][8488][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.bobek.metronome', ino: '686605', is flagged as AS_FLAGS_SUS_PATH
+[   41.855958] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.859813] susfs:[0][8489][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.dexprotector.detector.envchecks', ino: '60275', is flagged as AS_FLAGS_SUS_PATH
+[   41.859816] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.862930] susfs:[0][8491][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.muandheyo.bosonx', ino: '535891', is flagged as AS_FLAGS_SUS_PATH
+[   41.862932] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.866635] susfs:[0][8493][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.google.android.apps.chromecast.app', ino: '743767', is flagged as AS_FLAGS_SUS_PATH
+[   41.866639] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.869626] susfs:[0][8495][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.tompiktv.app', ino: '340765', is flagged as AS_FLAGS_SUS_PATH
+[   41.869629] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.873781] susfs:[0][8496][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.dolap.android', ino: '178203', is flagged as AS_FLAGS_SUS_PATH
+[   41.873784] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.886962] susfs:[0][8501][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.google.android.apps.docs', ino: '813504', is flagged as AS_FLAGS_SUS_PATH
+[   41.886964] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.891102] susfs:[0][8502][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.ianmaclarty.jellyjuggle', ino: '681059', is flagged as AS_FLAGS_SUS_PATH
+[   41.891105] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.894376] susfs:[0][8504][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.ction.playergames', ino: '686422', is flagged as AS_FLAGS_SUS_PATH
+[   41.894378] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.898228] susfs:[0][8505][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/org.localsend.localsend_app', ino: '758562', is flagged as AS_FLAGS_SUS_PATH
+[   41.898230] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.902117] susfs:[0][8506][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.pozitron.hepsiburada', ino: '467745', is flagged as AS_FLAGS_SUS_PATH
+[   41.902120] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.905674] susfs:[0][8509][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.obilet.androidside', ino: '401363', is flagged as AS_FLAGS_SUS_PATH
+[   41.905677] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.961490] susfs:[0][8528][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/dev.anilbeesetti.nextplayer', ino: '470715', is flagged as AS_FLAGS_SUS_PATH
+[   41.961493] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.964505] susfs:[0][8529][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/de.lhp.mee', ino: '686338', is flagged as AS_FLAGS_SUS_PATH
+[   41.964508] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.973297] susfs:[0][8533][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/paket.bolum2', ino: '365734', is flagged as AS_FLAGS_SUS_PATH
+[   41.973301] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.980101] susfs:[0][8539][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.kumobius.android.duet', ino: '377807', is flagged as AS_FLAGS_SUS_PATH
+[   41.980105] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.984000] susfs:[0][8542][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.belbim.istanbulkart', ino: '207655', is flagged as AS_FLAGS_SUS_PATH
+[   41.984002] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.987639] susfs:[0][8544][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/org.exbin.bined.editor.android', ino: '568591', is flagged as AS_FLAGS_SUS_PATH
+[   41.987642] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.990888] susfs:[0][8545][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.google.android.apps.subscriptions.red', ino: '566245', is flagged as AS_FLAGS_SUS_PATH
+[   41.990891] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   41.997961] susfs:[0][8548][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.kwasow.musekit', ino: '754599', is flagged as AS_FLAGS_SUS_PATH
+[   41.997964] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.001580] susfs:[0][8551][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.gmail.heagoo.apkeditor.pro', ino: '41328', is flagged as AS_FLAGS_SUS_PATH
+[   42.001583] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.011127] susfs:[0][8556][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/icu.nullptr.nativetest', ino: '430869', is flagged as AS_FLAGS_SUS_PATH
+[   42.011129] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.017298] susfs:[0][8557][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.gpiktv.app', ino: '186619', is flagged as AS_FLAGS_SUS_PATH
+[   42.017301] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.020496] susfs:[0][8558][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.ea.gp.fifaultimate', ino: '877257', is flagged as AS_FLAGS_SUS_PATH
+[   42.020498] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.023598] susfs:[0][8559][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/eightball.pool.live.eightballpool.billiards', ino: '685656', is flagged as AS_FLAGS_SUS_PATH
+[   42.023601] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.027150] susfs:[0][8560][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.bittle.colorpicker', ino: '469526', is flagged as AS_FLAGS_SUS_PATH
+[   42.027152] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.036043] susfs:[0][8569][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/wu.Zygisk.Detector', ino: '377771', is flagged as AS_FLAGS_SUS_PATH
+[   42.036046] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.042588] susfs:[0][8571][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/ai.qwenlm.chat.android', ino: '228785', is flagged as AS_FLAGS_SUS_PATH
+[   42.042591] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.049479] susfs:[0][8581][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.studio.duckdetector', ino: '800872', is flagged as AS_FLAGS_SUS_PATH
+[   42.049485] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.058664] susfs:[0][8584][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/gr.nikolasspyr.integritycheck', ino: '563635', is flagged as AS_FLAGS_SUS_PATH
+[   42.058667] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.061846] susfs:[0][8585][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.qcymall.googleearphonesetup', ino: '243557', is flagged as AS_FLAGS_SUS_PATH
+[   42.061849] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.071492] susfs:[0][8594][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.valvesoftware.android.steam.community', ino: '261803', is flagged as AS_FLAGS_SUS_PATH
+[   42.071495] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.152901] susfs:[0][8599][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.enparabank.retail', ino: '398146', is flagged as AS_FLAGS_SUS_PATH
+[   42.152904] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.158924] susfs:[0][8640][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/id.my.pjm.qbcd_okr_dvii', ino: '51767', is flagged as AS_FLAGS_SUS_PATH
+[   42.158926] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.180808] susfs:[0][8641][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.oasisfeng.island', ino: '230774', is flagged as AS_FLAGS_SUS_PATH
+[   42.180811] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.206301] susfs:[0][8647][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.bluecord', ino: '877420', is flagged as AS_FLAGS_SUS_PATH
+[   42.206304] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.241815] susfs:[0][8657][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/in.hridayan.ashell', ino: '56382', is flagged as AS_FLAGS_SUS_PATH
+[   42.241818] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.244993] susfs:[0][8672][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/zank.remote', ino: '747857', is flagged as AS_FLAGS_SUS_PATH
+[   42.244995] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.249121] susfs:[0][8673][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/paket.trsozluk', ino: '363919', is flagged as AS_FLAGS_SUS_PATH
+[   42.249124] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.252198] susfs:[0][8674][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/org.openobservatory.ooniprobe', ino: '527137', is flagged as AS_FLAGS_SUS_PATH
+[   42.252201] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.280637] susfs:[0][8676][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/eu.darken.sdmse', ino: '474566', is flagged as AS_FLAGS_SUS_PATH
+[   42.280641] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.349107] susfs:[0][8689][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/ru.uneqewgf.hsdimpbam', ino: '244353', is flagged as AS_FLAGS_SUS_PATH
+[   42.349110] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.374397] susfs:[0][8707][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/moe.shizuku.privileged.api', ino: '255710', is flagged as AS_FLAGS_SUS_PATH
+[   42.374399] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.390817] susfs:[0][8710][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/hesoft.T2S', ino: '755040', is flagged as AS_FLAGS_SUS_PATH
+[   42.390820] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.400595] susfs:[0][8715][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.alensw.PicFolder', ino: '492440', is flagged as AS_FLAGS_SUS_PATH
+[   42.400598] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.403292] susfs:[0][8718][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.google.android.apps.adm', ino: '469642', is flagged as AS_FLAGS_SUS_PATH
+[   42.403302] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   42.409044] susfs:[0][8721][susfs_add_sus_path] pathname: '/storage/emulated/0/Android/data/com.google.android.youtube', ino: '587003', is flagged as AS_FLAGS_SUS_PATH
+[   42.409046] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   43.168820] susfs:[0][8946][susfs_add_sus_path] pathname: '/system/etc/nikgapps_logs_archive', ino: '76316', is flagged as AS_FLAGS_SUS_PATH
+[   43.168827] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   43.225202] susfs:[0][8966][susfs_add_sus_path] pathname: '/system/etc/nikgapps_logs', ino: '76323', is flagged as AS_FLAGS_SUS_PATH
+[   43.225205] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   43.269645] susfs:[0][8974][susfs_add_sus_path] pathname: '/product/etc/sysconfig/NikGapps-google-staged-installer-whitelist.xml', ino: '77283', is flagged as AS_FLAGS_SUS_PATH
+[   43.269652] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   43.332230] susfs:[0][8976][susfs_add_sus_path] pathname: '/product/etc/sysconfig/NikGapps-preinstalled-packages-product-pixel-2017-and-newer.xml', ino: '77284', is flagged as AS_FLAGS_SUS_PATH
+[   43.332239] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   43.338335] susfs:[0][8990][susfs_add_sus_path] pathname: '/product/etc/sysconfig/NikGapps-google-install-constraints-package-allowlist.xml', ino: '77289', is flagged as AS_FLAGS_SUS_PATH
+[   43.338339] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   43.341775] susfs:[0][8992][susfs_add_sus_path] pathname: '/product/etc/sysconfig/NikGapps-google-hiddenapi-package-whitelist.xml', ino: '77286', is flagged as AS_FLAGS_SUS_PATH
+[   43.341778] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   43.344565] susfs:[0][8994][susfs_add_sus_path] pathname: '/product/etc/permissions/NikGapps-privapp-permissions-google.xml', ino: '38643', is flagged as AS_FLAGS_SUS_PATH
+[   43.344568] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   43.348487] susfs:[0][8995][susfs_add_sus_path] pathname: '/product/etc/permissions/NikGapps-privapp-permissions-google-se.xml', ino: '38646', is flagged as AS_FLAGS_SUS_PATH
+[   43.348490] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   43.359007] susfs:[0][8996][susfs_add_sus_path] pathname: '/product/etc/permissions/NikGapps-privapp-permissions-google-p.xml', ino: '38645', is flagged as AS_FLAGS_SUS_PATH
+[   43.359011] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   43.380605] susfs:[0][9002][susfs_add_sus_path] pathname: '/product/etc/permissions/NikGapps-split-permissions-google.xml', ino: '38644', is flagged as AS_FLAGS_SUS_PATH
+[   43.380608] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   43.401723] susfs:[0][9004][susfs_add_sus_path] pathname: '/product/etc/default-permissions/default-permissions-nikgapps.xml', ino: '54097', is flagged as AS_FLAGS_SUS_PATH
+[   43.401726] KernelSU: susfs: CMD_SUSFS_ADD_SUS_PATH
+[   43.490492] susfs:[0][9019][susfs_set_cmdline_or_bootconfig] fake_cmdline_or_bootconfig is set, length of string: 1893
+[   43.490501] KernelSU: susfs: CMD_SUSFS_SET_CMDLINE_OR_BOOTCONFIG
+[   45.828339] type=1400 audit(1770669461.065:615): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   47.844321] type=1400 audit(1770669463.081:619): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   51.874791] type=1400 audit(1770669467.113:665): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   53.888592] type=1400 audit(1770669469.129:668): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   57.920608] type=1400 audit(1770669473.161:675): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   58.770332] susfs:[0][11200][susfs_set_i_state_on_external_dir] Set sdcard root dir: '/sdcard'
+[   58.770338] KernelSU: susfs: CMD_SUSFS_SET_SDCARD_ROOT_PATH
+[   58.810200] susfs:[0][11204][susfs_set_i_state_on_external_dir] Set android data root dir: '/sdcard/Android/data'
+[   58.810208] KernelSU: susfs: CMD_SUSFS_SET_ANDROID_DATA_ROOT_PATH
+[   58.974625] KernelSU: susfs: CMD_SUSFS_ADD_SUS_MOUNT -> deprecated, no-op
+[   59.024338] KernelSU: susfs: CMD_SUSFS_ADD_SUS_MOUNT -> deprecated, no-op
+[   59.085898] KernelSU: susfs: CMD_SUSFS_ADD_SUS_MOUNT -> deprecated, no-op
+[   59.122893] KernelSU: susfs: CMD_SUSFS_ADD_SUS_MOUNT -> deprecated, no-op
+[   59.189846] KernelSU: susfs: CMD_SUSFS_ADD_SUS_MOUNT -> deprecated, no-op
+[   59.353041] KernelSU: susfs: CMD_SUSFS_ADD_SUS_MOUNT -> deprecated, no-op
+[   59.408087] KernelSU: susfs: CMD_SUSFS_ADD_SUS_MOUNT -> deprecated, no-op
+[   59.497888] KernelSU: susfs: CMD_SUSFS_ADD_SUS_MOUNT -> deprecated, no-op
+[   59.584398] KernelSU: susfs: CMD_SUSFS_ADD_SUS_MOUNT -> deprecated, no-op
+[   59.940410] type=1400 audit(1770669475.177:681): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   63.970680] type=1400 audit(1770669479.209:714): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   65.988646] type=1400 audit(1770669481.229:719): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   70.016685] type=1400 audit(1770669485.257:723): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   72.033130] type=1400 audit(1770669487.273:725): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   74.054413] type=1400 audit(1770669489.293:727): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   76.065497] type=1400 audit(1770669491.305:729): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   78.080476] type=1400 audit(1770669493.321:731): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   82.113220] type=1400 audit(1770669497.353:743): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   88.160613] type=1400 audit(1770669503.401:764): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   90.179212] type=1400 audit(1770669505.417:766): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[   96.465209] KernelSU: susfs: CMD_SUSFS_SHOW_ENABLED_FEATURES
+[  102.275705] type=1400 audit(1770669517.513:1293): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[  106.313547] type=1400 audit(1770669521.545:1297): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+[  107.891685] susfs:[0][15363][susfs_set_avc_log_spoofing] enabled: 1
+[  107.891688] KernelSU: susfs: CMD_SUSFS_ENABLE_AVC_LOG_SPOOFING
+[  112.352839] type=1400 audit(1770669527.593:1324): avc:  denied  { search } for  comm="susfs_sdcard_mo" name="/" dev="dm-2" ino=2 scontext=u:object_r:unlabeled:s0 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
