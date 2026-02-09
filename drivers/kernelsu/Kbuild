@@ -32,6 +32,7 @@ $(info -- KernelSU-Next version: $(KSU_VERSION))
 $(info -- KernelSU-Next tag: $(KSU_VERSION_TAG))
 ccflags-y += -DKSU_VERSION=$(KSU_VERSION)
 ccflags-y += -DKSU_VERSION_TAG=\"$(KSU_VERSION_TAG)\"
+ccflags-y += -DKSU_NEXT
 
 ifndef KSU_NEXT_MANAGER_SIZE
 KSU_NEXT_MANAGER_SIZE := 0x3e6
