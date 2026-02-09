@@ -132,8 +132,9 @@ int ksu_handle_setresuid(uid_t ruid, uid_t euid, uid_t suid){
     uid_t new_uid = ruid;
     uid_t old_uid = current_uid().val;
 
-    // We only interest in process spwaned by zygote
-    if (!susfs_is_sid_equal(current_cred(), susfs_zygote_sid)) {
+    // We only interest in process spawned by zygote
+    // Skip check if susfs_zygote_sid not yet initialized (0)
+    if (susfs_zygote_sid && !susfs_is_sid_equal(current_cred(), susfs_zygote_sid)) {
         return 0;
     }
 
