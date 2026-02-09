@@ -931,17 +931,10 @@ static struct kprobe reboot_kp = {
 	.pre_handler = reboot_handler_pre,
 };
 #else
-/* susfs v1.5.12 compatibility: extern declarations for variables */
-extern bool susfs_hide_sus_mnts_for_all_procs;
-#ifdef CONFIG_KSU_SUSFS_SUS_SU
-extern int susfs_sus_su_working_mode;
-extern bool susfs_is_sus_su_ready;
-#endif
-
 int ksu_handle_sys_reboot(int magic1, int magic2, unsigned int cmd, void __user **arg)
 {
 	unsigned long arg_val = (unsigned long)arg;
-	int susfs_cmd_err = 0;
+	void __user *user_info;
 
 	if (magic1 != KSU_INSTALL_MAGIC1) {
 		return -EINVAL;
@@ -949,142 +942,112 @@ int ksu_handle_sys_reboot(int magic1, int magic2, unsigned int cmd, void __user 
 
 	// If magic2 is susfs and current process is root
 	if (magic2 == SUSFS_MAGIC && current_uid().val == 0) {
+		user_info = (void __user *)arg_val;
 #ifdef CONFIG_KSU_SUSFS_SUS_PATH
 		if (cmd == CMD_SUSFS_ADD_SUS_PATH) {
-			susfs_cmd_err = susfs_add_sus_path((struct st_susfs_sus_path __user *)arg_val);
-			pr_info("susfs: CMD_SUSFS_ADD_SUS_PATH -> ret: %d\n", susfs_cmd_err);
+			susfs_add_sus_path(&user_info);
+			pr_info("susfs: CMD_SUSFS_ADD_SUS_PATH\n");
 			return 0;
 		}
 		if (cmd == CMD_SUSFS_ADD_SUS_PATH_LOOP) {
-			susfs_cmd_err = susfs_add_sus_path_loop((struct st_susfs_sus_path __user *)arg_val);
-			pr_info("susfs: CMD_SUSFS_ADD_SUS_PATH_LOOP -> ret: %d\n", susfs_cmd_err);
+			susfs_add_sus_path_loop(&user_info);
+			pr_info("susfs: CMD_SUSFS_ADD_SUS_PATH_LOOP\n");
 			return 0;
 		}
-		if (cmd == CMD_SUSFS_SET_ANDROID_DATA_ROOT_PATH) {
-			susfs_cmd_err = susfs_set_i_state_on_external_dir((char __user *)arg_val, CMD_SUSFS_SET_ANDROID_DATA_ROOT_PATH);
-			pr_info("susfs: CMD_SUSFS_SET_ANDROID_DATA_ROOT_PATH -> ret: %d\n", susfs_cmd_err);
-			return 0;
-		}
-		if (cmd == CMD_SUSFS_SET_SDCARD_ROOT_PATH) {
-			susfs_cmd_err = susfs_set_i_state_on_external_dir((char __user *)arg_val, CMD_SUSFS_SET_SDCARD_ROOT_PATH);
-			pr_info("susfs: CMD_SUSFS_SET_SDCARD_ROOT_PATH -> ret: %d\n", susfs_cmd_err);
+		if (cmd == CMD_SUSFS_SET_ANDROID_DATA_ROOT_PATH ||
+		    cmd == CMD_SUSFS_SET_SDCARD_ROOT_PATH) {
+			susfs_set_i_state_on_external_dir(&user_info);
+			pr_info("susfs: CMD_SUSFS_SET_%s_ROOT_PATH\n",
+				cmd == CMD_SUSFS_SET_ANDROID_DATA_ROOT_PATH ? "ANDROID_DATA" : "SDCARD");
 			return 0;
 		}
 #endif //#ifdef CONFIG_KSU_SUSFS_SUS_PATH
 #ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
 		if (cmd == CMD_SUSFS_ADD_SUS_MOUNT) {
-			susfs_cmd_err = susfs_add_sus_mount((struct st_susfs_sus_mount __user *)arg_val);
-			pr_info("susfs: CMD_SUSFS_ADD_SUS_MOUNT -> ret: %d\n", susfs_cmd_err);
+			/* deprecated in v2.0.0, no-op */
+			pr_info("susfs: CMD_SUSFS_ADD_SUS_MOUNT -> deprecated, no-op\n");
 			return 0;
 		}
 		if (cmd == CMD_SUSFS_HIDE_SUS_MNTS_FOR_NON_SU_PROCS) {
-			if (arg_val > 1) {
-				pr_err("susfs: CMD_SUSFS_HIDE_SUS_MNTS -> arg can only be 0 or 1\n");
-				return 0;
-			}
-			susfs_hide_sus_mnts_for_all_procs = (bool)arg_val;
-			pr_info("susfs: CMD_SUSFS_HIDE_SUS_MNTS -> susfs_hide_sus_mnts_for_all_procs: %d\n", (int)arg_val);
+			susfs_set_hide_sus_mnts_for_non_su_procs(&user_info);
+			pr_info("susfs: CMD_SUSFS_HIDE_SUS_MNTS_FOR_NON_SU_PROCS\n");
 			return 0;
 		}
 #endif //#ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
 #ifdef CONFIG_KSU_SUSFS_SUS_KSTAT
-		if (cmd == CMD_SUSFS_ADD_SUS_KSTAT) {
-			susfs_cmd_err = susfs_add_sus_kstat((struct st_susfs_sus_kstat __user *)arg_val);
-			pr_info("susfs: CMD_SUSFS_ADD_SUS_KSTAT -> ret: %d\n", susfs_cmd_err);
+		if (cmd == CMD_SUSFS_ADD_SUS_KSTAT || cmd == CMD_SUSFS_ADD_SUS_KSTAT_STATICALLY) {
+			susfs_add_sus_kstat(&user_info);
+			pr_info("susfs: CMD_SUSFS_ADD_SUS_KSTAT\n");
 			return 0;
 		}
 		if (cmd == CMD_SUSFS_UPDATE_SUS_KSTAT) {
-			susfs_cmd_err = susfs_update_sus_kstat((struct st_susfs_sus_kstat __user *)arg_val);
-			pr_info("susfs: CMD_SUSFS_UPDATE_SUS_KSTAT -> ret: %d\n", susfs_cmd_err);
-			return 0;
-		}
-		if (cmd == CMD_SUSFS_ADD_SUS_KSTAT_STATICALLY) {
-			susfs_cmd_err = susfs_add_sus_kstat((struct st_susfs_sus_kstat __user *)arg_val);
-			pr_info("susfs: CMD_SUSFS_ADD_SUS_KSTAT_STATICALLY -> ret: %d\n", susfs_cmd_err);
+			susfs_update_sus_kstat(&user_info);
+			pr_info("susfs: CMD_SUSFS_UPDATE_SUS_KSTAT\n");
 			return 0;
 		}
 #endif //#ifdef CONFIG_KSU_SUSFS_SUS_KSTAT
-#ifdef CONFIG_KSU_SUSFS_TRY_UMOUNT
 		if (cmd == CMD_SUSFS_ADD_TRY_UMOUNT) {
-			susfs_cmd_err = susfs_add_try_umount((struct st_susfs_try_umount __user *)arg_val);
-			pr_info("susfs: CMD_SUSFS_ADD_TRY_UMOUNT -> ret: %d\n", susfs_cmd_err);
+			/* deprecated in v2.0.0, no-op */
+			pr_info("susfs: CMD_SUSFS_ADD_TRY_UMOUNT -> deprecated, no-op\n");
 			return 0;
 		}
-#endif //#ifdef CONFIG_KSU_SUSFS_TRY_UMOUNT
 #ifdef CONFIG_KSU_SUSFS_SPOOF_UNAME
 		if (cmd == CMD_SUSFS_SET_UNAME) {
-			susfs_cmd_err = susfs_set_uname((struct st_susfs_uname __user *)arg_val);
-			pr_info("susfs: CMD_SUSFS_SET_UNAME -> ret: %d\n", susfs_cmd_err);
+			susfs_set_uname(&user_info);
+			pr_info("susfs: CMD_SUSFS_SET_UNAME\n");
 			return 0;
 		}
 #endif //#ifdef CONFIG_KSU_SUSFS_SPOOF_UNAME
 #ifdef CONFIG_KSU_SUSFS_ENABLE_LOG
 		if (cmd == CMD_SUSFS_ENABLE_LOG) {
-			if (arg_val > 1) {
-				pr_err("susfs: CMD_SUSFS_ENABLE_LOG -> arg can only be 0 or 1\n");
-				return 0;
-			}
-			susfs_set_log((bool)arg_val);
+			susfs_enable_log(&user_info);
+			pr_info("susfs: CMD_SUSFS_ENABLE_LOG\n");
 			return 0;
 		}
 #endif //#ifdef CONFIG_KSU_SUSFS_ENABLE_LOG
 #ifdef CONFIG_KSU_SUSFS_SPOOF_CMDLINE_OR_BOOTCONFIG
 		if (cmd == CMD_SUSFS_SET_CMDLINE_OR_BOOTCONFIG) {
-			susfs_cmd_err = susfs_set_cmdline_or_bootconfig((char __user *)arg_val);
-			pr_info("susfs: CMD_SUSFS_SET_CMDLINE_OR_BOOTCONFIG -> ret: %d\n", susfs_cmd_err);
+			susfs_set_cmdline_or_bootconfig(&user_info);
+			pr_info("susfs: CMD_SUSFS_SET_CMDLINE_OR_BOOTCONFIG\n");
 			return 0;
 		}
 #endif //#ifdef CONFIG_KSU_SUSFS_SPOOF_CMDLINE_OR_BOOTCONFIG
 #ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT
 		if (cmd == CMD_SUSFS_ADD_OPEN_REDIRECT) {
-			susfs_cmd_err = susfs_add_open_redirect((struct st_susfs_open_redirect __user *)arg_val);
-			pr_info("susfs: CMD_SUSFS_ADD_OPEN_REDIRECT -> ret: %d\n", susfs_cmd_err);
+			susfs_add_open_redirect(&user_info);
+			pr_info("susfs: CMD_SUSFS_ADD_OPEN_REDIRECT\n");
 			return 0;
 		}
 #endif //#ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT
-#ifdef CONFIG_KSU_SUSFS_SUS_SU
-		if (cmd == CMD_SUSFS_SUS_SU) {
-			susfs_cmd_err = susfs_sus_su((struct st_sus_su __user *)arg_val);
-			pr_info("susfs: CMD_SUSFS_SUS_SU -> ret: %d\n", susfs_cmd_err);
+		if (cmd == CMD_SUSFS_SUS_SU || cmd == CMD_SUSFS_SHOW_SUS_SU_WORKING_MODE ||
+		    cmd == CMD_SUSFS_IS_SUS_SU_READY) {
+			/* deprecated in v2.0.0, no-op */
+			pr_info("susfs: CMD_SUSFS_SUS_SU -> deprecated, no-op\n");
 			return 0;
 		}
-		if (cmd == CMD_SUSFS_SHOW_SUS_SU_WORKING_MODE) {
-			int mode = susfs_get_sus_su_working_mode();
-			if (copy_to_user((void __user *)arg_val, &mode, sizeof(mode)))
-				pr_err("susfs: CMD_SUSFS_SHOW_SUS_SU_WORKING_MODE -> copy_to_user failed\n");
-			return 0;
-		}
-		if (cmd == CMD_SUSFS_IS_SUS_SU_READY) {
-			int ready = susfs_is_sus_su_ready ? 1 : 0;
-			if (copy_to_user((void __user *)arg_val, &ready, sizeof(ready)))
-				pr_err("susfs: CMD_SUSFS_IS_SUS_SU_READY -> copy_to_user failed\n");
-			return 0;
-		}
-#endif //#ifdef CONFIG_KSU_SUSFS_SUS_SU
 #ifdef CONFIG_KSU_SUSFS_SUS_MAP
 		if (cmd == CMD_SUSFS_ADD_SUS_MAP) {
-			susfs_cmd_err = susfs_add_sus_map((struct st_susfs_sus_map __user *)arg_val);
-			pr_info("susfs: CMD_SUSFS_ADD_SUS_MAP -> ret: %d\n", susfs_cmd_err);
+			susfs_add_sus_map(&user_info);
+			pr_info("susfs: CMD_SUSFS_ADD_SUS_MAP\n");
 			return 0;
 		}
 #endif // #ifdef CONFIG_KSU_SUSFS_SUS_MAP
 		if (cmd == CMD_SUSFS_ENABLE_AVC_LOG_SPOOFING) {
-			susfs_set_avc_log_spoofing((bool)arg_val);
+			susfs_set_avc_log_spoofing(&user_info);
+			pr_info("susfs: CMD_SUSFS_ENABLE_AVC_LOG_SPOOFING\n");
 			return 0;
 		}
 		if (cmd == CMD_SUSFS_SHOW_ENABLED_FEATURES) {
-			susfs_cmd_err = susfs_get_enabled_features((char __user *)arg_val, 4096);
-			pr_info("susfs: CMD_SUSFS_SHOW_ENABLED_FEATURES -> ret: %d\n", susfs_cmd_err);
+			susfs_get_enabled_features(&user_info);
+			pr_info("susfs: CMD_SUSFS_SHOW_ENABLED_FEATURES\n");
 			return 0;
 		}
 		if (cmd == CMD_SUSFS_SHOW_VARIANT) {
-			if (copy_to_user((void __user *)arg_val, SUSFS_VARIANT, strlen(SUSFS_VARIANT) + 1))
-				pr_err("susfs: CMD_SUSFS_SHOW_VARIANT -> copy_to_user failed\n");
+			susfs_show_variant(&user_info);
 			return 0;
 		}
 		if (cmd == CMD_SUSFS_SHOW_VERSION) {
-			if (copy_to_user((void __user *)arg_val, SUSFS_VERSION, strlen(SUSFS_VERSION) + 1))
-				pr_err("susfs: CMD_SUSFS_SHOW_VERSION -> copy_to_user failed\n");
+			susfs_show_version(&user_info);
 			return 0;
 		}
 		return 0;

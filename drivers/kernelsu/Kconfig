@@ -46,24 +46,6 @@ config KSU_SUSFS_SUS_MOUNT
 	  - Mounts mounted by process with ksu domain will be forced to be assigned the dev name "KSU".
 	  - mnt_id and mnt_group_id of the sus mount will be assigned to a much bigger number to solve the issue of id not being contiguous.
 
-config KSU_SUSFS_AUTO_ADD_SUS_KSU_DEFAULT_MOUNT
-	bool "Enable to hide KSU's default mounts automatically (experimental)"
-	depends on KSU_SUSFS_SUS_MOUNT
-	default y
-	help
-	  - Automatically add KSU's default mounts to sus_mount.
-	  - No susfs command is needed in userspace.
-	  - Only mount operation from process with ksu domain will be checked.
-
-config KSU_SUSFS_AUTO_ADD_SUS_BIND_MOUNT
-	bool "Enable to hide suspicious bind mounts automatically (experimental)"
-	depends on KSU_SUSFS_SUS_MOUNT
-	default y
-	help
-	  - Automatically add binded mounts to sus_mount.
-	  - No susfs command is needed in userspace.
-	  - Only mount operation from process with ksu domain will be checked.
-
 config KSU_SUSFS_SUS_KSTAT
 	bool "Enable to spoof suspicious kstat"
 	depends on KSU_SUSFS
@@ -71,23 +53,6 @@ config KSU_SUSFS_SUS_KSTAT
 	help
 	  - Allow spoofing the kstat of user-defined file/directory.
 	  - Effective only on zygote spawned user app process.
-
-config KSU_SUSFS_TRY_UMOUNT
-	bool "Enable to use ksu's try_umount"
-	depends on KSU_SUSFS
-	default y
-	help
-	  - Allow using try_umount to umount other user-defined mount paths prior to ksu's default umount paths.
-	  - Effective on all NO-root-access-granted processes.
-
-config KSU_SUSFS_AUTO_ADD_TRY_UMOUNT_FOR_BIND_MOUNT
-	bool "Enable to add bind mounts to ksu's try_umount automatically (experimental)"
-	depends on KSU_SUSFS_TRY_UMOUNT
-	default y
-	help
-	  - Automatically add binded mounts to ksu's try_umount.
-	  - No susfs command is needed in userspace.
-	  - Only mount operation from process with ksu domain will be checked.
 
 config KSU_SUSFS_SPOOF_UNAME
 	bool "Enable to spoof uname"
@@ -128,17 +93,6 @@ config KSU_SUSFS_OPEN_REDIRECT
 	  - Allow redirecting a target path to be opened with another user-defined path.
 	  - Effective only on processes with uid < 2000.
 	  - Please be reminded that process with open access to the target and redirected path can be detected.
-
-config KSU_SUSFS_SUS_SU
-	bool "Enable SUS-SU in runtime temporarily"
-	depends on KSU_SUSFS
-	default y
-	help
-	  - Allow user to enable or disable core ksu hooks temporarily in runtime. There are 2 working modes for sus_su.
-	  - Mode 0 (default): Disable sus_su, and enable ksu hooks for su instead.
-	  - Mode 2: Enable sus_su, and disable ksu hooks for su, which means the kernel inline hooks are enabled,
-	            the same as the su implementation of non-gki kernel without kprobe supported.
-	  - Only apps with root access granted by ksu manager are allowed to get root.
 
 config KSU_SUSFS_SUS_MAP
 	bool "Enable to hide some mmapped real file from different proc maps interfaces"

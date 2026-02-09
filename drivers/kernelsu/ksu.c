@@ -58,6 +58,7 @@ int __init kernelsu_init(void)
 
 #ifdef CONFIG_KSU_SUSFS
 	susfs_init();
+	susfs_start_sdcard_monitor_fn();
 #endif // #ifdef CONFIG_KSU_SUSFS
 
 #ifndef CONFIG_KSU_SUSFS
