@@ -1084,7 +1084,6 @@ static int susfs_sdcard_monitor_thread(void *data)
 	struct path media_path;
 	struct inode *media_inode;
 	int err;
-	int tries = 0;
 
 	/* Wait for /data/media/0 to become available.
 	 * Retry SELinux domain transition on each attempt because
@@ -1103,12 +1102,6 @@ static int susfs_sdcard_monitor_thread(void *data)
 		err = kern_path("/data/media/0", LOOKUP_FOLLOW, &media_path);
 		if (!err)
 			break;
-
-		/* Give up after 120s to avoid infinite AVC denial spam */
-		if (++tries > 60) {
-			pr_warn("susfs: sdcard monitor: giving up after %d attempts\n", tries);
-			return 0;
-		}
 
 		msleep(2000);
 	}
