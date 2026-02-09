@@ -22,6 +22,11 @@
 #include "ksu.h"
 #include "file_wrapper.h"
 
+#ifdef CONFIG_KSU_SUSFS
+extern void ksu_avc_spoof_init(void);
+extern void ksu_avc_spoof_exit(void);
+#endif
+
 struct cred *ksu_cred;
 
 int __init kernelsu_init(void)
@@ -50,6 +55,7 @@ int __init kernelsu_init(void)
 #else
 	ksu_setuid_hook_init();
 	ksu_sucompat_init();
+	ksu_avc_spoof_init();
 #endif // #ifndef CONFIG_KSU_SUSFS
 
 	ksu_allowlist_init();
@@ -88,6 +94,8 @@ void kernelsu_exit(void)
 	ksu_ksud_exit();
 
 	ksu_syscall_hook_manager_exit();
+#else
+	ksu_avc_spoof_exit();
 #endif // #ifndef CONFIG_KSU_SUSFS
 
 	ksu_supercalls_exit();
