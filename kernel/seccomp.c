@@ -596,6 +596,7 @@ void put_seccomp_filter(struct task_struct *tsk)
 {
 	__put_seccomp_filter(tsk->seccomp.filter);
 }
+EXPORT_SYMBOL_GPL(put_seccomp_filter);
 
 static void seccomp_init_siginfo(kernel_siginfo_t *info, int syscall, int reason)
 {
