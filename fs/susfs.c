@@ -1085,15 +1085,24 @@ static int susfs_sdcard_monitor_thread(void *data)
 	struct inode *media_inode;
 	int err;
 
-	/* Setup init SELinux domain for this kthread */
-	struct cred *cred = (struct cred *)__task_cred(current);
-	setup_selinux("u:r:init:s0", cred);
-
-	/* Wait for /data/media/0 to become available */
+	/* Wait for /data/media/0 to become available.
+	 * Retry SELinux domain transition on each attempt because
+	 * SELinux policy is not loaded yet at early boot when this
+	 * thread starts. Once policy is loaded, the transition to
+	 * init domain will succeed and kern_path will work. */
 	while (!kthread_should_stop()) {
+		{
+			struct cred *new_cred = prepare_creds();
+			if (new_cred) {
+				setup_selinux("u:r:init:s0", new_cred);
+				commit_creds(new_cred);
+			}
+		}
+
 		err = kern_path("/data/media/0", LOOKUP_FOLLOW, &media_path);
 		if (!err)
 			break;
+
 		msleep(2000);
 	}
 
