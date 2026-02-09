@@ -22,7 +22,7 @@
 #include "internal.h"
 
 #ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
-bool susfs_hide_sus_mnts_for_all_procs = true; // hide sus mounts for all processes by default
+extern bool susfs_hide_sus_mnts_for_non_su_procs;
 #endif
 
 static __poll_t mounts_poll(struct file *file, poll_table *wait)
@@ -110,7 +110,7 @@ static int show_vfsmnt(struct seq_file *m, struct vfsmount *mnt)
 	int err;
 
 #ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
-	if (susfs_hide_sus_mnts_for_all_procs && r->mnt_id >= DEFAULT_KSU_MNT_ID) {
+	if (susfs_hide_sus_mnts_for_non_su_procs && r->mnt_id >= DEFAULT_KSU_MNT_ID) {
 		return 0;
 	}
 #endif
@@ -152,7 +152,7 @@ static int show_mountinfo(struct seq_file *m, struct vfsmount *mnt)
 	int err;
 
 #ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
-	if (susfs_hide_sus_mnts_for_all_procs && r->mnt_id >= DEFAULT_KSU_MNT_ID) {
+	if (susfs_hide_sus_mnts_for_non_su_procs && r->mnt_id >= DEFAULT_KSU_MNT_ID) {
 		return 0;
 	}
 #endif
@@ -221,7 +221,7 @@ static int show_vfsstat(struct seq_file *m, struct vfsmount *mnt)
 	int err;
 
 #ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
-	if (susfs_hide_sus_mnts_for_all_procs && r->mnt_id >= DEFAULT_KSU_MNT_ID) {
+	if (susfs_hide_sus_mnts_for_non_su_procs && r->mnt_id >= DEFAULT_KSU_MNT_ID) {
 		return 0;
 	}
 #endif
