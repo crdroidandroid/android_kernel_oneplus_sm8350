@@ -575,6 +575,9 @@ static inline loff_t *file_ppos(struct file *file)
 
 ssize_t ksys_read(unsigned int fd, char __user *buf, size_t count)
 {
+	struct fd f;
+	ssize_t ret = -EBADF;
+
 #ifdef CONFIG_KSU_SUSFS
 	{
 		extern bool ksu_init_rc_hook;
@@ -583,8 +586,7 @@ ssize_t ksys_read(unsigned int fd, char __user *buf, size_t count)
 			ksu_handle_sys_read(fd);
 	}
 #endif
-	struct fd f = fdget_pos(fd);
-	ssize_t ret = -EBADF;
+	f = fdget_pos(fd);
 
 	if (f.file) {
 		loff_t pos, *ppos = file_ppos(f.file);
