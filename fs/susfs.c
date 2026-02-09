@@ -1087,7 +1087,7 @@ static int susfs_sdcard_monitor_thread(void *data)
 
 	/* Setup init SELinux domain for this kthread */
 	struct cred *cred = (struct cred *)__task_cred(current);
-	setup_selinux("init", cred);
+	setup_selinux("u:r:init:s0", cred);
 
 	/* Wait for /data/media/0 to become available */
 	while (!kthread_should_stop()) {
