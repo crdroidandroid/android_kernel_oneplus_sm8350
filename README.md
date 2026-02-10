@@ -2,8 +2,10 @@
 
 Custom kernel source for **OnePlus 9 Pro (lemonadep)** based on crDroid 12.7 (Android 16) with **KernelSU Next v3.0.1** and **SuSFS v2.0.0** integrated directly into the kernel source.
 
-> **AI-Assisted Development Notice**
-> The commits and modifications in this repository were made with the assistance of [Claude Code](https://claude.ai/code) (Anthropic's AI coding tool). If you experience AI-induced seizures, visual disturbances, or existential dread while browsing AI-generated kernel patches, please close this repository immediately and consult your physician. We are not responsible for any involuntary eye-twitching caused by reading inline hook implementations at 3 AM.
+# **"AI Aware" Development Notice:**
+⚠️ **Disclaimer**: This code has been *enhanced* with **Claude Code**. **I am not responsible** for any involuntary *eye twitching*, *mental black screens*, or *AI-induced existential dread* resulting from reviewing kernel patches in the early morning hours.
+
+**Please consult your physician** before executing `git pull`!
 
 ## Warning & Disclaimer
 
@@ -12,7 +14,6 @@ Custom kernel source for **OnePlus 9 Pro (lemonadep)** based on crDroid 12.7 (An
 - **Device brick risk**: Flashing custom kernels and ROMs can permanently brick your device. You are solely responsible for any damage to your device, data loss, voided warranties, or thermonuclear war.
 - **Prebuilt zip compatibility**: The prebuilt ROM+kernel zip available in [GitHub Releases](../../releases) is **ONLY** for **OnePlus 9 Pro (lemonadep)**. It is **NOT** compatible with OnePlus 9 (lemonade) or any other device. Flashing it on an incompatible device **will** brick it.
 - **Other SM8350 devices**: If you want to use this on another Snapdragon 888 (SM8350/Lahaina) device, you **must** compile from source with the correct defconfig and device tree for your specific device. Do not flash prebuilt binaries on unsupported hardware.
-- **GitHub Releases file size limit**: GitHub allows up to **2 GB per file** in Releases (upload via `gh release upload` or API; browser upload is limited to 25 MB).
 
 ## Problem
 
@@ -80,7 +81,7 @@ Instead of using kprobes (which can be detected), this kernel uses **8 inline ho
 
 ## Building from Source
 
-### crDroid 12 (Android 16) — OnePlus 9 Pro (lemonadep) Build Guide
+### crDroid 12.7 (Android 16) — OnePlus 9 Pro (lemonadep) Build Guide
 
 This kernel is built as part of the full crDroid ROM — there is no need to compile the kernel separately. The `brunch` build system handles everything automatically.
 
@@ -191,7 +192,7 @@ This project is a work in progress. It may contain bugs. If you encounter one, p
 
 ---
 
-# Original Android Common Kernel README
+# Original `Android Common Kernel README`
 
 # How do I submit patches to Android Common Kernels
 
