@@ -24,7 +24,7 @@ Stock crDroid kernel does not include the newest KernelSU Next or the newest roo
 
 ## Solution
 
-This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-Next) v3.0.1 and [SuSFS](https://gitlab.com/simonpunk/susfs4ksu) v2.0.0 directly into the kernel source tree, shipped as a single flashable crDroid 12.7 (Android 16) ROM zip. Instead of kprobes, root is implemented through **8 inline syscall hooks** hand-placed in kernel source files — making detection significantly harder. SuSFS hides all root artifacts (paths, mounts, maps, kernel symbols) while SELinux remains Enforcing and Play Integrity passes at DEVICE level.
+This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-Next) v3.0.1 and [SuSFS](https://gitlab.com/simonpunk/susfs4ksu) v2.0.0 directly into the kernel source tree, shipped as a single flashable crDroid 12.7 (Android 16) ROM zip. Instead of kprobes, root is implemented through **9 inline syscall hooks** hand-placed in kernel source files — making detection significantly harder. SuSFS hides all root artifacts (paths, mounts, maps, kernel symbols) while SELinux remains Enforcing and Play Integrity passes at DEVICE level.
 
 ## Installation
 
@@ -63,10 +63,18 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 | Logging Support | Enabled |
 | Hide KSU SuSFS Symbols | Enabled |
 | AVC Log Spoofing | Enabled |
+| ~~Try Umount Support~~ | Deprecated |
+| ~~Auto Default Mount~~ | Deprecated |
+| ~~Auto Bind Mount~~ | Deprecated |
+| ~~Auto Try Umount Bind~~ | Deprecated |
+| ~~Magic Mount Support~~ | Deprecated |
+| ~~OverlayFS Auto Kstat Support~~ | Deprecated |
+
+> **Note on deprecated features:** SuSFS v2.0.0 intentionally removed the legacy per-mount management features (try_umount, auto mounts, magic mount, overlayfs auto kstat). These have been replaced by a single unified **SUS Mount Support** mechanism (`hide_sus_mnts_for_non_su_procs`) that hides all suspicious mounts from non-root processes at once — simpler configuration, smaller attack surface, same result.
 
 ### Inline Syscall Hooks
 
-Instead of using kprobes (which can be detected), this kernel uses **8 inline hooks** placed directly in kernel source files:
+Instead of using kprobes (which can be detected), this kernel uses **9 inline hooks** placed directly in kernel source files:
 
 | File | Hook |
 |------|------|
@@ -77,6 +85,7 @@ Instead of using kprobes (which can be detected), this kernel uses **8 inline ho
 | `drivers/input/input.c` | input event handler |
 | `kernel/sys.c` | setresuid handler (manager fd injection) |
 | `kernel/reboot.c` | reboot handler (IOCTL communication) |
+| `kernel/seccomp.c` | seccomp bypass for reboot supercall |
 
 ## Building from Source
 
