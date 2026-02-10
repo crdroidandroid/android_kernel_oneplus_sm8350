@@ -167,7 +167,7 @@ After a successful build, the ROM zip will be at:
 ~/crDroid/out/target/product/lemonadep/crDroidAndroid-16.0-*-lemonadep-*.zip
 ```
 
-### Summary Flow
+#### Summary Flow
 
 ```
 repo sync → edit local_manifests to use your kernel fork → repo sync → brunch lemonadep
