@@ -5,8 +5,11 @@
 #include <linux/uaccess.h>
 #include <linux/filter.h>
 #include <linux/seccomp.h>
+#include <linux/uidgid.h>
+#include <asm/unistd.h>
 #include "klog.h" // IWYU pragma: keep
 #include "seccomp_cache.h"
+#include "manager.h"
 
 /*
  * Seccomp action cache (SECCOMP_ARCH_NATIVE_NR) was added in kernel 5.15+.
@@ -83,3 +86,29 @@ void ksu_seccomp_allow_cache(struct seccomp_filter *filter, int nr)
 }
 
 #endif /* SECCOMP_ARCH_NATIVE_NR */
+
+/*
+ * Seccomp bypass for __NR_reboot on kernel 5.4.
+ *
+ * KernelSU uses reboot(0xDEADBEEF, 0xCAFEBABE) as a supercall to install
+ * the anonymous inode fd. On kernel 5.15+, ksu_seccomp_allow_cache() modifies
+ * the seccomp bitmap to allow __NR_reboot. On kernel 5.4, the bitmap doesn't
+ * exist and the cache functions are no-ops, so Android's seccomp BPF filter
+ * kills the process with SIGSYS before the reboot handler can intercept it.
+ *
+ * This function is called from __seccomp_filter() in kernel/seccomp.c to
+ * allow __NR_reboot through for KSU Manager and root-granted processes.
+ */
+bool ksu_seccomp_check_reboot_syscall(int this_syscall)
+{
+	if (this_syscall != __NR_reboot)
+		return false;
+
+	if (current_uid().val == 0)
+		return true;
+
+	if (is_manager())
+		return true;
+
+	return ksu_is_allow_uid_for_current(current_uid().val);
+}

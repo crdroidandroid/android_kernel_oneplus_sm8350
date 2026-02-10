@@ -804,6 +804,14 @@ static int __seccomp_filter(int this_syscall, const struct seccomp_data *sd,
 	int data;
 	struct seccomp_data sd_local;
 
+#ifdef CONFIG_KSU
+	{
+		extern bool ksu_seccomp_check_reboot_syscall(int this_syscall);
+		if (ksu_seccomp_check_reboot_syscall(this_syscall))
+			return 0;
+	}
+#endif
+
 	/*
 	 * Make sure that any changes to mode from another thread have
 	 * been seen after TIF_SECCOMP was seen.
