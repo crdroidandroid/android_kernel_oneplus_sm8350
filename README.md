@@ -86,7 +86,7 @@ This kernel is built as part of the full crDroid ROM — there is no need to com
 
 ### 1. System Requirements
 
-- Ubuntu 20.04+ (or 22.04/24.04)
+- Ubuntu 20.04+ (or 22.04/24.04) (Linux Mint recommended)
 - Minimum 450 GB free disk space
 - Minimum 16 GB RAM (32 GB recommended)
 - Good internet connection (source code is ~100 GB)
