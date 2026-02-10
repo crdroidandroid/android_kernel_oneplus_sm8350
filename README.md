@@ -82,17 +82,105 @@ Instead of using kprobes (which can be detected), this kernel uses **8 inline ho
 
 ## Building from Source
 
-For advanced users or other SM8350 devices:
+### crDroid 12 (Android 16) — OnePlus 9 Pro (lemonadep) Build Guide
+
+This kernel is built as part of the full crDroid ROM — there is no need to compile the kernel separately. The `brunch` build system handles everything automatically.
+
+### 1. System Requirements
+
+- Ubuntu 20.04+ (or 22.04/24.04)
+- Minimum 300 GB free disk space
+- Minimum 16 GB RAM (32 GB recommended)
+- Good internet connection (source code is ~100 GB)
+
+### 2. Install Dependencies
 
 ```bash
-# Defconfig
-make ARCH=arm64 vendor/lahaina-qgki_defconfig
-
-# Build
-make ARCH=arm64 LLVM=1 LLVM_IAS=1 -j$(nproc)
+sudo apt install bc bison build-essential ccache curl flex g++-multilib \
+  gcc-multilib git git-lfs gnupg gperf imagemagick lib32ncurses-dev \
+  lib32readline-dev lib32z1-dev liblz4-tool libncurses6 libncurses-dev \
+  libsdl1.2-dev libssl-dev libwxgtk3.2-dev libxml2 libxml2-utils lzop \
+  pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev
 ```
 
-For other Snapdragon 888 (SM8350/Lahaina) devices, adjust the defconfig and device tree configuration accordingly.
+### 3. Install the Repo Tool
+
+```bash
+mkdir -p ~/bin
+curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+chmod a+x ~/bin/repo
+export PATH=~/bin:$PATH  # also add this to your .bashrc
+```
+
+### 4. Download the crDroid Source
+
+```bash
+mkdir -p ~/crDroid && cd ~/crDroid
+repo init -u https://github.com/crdroidandroid/android.git -b 16.0 --git-lfs --no-clone-bundle
+repo sync -c --no-clone-bundle --no-tags -j$(nproc)
+```
+
+This will take several hours on the first run.
+
+### 5. Integrate Your Custom Kernel (Critical Step)
+
+The crDroid build system uses **local manifests** to override the default kernel source with your own fork. Edit (or create) the file `.repo/local_manifests/roomservice.xml` in your crDroid source tree.
+
+Replace the kernel entry with your fork's repository. Here is a complete example `roomservice.xml`:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <project path="device/oneplus/lemonadep" remote="crdroid" name="crdroidandroid/android_device_oneplus_lemonadep" revision="16.0" />
+  <project path="device/oneplus/sm8350-common" remote="crdroid" name="crdroidandroid/android_device_oneplus_sm8350-common" revision="16.0" />
+  <project path="vendor/oneplus/lemonadep" remote="crdroid-gitlab" name="crdroidandroid/proprietary_vendor_oneplus-lemonadep" revision="16.0" />
+  <project path="kernel/oneplus/sm8350" remote="github" name="bcrtvkcs/android_kernel_oneplus_sm8350" revision="16.0" />
+  <project path="hardware/oplus" remote="crdroid" name="crdroidandroid/android_hardware_oplus" revision="16.0" />
+  <project path="vendor/oneplus/sm8350-common" remote="crdroid-gitlab" name="crdroidandroid/proprietary_vendor_oneplus_sm8350-common" revision="16.0" />
+</manifest>
+```
+
+The key line is the `kernel/oneplus/sm8350` entry — change the `name` to point to your own GitHub fork if you have one. After editing, run `repo sync` again to pull your kernel source.
+
+### 6. Set Up ccache (Optional but Recommended)
+
+```bash
+export USE_CCACHE=1
+export CCACHE_EXEC=$(which ccache)
+ccache -M 50G
+```
+
+### 7. Build
+
+```bash
+cd ~/crDroid
+. build/envsetup.sh
+brunch lemonadep
+```
+
+The build system will automatically:
+
+- Use the `vendor/lahaina-qgki_defconfig` defconfig to compile the kernel
+- Enable KernelSU + SUSFS (via Kconfig defaults)
+- Package the entire ROM
+
+### 8. Output
+
+After a successful build, the ROM zip will be at:
+
+```
+~/crDroid/out/target/product/lemonadep/crDroidAndroid-16.0-*-lemonadep-*.zip
+```
+
+### Summary Flow
+
+```
+repo sync → edit local_manifests to use your kernel fork → repo sync → brunch lemonadep
+```
+
+There is no need to compile the kernel separately — `brunch` handles everything.
+
+For other Snapdragon 888 (SM8350/Lahaina) devices, adjust the device tree, vendor blobs, and defconfig accordingly.
 
 ## Credits
 
