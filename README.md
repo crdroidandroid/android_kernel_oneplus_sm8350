@@ -19,13 +19,9 @@ Custom kernel source for **OnePlus 9 Pro (lemonadep)** based on crDroid 12.7 (An
 
 Stock crDroid kernel does not include kernel-level root access (KernelSU) or root hiding capabilities (SuSFS). Traditional Magisk-based root solutions are increasingly detectable by banking apps, Play Integrity checks (SafetyNet successor), and other tamper detection mechanisms. Users who need root for legitimate purposes (ad blocking, customization, call recording, etc.) are locked out of these apps.
 
-## Motivation
+## Solution
 
-Integrate [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-Next) v3.0.1 with [SuSFS](https://gitlab.com/simonpunk/susfs4ksu) v2.0.0 directly into the kernel source tree. By using **inline (manual) syscall hooks** instead of kprobes, the root implementation becomes significantly harder to detect. SuSFS provides comprehensive hiding of root artifacts: suspicious paths, mount points, maps, kernel symbols, and more.
-
-## Result
-
-A fully working crDroid 12.7 (Android 16) ROM + kernel with KernelSU Next + SuSFS baked in. Single zip flash, SELinux stays Enforcing, Play Integrity passes at DEVICE level. All SuSFS hiding features operational.
+This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-Next) v3.0.1 and [SuSFS](https://gitlab.com/simonpunk/susfs4ksu) v2.0.0 directly into the kernel source tree, shipped as a single flashable crDroid 12.7 (Android 16) ROM zip. Instead of kprobes, root is implemented through **8 inline syscall hooks** hand-placed in kernel source files — making detection significantly harder. SuSFS hides all root artifacts (paths, mounts, maps, kernel symbols) while SELinux remains Enforcing and Play Integrity passes at DEVICE level.
 
 ## Features
 
