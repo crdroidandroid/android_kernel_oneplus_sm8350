@@ -3,7 +3,7 @@
 Custom kernel source for **OnePlus 9 Pro (lemonadep)** based on crDroid 12.7 (Android 16) with **KernelSU Next v3.0.1** and **SuSFS v2.0.0** integrated directly into the kernel source.
 
 # **"AI Aware" Development Notice:**
-⚠️ **Disclaimer**: This code has been *enhanced* with **Claude Code**. **I am not responsible** for any involuntary *eye twitching*, *mental black screens*, or *AI-induced existential dread* resulting from reviewing kernel patches in the early morning hours.
+⚠️ **Disclaimer**: This code has been *enhanced* with **Claude Code**. **I am not responsible** for any involuntary *eye twitching*, *mental blackouts*, or *AI-induced existential dread* resulting from reviewing kernel patches patches at any hour of the day.
 
 **Please consult your physician** before executing `git pull`!
 
@@ -12,16 +12,26 @@ Custom kernel source for **OnePlus 9 Pro (lemonadep)** based on crDroid 12.7 (An
 **NO WARRANTY.** This software is provided "as-is" without any warranty of any kind, express or implied. Use at your own risk.
 
 - **Device brick risk**: Flashing custom kernels and ROMs can permanently brick your device. You are solely responsible for any damage to your device, data loss, voided warranties, or thermonuclear war.
-- **Prebuilt zip compatibility**: The prebuilt ROM+kernel zip available in [GitHub Releases](../../releases) is **ONLY** for **OnePlus 9 Pro (lemonadep)**. It is **NOT** compatible with OnePlus 9 (lemonade) or any other device. Flashing it on an incompatible device **will** brick it.
+- **Prebuilt zip compatibility**: The prebuilt ROM+kernel zip available in the [releases](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/releases) section is **ONLY** for **OnePlus 9 Pro (lemonadep)**. It is **NOT** compatible with OnePlus 9 (lemonade) or any other device. Flashing it on an incompatible device **will** brick it.
 - **Other SM8350 devices**: If you want to use this on another Snapdragon 888 (SM8350/Lahaina) device, you **must** compile from source with the correct defconfig and device tree for your specific device. Do not flash prebuilt binaries on unsupported hardware.
 
 ## Problem
 
-Stock crDroid kernel does not include kernel-level root access (KernelSU) or root hiding capabilities (SuSFS). Traditional Magisk-based root solutions are increasingly detectable by banking apps, Play Integrity checks (SafetyNet successor), and other tamper detection mechanisms. Users who need root for legitimate purposes (ad blocking, customization, call recording, etc.) are locked out of these apps.
+Stock crDroid kernel does not include the newest KernelSU Next or the newest root hiding capabilities (SuSFS). Traditional root solutions are increasingly detectable by banking apps, Play Integrity API checks (SafetyNet successor), and other tamper detection mechanisms. Users who need root for legitimate purposes (ad blocking, customization, call recording, etc.) are locked out of these apps.
 
 ## Solution
 
 This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-Next) v3.0.1 and [SuSFS](https://gitlab.com/simonpunk/susfs4ksu) v2.0.0 directly into the kernel source tree, shipped as a single flashable crDroid 12.7 (Android 16) ROM zip. Instead of kprobes, root is implemented through **8 inline syscall hooks** hand-placed in kernel source files — making detection significantly harder. SuSFS hides all root artifacts (paths, mounts, maps, kernel symbols) while SELinux remains Enforcing and Play Integrity passes at DEVICE level.
+
+## Installation
+
+> The prebuilt zip in Releases contains the full crDroid 12.7 ROM + this custom kernel. The installation process is identical to a standard crDroid installation.
+
+1. Follow the official [crDroid installation guide for OnePlus 9 Pro](https://crdroid.net/lemonadep/12/install).
+2. At the **zip flashing step**, flash the zip you downloaded from this repository's [releases](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/releases) *instead of the stock crDroid zip*.
+3. After booting, install [KernelSU Next manager v3.0.1](https://github.com/KernelSU-Next/KernelSU-Next/releases) on your device.
+4. (Optional) Open KernelSU Next manager and install the a meta-module for Magick Mount module management alongside OverlayFS. *[Hybrid Mount](https://github.com/Hybrid-Mount/meta-hybrid_mount) recommended.*
+5. Install the [SuSFS module](https://github.com/sidex15/susfs4ksu-module) by susfs4ksu from within the manager to control SuSFS features.
 
 ## Features
 
@@ -65,16 +75,6 @@ Instead of using kprobes (which can be detected), this kernel uses **8 inline ho
 | `kernel/sys.c` | setresuid handler (manager fd injection) |
 | `kernel/reboot.c` | reboot handler (IOCTL communication) |
 
-## Installation
-
-> The prebuilt zip in Releases contains the full crDroid 12.7 ROM + this custom kernel. The installation process is identical to a standard crDroid installation.
-
-1. Follow the official crDroid installation guide for OnePlus 9 Pro: https://crdroid.net/lemonadep/12/install
-2. At the **zip flashing step**, flash the zip you downloaded from this repository's [GitHub Releases](../../releases) instead of the stock crDroid zip.
-3. After booting, install **KernelSU Next Manager v3.0.1** on your device.
-4. Open KernelSU Next Manager and install the **Hybrid Mount** meta-module for module management (recommended).
-5. Install the **SuSFS module** (susfs4ksu) from within the manager to control SuSFS features.
-
 ## Building from Source
 
 ### crDroid 12.7 (Android 16) — OnePlus 9 Pro (lemonadep) Build Guide
@@ -84,7 +84,7 @@ This kernel is built as part of the full crDroid ROM — there is no need to com
 ### 1. System Requirements
 
 - Ubuntu 20.04+ (or 22.04/24.04)
-- Minimum 300 GB free disk space
+- Minimum 450 GB free disk space
 - Minimum 16 GB RAM (32 GB recommended)
 - Good internet connection (source code is ~100 GB)
 
@@ -177,7 +177,7 @@ There is no need to compile the kernel separately — `brunch` handles everythin
 
 For other Snapdragon 888 (SM8350/Lahaina) devices, adjust the device tree, vendor blobs, and defconfig accordingly.
 
-This project is a work in progress. It may contain bugs. If you encounter one, please open an issue or submit a feature request.
+This project is a work in progress. It may contain bugs. If you encounter one, please [open an issue](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/issues) or submit a feature request.
 
 ## Credits
 
