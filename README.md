@@ -11,8 +11,8 @@ Custom kernel source for **OnePlus 9 Pro (lemonadep)** and **OnePlus 9 (lemonade
 
 > **NO WARRANTY.** This software is provided "as-is" without any warranty of any kind, express or implied. Use at your own risk. You've been **WARNED!!!**
 > - **Device brick risk**: Flashing custom kernels and ROMs can permanently brick your device. You are solely responsible for any damage to your device, data loss, voided warranties, or thermonuclear war.
-> - **Prebuilt zip compatibility**: The prebuilt ROM+kernel zip available in the [releases](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/releases) section is **ONLY** for **OnePlus 9 Pro (lemonadep)**. It is **NOT** directly compatible with OnePlus 9 (lemonade) or any other device. Flashing it on an incompatible device **will** brick it.
-> - **OnePlus 9 (lemonade) and other SM8350 devices**: For the standard OnePlus 9 (lemonade), manual configuration is required that specified in the [building from source](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350?tab=readme-ov-file#building-from-source) section; you must compile from source with the correct roomservice.xml file. Do not flash prebuilt binaries on unsupported hardware.
+> - **Prebuilt zip compatibility**: The prebuilt ROM+kernel zip available in the [releases](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/releases) section is **ONLY** for **OnePlus 9 Pro (lemonadep)**. It's **NOT** directly compatible with OnePlus 9 (lemonade). Flashing it on an incompatible device **will** brick it.
+> - **For the standard OnePlus 9 (lemonade)**; manual configuration is required that specified in the [building from source](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350?tab=readme-ov-file#building-from-source) section; you must compile from source with the correct roomservice.xml file. Do not flash prebuilt binaries on an unsupported hardware.
 
 ### This repository is **NOT** compatible to build for any other Snapdragon 888 (SM8350/Lahaina) devices.
 
