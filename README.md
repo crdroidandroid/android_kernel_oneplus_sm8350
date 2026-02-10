@@ -1,6 +1,6 @@
-# crDroid 12 + KernelSU Next + SUSFS for OnePlus 9 Pro
+# crDroid 12.7 + KernelSU Next v3.0.1 + SuSFS v2.0.0 for OnePlus 9 Pro (lemonadep)
 
-Custom kernel source for **OnePlus 9 Pro (lemonadep)** based on crDroid 12 (Android 16) with **KernelSU Next v3.0.1** and **SUSFS v2.0.0** integrated directly into the kernel source.
+Custom kernel source for **OnePlus 9 Pro (lemonadep)** based on crDroid 12.7 (Android 16) with **KernelSU Next v3.0.1** and **SuSFS v2.0.0** integrated directly into the kernel source.
 
 > **AI-Assisted Development Notice**
 > The commits and modifications in this repository were made with the assistance of [Claude Code](https://claude.ai/code) (Anthropic's AI coding tool). If you experience AI-induced seizures, visual disturbances, or existential dread while browsing AI-generated kernel patches, please close this repository immediately and consult your physician. We are not responsible for any involuntary eye-twitching caused by reading inline hook implementations at 3 AM.
@@ -14,34 +14,32 @@ Custom kernel source for **OnePlus 9 Pro (lemonadep)** based on crDroid 12 (Andr
 - **Other SM8350 devices**: If you want to use this on another Snapdragon 888 (SM8350/Lahaina) device, you **must** compile from source with the correct defconfig and device tree for your specific device. Do not flash prebuilt binaries on unsupported hardware.
 - **GitHub Releases file size limit**: GitHub allows up to **2 GB per file** in Releases (upload via `gh release upload` or API; browser upload is limited to 25 MB).
 
-## Why This Fork Exists
+## Problem
 
-### Problem
+Stock crDroid kernel does not include kernel-level root access (KernelSU) or root hiding capabilities (SuSFS). Traditional Magisk-based root solutions are increasingly detectable by banking apps, Play Integrity checks (SafetyNet successor), and other tamper detection mechanisms. Users who need root for legitimate purposes (ad blocking, customization, call recording, etc.) are locked out of these apps.
 
-Stock crDroid kernel does not include kernel-level root access (KernelSU) or root hiding capabilities (SUSFS). Traditional Magisk-based root solutions are increasingly detectable by banking apps, Play Integrity checks (SafetyNet successor), and other tamper detection mechanisms. Users who need root for legitimate purposes (ad blocking, customization, call recording, etc.) are locked out of these apps.
+## Motivation
 
-### Motivation
+Integrate [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-Next) v3.0.1 with [SuSFS](https://gitlab.com/simonpunk/susfs4ksu) v2.0.0 directly into the kernel source tree. By using **inline (manual) syscall hooks** instead of kprobes, the root implementation becomes significantly harder to detect. SuSFS provides comprehensive hiding of root artifacts: suspicious paths, mount points, maps, kernel symbols, and more.
 
-Integrate [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-Next) v3.0.1 with [SUSFS](https://gitlab.com/simonpunk/susfs4ksu) v2.0.0 directly into the kernel source tree. By using **inline (manual) syscall hooks** instead of kprobes, the root implementation becomes significantly harder to detect. SUSFS provides comprehensive hiding of root artifacts: suspicious paths, mount points, maps, kernel symbols, and more.
+## Result
 
-### Result
-
-A fully working crDroid 12 (Android 16) ROM + kernel with KernelSU Next + SUSFS baked in. Single zip flash, SELinux stays Enforcing, Play Integrity passes at DEVICE level. All SUSFS hiding features operational.
+A fully working crDroid 12.7 (Android 16) ROM + kernel with KernelSU Next + SuSFS baked in. Single zip flash, SELinux stays Enforcing, Play Integrity passes at DEVICE level. All SuSFS hiding features operational.
 
 ## Features
 
 | Component | Details |
 |-----------|---------|
 | **Kernel** | 5.4.302 (aarch64) |
-| **ROM** | crDroid 12 (Android 16) |
+| **ROM** | crDroid 12.7 (Android 16) |
 | **Device** | OnePlus 9 Pro (lemonadep) |
 | **SoC** | Qualcomm Snapdragon 888 (SM8350 Lahaina) |
 | **KernelSU Next** | v3.0.1 (version code 32992) |
-| **SUSFS** | v2.0.0 |
+| **SuSFS** | v2.0.0 |
 | **SELinux** | Enforcing |
 | **Hook Mode** | GKI1 — Inline (manual) syscall hooks |
 
-### SUSFS v2.0.0 Kernel Features
+### SuSFS v2.0.0 Kernel Features
 
 | Feature | Status |
 |---------|--------|
@@ -53,7 +51,7 @@ A fully working crDroid 12 (Android 16) ROM + kernel with KernelSU Next + SUSFS 
 | Spoof Cmdline/Bootconfig | Enabled |
 | Open Redirect Support | Enabled |
 | Logging Support | Enabled |
-| Hide KSU SUSFS Symbols | Enabled |
+| Hide KSU SuSFS Symbols | Enabled |
 | AVC Log Spoofing | Enabled |
 
 ### Inline Syscall Hooks
@@ -72,13 +70,13 @@ Instead of using kprobes (which can be detected), this kernel uses **8 inline ho
 
 ## Installation
 
-> The prebuilt zip in Releases contains the full crDroid 12 ROM + this custom kernel. The installation process is identical to a standard crDroid installation.
+> The prebuilt zip in Releases contains the full crDroid 12.7 ROM + this custom kernel. The installation process is identical to a standard crDroid installation.
 
 1. Follow the official crDroid installation guide for OnePlus 9 Pro: https://crdroid.net/lemonadep/12/install
 2. At the **zip flashing step**, flash the zip you downloaded from this repository's [GitHub Releases](../../releases) instead of the stock crDroid zip.
 3. After booting, install **KernelSU Next Manager v3.0.1** on your device.
 4. Open KernelSU Next Manager and install the **Hybrid Mount** meta-module for module management (recommended).
-5. Install the **SUSFS module** (susfs4ksu) from within the manager to control SUSFS features.
+5. Install the **SuSFS module** (susfs4ksu) from within the manager to control SuSFS features.
 
 ## Building from Source
 
@@ -94,10 +92,12 @@ make ARCH=arm64 LLVM=1 LLVM_IAS=1 -j$(nproc)
 
 For other Snapdragon 888 (SM8350/Lahaina) devices, adjust the defconfig and device tree configuration accordingly.
 
+This project is a work in progress. It may contain bugs. If you encounter one, please open an issue or submit a feature request.
+
 ## Credits
 
 - [KernelSU-Next](https://github.com/KernelSU-Next/KernelSU-Next) — Kernel-based root solution
-- [SUSFS](https://gitlab.com/simonpunk/susfs4ksu) — Root hiding subsystem by simonpunk
+- [SuSFS](https://gitlab.com/simonpunk/susfs4ksu) — Root hiding subsystem by simonpunk
 - [crDroid](https://crdroid.net/) — Custom Android ROM
 - [Claude Code](https://claude.ai/code) — AI-assisted kernel integration
 
