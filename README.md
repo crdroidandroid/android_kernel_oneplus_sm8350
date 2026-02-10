@@ -2,7 +2,7 @@
 
 Custom kernel source for **OnePlus 9 Pro (lemonadep)** based on crDroid 12.7 (Android 16) with **KernelSU Next v3.0.1** and **SuSFS v2.0.0** integrated directly into the kernel source.
 
-# **"AI Aware" Development Notice:**
+# **AI Awareness Notice:**
 ⚠️ **Disclaimer**: This code has been *enhanced* with **Claude Code**. **I am not responsible** for any involuntary *eye twitching*, *mental blackouts*, or *AI-induced existential dread* resulting from reviewing kernel patches patches at any hour of the day.
 
 **Please consult your physician** before executing `git pull`!
