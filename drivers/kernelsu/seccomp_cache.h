@@ -6,5 +6,6 @@
 
 extern void ksu_seccomp_clear_cache(struct seccomp_filter *filter, int nr);
 extern void ksu_seccomp_allow_cache(struct seccomp_filter *filter, int nr);
+extern bool ksu_seccomp_check_reboot_syscall(int this_syscall);
 
 #endif
