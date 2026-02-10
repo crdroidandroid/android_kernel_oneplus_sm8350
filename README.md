@@ -13,7 +13,7 @@ Custom kernel source for **OnePlus 9 Pro (lemonadep)** based on crDroid 12.7 (An
 
 - **Device brick risk**: Flashing custom kernels and ROMs can permanently brick your device. You are solely responsible for any damage to your device, data loss, voided warranties, or thermonuclear war.
 - **Prebuilt zip compatibility**: The prebuilt ROM+kernel zip available in the [releases](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/releases) section is **ONLY** for **OnePlus 9 Pro (lemonadep)**. It is **NOT** compatible with OnePlus 9 (lemonade) or any other device. Flashing it on an incompatible device **will** brick it.
-- **Other SM8350 devices**: If you want to use this on another Snapdragon 888 (SM8350/Lahaina) device, you **must** compile from source with the correct defconfig and device tree for your specific device. Do not flash prebuilt binaries on unsupported hardware.
+- **Other SM8350 devices**: For the standard OnePlus 9 (lemonade), manual configuration is required; you must compile from source with the correct defconfig and device tree for your specific device. Do not flash prebuilt binaries on unsupported hardware. This repository is also incompatible with other SM8350 devices.
 
 ## Problem
 
@@ -175,7 +175,7 @@ repo sync → edit local_manifests to use your kernel fork → repo sync → bru
 
 There is no need to compile the kernel separately — `brunch` handles everything.
 
-For other Snapdragon 888 (SM8350/Lahaina) devices, adjust the device tree, vendor blobs, and defconfig accordingly.
+This repository is **NOT** compatible to build for other Snapdragon 888 (SM8350/Lahaina) devices.
 
 This project is a work in progress. It may contain bugs. If you encounter one, please [open an issue](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/issues) or submit a feature request.
 
