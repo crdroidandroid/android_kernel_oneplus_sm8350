@@ -1,0 +1,438 @@
+----part 1 start----
+[ 2026-02-10T21:03:20.798     1000:  2616:  2616 I/LSPosed-Bridge  ] DisableAltTab: AltTabHook success!
+[ 2026-02-10T21:03:20.799     1000:  2616:  2616 E/LSPosed-Bridge  ] XSmsCode: Failed to hook PermissionManagerService
+nMTQCL.x.vJoumq.yktDPO.XposedHelpers$ClassNotFoundError: java.lang.ClassNotFoundException: com$android$server$pm$permission$PermissionManagerServiceImpl
+	at nMTQCL.x.vJoumq.yktDPO.XposedHelpers.findClass(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:13)
+	at w3.g.c(Unknown Source:4)
+	at w3.g.d(Unknown Source:8)
+	at w3.g.e(Unknown Source:0)
+	at w3.b.d(Unknown Source:31)
+	at com.tianma.xsmscode.xp.HookEntry.handleLoadPackage(Unknown Source:24)
+	at nMTQCL.x.vJoumq.yktDPO.IXposedHookLoadPackage$Wrapper.handleLoadPackage(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:3)
+	at nMTQCL.x.vJoumq.yktDPO.callbacks.XC_LoadPackage.call(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:7)
+	at nMTQCL.x.vJoumq.yktDPO.callbacks.XCallback.callAll(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:27)
+	at f2.before(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:68)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at j0.callback(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:108)
+	at LSPHooker_.startBootstrapServices(LSP)
+	at com.android.server.SystemServer.run(SystemServer.java:1044)
+	at com.android.server.SystemServer.main(SystemServer.java:724)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:569)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:907)
+Caused by: java.lang.ClassNotFoundException: com$android$server$pm$permission$PermissionManagerServiceImpl
+	at r.a(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:66)
+	at nMTQCL.x.vJoumq.yktDPO.XposedHelpers.findClass(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:5)
+	... 17 more
+[ 2026-02-10T21:03:20.837     1000:  2616:  2616 I/LSPosed-Bridge  ] [XAudioCapture]: Hook Computer Engine!
+[ 2026-02-10T21:03:20.867     1000:  2616:  2616 E/LSPosed-Bridge  ] nMTQCL.x.vJoumq.yktDPO.XposedHelpers$ClassNotFoundError: java.lang.ClassNotFoundException: com$android$server$am$ProcessStateRecord
+	at nMTQCL.x.vJoumq.yktDPO.XposedHelpers.findClass(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:13)
+	at nMTQCL.x.vJoumq.yktDPO.XposedHelpers.findAndHookConstructor(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:8)
+	at ru.bluecat.android.xposed.mods.appsettings.hooks.Core.handleLoadPackage(Unknown Source:164)
+	at nMTQCL.x.vJoumq.yktDPO.IXposedHookLoadPackage$Wrapper.handleLoadPackage(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:3)
+	at nMTQCL.x.vJoumq.yktDPO.callbacks.XC_LoadPackage.call(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:7)
+	at nMTQCL.x.vJoumq.yktDPO.callbacks.XCallback.callAll(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:27)
+	at f2.before(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:68)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at j0.callback(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:108)
+	at LSPHooker_.startBootstrapServices(LSP)
+	at com.android.server.SystemServer.run(SystemServer.java:1044)
+	at com.android.server.SystemServer.main(SystemServer.java:724)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:569)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:907)
+Caused by: java.lang.ClassNotFoundException: com$android$server$am$ProcessStateRecord
+	at r.a(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:66)
+	at nMTQCL.x.vJoumq.yktDPO.XposedHelpers.findClass(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:5)
+	... 14 more
+[ 2026-02-10T21:03:20.872     1000:  2616:  2616 E/LSPosed-Bridge  ] java.lang.NoSuchMethodError: com.android.server.notification.NotificationManagerService#enqueueNotificationInternal(java.lang.String,java.lang.String,int,int,java.lang.String,int,android.app.Notification,int)#exact
+	at nMTQCL.x.vJoumq.yktDPO.XposedHelpers.lambda$findMethodExact$3(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:7)
+	at nMTQCL.x.vJoumq.yktDPO.XposedHelpers.e(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:1)
+	at nMTQCL.x.vJoumq.yktDPO.c.get(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:8)
+	at java.util.Optional.orElseThrow(Optional.java:403)
+	at nMTQCL.x.vJoumq.yktDPO.XposedHelpers.findMethodExact(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:5)
+	at nMTQCL.x.vJoumq.yktDPO.XposedHelpers.findAndHookMethod(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:3)
+	at nMTQCL.x.vJoumq.yktDPO.XposedHelpers.findAndHookMethod(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:8)
+	at ru.bluecat.android.xposed.mods.appsettings.hooks.Core.handleLoadPackage(Unknown Source:293)
+	at nMTQCL.x.vJoumq.yktDPO.IXposedHookLoadPackage$Wrapper.handleLoadPackage(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:3)
+	at nMTQCL.x.vJoumq.yktDPO.callbacks.XC_LoadPackage.call(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:7)
+	at nMTQCL.x.vJoumq.yktDPO.callbacks.XCallback.callAll(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:27)
+	at f2.before(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:68)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at j0.callback(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:108)
+	at LSPHooker_.startBootstrapServices(LSP)
+	at com.android.server.SystemServer.run(SystemServer.java:1044)
+	at com.android.server.SystemServer.main(SystemServer.java:724)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:569)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:907)
+[ 2026-02-10T21:03:20.873     1000:  2616:  2616 E/LSPosed-Bridge  ] nMTQCL.x.vJoumq.yktDPO.XposedHelpers$ClassNotFoundError: java.lang.ClassNotFoundException: com$android$server$pm$permission$PermissionManagerServiceImpl
+	at nMTQCL.x.vJoumq.yktDPO.XposedHelpers.findClass(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:13)
+	at ru.bluecat.android.xposed.mods.appsettings.hooks.Core.handleLoadPackage(Unknown Source:328)
+	at nMTQCL.x.vJoumq.yktDPO.IXposedHookLoadPackage$Wrapper.handleLoadPackage(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:3)
+	at nMTQCL.x.vJoumq.yktDPO.callbacks.XC_LoadPackage.call(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:7)
+	at nMTQCL.x.vJoumq.yktDPO.callbacks.XCallback.callAll(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:27)
+	at f2.before(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:68)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at j0.callback(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:108)
+	at LSPHooker_.startBootstrapServices(LSP)
+	at com.android.server.SystemServer.run(SystemServer.java:1044)
+	at com.android.server.SystemServer.main(SystemServer.java:724)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:569)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:907)
+Caused by: java.lang.ClassNotFoundException: com$android$server$pm$permission$PermissionManagerServiceImpl
+	at r.a(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:66)
+	at nMTQCL.x.vJoumq.yktDPO.XposedHelpers.findClass(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:5)
+	... 13 more
+[ 2026-02-10T21:03:20.873     1000:  2616:  2616 I/LSPosed-Bridge  ] XLua.XLua Loaded android:1000
+[ 2026-02-10T21:03:20.882     1000:  2616:  2616 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:20 (HMA-XposedEntry) Hook entry
+[ 2026-02-10T21:03:23.422     1000:  2616:  2616 I/LSPosed-Bridge  ] [HMA-OSS] [DEBUG] 02-10 21:03:23 (HMA-XposedEntry) Got pms: com.android.server.pm.PackageManagerService$IPackageManagerImpl@279fd67, com.android.server.pm.PackageManagerNative@dd07714
+[ 2026-02-10T21:03:23.423     1000:  2616:  3205 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:23 (HMA-UserService) Initialize HMAService - Version oss-154
+[ 2026-02-10T21:03:23.440     1000:  2616:  3205 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:23 (HMA-Service) Data dir: /data/misc/hide_my_applist_ihipqqtjhsuxtuqg
+[ 2026-02-10T21:03:23.449     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:23 (HMA-Service) Filter counts loaded
+[ 2026-02-10T21:03:23.467     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:23 (HMA-Service) Config loaded
+[ 2026-02-10T21:03:23.469     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:23 (HMA-Service) Preset cache loaded
+[ 2026-02-10T21:03:23.502     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:23 (PmsHookTarget34) Load hook
+[ 2026-02-10T21:03:23.539     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:23 (PlatformCompatHook) Load hook
+[ 2026-02-10T21:03:23.539     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:23 (PlatformCompatHook) App data isolation enabled: true
+[ 2026-02-10T21:03:23.539     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:23 (ActivityHook) Load hook
+[ 2026-02-10T21:03:23.543     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:23 (AccessibilityHook) Load hook
+[ 2026-02-10T21:03:23.548     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:23 (ImmHook) Load hook
+[ 2026-02-10T21:03:23.554     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:23 (HMA-Service) Hooks installed
+[ 2026-02-10T21:03:23.554     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:23 (HMA-Service) HMA service initialized
+[ 2026-02-10T21:03:23.557     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:23 (HMA-UserService) Registered observer
+[ 2026-02-10T21:03:23.557     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:23 (HMA-XposedEntry) User service started
+[ 2026-02-10T21:03:23.560     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:23 (HMA-Service) All presets are loaded
+[ 2026-02-10T21:03:23.828     1000:  2616:  2616 E/LSPosed-Bridge  ] java.lang.NullPointerException: Attempt to invoke virtual method 'boolean java.lang.String.equals(java.lang.Object)' on a null object reference
+	at com.xposed.XSupport.handleLoadPackage(SourceFile:77)
+	at nMTQCL.x.vJoumq.yktDPO.IXposedHookLoadPackage$Wrapper.handleLoadPackage(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:3)
+	at nMTQCL.x.vJoumq.yktDPO.callbacks.XC_LoadPackage.call(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:7)
+	at nMTQCL.x.vJoumq.yktDPO.callbacks.XCallback.callAll(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:27)
+	at g1.after(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:402)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at j0.callback(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:291)
+	at LSPHooker_.createOrUpdateClassLoaderLocked(LSP)
+	at android.app.LoadedApk.getClassLoader(LoadedApk.java:1181)
+	at android.app.ContextImpl.getClassLoader(ContextImpl.java:540)
+	at android.app.ActivityThread.installProvider(ActivityThread.java:8958)
+	at android.app.ActivityThread.installContentProviders(ActivityThread.java:8469)
+	at android.app.ActivityThread.installSystemProviders(ActivityThread.java:9175)
+	at com.android.server.am.ContentProviderHelper.installSystemProviders(ContentProviderHelper.java:1372)
+	at com.android.server.SystemServer.startOtherServices(SystemServer.java:1659)
+	at com.android.server.SystemServer.run(SystemServer.java:1046)
+	at com.android.server.SystemServer.main(SystemServer.java:724)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:569)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:907)
+[ 2026-02-10T21:03:23.832     1000:  2616:  2616 I/LSPosed-Bridge  ] XLua.XLua Loaded com.android.providers.settings:1000
+[ 2026-02-10T21:03:24.043     1000:  2616:  2616 E/LSPosed-Bridge  ] java.lang.NullPointerException: Attempt to invoke virtual method 'boolean java.lang.String.equals(java.lang.Object)' on a null object reference
+	at com.xposed.XSupport.handleLoadPackage(SourceFile:77)
+	at nMTQCL.x.vJoumq.yktDPO.IXposedHookLoadPackage$Wrapper.handleLoadPackage(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:3)
+	at nMTQCL.x.vJoumq.yktDPO.callbacks.XC_LoadPackage.call(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:7)
+	at nMTQCL.x.vJoumq.yktDPO.callbacks.XCallback.callAll(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:27)
+	at g1.after(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:402)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at j0.callback(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:291)
+	at LSPHooker_.createOrUpdateClassLoaderLocked(LSP)
+	at android.app.LoadedApk.getClassLoader(LoadedApk.java:1181)
+	at android.app.ContextImpl.getClassLoader(ContextImpl.java:540)
+	at android.app.ActivityThread.installProvider(ActivityThread.java:8958)
+	at android.app.ActivityThread.installContentProviders(ActivityThread.java:8469)
+	at android.app.ActivityThread.installSystemProviders(ActivityThread.java:9175)
+	at com.android.server.am.ContentProviderHelper.installSystemProviders(ContentProviderHelper.java:1372)
+	at com.android.server.SystemServer.startOtherServices(SystemServer.java:1659)
+	at com.android.server.SystemServer.run(SystemServer.java:1046)
+	at com.android.server.SystemServer.main(SystemServer.java:724)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:569)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:907)
+[ 2026-02-10T21:03:26.501     1000:  2616:  2616 I/LSPosed-Bridge  ] XLua.XLua Loaded org.lineageos.lineagesettings:1000
+[ 2026-02-10T21:03:26.516     1000:  2616:  2616 E/LSPosed-Bridge  ] java.lang.NullPointerException: Attempt to invoke virtual method 'boolean java.lang.String.equals(java.lang.Object)' on a null object reference
+	at com.xposed.XSupport.handleLoadPackage(SourceFile:77)
+	at nMTQCL.x.vJoumq.yktDPO.IXposedHookLoadPackage$Wrapper.handleLoadPackage(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:3)
+	at nMTQCL.x.vJoumq.yktDPO.callbacks.XC_LoadPackage.call(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:7)
+	at nMTQCL.x.vJoumq.yktDPO.callbacks.XCallback.callAll(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:27)
+	at g1.after(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:402)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at j0.callback(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:291)
+	at LSPHooker_.createOrUpdateClassLoaderLocked(LSP)
+	at android.app.LoadedApk.getClassLoader(LoadedApk.java:1181)
+	at android.app.ContextImpl.getClassLoader(ContextImpl.java:540)
+	at android.app.ActivityThread.installProvider(ActivityThread.java:8958)
+	at android.app.ActivityThread.installContentProviders(ActivityThread.java:8469)
+	at android.app.ActivityThread.installSystemProviders(ActivityThread.java:9175)
+	at com.android.server.am.ContentProviderHelper.installSystemProviders(ContentProviderHelper.java:1372)
+	at com.android.server.SystemServer.startOtherServices(SystemServer.java:1659)
+	at com.android.server.SystemServer.run(SystemServer.java:1046)
+	at com.android.server.SystemServer.main(SystemServer.java:724)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:569)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:907)
+[ 2026-02-10T21:03:26.517     1000:  2616:  2616 I/LSPosed-Bridge  ] XLua.XLua Loaded com.android.server.telecom:1000
+[ 2026-02-10T21:03:27.693     1000:  2616:  2616 I/LSPosed-Bridge  ] XLua.XLua Preparing system
+[ 2026-02-10T21:03:27.728     1000:  2616:  2616 I/LSPosed-Bridge  ] [XLua.DatabasePathUtil] Found Database Folder! Using Folder [/data/misc/xplex-a526e8b3-3ae2-4f8d-8b54-fe972be49b3d] as XPL-EX base Folder for Databases!
+[ 2026-02-10T21:03:27.740     1000:  2616:  2616 I/LSPosed-Bridge  ] [XLua.DatabasePathUtil] Database Folder=/data/misc/xplex-a526e8b3-3ae2-4f8d-8b54-fe972be49b3d/xlua.db Database Name=xlua.db Parent Directory=/data/misc/xplex-a526e8b3-3ae2-4f8d-8b54-fe972be49b3d Open Flag=true Is Open=true
+[ 2026-02-10T21:03:27.741     1000:  2616:  2616 I/LSPosed-Bridge  ] Opened Database, Database=Database: /data/misc/xplex-a526e8b3-3ae2-4f8d-8b54-fe972be49b3d/xlua.db Is Open: true
+[ 2026-02-10T21:03:27.741     1000:  2616:  2616 I/LSPosed-Bridge  ] Resetting Database (xl), Set Database to null: false
+[ 2026-02-10T21:03:27.742     1000:  2616:  2616 I/LSPosed-Bridge  ] Error Renaming Hook ID, Old:TelephonyManager/getDeviceId  NewTelephonyManager.getDeviceId  Error:android.database.sqlite.SQLiteException: no such table: assignment (code 1 SQLITE_ERROR): , while compiling: UPDATE assignment SET hook=? WHERE hook = ?
+[ 2026-02-10T21:03:27.742     1000:  2616:  2616 I/LSPosed-Bridge  ] Error Renaming Hook ID, Old:TelephonyManager/getDeviceId/slot  NewTelephonyManager.getDeviceId/slot  Error:android.database.sqlite.SQLiteException: no such table: assignment (code 1 SQLITE_ERROR): , while compiling: UPDATE assignment SET hook=? WHERE hook = ?
+[ 2026-02-10T21:03:27.742     1000:  2616:  2616 I/LSPosed-Bridge  ] Error Renaming Hook ID, Old:TelephonyManager/getGroupIdLevel1  NewTelephonyManager.getGroupIdLevel1  Error:android.database.sqlite.SQLiteException: no such table: assignment (code 1 SQLITE_ERROR): , while compiling: UPDATE assignment SET hook=? WHERE hook = ?
+[ 2026-02-10T21:03:27.742     1000:  2616:  2616 I/LSPosed-Bridge  ] Error Renaming Hook ID, Old:TelephonyManager/getImei  NewTelephonyManager.getImei  Error:android.database.sqlite.SQLiteException: no such table: assignment (code 1 SQLITE_ERROR): , while compiling: UPDATE assignment SET hook=? WHERE hook = ?
+[ 2026-02-10T21:03:27.743     1000:  2616:  2616 I/LSPosed-Bridge  ] Error Renaming Hook ID, Old:TelephonyManager/getImei/slot  NewTelephonyManager.getImei/slot  Error:android.database.sqlite.SQLiteException: no such table: assignment (code 1 SQLITE_ERROR): , while compiling: UPDATE assignment SET hook=? WHERE hook = ?
+[ 2026-02-10T21:03:27.743     1000:  2616:  2616 I/LSPosed-Bridge  ] Error Renaming Hook ID, Old:TelephonyManager/getLine1Number  NewTelephonyManager.getLine1Number  Error:android.database.sqlite.SQLiteException: no such table: assignment (code 1 SQLITE_ERROR): , while compiling: UPDATE assignment SET hook=? WHERE hook = ?
+[ 2026-02-10T21:03:27.743     1000:  2616:  2616 I/LSPosed-Bridge  ] Error Renaming Hook ID, Old:TelephonyManager/getMeid  NewTelephonyManager.getMeid  Error:android.database.sqlite.SQLiteException: no such table: assignment (code 1 SQLITE_ERROR): , while compiling: UPDATE assignment SET hook=? WHERE hook = ?
+[ 2026-02-10T21:03:27.743     1000:  2616:  2616 I/LSPosed-Bridge  ] Error Renaming Hook ID, Old:TelephonyManager/getMeid/slot  NewTelephonyManager.getMeid/slot  Error:android.database.sqlite.SQLiteException: no such table: assignment (code 1 SQLITE_ERROR): , while compiling: UPDATE assignment SET hook=? WHERE hook = ?
+[ 2026-02-10T21:03:27.743     1000:  2616:  2616 I/LSPosed-Bridge  ] Error Renaming Hook ID, Old:TelephonyManager/getNetworkSpecifier  NewTelephonyManager.getNetworkSpecifier  Error:android.database.sqlite.SQLiteException: no such table: assignment (code 1 SQLITE_ERROR): , while compiling: UPDATE assignment SET hook=? WHERE hook = ?
+[ 2026-02-10T21:03:27.743     1000:  2616:  2616 I/LSPosed-Bridge  ] Error Renaming Hook ID, Old:TelephonyManager/getSimSerialNumber  NewTelephonyManager.getSimSerialNumber  Error:android.database.sqlite.SQLiteException: no such table: assignment (code 1 SQLITE_ERROR): , while compiling: UPDATE assignment SET hook=? WHERE hook = ?
+[ 2026-02-10T21:03:27.743     1000:  2616:  2616 I/LSPosed-Bridge  ] Error Renaming Hook ID, Old:TelephonyManager/getSubscriberId  NewTelephonyManager.getSubscriberId  Error:android.database.sqlite.SQLiteException: no such table: assignment (code 1 SQLITE_ERROR): , while compiling: UPDATE assignment SET hook=? WHERE hook = ?
+[ 2026-02-10T21:03:27.743     1000:  2616:  2616 I/LSPosed-Bridge  ] Error Renaming Hook ID, Old:TelephonyManager/getVoiceMailAlphaTag  NewTelephonyManager.getVoiceMailAlphaTag  Error:android.database.sqlite.SQLiteException: no such table: assignment (code 1 SQLITE_ERROR): , while compiling: UPDATE assignment SET hook=? WHERE hook = ?
+[ 2026-02-10T21:03:27.744     1000:  2616:  2616 I/LSPosed-Bridge  ] Error Renaming Hook ID, Old:TelephonyManager/getVoiceMailNumber  NewTelephonyManager.getVoiceMailNumber  Error:android.database.sqlite.SQLiteException: no such table: assignment (code 1 SQLITE_ERROR): , while compiling: UPDATE assignment SET hook=? WHERE hook = ?
+[ 2026-02-10T21:03:27.744     1000:  2616:  2616 I/LSPosed-Bridge  ] Error Renaming Hook ID, Old:Settings.Secure.getString  NewSettings.Secure.getString/android_id  Error:android.database.sqlite.SQLiteException: no such table: assignment (code 1 SQLITE_ERROR): , while compiling: UPDATE assignment SET hook=? WHERE hook = ?
+[ 2026-02-10T21:03:27.744     1000:  2616:  2616 I/LSPosed-Bridge  ] Error Renaming Hook ID, Old:SystemProperties.get  NewSystemProperties.get/serial  Error:android.database.sqlite.SQLiteException: no such table: assignment (code 1 SQLITE_ERROR): , while compiling: UPDATE assignment SET hook=? WHERE hook = ?
+[ 2026-02-10T21:03:27.744     1000:  2616:  2616 I/LSPosed-Bridge  ] Error Renaming Hook ID, Old:SystemProperties.get/default  NewSystemProperties.get.default/serial  Error:android.database.sqlite.SQLiteException: no such table: assignment (code 1 SQLITE_ERROR): , while compiling: UPDATE assignment SET hook=? WHERE hook = ?
+[ 2026-02-10T21:03:27.744     1000:  2616:  2616 I/LSPosed-Bridge  ] [ı][XLua.XLegacyCore]Initializing Hooks from JSONs, Cache [0::0] Total Count=(0) Cycles=(0) Clear Cache=true Database=Database: /data/misc/xplex-a526e8b3-3ae2-4f8d-8b54-fe972be49b3d/xlua.db
+Is Open: true
+[ 2026-02-10T21:03:27.746     1000:  2616:  2616 I/LSPosed-Bridge  ] [ı][XLua.XHookJsonUtils]Reading All Apk (/data/app/~~zyuOLPr-3ONZ3s907JZXrQ==/eu.faircode.xlua-ZcJM_D_aeIvVBZFAdpwC8Q==/base.apk) JSON [hooks.json] Scripts from Assets to Serialize as Hooks!
+[ 2026-02-10T21:03:29.413    10437:  5231:  5231 I/LSPosedContext  ] com.keshav.capturesposed: [CaptureSposed] Hooking System UI to add and reveal quick settings tile.
+[ 2026-02-10T21:03:31.340     1000:  2616:  2616 I/LSPosed-Bridge  ] XLua.XLua System ready
+[ 2026-02-10T21:03:31.683     1000:  2616:  2616 E/LSPosed-Bridge  ] java.lang.NullPointerException: Attempt to invoke virtual method 'boolean java.lang.String.equals(java.lang.Object)' on a null object reference
+	at com.xposed.XSupport.handleLoadPackage(SourceFile:77)
+	at nMTQCL.x.vJoumq.yktDPO.IXposedHookLoadPackage$Wrapper.handleLoadPackage(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:3)
+	at nMTQCL.x.vJoumq.yktDPO.callbacks.XC_LoadPackage.call(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:7)
+	at nMTQCL.x.vJoumq.yktDPO.callbacks.XCallback.callAll(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:27)
+	at g1.after(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:402)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at j0.callback(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:291)
+	at LSPHooker_.createOrUpdateClassLoaderLocked(LSP)
+	at android.app.LoadedApk.getClassLoader(LoadedApk.java:1181)
+	at android.app.LoadedApk.makeApplicationInner(LoadedApk.java:1526)
+	at android.app.LoadedApk.makeApplicationInner(LoadedApk.java:1482)
+	at android.app.ActivityThread.handleCreateService(ActivityThread.java:5516)
+	at android.app.ActivityThread.-$$Nest$mhandleCreateService(Unknown Source:0)
+	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2734)
+	at android.os.Handler.dispatchMessage(Handler.java:132)
+	at android.os.Looper.dispatchMessage(Looper.java:333)
+	at android.os.Looper.loopOnce(Looper.java:263)
+	at android.os.Looper.loop(Looper.java:367)
+	at com.android.server.SystemServer.run(SystemServer.java:1094)
+	at com.android.server.SystemServer.main(SystemServer.java:724)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:569)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:907)
+[ 2026-02-10T21:03:31.699     1000:  2616:  2616 I/LSPosed-Bridge  ] XLua.XLua Loaded com.android.location.fused:1000
+[ 2026-02-10T21:03:31.706     1001:  5574:  5574 I/LSPosed-Bridge  ] XSmsCode: SmsCode initializing
+[ 2026-02-10T21:03:31.706     1001:  5574:  5574 I/LSPosed-Bridge  ] XSmsCode: Phone manufacturer: OnePlus
+[ 2026-02-10T21:03:31.706     1001:  5574:  5574 I/LSPosed-Bridge  ] XSmsCode: Phone model: LE2127
+[ 2026-02-10T21:03:31.706     1001:  5574:  5574 I/LSPosed-Bridge  ] XSmsCode: Android version: 16
+[ 2026-02-10T21:03:31.707     1001:  5574:  5574 I/LSPosed-Bridge  ] XSmsCode: Xposed bridge version: 100
+[ 2026-02-10T21:03:31.707     1001:  5574:  5574 I/LSPosed-Bridge  ] XSmsCode: SmsCode version: 2.5.1 (52)
+[ 2026-02-10T21:03:31.707     1001:  5574:  5574 I/LSPosed-Bridge  ] XSmsCode: Hooking InboundSmsHandler constructor for android v34+
+[ 2026-02-10T21:03:31.710     1001:  5574:  5574 I/LSPosed-Bridge  ] XSmsCode: SmsCode initialize completely
+[ 2026-02-10T21:03:31.789     1000:  2616:  2616 I/LSPosed-Bridge  ] [DoNotTryAccessibility][W] Already Hooked Member [public long com.android.server.accessibility.AccessibilityManagerService.addClient(android.view.accessibility.IAccessibilityManagerClient,int)], this will be ignored
+[ 2026-02-10T21:03:31.805     1000:  2616:  2616 I/LSPosed-Bridge  ] [DoNotTryAccessibility][W] Already Hooked Member [public java.util.List com.android.server.accessibility.AccessibilityManagerService.getEnabledAccessibilityServiceList(int,int)], this will be ignored
+[ 2026-02-10T21:03:31.813     1000:  2616:  2616 I/LSPosed-Bridge  ] [DoNotTryAccessibility][W] Already Hooked Member [public android.os.Bundle android.content.ContentProvider$Transport.call(android.content.AttributionSource,java.lang.String,java.lang.String,java.lang.String,android.os.Bundle)], this will be ignored
+[ 2026-02-10T21:03:50.232     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.inputmethod.latin
+[ 2026-02-10T21:03:50.673     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:50.853     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:50.856     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:50.857     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:50.858     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:50.860     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:50.860     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:50.862     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:50.871     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:50.873     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:50.875     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:50.878     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:50.889     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:50.890     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:50.894     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:50.897     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:50.899     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:50.899     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:50.912     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:50.919     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:50.920     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:50.924     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:50 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:51.017     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:51.019     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:51.028     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:51.034     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:51.047     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:51.048     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:51.055     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:51.068     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:51.075     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:51.075     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:51.080     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:51.080     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:51.082     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:51.090     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:51.101     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:51.101     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:51.103     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:51.122     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:51.122     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:51.122     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:51.123     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:51.128     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:51 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:03:52.205     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:52 (PmsHookTarget34) @shouldFilterApplication: query from com.android.vending
+[ 2026-02-10T21:03:53.381     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:53 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.apps.wellbeing
+[ 2026-02-10T21:03:57.140     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:57 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gms
+[ 2026-02-10T21:03:57.725     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:57 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.googlequicksearchbox
+[ 2026-02-10T21:03:58.284     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:03:58 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.as
+[ 2026-02-10T21:04:02.322     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:04:02 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gm
+[ 2026-02-10T21:04:03.590     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:04:03 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.apps.wellbeing
+[ 2026-02-10T21:04:04.615     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:04:04 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.gm
+[ 2026-02-10T21:04:13.548     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:04:13 (PmsHookTarget34) @shouldFilterApplication: query from com.android.vending
+[ 2026-02-10T21:04:16.203     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:04:16 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.apps.photos
+[ 2026-02-10T21:04:22.420     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:04:22 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.apps.turbo
+[ 2026-02-10T21:04:32.450     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:04:32 (PmsHookTarget34) @shouldFilterApplication: query from com.garanti.cepsubesi
+[ 2026-02-10T21:04:47.285     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:04:47 (PmsHookTarget34) @shouldFilterApplication: query from com.amazon.avod.thirdpartyclient
+[ 2026-02-10T21:05:05.468     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:05 (PmsHookTarget34) @shouldFilterApplication: query from com.instagram.android
+[ 2026-02-10T21:05:08.337     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:08 (PmsHookTarget34) @shouldFilterApplication: query from com.looker.droidify
+[ 2026-02-10T21:05:09.644     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:09 (PmsHookTarget34) @shouldFilterApplication: query from com.ingbanktr.ingmobil
+[ 2026-02-10T21:05:17.536     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:17 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.apps.docs
+[ 2026-02-10T21:05:18.488     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:18 (PmsHookTarget34) @shouldFilterApplication: query from com.roborock.smart
+[ 2026-02-10T21:05:34.041     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:33 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.072     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.072     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.073     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.073     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.075     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.075     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.076     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.076     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.077     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.077     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.081     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.081     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.081     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.083     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.083     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.083     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.084     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.084     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.085     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.085     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.085     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.086     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.086     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.087     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.087     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.088     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.088     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.088     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.088     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.089     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.089     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.089     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.090     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.090     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.090     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.091     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.091     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.091     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.091     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.091     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.091     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.092     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.092     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.092     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.092     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.093     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.094     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.094     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.095     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.095     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.095     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.096     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.096     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.096     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.098     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.098     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.099     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.099     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.099     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.099     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.099     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.100     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.100     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.100     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.102     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.103     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.103     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.103     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.104     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.104     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.104     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.104     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.105     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.105     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.105     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.106     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.106     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.107     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.107     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.107     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.107     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.109     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.109     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.110     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.110     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.110     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.111     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.111     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.112     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.112     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.112     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.113     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.114     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.115     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.115     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.115     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.118     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.118     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.118     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.118     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.119     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.119     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.pages.app
+[ 2026-02-10T21:05:34.120     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.katana
+[ 2026-02-10T21:05:34.886     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:34 (PmsHookTarget34) @shouldFilterApplication: query from com.facebook.orca
+[ 2026-02-10T21:05:37.958    10500: 15575: 15734 E/LSPosed-Bridge  ] java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.Class java.lang.Object.getClass()' on a null object reference
+	at m2.k.h(r8-map-id-24bfe6f5291ccc122a087e69cfd0ef965c57d5b189a3392a10a824e491734b78:435)
+	at s0.g.beforeHookedMethod(r8-map-id-24bfe6f5291ccc122a087e69cfd0ef965c57d5b189a3392a10a824e491734b78:50)
+	at nMTQCL.x.vJoumq.yktDPO.XC_MethodHook.callBeforeHookedMethod(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:1)
+	at j0.callback(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:156)
+	at LSPHooker_.onFailed(LSP)
+	at assh.onFailed(PG:12)
+	at bpfg.onFailed(PG:3)
+	at bmpu.run(PG:259)
+	at aubn.execute(PG:1)
+	at org.chromium.net.impl.CronetUrlRequest.onNativeAdapterDestroyed(PG:76)
+[ 2026-02-10T21:05:39.161    10500: 15575: 15734 E/LSPosed-Bridge  ] java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.Class java.lang.Object.getClass()' on a null object reference
+	at m2.k.h(r8-map-id-24bfe6f5291ccc122a087e69cfd0ef965c57d5b189a3392a10a824e491734b78:435)
+	at s0.g.beforeHookedMethod(r8-map-id-24bfe6f5291ccc122a087e69cfd0ef965c57d5b189a3392a10a824e491734b78:50)
+	at nMTQCL.x.vJoumq.yktDPO.XC_MethodHook.callBeforeHookedMethod(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:1)
+	at j0.callback(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:156)
+	at LSPHooker_.onFailed(LSP)
+	at assh.onFailed(PG:12)
+	at bpfg.onFailed(PG:3)
+	at bmpu.run(PG:259)
+	at aubn.execute(PG:1)
+	at org.chromium.net.impl.CronetUrlRequest.onNativeAdapterDestroyed(PG:76)
+[ 2026-02-10T21:05:44.917    10500: 15575: 15734 E/LSPosed-Bridge  ] java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.Class java.lang.Object.getClass()' on a null object reference
+	at m2.k.h(r8-map-id-24bfe6f5291ccc122a087e69cfd0ef965c57d5b189a3392a10a824e491734b78:435)
+	at s0.g.beforeHookedMethod(r8-map-id-24bfe6f5291ccc122a087e69cfd0ef965c57d5b189a3392a10a824e491734b78:50)
+	at nMTQCL.x.vJoumq.yktDPO.XC_MethodHook.callBeforeHookedMethod(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:1)
+	at j0.callback(r8-map-id-1b503ce2d1eb437266e175dc68a023819023d9852a09899d29d782d634f0016f:156)
+	at LSPHooker_.onFailed(LSP)
+	at assh.onFailed(PG:12)
+	at bpfg.onFailed(PG:3)
+	at bmpu.run(PG:259)
+	at aubn.execute(PG:1)
+	at org.chromium.net.impl.CronetUrlRequest.onNativeAdapterDestroyed(PG:76)
+[ 2026-02-10T21:05:45.228     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:45 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.apps.turbo
+[ 2026-02-10T21:05:56.730     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:05:56 (PmsHookTarget34) @shouldFilterApplication: query from com.instagram.android
+[ 2026-02-10T21:08:02.779     1000:  2616:  3208 I/LSPosed-Bridge  ] [HMA-OSS] [ INFO] 02-10 21:08:02 (PmsHookTarget34) @shouldFilterApplication: query from com.google.android.inputmethod.latin

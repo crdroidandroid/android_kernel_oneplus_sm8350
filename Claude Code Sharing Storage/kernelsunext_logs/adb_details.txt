@@ -1,0 +1,1222 @@
+/data/adb:
+total 3867
+drwx------ 14 root   root   u:object_r:adb_data_file:s0             3452 1970-01-01 19:13 .
+drwxrwx--x 57 system system u:object_r:system_data_root_file:s0     4096 2026-02-10 21:03 ..
+drwxr-xr-x 14 root   root   u:object_r:adb_data_file:s0             3452 2026-02-04 17:00 .config
+drwxr-xr-x  2 root   root   u:object_r:adb_data_file:s0             3452 2026-02-10 21:03 appops
+drwxr-xr-x  4 root   root   u:object_r:adb_data_file:s0             3452 2026-01-22 03:06 bindhosts
+-rw-r--r--  1 root   root   u:object_r:adb_data_file:s0               65 2026-02-09 21:34 boot_hash
+drwx------  7 root   root   u:object_r:adb_data_file:s0             3452 1970-01-01 03:03 ksu
+-rwxr-xr-x  1 root   root   u:object_r:adb_data_file:s0          3902944 2026-02-10 21:08 ksud
+drwxrwxrwx  6 root   root   u:object_r:system_file:s0               3452 1970-01-01 19:13 lspd
+-rw-r--r--  1 root   root   u:object_r:adb_data_file:s0                0 2025-10-16 03:09 magisk.db
+drwxr-xr-x  3 root   root   u:object_r:adb_data_file:s0             3452 1970-01-01 19:13 meta-hybrid
+lrwxrwxrwx  1 root   root   u:object_r:adb_data_file:s0               29 2026-02-09 22:39 metamodule -> /data/adb/modules/meta-hybrid
+drwxr-xr-x 17 root   root   u:object_r:adb_data_file:s0             3452 1970-03-19 02:47 modules
+drwx------  2 root   root   u:object_r:system_file:s0               3452 1970-03-19 02:47 modules_update
+dr-xr-xr-x  2 root   root   u:object_r:system_file:s0               3452 2026-02-10 21:03 rezygisk
+drwxr-xr-x  2 root   root   u:object_r:adb_data_file:s0             3452 2026-02-10 21:03 susfs4ksu
+-rw-------  1 root   root   u:object_r:adb_data_file:s0                0 2025-11-17 18:55 susfs_umount_for_zygote_system_process
+drwxr-xr-x  3 root   root   u:object_r:adb_data_file:s0             3452 2026-01-29 02:34 tricky_store
+drwxr-xr-x  3 root   root   u:object_r:adb_data_file:s0             3452 2025-10-14 06:28 vr25
+
+/data/adb/.config:
+total 46
+drwxr-xr-x 14 root root u:object_r:adb_data_file:s0  3452 2026-02-04 17:00 .
+drwx------ 14 root root u:object_r:adb_data_file:s0  3452 1970-01-01 19:13 ..
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-10-14 18:26 SKIAUIRenderer
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-10-14 18:27 ViPER4Android-RE-Fork
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-12-07 04:29 bindhosts
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-10-14 18:27 bootanimation-maker
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-12-14 04:47 config.webroot.json
+drwxr-xr-x  4 root root u:object_r:adb_data_file:s0  3452 2025-11-03 02:38 mmrl_wpd
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-12-28 16:26 playintegrityfix
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-12-07 04:29 rezygisk
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-12-07 04:29 susfs4ksu
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-12-07 04:29 tricky_store
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-12-03 21:38 vbmeta-fixer
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-10-14 18:27 zram-swap-manager
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-10-14 18:26 zygisk_lsposed
+
+/data/adb/.config/SKIAUIRenderer:
+total 10
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-10-14 18:26 .
+drwxr-xr-x 14 root root u:object_r:adb_data_file:s0  3452 2026-02-04 17:00 ..
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-10-14 18:26 config.module.json
+
+/data/adb/.config/ViPER4Android-RE-Fork:
+total 10
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-10-14 18:27 .
+drwxr-xr-x 14 root root u:object_r:adb_data_file:s0  3452 2026-02-04 17:00 ..
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-10-14 18:27 config.module.json
+
+/data/adb/.config/bindhosts:
+total 18
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-12-07 04:29 .
+drwxr-xr-x 14 root root u:object_r:adb_data_file:s0  3452 2026-02-04 17:00 ..
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-12-07 04:29 config.modconf.json
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-10-14 18:26 config.module.json
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-10-18 18:42 config.webroot.json
+
+/data/adb/.config/bootanimation-maker:
+total 10
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-10-14 18:27 .
+drwxr-xr-x 14 root root u:object_r:adb_data_file:s0  3452 2026-02-04 17:00 ..
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-10-14 18:27 config.module.json
+
+/data/adb/.config/mmrl_wpd:
+total 24
+drwxr-xr-x  4 root root u:object_r:adb_data_file:s0  3452 2025-11-03 02:38 .
+drwxr-xr-x 14 root root u:object_r:adb_data_file:s0  3452 2026-02-04 17:00 ..
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-11-03 02:38 config.modconf.json
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-10-14 18:27 config.module.json
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0    26 2025-11-03 02:39 config.webroot.json
+drwxr-xr-x  4 root root u:object_r:adb_data_file:s0  3452 2025-10-18 18:42 js
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-10-18 18:42 style
+
+/data/adb/.config/mmrl_wpd/js:
+total 12
+drwxr-xr-x 4 root root u:object_r:adb_data_file:s0  3452 2025-10-18 18:42 .
+drwxr-xr-x 4 root root u:object_r:adb_data_file:s0  3452 2025-11-03 02:38 ..
+drwxr-xr-x 2 root root u:object_r:adb_data_file:s0  3452 2025-10-18 18:42 body
+drwxr-xr-x 2 root root u:object_r:adb_data_file:s0  3452 2025-10-18 18:42 head
+
+/data/adb/.config/mmrl_wpd/js/body:
+total 6
+drwxr-xr-x 2 root root u:object_r:adb_data_file:s0  3452 2025-10-18 18:42 .
+drwxr-xr-x 4 root root u:object_r:adb_data_file:s0  3452 2025-10-18 18:42 ..
+
+/data/adb/.config/mmrl_wpd/js/head:
+total 6
+drwxr-xr-x 2 root root u:object_r:adb_data_file:s0  3452 2025-10-18 18:42 .
+drwxr-xr-x 4 root root u:object_r:adb_data_file:s0  3452 2025-10-18 18:42 ..
+
+/data/adb/.config/mmrl_wpd/style:
+total 6
+drwxr-xr-x 2 root root u:object_r:adb_data_file:s0  3452 2025-10-18 18:42 .
+drwxr-xr-x 4 root root u:object_r:adb_data_file:s0  3452 2025-11-03 02:38 ..
+
+/data/adb/.config/playintegrityfix:
+total 10
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-12-28 16:26 .
+drwxr-xr-x 14 root root u:object_r:adb_data_file:s0  3452 2026-02-04 17:00 ..
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-12-28 16:26 config.module.json
+
+/data/adb/.config/rezygisk:
+total 18
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-12-07 04:29 .
+drwxr-xr-x 14 root root u:object_r:adb_data_file:s0  3452 2026-02-04 17:00 ..
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-12-07 04:29 config.modconf.json
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-11-11 19:21 config.module.json
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-11-25 03:55 config.webroot.json
+
+/data/adb/.config/susfs4ksu:
+total 18
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-12-07 04:29 .
+drwxr-xr-x 14 root root u:object_r:adb_data_file:s0  3452 2026-02-04 17:00 ..
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-12-07 04:29 config.modconf.json
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-11-22 02:38 config.module.json
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-11-25 03:55 config.webroot.json
+
+/data/adb/.config/tricky_store:
+total 18
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-12-07 04:29 .
+drwxr-xr-x 14 root root u:object_r:adb_data_file:s0  3452 2026-02-04 17:00 ..
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-12-07 04:29 config.modconf.json
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-11-29 16:20 config.module.json
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-11-29 16:20 config.webroot.json
+
+/data/adb/.config/vbmeta-fixer:
+total 10
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-12-03 21:38 .
+drwxr-xr-x 14 root root u:object_r:adb_data_file:s0  3452 2026-02-04 17:00 ..
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-12-03 21:38 config.module.json
+
+/data/adb/.config/zram-swap-manager:
+total 10
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-10-14 18:27 .
+drwxr-xr-x 14 root root u:object_r:adb_data_file:s0  3452 2026-02-04 17:00 ..
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-10-14 18:27 config.module.json
+
+/data/adb/.config/zygisk_lsposed:
+total 10
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-10-14 18:26 .
+drwxr-xr-x 14 root root u:object_r:adb_data_file:s0  3452 2026-02-04 17:00 ..
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     2 2025-10-14 18:26 config.module.json
+
+/data/adb/appops:
+total 122
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0   3452 2026-02-10 21:03 .
+drwx------ 14 root root u:object_r:adb_data_file:s0   3452 1970-01-01 19:13 ..
+-rw-------  1 root root u:object_r:adb_data_file:s0   4096 2025-11-16 17:16 appops.db
+-rw-------  1 root root u:object_r:adb_data_file:s0  32768 2026-02-10 21:03 appops.db-shm
+-rw-------  1 root root u:object_r:adb_data_file:s0  12392 2025-11-16 17:16 appops.db-wal
+-rw-------  1 root root u:object_r:adb_data_file:s0   4096 2025-11-16 17:16 historical_ops.db
+-rw-------  1 root root u:object_r:adb_data_file:s0  32768 2026-02-10 21:03 historical_ops.db-shm
+-rw-------  1 root root u:object_r:adb_data_file:s0  16512 2025-11-16 17:16 historical_ops.db-wal
+-rw-------  1 root root u:object_r:adb_data_file:s0   4124 2026-02-10 21:03 license
+
+/data/adb/bindhosts:
+total 44
+drwxr-xr-x  4 root root u:object_r:adb_data_file:s0  3452 2026-01-22 03:06 .
+drwx------ 14 root root u:object_r:adb_data_file:s0  3452 1970-01-01 19:13 ..
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2025-10-14 06:28 .webui_config
+-rw-rw-rw-  1 root root u:object_r:adb_data_file:s0   524 2026-02-10 10:00 bindhosts_cron.log
+-rw-------  1 root root u:object_r:adb_data_file:s0     9 2026-02-10 10:00 bindhosts_state
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0   153 2025-10-14 06:54 blacklist.txt
+drwx------  2 root root u:object_r:adb_data_file:s0  3452 2025-10-20 04:20 crontabs
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0   184 2025-10-14 06:54 custom.txt
+-rw-rw-rw-  1 root root u:object_r:adb_data_file:s0    17 1970-01-01 03:27 root_manager.sh
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0   619 2025-10-14 06:54 sources.txt
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0   268 2025-10-14 06:54 sources_whitelist.txt
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0   247 2025-10-14 06:54 whitelist.txt
+
+/data/adb/bindhosts/.webui_config:
+total 10
+drwxr-xr-x 2 root root u:object_r:adb_data_file:s0  3452 2025-10-14 06:28 .
+drwxr-xr-x 4 root root u:object_r:adb_data_file:s0  3452 2026-01-22 03:06 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0    2973 2025-10-14 06:54 custom.css
+
+/data/adb/bindhosts/crontabs:
+total 10
+drwx------ 2 root root u:object_r:adb_data_file:s0  3452 2025-10-20 04:20 .
+drwxr-xr-x 4 root root u:object_r:adb_data_file:s0  3452 2026-01-22 03:06 ..
+-rw------- 1 root root u:object_r:adb_data_file:s0   118 2025-10-19 19:54 root
+
+/data/adb/ksu:
+total 73
+drwx------  7 root root u:object_r:adb_data_file:s0   3452 1970-01-01 03:03 .
+drwx------ 14 root root u:object_r:adb_data_file:s0   3452 1970-01-01 19:13 ..
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0  49672 2026-02-10 08:24 .allowlist
+drwxrws---  4 root root u:object_r:adb_data_file:s0   3452 2025-09-06 05:47 backup
+drwx------  2 root root u:object_r:adb_data_file:s0   3452 2026-02-10 21:08 bin
+drwxrwxrwx  2 root root u:object_r:adb_data_file:s0   3452 1970-01-01 19:13 log
+drwx------  3 root root u:object_r:adb_data_file:s0   3452 2025-10-05 06:57 profile
+drwxrwxrwx  3 root root u:object_r:adb_data_file:s0   3452 2026-02-10 21:04 susfs4ksu
+
+/data/adb/ksu/backup:
+total 12
+drwxrws--- 4 root root u:object_r:adb_data_file:s0  3452 2025-09-06 05:47 .
+drwx------ 7 root root u:object_r:adb_data_file:s0  3452 1970-01-01 03:03 ..
+drwxrws--- 2 root root u:object_r:adb_data_file:s0  3452 2025-10-14 15:44 allowlist
+drwxrws--- 2 root root u:object_r:adb_data_file:s0  3452 2025-10-14 15:44 modules
+
+/data/adb/ksu/backup/allowlist:
+total 6
+drwxrws--- 2 root root u:object_r:adb_data_file:s0  3452 2025-10-14 15:44 .
+drwxrws--- 4 root root u:object_r:adb_data_file:s0  3452 2025-09-06 05:47 ..
+
+/data/adb/ksu/backup/modules:
+total 6
+drwxrws--- 2 root root u:object_r:adb_data_file:s0  3452 2025-10-14 15:44 .
+drwxrws--- 4 root root u:object_r:adb_data_file:s0  3452 2025-09-06 05:47 ..
+
+/data/adb/ksu/bin:
+total 3146
+drwx------ 2 root root u:object_r:adb_data_file:s0     3452 2026-02-10 21:08 .
+drwx------ 7 root root u:object_r:adb_data_file:s0     3452 1970-01-01 03:03 ..
+lrwxrwxrwx 1 root root u:object_r:adb_data_file:s0       40 2026-02-09 22:17 bindhosts -> /data/adb/modules/bindhosts/bindhosts.sh
+-rwxr-xr-x 1 root root u:object_r:adb_data_file:s0   154248 2026-02-10 21:08 bootctl
+-rwxr-xr-x 1 root root u:object_r:adb_data_file:s0  1710600 2026-02-10 21:08 busybox
+-rwxr-xr-x 1 root root u:object_r:adb_data_file:s0    30276 2026-02-09 22:06 ksu_susfs
+lrwxrwxrwx 1 root root u:object_r:adb_data_file:s0       14 2025-09-06 02:03 ksud -> /data/adb/ksud
+-rwxr-xr-x 1 root root u:object_r:adb_data_file:s0   769600 2026-02-10 21:08 magiskboot
+-rwxr-xr-x 1 root root u:object_r:adb_data_file:s0    93776 2026-02-10 21:08 resetprop
+-rwxr-xr-x 1 root root u:object_r:adb_data_file:s0   438760 2026-02-02 18:04 sus_su
+-rwxr-xr-x 1 root root u:object_r:adb_data_file:s0     7016 2026-02-08 00:48 susfsd
+
+/data/adb/ksu/log:
+total 26782
+drwxrwxrwx 2 root root u:object_r:adb_data_file:s0      3452 1970-01-01 19:13 .
+drwx------ 7 root root u:object_r:adb_data_file:s0      3452 1970-01-01 03:03 ..
+-rw-rw-rw- 1 root root u:object_r:adb_data_file:s0    608009 2026-02-10 21:03 dmesg.log
+-rw-rw-rw- 1 root root u:object_r:adb_data_file:s0    578906 2026-02-10 21:00 dmesg.old.log
+-rw-rw-rw- 1 root root u:object_r:adb_data_file:s0  12436824 2026-02-10 21:03 logcat.log
+-rw-rw-rw- 1 root root u:object_r:adb_data_file:s0  13736112 2026-02-10 21:00 logcat.old.log
+-rw-rw-rw- 1 root root u:object_r:adb_data_file:s0       112 1970-01-27 23:20 modules_info
+-rw-rw-rw- 1 root root u:object_r:adb_data_file:s0       112 1970-01-27 23:06 modules_info.old
+-rw-rw-rw- 1 root root u:object_r:adb_data_file:s0        94 1970-01-27 23:20 znctx
+-rw-rw-rw- 1 root root u:object_r:adb_data_file:s0        94 1970-01-27 23:06 znctx.old
+
+/data/adb/ksu/profile:
+total 9
+drwx------ 3 root root u:object_r:adb_data_file:s0  3452 2025-10-05 06:57 .
+drwx------ 7 root root u:object_r:adb_data_file:s0  3452 1970-01-01 03:03 ..
+drwx------ 2 root root u:object_r:adb_data_file:s0  3452 2025-10-05 06:57 templates
+
+/data/adb/ksu/profile/templates:
+total 42
+drwx------ 2 root root u:object_r:adb_data_file:s0  3452 2025-10-05 06:57 .
+drwx------ 3 root root u:object_r:adb_data_file:s0  3452 2025-10-05 06:57 ..
+-rw------- 1 root root u:object_r:adb_data_file:s0  1280 2025-10-05 06:57 adaway.root
+-rw------- 1 root root u:object_r:adb_data_file:s0  1075 2025-10-05 06:57 adb
+-rw------- 1 root root u:object_r:adb_data_file:s0  1363 2025-10-05 06:57 cemiuiler.readproc
+-rw------- 1 root root u:object_r:adb_data_file:s0   954 2025-10-05 06:57 incompetent.root
+-rw------- 1 root root u:object_r:adb_data_file:s0  1332 2025-10-05 06:57 kernelmanager.root
+-rw------- 1 root root u:object_r:adb_data_file:s0   924 2025-10-05 06:57 nethunter.root
+-rw------- 1 root root u:object_r:adb_data_file:s0  1034 2025-10-05 06:57 rootexploler.root
+-rw------- 1 root root u:object_r:adb_data_file:s0  1045 2025-10-05 06:57 shizuku.root
+-rw------- 1 root root u:object_r:adb_data_file:s0  1160 2025-10-05 06:57 system
+
+/data/adb/ksu/susfs4ksu:
+total 993
+drwxrwxrwx 3 root root u:object_r:adb_data_file:s0    3452 2026-02-10 21:04 .
+drwx------ 7 root root u:object_r:adb_data_file:s0    3452 1970-01-01 03:03 ..
+-rw-r--r-- 1 root root u:object_r:adb_data_file:s0  608357 2026-02-10 03:54 dmesg.log
+-rw-r--r-- 1 root root u:object_r:adb_data_file:s0    6620 2026-02-10 03:54 ksu_module_list.txt
+-rw-r--r-- 1 root root u:object_r:adb_data_file:s0   72592 2026-02-10 03:54 latest_dmesg_susfs.log
+drwxrwxrwx 2 root root u:object_r:adb_data_file:s0    3452 1970-01-01 03:03 logs
+-rw-r--r-- 1 root root u:object_r:adb_data_file:s0   26121 2026-02-10 03:54 pid1_mountinfo.txt
+-rw-rw-rw- 1 root root u:object_r:adb_data_file:s0      46 2026-02-10 21:04 susfs_stats.txt
+-rw-rw-rw- 1 root root u:object_r:adb_data_file:s0      46 2026-02-10 21:04 susfs_stats1.txt
+-rw-r--r-- 1 root root u:object_r:adb_data_file:s0  249026 2026-02-10 03:54 zygote64_maps.txt
+-rw-r--r-- 1 root root u:object_r:adb_data_file:s0   25106 2026-02-10 03:54 zygote64_mountinfo.txt
+
+/data/adb/ksu/susfs4ksu/logs:
+total 98
+drwxrwxrwx 2 root root u:object_r:adb_data_file:s0   3452 1970-01-01 03:03 .
+drwxrwxrwx 3 root root u:object_r:adb_data_file:s0   3452 2026-02-10 21:04 ..
+-rw-rw-rw- 1 root root u:object_r:adb_data_file:s0     85 2026-02-10 21:03 boot_stage_time.sh
+-rw-rw-rw- 1 root root u:object_r:adb_data_file:s0  83683 2026-02-10 21:04 susfs.log
+-rw-rw-rw- 1 root root u:object_r:adb_data_file:s0   2345 2026-02-10 21:04 susfs1.log
+-rw-rw-rw- 1 root root u:object_r:adb_data_file:s0      0 1970-01-01 19:13 susfs_active
+
+/data/adb/lspd:
+total 22
+drwxrwxrwx  6 root root u:object_r:system_file:s0    3452 1970-01-01 19:13 .
+drwx------ 14 root root u:object_r:adb_data_file:s0  3452 1970-01-01 19:13 ..
+drwxrwxrwx  2 root root u:object_r:system_file:s0    3452 2025-11-10 02:00 config
+drwxrwxrwx  2 root root u:object_r:system_file:s0    3452 1970-01-24 15:04 config_backup
+-rw-rw----  1 root root u:object_r:system_file:s0       0 2025-09-06 16:09 lock
+drwxrwxrwx  2 root root u:object_r:system_file:s0    3452 1970-01-01 19:13 log
+drwxrwxrwx  2 root root u:object_r:system_file:s0    3452 1970-01-01 19:11 log.old
+-rw-rw----  1 root root u:object_r:system_file:s0      46 1970-01-01 19:13 monitor
+
+/data/adb/lspd/config:
+total 1322
+drwxrwxrwx 2 root root u:object_r:system_file:s0    3452 2025-11-10 02:00 .
+drwxrwxrwx 6 root root u:object_r:system_file:s0    3452 1970-01-01 19:13 ..
+-rw------- 1 root root u:object_r:system_file:s0  311296 2026-02-09 23:37 dex2oat_service.db
+-rw------- 1 root root u:object_r:system_file:s0   32768 2026-02-10 21:03 dex2oat_service.db-shm
+-rw------- 1 root root u:object_r:system_file:s0  469712 2026-02-10 21:03 dex2oat_service.db-wal
+-rw-rw-rw- 1 root root u:object_r:system_file:s0   69632 2026-02-10 02:56 modules_config.db
+-rw-rw-rw- 1 root root u:object_r:system_file:s0   32768 2026-02-10 21:03 modules_config.db-shm
+-rw-rw-rw- 1 root root u:object_r:system_file:s0  428512 2026-02-10 21:03 modules_config.db-wal
+
+/data/adb/lspd/config_backup:
+total 502
+drwxrwxrwx 2 root root u:object_r:system_file:s0    3452 1970-01-24 15:04 .
+drwxrwxrwx 6 root root u:object_r:system_file:s0    3452 1970-01-01 19:13 ..
+-rw-rw-rw- 1 root root u:object_r:system_file:s0   53248 1970-01-24 15:04 modules_config.db
+-rw-rw-rw- 1 root root u:object_r:system_file:s0   32768 1970-01-24 15:04 modules_config.db-shm
+-rw-rw-rw- 1 root root u:object_r:system_file:s0  420272 1970-01-24 15:04 modules_config.db-wal
+
+/data/adb/lspd/log:
+total 682
+drwxrwxrwx 2 root root u:object_r:system_file:s0      3452 1970-01-01 19:13 .
+drwxrwxrwx 6 root root u:object_r:system_file:s0      3452 1970-01-01 19:13 ..
+-rw-rw-rw- 1 root root u:object_r:system_file:s0    308817 1970-01-01 19:13 kmsg.log
+-rwxrwx--- 1 root root u:object_r:system_file:s0     60737 2026-02-10 21:08 modules_1970-01-01T19:13:52.955026.log
+-rw-rw-rw- 1 root root u:object_r:app_data_file:s0   25764 1970-01-01 19:13 props.txt
+-rwxrwx--- 1 root root u:object_r:system_file:s0    287494 2026-02-10 21:08 verbose_1970-01-01T19:13:52.953984.log
+
+/data/adb/lspd/log.old:
+total 598
+drwxrwxrwx 2 root root u:object_r:system_file:s0      3452 1970-01-01 19:11 .
+drwxrwxrwx 6 root root u:object_r:system_file:s0      3452 1970-01-01 19:13 ..
+-rw-rw-rw- 1 root root u:object_r:system_file:s0    317201 1970-01-01 19:11 kmsg.log
+-rwxrwx--- 1 root root u:object_r:system_file:s0     31948 2026-02-10 21:02 modules_1970-01-01T19:11:00.493001.log
+-rw-rw-rw- 1 root root u:object_r:app_data_file:s0   25197 1970-01-01 19:11 props.txt
+-rwxrwx--- 1 root root u:object_r:system_file:s0    221740 2026-02-10 21:02 verbose_1970-01-01T19:11:00.491937.log
+
+/data/adb/meta-hybrid:
+total 76673
+drwxr-xr-x  3 root root u:object_r:adb_data_file:s0       3452 1970-01-01 19:13 .
+drwx------ 14 root root u:object_r:adb_data_file:s0       3452 1970-01-01 19:13 ..
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0         94 2026-02-09 22:39 config.toml
+-rw-rw-rw-  1 root root u:object_r:ksu_file:s0       127899597 2026-02-10 21:03 modules.img
+drwxrwxrwx  2 root root u:object_r:adb_data_file:s0       3452 1970-03-18 21:58 run
+
+/data/adb/meta-hybrid/run:
+total 10
+drwxrwxrwx 2 root root u:object_r:adb_data_file:s0  3452 1970-03-18 21:58 .
+drwxr-xr-x 3 root root u:object_r:adb_data_file:s0  3452 1970-01-01 19:13 ..
+-rw-rw-rw- 1 root root u:object_r:adb_data_file:s0   360 1970-01-01 19:13 daemon_state.json
+
+/data/adb/modules:
+total 51
+drwxr-xr-x 17 root root u:object_r:adb_data_file:s0  3452 1970-03-19 02:47 .
+drwx------ 14 root root u:object_r:adb_data_file:s0  3452 1970-01-01 19:13 ..
+drwxr-xr-x  2 root root u:object_r:system_file:s0    3452 2026-02-10 21:03 EnableTheRemoveGameFPSLimitDevSettingAutomatically
+drwxr-xr-x  2 root root u:object_r:system_file:s0    3452 2025-11-27 18:36 SKIAUIRenderer
+drwxr-xr-x  4 root root u:object_r:system_file:s0    3452 2026-02-09 21:35 TA_utl
+drwxr-xr-x  5 root root u:object_r:system_file:s0    3452 2026-02-10 21:03 bindhosts
+drwxr-xr-x  4 root root u:object_r:system_file:s0    3452 2025-11-27 18:36 bootanimation-maker
+drwxr-xr-x  3 root root u:object_r:system_file:s0    3452 1970-03-19 02:47 com.chiller3.bcr
+drwxr-xr-x  4 root root u:object_r:system_file:s0    3452 1970-01-01 19:13 meta-hybrid
+drwxr-xr-x  4 root root u:object_r:system_file:s0    3452 2025-11-27 18:36 mmrl_wpd
+drwxr-xr-x  3 root root u:object_r:system_file:s0    3452 1970-03-18 21:35 playintegrityfix
+drwxr-xr-x  6 root root u:object_r:system_file:s0    3452 1970-03-18 21:32 rezygisk
+drwxr-xr-x  3 root root u:object_r:system_file:s0    3452 2026-02-10 21:03 susfs4ksu
+drwxr-xr-x  2 root root u:object_r:system_file:s0    3452 2026-02-10 21:03 tricky_store
+drwxr-xr-x  3 root root u:object_r:system_file:s0    3452 2025-11-27 18:47 vbmeta-fixer
+drwxr-xr-x  3 root root u:object_r:system_file:s0    3452 2025-11-27 18:36 zram-swap-manager
+drwxr-xr-x  6 root root u:object_r:system_file:s0    3452 1970-02-21 22:42 zygisk_lsposed
+
+/data/adb/modules/EnableTheRemoveGameFPSLimitDevSettingAutomatically:
+total 18
+drwxr-xr-x  2 root root u:object_r:system_file:s0    3452 2026-02-10 21:03 .
+drwxr-xr-x 17 root root u:object_r:adb_data_file:s0  3452 1970-03-19 02:47 ..
+-rw-r--r--  1 root root u:object_r:system_file:s0     315 2026-02-10 21:03 module.prop
+-rwxr-xr-x  1 root root u:object_r:system_file:s0    1846 2026-02-05 04:04 service.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0     228 2026-02-05 04:04 uninstall.sh
+
+/data/adb/modules/SKIAUIRenderer:
+total 34
+drwxr-xr-x  2 root root u:object_r:system_file:s0    3452 2025-11-27 18:36 .
+drwxr-xr-x 17 root root u:object_r:adb_data_file:s0  3452 1970-03-19 02:47 ..
+-rw-r--r--  1 root root u:object_r:system_file:s0    1066 2025-10-14 06:28 LICENSE
+-rw-r--r--  1 root root u:object_r:system_file:s0     157 2026-02-10 21:03 debug.log
+-rw-r--r--  1 root root u:object_r:system_file:s0     409 2025-10-14 06:28 function.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0     294 2025-10-14 06:28 module.prop
+-rw-r--r--  1 root root u:object_r:system_file:s0      53 2025-10-14 06:28 sepolicy.rule
+-rw-r--r--  1 root root u:object_r:system_file:s0     358 2025-10-14 06:28 service.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0     260 2025-10-14 06:28 uninstall.sh
+
+/data/adb/modules/TA_utl:
+total 28
+drwxr-xr-x  4 root root u:object_r:system_file:s0    3452 2026-02-09 21:35 .
+drwxr-xr-x 17 root root u:object_r:adb_data_file:s0  3452 1970-03-19 02:47 ..
+drwxr-xr-x  5 root root u:object_r:system_file:s0    3452 2026-02-09 21:35 common
+-rw-r--r--  1 root root u:object_r:system_file:s0     809 2026-02-09 21:34 post-fs-data.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0    2295 2026-02-09 21:34 prop.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0    2532 2026-02-09 21:34 service.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0     762 2026-02-09 21:34 uninstall.sh
+drwxr-xr-x  4 root root u:object_r:system_file:s0    3452 2026-02-09 21:34 webui
+
+/data/adb/modules/TA_utl/common:
+total 55
+drwxr-xr-x 5 root root  u:object_r:system_file:s0   3452 2026-02-09 21:35 .
+drwxr-xr-x 4 root root  u:object_r:system_file:s0   3452 2026-02-09 21:35 ..
+-rw-r--r-- 1 root root  u:object_r:system_file:s0  20040 2026-02-09 21:34 .default
+drwxr-xr-x 2 root shell u:object_r:system_file:s0   3452 2026-02-09 21:34 bin
+-rwxr-xr-x 1 root shell u:object_r:system_file:s0   9737 2026-02-09 21:34 get_extra.sh
+-rwxr-xr-x 1 root root  u:object_r:system_file:s0     12 1970-01-01 19:13 manager.sh
+-rw-r--r-- 1 root root  u:object_r:system_file:s0    425 2026-02-09 21:34 repo.json
+drwxrwxrwx 2 root root  u:object_r:system_file:s0   3452 2026-02-09 21:35 tmp
+drwxr-xr-x 2 root root  u:object_r:system_file:s0   3452 2026-02-09 21:34 update
+
+/data/adb/modules/TA_utl/common/bin:
+total 874
+drwxr-xr-x 2 root shell u:object_r:system_file:s0    3452 2026-02-09 21:34 .
+drwxr-xr-x 5 root root  u:object_r:system_file:s0    3452 2026-02-09 21:35 ..
+-rwxr-xr-x 1 root shell u:object_r:system_file:s0  888504 2026-02-09 21:34 keygen
+
+/data/adb/modules/TA_utl/common/tmp:
+total 6
+drwxrwxrwx 2 root root u:object_r:system_file:s0  3452 2026-02-09 21:35 .
+drwxr-xr-x 5 root root u:object_r:system_file:s0  3452 2026-02-09 21:35 ..
+-rw-rw-rw- 1 root root u:object_r:system_file:s0     0 2026-02-10 21:03 skiplist
+-rw-rw-rw- 1 root root u:object_r:system_file:s0     0 2026-02-10 21:03 xposed
+
+/data/adb/modules/TA_utl/common/update:
+total 14
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 21:34 .
+drwxr-xr-x 5 root root u:object_r:system_file:s0  3452 2026-02-09 21:35 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0   269 2026-02-09 21:34 module.prop
+-rw-r--r-- 1 root root u:object_r:system_file:s0    34 2026-02-09 21:34 service.sh
+
+/data/adb/modules/TA_utl/webui:
+total 40
+drwxr-xr-x 4 root root u:object_r:system_file:s0   3452 2026-02-09 21:34 .
+drwxr-xr-x 4 root root u:object_r:system_file:s0   3452 2026-02-09 21:35 ..
+drwxr-xr-x 2 root root u:object_r:system_file:s0   3452 2026-02-09 21:34 assets
+-rw-r--r-- 1 root root u:object_r:system_file:s0    145 2026-02-09 21:34 config.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0   7686 2026-02-09 21:34 icon.png
+-rw-r--r-- 1 root root u:object_r:system_file:s0  14088 2026-02-09 21:34 index.html
+drwxr-xr-x 3 root root u:object_r:system_file:s0   3452 2026-02-09 21:34 locales
+
+/data/adb/modules/TA_utl/webui/assets:
+total 654
+drwxr-xr-x 2 root root u:object_r:system_file:s0    3452 2026-02-09 21:34 .
+drwxr-xr-x 4 root root u:object_r:system_file:s0    3452 2026-02-09 21:34 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0   40368 2026-02-09 21:34 icon-DJuj7YfB.png
+-rw-r--r-- 1 root root u:object_r:system_file:s0   15258 2026-02-09 21:34 index-9-Q_-PK2.css
+-rw-r--r-- 1 root root u:object_r:system_file:s0  314946 2026-02-09 21:34 index-nqSVzVQP.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0  287524 2026-02-09 21:34 material-symbols-outlined-D4N9P62f.woff2
+
+/data/adb/modules/TA_utl/webui/locales:
+total 37
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 2026-02-09 21:34 .
+drwxr-xr-x 4 root root u:object_r:system_file:s0  3452 2026-02-09 21:34 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0  1913 2026-02-09 21:34 CONTRIBUTOR.md
+-rw-r--r-- 1 root root u:object_r:system_file:s0   652 2026-02-09 21:34 GUIDE.md
+-rw-r--r-- 1 root root u:object_r:system_file:s0   591 2026-02-09 21:34 languages.json
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 21:34 strings
+-rw-r--r-- 1 root root u:object_r:system_file:s0  9126 2026-02-09 21:34 template.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0     9 2026-02-09 21:34 version
+
+/data/adb/modules/TA_utl/webui/locales/strings:
+total 290
+drwxr-xr-x 2 root root u:object_r:system_file:s0   3452 2026-02-09 21:34 .
+drwxr-xr-x 3 root root u:object_r:system_file:s0   3452 2026-02-09 21:34 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0  11097 2026-02-09 21:34 ar.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   8898 2026-02-09 21:34 az.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  11975 2026-02-09 21:34 bn.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   8758 2026-02-09 21:34 de.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  10191 2026-02-09 21:34 el.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   9126 2026-02-09 21:34 en.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  10043 2026-02-09 21:34 es-ES.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   9850 2026-02-09 21:34 fa.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  10424 2026-02-09 21:34 fr.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   8554 2026-02-09 21:34 id.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   8876 2026-02-09 21:34 it.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   9866 2026-02-09 21:34 ja.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   9338 2026-02-09 21:34 ko.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  10109 2026-02-09 21:34 pl.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   9506 2026-02-09 21:34 pt-BR.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  11809 2026-02-09 21:34 ru.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  13507 2026-02-09 21:34 th.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   8415 2026-02-09 21:34 tl.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   9042 2026-02-09 21:34 tr.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  12486 2026-02-09 21:34 uk.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  10478 2026-02-09 21:34 vi.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   8885 2026-02-09 21:34 zh-CN.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   8887 2026-02-09 21:34 zh-TW.xml
+
+/data/adb/modules/bindhosts:
+total 83
+drwxr-xr-x  5 root root u:object_r:system_file:s0     3452 2026-02-10 21:03 .
+drwxr-xr-x 17 root root u:object_r:adb_data_file:s0   3452 1970-03-19 02:47 ..
+-rw-r--r--  1 root root u:object_r:system_file:s0      135 2026-02-09 22:16 README
+-rw-r--r--  1 root root u:object_r:system_file:s0     1830 2026-02-09 22:16 action.sh
+-rwxr-xr-x  1 root root u:object_r:system_file:s0     1871 2026-02-09 22:16 bindhosts-app.sh
+-rwxr-xr-x  1 root root u:object_r:system_file:s0    24276 2026-02-09 22:16 bindhosts.sh
+drwxr-xr-x  2 root root u:object_r:system_file:s0     3452 2026-02-09 22:16 common
+-rw-rw-rw-  1 root root u:object_r:system_file:s0       17 1970-01-01 19:13 mode.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0      234 2026-02-10 21:03 module.prop
+-rw-r--r--  1 root root u:object_r:system_file:s0     5661 2026-02-09 22:16 post-fs-data.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0     5542 2026-02-09 22:16 service.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0        0 2026-02-09 22:16 skip_mount
+drwxr-xr-x  3 root root u:object_r:system_file:s0     3452 2026-02-09 22:17 system
+-rw-r--r--  1 root root u:object_r:system_file:s0      515 2026-02-09 22:16 uninstall.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0      780 2026-02-09 22:16 utils.sh
+drwxr-xr-x  5 root root u:object_r:system_file:s0     3452 2026-02-09 22:17 webroot
+
+/data/adb/modules/bindhosts/common:
+total 10
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:16 .
+drwxr-xr-x 5 root root u:object_r:system_file:s0  3452 2026-02-10 21:03 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0   701 2026-02-09 22:16 repo.json
+
+/data/adb/modules/bindhosts/system:
+total 9
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 2026-02-09 22:17 .
+drwxr-xr-x 5 root root u:object_r:system_file:s0  3452 2026-02-10 21:03 ..
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:17 etc
+
+/data/adb/modules/bindhosts/system/etc:
+total 5806
+drwxr-xr-x 2 root root u:object_r:system_file:s0     3452 2026-02-09 22:17 .
+drwxr-xr-x 3 root root u:object_r:system_file:s0     3452 2026-02-09 22:17 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0  5932633 2026-02-10 10:00 hosts
+
+/data/adb/modules/bindhosts/webroot:
+total 47
+drwxr-xr-x 5 root root u:object_r:system_file:s0   3452 2026-02-09 22:17 .
+drwxr-xr-x 5 root root u:object_r:system_file:s0   3452 2026-02-10 21:03 ..
+drwxr-xr-x 2 root root u:object_r:system_file:s0   3452 2026-02-09 22:16 assets
+-rw-r--r-- 1 root root u:object_r:system_file:s0    311 2026-02-09 22:16 config.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0  19917 2026-02-09 22:16 icon.png
+-rw-r--r-- 1 root root u:object_r:system_file:s0   6907 2026-02-09 22:16 index.html
+drwxrwxrwx 2 root root u:object_r:system_file:s0   3452 2026-02-10 21:03 link
+drwxr-xr-x 3 root root u:object_r:system_file:s0   3452 2026-02-09 22:16 locales
+
+/data/adb/modules/bindhosts/webroot/assets:
+total 198
+drwxr-xr-x 2 root root u:object_r:system_file:s0   3452 2026-02-09 22:16 .
+drwxr-xr-x 5 root root u:object_r:system_file:s0   3452 2026-02-09 22:17 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0   2691 2026-02-09 22:16 home-BZUlQHzE.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0   3614 2026-02-09 22:16 home-BtB2iHzt.css
+-rw-r--r-- 1 root root u:object_r:system_file:s0   6487 2026-02-09 22:16 home-Cj9KjtuP.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0   5604 2026-02-09 22:16 hosts-B0Lm-y8M.css
+-rw-r--r-- 1 root root u:object_r:system_file:s0  14807 2026-02-09 22:16 hosts-CgiDz7Fn.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0  16000 2026-02-09 22:16 hosts-Pag9Ys2t.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0  83718 2026-02-09 22:16 index-BUT7Oy2q.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0  14876 2026-02-09 22:16 index-DCcIemY5.css
+-rw-r--r-- 1 root root u:object_r:system_file:s0   2585 2026-02-09 22:16 more-B-UzIVfI.css
+-rw-r--r-- 1 root root u:object_r:system_file:s0  18888 2026-02-09 22:16 more-CoqmD4jf.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0   9818 2026-02-09 22:16 more-Cs1ItQEF.js
+
+/data/adb/modules/bindhosts/webroot/link:
+total 6
+drwxrwxrwx 2 root root u:object_r:system_file:s0  3452 2026-02-10 21:03 .
+drwxr-xr-x 5 root root u:object_r:system_file:s0  3452 2026-02-09 22:17 ..
+lrwxrwxrwx 1 root root u:object_r:system_file:s0    27 2026-02-09 22:17 MODDIR -> /data/adb/modules/bindhosts
+lrwxrwxrwx 1 root root u:object_r:system_file:s0    19 2026-02-09 22:17 PERSISTENT_DIR -> /data/adb/bindhosts
+lrwxrwxrwx 1 root root u:object_r:system_file:s0    44 2026-02-10 21:03 hosts.txt -> /data/adb/modules/bindhosts/system/etc/hosts
+
+/data/adb/modules/bindhosts/webroot/locales:
+total 29
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 2026-02-09 22:16 .
+drwxr-xr-x 5 root root u:object_r:system_file:s0  3452 2026-02-09 22:17 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0  1644 2026-02-09 22:16 CONTRIBUTOR.md
+-rw-r--r-- 1 root root u:object_r:system_file:s0   459 2026-02-09 22:16 languages.json
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:16 strings
+-rw-r--r-- 1 root root u:object_r:system_file:s0  7258 2026-02-09 22:16 template.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0     9 2026-02-09 22:16 version
+
+/data/adb/modules/bindhosts/webroot/locales/strings:
+total 166
+drwxr-xr-x 2 root root u:object_r:system_file:s0   3452 2026-02-09 22:16 .
+drwxr-xr-x 3 root root u:object_r:system_file:s0   3452 2026-02-09 22:16 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0   7996 2026-02-09 22:16 ar.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   6794 2026-02-09 22:16 cs.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   7463 2026-02-09 22:16 de.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  10107 2026-02-09 22:16 el.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   7258 2026-02-09 22:16 en.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   7884 2026-02-09 22:16 es-ES.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   7558 2026-02-09 22:16 fr.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   7573 2026-02-09 22:16 id.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   7810 2026-02-09 22:16 it.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   8215 2026-02-09 22:16 ja.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   7030 2026-02-09 22:16 pl.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   5685 2026-02-09 22:16 pt-BR.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   9739 2026-02-09 22:16 ru.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   6748 2026-02-09 22:16 sv.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   7851 2026-02-09 22:16 tr.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   8853 2026-02-09 22:16 uk.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   7145 2026-02-09 22:16 zh-CN.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   7127 2026-02-09 22:16 zh-TW.xml
+
+/data/adb/modules/bootanimation-maker:
+total 20
+drwxr-xr-x  4 root root u:object_r:system_file:s0    3452 2025-11-27 18:36 .
+drwxr-xr-x 17 root root u:object_r:adb_data_file:s0  3452 1970-03-19 02:47 ..
+-rw-r--r--  1 root root u:object_r:system_file:s0     980 2025-10-14 06:52 What's new.txt
+-rw-r--r--  1 root root u:object_r:system_file:s0     203 2025-10-14 06:52 module.prop
+drwxr-xr-x  3 root root u:object_r:system_file:s0    3452 2025-10-14 06:52 system
+-rw-r--r--  1 root root u:object_r:system_file:s0       0 2025-10-14 06:52 system.prop
+drwxr-xr-x  2 root root u:object_r:system_file:s0    3452 2025-10-14 06:52 video
+
+/data/adb/modules/bootanimation-maker/system:
+total 9
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 2025-10-14 06:52 .
+drwxr-xr-x 4 root root u:object_r:system_file:s0  3452 2025-11-27 18:36 ..
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 2025-10-14 06:52 product
+
+/data/adb/modules/bootanimation-maker/system/product:
+total 9
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 2025-10-14 06:52 .
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 2025-10-14 06:52 ..
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2025-10-14 06:53 media
+
+/data/adb/modules/bootanimation-maker/system/product/media:
+total 22126
+drwxr-xr-x 2 root root u:object_r:system_file:s0      3452 2025-10-14 06:53 .
+drwxr-xr-x 3 root root u:object_r:system_file:s0      3452 2025-10-14 06:52 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0  22624825 2025-10-14 06:53 bootanimation.zip
+
+/data/adb/modules/bootanimation-maker/video:
+total 46046
+drwxr-xr-x 2 root root u:object_r:system_file:s0      3452 2025-10-14 06:52 .
+drwxr-xr-x 4 root root u:object_r:system_file:s0      3452 2025-11-27 18:36 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0  47091022 2025-10-14 06:52 OnePlusBootAnim60FPSCapCutWhite.mp4
+-rw-r--r-- 1 root root u:object_r:system_file:s0       315 2025-10-14 06:52 configs.prop
+
+/data/adb/modules/com.chiller3.bcr:
+total 61
+drwxr-xr-x  3 root root u:object_r:system_file:s0     3452 1970-03-19 02:47 .
+drwxr-xr-x 17 root root u:object_r:adb_data_file:s0   3452 1970-03-19 02:47 ..
+-rw-r--r--  1 root root u:object_r:system_file:s0    35149 2026-02-10 03:29 LICENSE
+-rw-r--r--  1 root root u:object_r:system_file:s0      777 2026-02-10 03:29 boot_common.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0      207 2026-02-10 03:29 module.prop
+-rw-r--r--  1 root root u:object_r:system_file:s0     1026 2026-02-10 03:29 post-fs-data.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0     1186 2026-02-10 03:29 service.sh
+drwxr-xr-x  4 root root u:object_r:system_file:s0     3452 2026-02-10 03:29 system
+
+/data/adb/modules/com.chiller3.bcr/system:
+total 12
+drwxr-xr-x 4 root root u:object_r:system_file:s0  3452 2026-02-10 03:29 .
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 1970-03-19 02:47 ..
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 2026-02-10 03:29 etc
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 2026-02-10 03:29 priv-app
+
+/data/adb/modules/com.chiller3.bcr/system/etc:
+total 9
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 2026-02-10 03:29 .
+drwxr-xr-x 4 root root u:object_r:system_file:s0  3452 2026-02-10 03:29 ..
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-10 03:29 permissions
+
+/data/adb/modules/com.chiller3.bcr/system/etc/permissions:
+total 10
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-10 03:29 .
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 2026-02-10 03:29 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0   292 2026-02-10 03:29 privapp-permissions-com.chiller3.bcr.xml
+
+/data/adb/modules/com.chiller3.bcr/system/priv-app:
+total 9
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 2026-02-10 03:29 .
+drwxr-xr-x 4 root root u:object_r:system_file:s0  3452 2026-02-10 03:29 ..
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-10 03:29 com.chiller3.bcr
+
+/data/adb/modules/com.chiller3.bcr/system/priv-app/com.chiller3.bcr:
+total 3970
+drwxr-xr-x 2 root root u:object_r:system_file:s0     3452 2026-02-10 03:29 .
+drwxr-xr-x 3 root root u:object_r:system_file:s0     3452 2026-02-10 03:29 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0  4053186 2026-02-10 03:29 app-release.apk
+
+/data/adb/modules/meta-hybrid:
+total 2020
+drwxr-xr-x  4 root root u:object_r:system_file:s0       3452 1970-01-01 19:13 .
+drwxr-xr-x 17 root root u:object_r:adb_data_file:s0     3452 1970-03-19 02:47 ..
+-rw-r--r--  1 root root u:object_r:system_file:s0         93 2026-02-09 22:39 config.toml
+-rwxr-xr-x  1 root root u:object_r:system_file:s0    2029112 2026-02-09 22:39 meta-hybrid
+-rw-r--r--  1 root root u:object_r:system_file:s0       1138 2026-02-09 22:39 metainstall.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0        333 2026-02-09 22:39 metamount.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0        242 2026-02-09 22:39 metauninstall.sh
+-rw-rw-rw-  1 root root u:object_r:system_file:s0        274 1970-01-01 19:13 module.prop
+drwxr-xr-x  2 root root u:object_r:system_file:s0       3452 2026-02-09 22:39 tools
+-rw-r--r--  1 root root u:object_r:system_file:s0        212 2026-02-09 22:39 uninstall.sh
+drwxr-xr-x  3 root root u:object_r:system_file:s0       3452 2026-02-09 22:39 webroot
+
+/data/adb/modules/meta-hybrid/tools:
+total 1566
+drwxr-xr-x 2 root root u:object_r:system_file:s0     3452 2026-02-09 22:39 .
+drwxr-xr-x 4 root root u:object_r:system_file:s0     3452 1970-01-01 19:13 ..
+-rwxr-xr-x 1 root root u:object_r:system_file:s0  1596560 2026-02-09 22:39 mkfs.erofs
+
+/data/adb/modules/meta-hybrid/webroot:
+total 13
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 2026-02-09 22:39 .
+drwxr-xr-x 4 root root u:object_r:system_file:s0  3452 1970-01-01 19:13 ..
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 2026-02-09 22:39 assets
+-rw-r--r-- 1 root root u:object_r:system_file:s0   555 2026-02-09 22:39 index.html
+
+/data/adb/modules/meta-hybrid/webroot/assets:
+total 325
+drwxr-xr-x 3 root root u:object_r:system_file:s0    3452 2026-02-09 22:39 .
+drwxr-xr-x 3 root root u:object_r:system_file:s0    3452 2026-02-09 22:39 ..
+drwxr-xr-x 2 root root u:object_r:system_file:s0    3452 2026-02-09 22:39 donate
+-rw-r--r-- 1 root root u:object_r:system_file:s0  286322 2026-02-09 22:39 index-5Andktt5.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0    1553 2026-02-09 22:39 index-BXK7DZyv.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0   32259 2026-02-09 22:39 index-DdmTJOB6.css
+
+/data/adb/modules/meta-hybrid/webroot/assets/donate:
+total 418
+drwxr-xr-x 2 root root u:object_r:system_file:s0    3452 2026-02-09 22:39 .
+drwxr-xr-x 3 root root u:object_r:system_file:s0    3452 2026-02-09 22:39 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0   65057 2026-02-09 22:39 tools_wechat.jpg
+-rw-r--r-- 1 root root u:object_r:system_file:s0  142013 2026-02-09 22:39 yuzaki_alipay.jpg
+-rw-r--r-- 1 root root u:object_r:system_file:s0  102261 2026-02-09 22:39 yuzaki_binance.jpg
+-rw-r--r-- 1 root root u:object_r:system_file:s0  108982 2026-02-09 22:39 yuzaki_wechat.jpg
+
+/data/adb/modules/mmrl_wpd:
+total 24
+drwxr-xr-x  4 root root u:object_r:system_file:s0    3452 2025-11-27 18:36 .
+drwxr-xr-x 17 root root u:object_r:adb_data_file:s0  3452 1970-03-19 02:47 ..
+-rw-r--r--  1 root root u:object_r:system_file:s0      47 2025-10-31 18:48 action.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0    1051 2025-10-31 18:48 config.json
+drwxr-xr-x  3 root root u:object_r:system_file:s0    3452 2025-10-31 18:48 modconf
+-rw-r--r--  1 root root u:object_r:system_file:s0     197 2025-10-31 18:48 module.prop
+drwxr-xr-x  3 root root u:object_r:system_file:s0    3452 2025-10-31 18:48 system
+
+/data/adb/modules/mmrl_wpd/modconf:
+total 13
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 2025-10-31 18:48 .
+drwxr-xr-x 4 root root u:object_r:system_file:s0  3452 2025-11-27 18:36 ..
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2025-10-31 18:48 assets
+-rw-r--r-- 1 root root u:object_r:system_file:s0    87 2025-10-31 18:48 modconf.json
+
+/data/adb/modules/mmrl_wpd/modconf/assets:
+total 82
+drwxr-xr-x 2 root root u:object_r:system_file:s0   3452 2025-10-31 18:48 .
+drwxr-xr-x 3 root root u:object_r:system_file:s0   3452 2025-10-31 18:48 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0  77820 2025-10-31 18:48 main.dex
+
+/data/adb/modules/mmrl_wpd/system:
+total 9
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 2025-10-31 18:48 .
+drwxr-xr-x 4 root root u:object_r:system_file:s0  3452 2025-11-27 18:36 ..
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2025-10-31 18:48 bin
+
+/data/adb/modules/mmrl_wpd/system/bin:
+total 10
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2025-10-31 18:48 .
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 2025-10-31 18:48 ..
+-rwxr-xr-x 1 root root u:object_r:system_file:s0  1019 2025-10-31 18:48 wpd
+
+/data/adb/modules/playintegrityfix:
+total 101
+drwxr-xr-x  3 root root u:object_r:system_file:s0     3452 1970-03-18 21:35 .
+drwxr-xr-x 17 root root u:object_r:adb_data_file:s0   3452 1970-03-19 02:47 ..
+-rw-r--r--  1 root root u:object_r:system_file:s0      445 2026-02-09 22:17 action.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0      590 2026-02-09 22:17 app_replace_list.txt
+-rw-r--r--  1 root root u:object_r:system_file:s0    10019 2026-02-09 22:17 autopif4.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0    21364 2026-02-09 22:17 classes.dex
+-rw-r--r--  1 root root u:object_r:system_file:s0     2906 2026-02-09 22:17 common_func.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0     4523 2026-02-09 22:17 common_setup.sh
+-rw-------  1 root root u:object_r:system_file:s0      604 2026-01-10 19:10 custom.pif.prop
+-rw-r--r--  1 root root u:object_r:system_file:s0      860 2026-02-09 22:17 example.pif.prop
+-rw-r--r--  1 root root u:object_r:system_file:s0      387 2026-02-09 22:17 killpi.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0     6521 2026-02-09 22:17 migrate.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0      260 2026-02-09 22:17 module.prop
+-rw-r--r--  1 root root u:object_r:system_file:s0     1518 2026-02-09 22:17 post-fs-data.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0     1536 2026-02-09 22:17 service.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0      135 2025-12-27 17:55 uninstall.sh
+drwxr-xr-x  2 root root u:object_r:system_file:s0     3452 2026-02-09 22:17 zygisk
+
+/data/adb/modules/playintegrityfix/zygisk:
+total 562
+drwxr-xr-x 2 root root u:object_r:system_file:s0    3452 2026-02-09 22:17 .
+drwxr-xr-x 3 root root u:object_r:system_file:s0    3452 1970-03-18 21:35 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0  136832 2026-02-09 22:17 arm64-v8a.so
+-rw-r--r-- 1 root root u:object_r:system_file:s0  101596 2026-02-09 22:17 armeabi-v7a.so
+-rw-r--r-- 1 root root u:object_r:system_file:s0  154780 2026-02-09 22:17 x86.so
+-rw-r--r-- 1 root root u:object_r:system_file:s0  169584 2026-02-09 22:17 x86_64.so
+
+/data/adb/modules/rezygisk:
+total 46
+drwxr-xr-x  6 root root u:object_r:system_file:s0      3452 1970-03-18 21:32 .
+drwxr-xr-x 17 root root u:object_r:adb_data_file:s0    3452 1970-03-19 02:47 ..
+drwxr-xr-x  2 root root u:object_r:system_file:s0      3452 2026-02-09 22:14 bin
+drwxr-xr-x  2 root root u:object_r:system_lib_file:s0  3452 2026-02-09 22:14 lib
+drwxr-xr-x  2 root root u:object_r:system_lib_file:s0  3452 2026-02-09 22:14 lib64
+-rw-r--r--  1 root root u:object_r:system_file:s0        96 2026-02-09 22:14 machikado.arm
+-rw-r--r--  1 root root u:object_r:system_file:s0        96 2026-02-09 22:14 machikado.arm64
+-rw-r--r--  1 root root u:object_r:system_file:s0       356 2026-02-10 21:03 module.prop
+-rw-r--r--  1 root root u:object_r:system_file:s0      1267 2026-02-09 22:14 post-fs-data.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0       590 2026-02-09 22:14 sepolicy.rule
+-rw-r--r--  1 root root u:object_r:system_file:s0       458 2026-02-09 22:14 service.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0        70 2026-02-09 22:14 uninstall.sh
+drwxr-xr-x  7 root root u:object_r:system_file:s0      3452 2026-02-09 22:14 webroot
+
+/data/adb/modules/rezygisk/bin:
+total 198
+drwxr-xr-x 2 root root u:object_r:system_file:s0   3452 2026-02-09 22:14 .
+drwxr-xr-x 6 root root u:object_r:system_file:s0   3452 1970-03-18 21:32 ..
+-rwxr-xr-x 1 root root u:object_r:system_file:s0  43728 2026-02-09 22:14 zygisk-ptrace32
+-rwxr-xr-x 1 root root u:object_r:system_file:s0  53416 2026-02-09 22:14 zygisk-ptrace64
+-rwxr-xr-x 1 root root u:object_r:system_file:s0  41292 2026-02-09 22:14 zygiskd32
+-rwxr-xr-x 1 root root u:object_r:system_file:s0  45200 2026-02-09 22:14 zygiskd64
+
+/data/adb/modules/rezygisk/lib:
+total 62
+drwxr-xr-x 2 root root u:object_r:system_lib_file:s0   3452 2026-02-09 22:14 .
+drwxr-xr-x 6 root root u:object_r:system_file:s0       3452 1970-03-18 21:32 ..
+-rw-r--r-- 1 root root u:object_r:system_lib_file:s0  56348 2026-02-09 22:14 libzygisk.so
+
+/data/adb/modules/rezygisk/lib64:
+total 78
+drwxr-xr-x 2 root root u:object_r:system_lib_file:s0   3452 2026-02-09 22:14 .
+drwxr-xr-x 6 root root u:object_r:system_file:s0       3452 1970-03-18 21:32 ..
+-rw-r--r-- 1 root root u:object_r:system_lib_file:s0  73512 2026-02-09 22:14 libzygisk.so
+
+/data/adb/modules/rezygisk/webroot:
+total 77
+drwxr-xr-x 7 root root u:object_r:system_file:s0   3452 2026-02-09 22:14 .
+drwxr-xr-x 6 root root u:object_r:system_file:s0   3452 1970-03-18 21:32 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0  34523 2026-02-09 22:14 LICENSE
+drwxr-xr-x 6 root root u:object_r:system_file:s0   3452 2026-02-09 22:14 assets
+drwxr-xr-x 2 root root u:object_r:system_file:s0   3452 2026-02-09 22:14 css
+drwxr-xr-x 2 root root u:object_r:system_file:s0   3452 2026-02-09 22:14 fonts
+-rw-r--r-- 1 root root u:object_r:system_file:s0  17713 2026-02-09 22:14 index.html
+drwxr-xr-x 6 root root u:object_r:system_file:s0   3452 2026-02-09 22:14 js
+drwxr-xr-x 2 root root u:object_r:system_file:s0   3452 2026-02-09 22:14 lang
+
+/data/adb/modules/rezygisk/webroot/assets:
+total 58
+drwxr-xr-x 6 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 .
+drwxr-xr-x 7 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 ..
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 actions
+-rw-r--r-- 1 root root u:object_r:system_file:s0   200 2026-02-09 22:14 back.svg
+-rw-r--r-- 1 root root u:object_r:system_file:s0   222 2026-02-09 22:14 close.svg
+-rw-r--r-- 1 root root u:object_r:system_file:s0   448 2026-02-09 22:14 content.svg
+-rw-r--r-- 1 root root u:object_r:system_file:s0   411 2026-02-09 22:14 delete.svg
+-rw-r--r-- 1 root root u:object_r:system_file:s0   663 2026-02-09 22:14 ec-icon.svg
+-rw-r--r-- 1 root root u:object_r:system_file:s0   537 2026-02-09 22:14 error.svg
+-rw-r--r-- 1 root root u:object_r:system_file:s0   462 2026-02-09 22:14 expand.svg
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 home
+-rw-r--r-- 1 root root u:object_r:system_file:s0   476 2026-02-09 22:14 mark.svg
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 modules
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 settings
+-rw-r--r-- 1 root root u:object_r:system_file:s0   483 2026-02-09 22:14 tick.svg
+-rw-r--r-- 1 root root u:object_r:system_file:s0   537 2026-02-09 22:14 warn.svg
+
+/data/adb/modules/rezygisk/webroot/assets/actions:
+total 14
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 .
+drwxr-xr-x 6 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0   408 2026-02-09 22:14 filled.svg
+-rw-r--r-- 1 root root u:object_r:system_file:s0   504 2026-02-09 22:14 outlined.svg
+
+/data/adb/modules/rezygisk/webroot/assets/home:
+total 14
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 .
+drwxr-xr-x 6 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0   380 2026-02-09 22:14 filled.svg
+-rw-r--r-- 1 root root u:object_r:system_file:s0   441 2026-02-09 22:14 outlined.svg
+
+/data/adb/modules/rezygisk/webroot/assets/modules:
+total 14
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 .
+drwxr-xr-x 6 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0   378 2026-02-09 22:14 filled.svg
+-rw-r--r-- 1 root root u:object_r:system_file:s0   414 2026-02-09 22:14 outlined.svg
+
+/data/adb/modules/rezygisk/webroot/assets/settings:
+total 14
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 .
+drwxr-xr-x 6 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0   690 2026-02-09 22:14 filled.svg
+-rw-r--r-- 1 root root u:object_r:system_file:s0   982 2026-02-09 22:14 outlined.svg
+
+/data/adb/modules/rezygisk/webroot/css:
+total 22
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 .
+drwxr-xr-x 7 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0   735 2026-02-09 22:14 error.css
+-rw-r--r-- 1 root root u:object_r:system_file:s0   700 2026-02-09 22:14 icons.css
+-rw-r--r-- 1 root root u:object_r:system_file:s0  7926 2026-02-09 22:14 index.css
+
+/data/adb/modules/rezygisk/webroot/fonts:
+total 166
+drwxr-xr-x 2 root root u:object_r:system_file:s0    3452 2026-02-09 22:14 .
+drwxr-xr-x 7 root root u:object_r:system_file:s0    3452 2026-02-09 22:14 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0      69 2026-02-09 22:14 header.css
+-rw-r--r-- 1 root root u:object_r:system_file:s0  158240 2026-02-09 22:14 poppins.ttf
+
+/data/adb/modules/rezygisk/webroot/js:
+total 66
+drwxr-xr-x 6 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 .
+drwxr-xr-x 7 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0   537 2026-02-09 22:14 browserRedirect.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0   542 2026-02-09 22:14 errorCatcher.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0   196 2026-02-09 22:14 errorScreen.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2810 2026-02-09 22:14 kernelsu.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2977 2026-02-09 22:14 language.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0  9179 2026-02-09 22:14 main.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0  1531 2026-02-09 22:14 monitorActions.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2109 2026-02-09 22:14 navbar.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0   302 2026-02-09 22:14 restoreError.js
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 smallPage
+-rw-r--r-- 1 root root u:object_r:system_file:s0  1079 2026-02-09 22:14 smallPageDesabler.js
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 switcher
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 themes
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 translate
+
+/data/adb/modules/rezygisk/webroot/js/smallPage:
+total 18
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 .
+drwxr-xr-x 6 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2149 2026-02-09 22:14 errorHistory.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0  1927 2026-02-09 22:14 language.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2343 2026-02-09 22:14 theme.js
+
+/data/adb/modules/rezygisk/webroot/js/switcher:
+total 10
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 .
+drwxr-xr-x 6 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0   959 2026-02-09 22:14 fontChanger.js
+
+/data/adb/modules/rezygisk/webroot/js/themes:
+total 30
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 .
+drwxr-xr-x 6 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0  1429 2026-02-09 22:14 amoled.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0  1545 2026-02-09 22:14 dark.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0   334 2026-02-09 22:14 darkNavbar.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0  1567 2026-02-09 22:14 light.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0  1639 2026-02-09 22:14 lightIcon.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0   324 2026-02-09 22:14 lightNavbar.js
+
+/data/adb/modules/rezygisk/webroot/js/translate:
+total 22
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 .
+drwxr-xr-x 6 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0  1661 2026-02-09 22:14 actions.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0  3360 2026-02-09 22:14 home.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0   476 2026-02-09 22:14 modules.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0  1707 2026-02-09 22:14 settings.js
+
+/data/adb/modules/rezygisk/webroot/lang:
+total 78
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 .
+drwxr-xr-x 7 root root u:object_r:system_file:s0  3452 2026-02-09 22:14 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2612 2026-02-09 22:14 ar_EG.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2377 2026-02-09 22:14 de_DE.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2271 2026-02-09 22:14 en_US.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2432 2026-02-09 22:14 es_AR.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2432 2026-02-09 22:14 es_ES.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2440 2026-02-09 22:14 es_MX.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2495 2026-02-09 22:14 fr_FR.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2337 2026-02-09 22:14 id_ID.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2409 2026-02-09 22:14 it_IT.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2613 2026-02-09 22:14 ja_JP.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2322 2026-02-09 22:14 ms_MS.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2394 2026-02-09 22:14 nl_NL.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2452 2026-02-09 22:14 pt_BR.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0  3037 2026-02-09 22:14 ru_RU.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2368 2026-02-09 22:14 tr_TR.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2977 2026-02-09 22:14 uk_UA.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2692 2026-02-09 22:14 vi_VN.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2196 2026-02-09 22:14 zh_CN.json
+
+/data/adb/modules/susfs4ksu:
+total 157
+drwxr-xr-x  3 root root u:object_r:system_file:s0     3452 2026-02-10 21:03 .
+drwxr-xr-x 17 root root u:object_r:adb_data_file:s0   3452 1970-03-19 02:47 ..
+-rw-r--r--  1 root root u:object_r:system_file:s0     2422 2026-02-09 22:06 CHANGELOG.md
+-rw-r--r--  1 root root u:object_r:system_file:s0    34523 2026-02-09 22:06 LICENSE
+-rw-r--r--  1 root root u:object_r:system_file:s0     2267 2026-02-09 22:06 action.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0    25305 2026-02-09 22:06 banner.png
+-rw-r--r--  1 root root u:object_r:system_file:s0    18328 2026-02-09 22:06 boot-completed.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0      249 2026-02-10 21:03 module.prop
+-rw-r--r--  1 root root u:object_r:system_file:s0     5039 2026-02-09 22:06 post-fs-data.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0     1495 2026-02-09 22:06 post-mount.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0      164 2026-02-09 22:06 sepolicy.rule
+-rw-r--r--  1 root root u:object_r:system_file:s0    10150 2026-02-09 22:06 service.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0      929 2026-02-09 22:06 susfs-bin-check.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0     1127 2026-02-09 22:06 susfs-bin-update.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0     3013 2026-02-09 22:06 susfs_reset.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0       97 2026-02-09 22:06 uninstall.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0      280 2026-02-09 22:06 update.json
+-rw-r--r--  1 root root u:object_r:system_file:s0     2109 2026-02-09 22:06 utils.sh
+drwxr-xr-x  4 root root u:object_r:system_file:s0     3452 2026-02-09 22:06 webroot
+
+/data/adb/modules/susfs4ksu/webroot:
+total 84
+drwxr-xr-x 4 root root u:object_r:system_file:s0   3452 2026-02-09 22:06 .
+drwxr-xr-x 3 root root u:object_r:system_file:s0   3452 2026-02-10 21:03 ..
+drwxr-xr-x 2 root root u:object_r:system_file:s0   3452 2026-02-09 22:06 assets
+-rw-r--r-- 1 root root u:object_r:system_file:s0     30 2026-02-09 22:06 config.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0    622 2026-02-09 22:06 contributors.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0   7133 2026-02-09 22:06 credits.html
+-rw-r--r-- 1 root root u:object_r:system_file:s0  18635 2026-02-09 22:06 custom.html
+-rw-r--r-- 1 root root u:object_r:system_file:s0  18697 2026-02-09 22:06 index.html
+drwxr-xr-x 2 root root u:object_r:system_file:s0   3452 2026-02-09 22:06 languages
+-rw-r--r-- 1 root root u:object_r:system_file:s0   9664 2026-02-09 22:06 status.html
+-rw-r--r-- 1 root root u:object_r:system_file:s0   1826 2026-02-09 22:06 translators.json
+
+/data/adb/modules/susfs4ksu/webroot/assets:
+total 838
+drwxr-xr-x 2 root root u:object_r:system_file:s0    3452 2026-02-09 22:06 .
+drwxr-xr-x 4 root root u:object_r:system_file:s0    3452 2026-02-09 22:06 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0  146796 2026-02-09 22:06 AmaticSC-Bold-t5U5bEu8.ttf
+-rw-r--r-- 1 root root u:object_r:system_file:s0  142696 2026-02-09 22:06 AmaticSC-Regular-CCetldNi.ttf
+-rw-r--r-- 1 root root u:object_r:system_file:s0   11064 2026-02-09 22:06 Impostograph-Regular-DKWEku3n.ttf
+-rw-r--r-- 1 root root u:object_r:system_file:s0    6096 2026-02-09 22:06 black-CWwxUpmx.png
+-rw-r--r-- 1 root root u:object_r:system_file:s0   53819 2026-02-09 22:06 blue-CDd1JgFA.png
+-rw-r--r-- 1 root root u:object_r:system_file:s0    6090 2026-02-09 22:06 brown-DkMF-zd4.png
+-rw-r--r-- 1 root root u:object_r:system_file:s0    5503 2026-02-09 22:06 creditsjs-BfjoyHvA.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0    6030 2026-02-09 22:06 cyan-CxxU9VUc.png
+-rw-r--r-- 1 root root u:object_r:system_file:s0   34152 2026-02-09 22:06 cyan1-BWTE1JdY.png
+-rw-r--r-- 1 root root u:object_r:system_file:s0   78229 2026-02-09 22:06 fade-4ApaDT9x.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0    6104 2026-02-09 22:06 green-BwBzMX7_.png
+-rw-r--r-- 1 root root u:object_r:system_file:s0    2241 2026-02-09 22:06 i18n-CuIujUHf.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0   74196 2026-02-09 22:06 index-BkZPgubJ.css
+-rw-r--r-- 1 root root u:object_r:system_file:s0   36509 2026-02-09 22:06 index-DzwXTQ4A.js
+-rw-r--r-- 1 root root u:object_r:system_file:s0    6059 2026-02-09 22:06 lime-DPDNUj7v.png
+-rw-r--r-- 1 root root u:object_r:system_file:s0    6039 2026-02-09 22:06 orange-Dz5Wr5v6.png
+-rw-r--r-- 1 root root u:object_r:system_file:s0   24959 2026-02-09 22:06 orange1-CeH2ZIyG.png
+-rw-r--r-- 1 root root u:object_r:system_file:s0    6027 2026-02-09 22:06 pink-BsJVk9ad.png
+-rw-r--r-- 1 root root u:object_r:system_file:s0    6060 2026-02-09 22:06 purple-b3Qaozit.png
+-rw-r--r-- 1 root root u:object_r:system_file:s0    6033 2026-02-09 22:06 red-DsgSinuJ.png
+-rw-r--r-- 1 root root u:object_r:system_file:s0   20606 2026-02-09 22:06 susfs_error-BRcgEdpI.png
+-rw-r--r-- 1 root root u:object_r:system_file:s0   21759 2026-02-09 22:06 susfs_update-BC5m6nLp.png
+-rw-r--r-- 1 root root u:object_r:system_file:s0    6001 2026-02-09 22:06 white-BOZMyur9.png
+-rw-r--r-- 1 root root u:object_r:system_file:s0   53842 2026-02-09 22:06 yellow-CMDT5nHw.png
+-rw-r--r-- 1 root root u:object_r:system_file:s0   27578 2026-02-09 22:06 yellow1-Bmr_vY2u.png
+
+/data/adb/modules/susfs4ksu/webroot/languages:
+total 154
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2026-02-09 22:06 .
+drwxr-xr-x 4 root root u:object_r:system_file:s0  3452 2026-02-09 22:06 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0  7251 2026-02-09 22:06 ar.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  7165 2026-02-09 22:06 de.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  6975 2026-02-09 22:06 en.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  7224 2026-02-09 22:06 es.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  7816 2026-02-09 22:06 fa.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  7207 2026-02-09 22:06 fr.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  7001 2026-02-09 22:06 id.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  7266 2026-02-09 22:06 it.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  7598 2026-02-09 22:06 ja.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0   409 2026-02-09 22:06 languages.json
+-rw-r--r-- 1 root root u:object_r:system_file:s0  7365 2026-02-09 22:06 pl.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  7185 2026-02-09 22:06 ptbr.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  8861 2026-02-09 22:06 ru.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  7250 2026-02-09 22:06 tr.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  8823 2026-02-09 22:06 uk.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  7802 2026-02-09 22:06 vi.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  6914 2026-02-09 22:06 zh-rCN.xml
+-rw-r--r-- 1 root root u:object_r:system_file:s0  6917 2026-02-09 22:06 zh-rTW.xml
+
+/data/adb/modules/tricky_store:
+total 3426
+drwxr-xr-x  2 root root u:object_r:system_file:s0       3452 2026-02-10 21:03 .
+drwxr-xr-x 17 root root u:object_r:adb_data_file:s0     3452 1970-03-19 02:47 ..
+-rwxr-xr-x  1 root root u:object_r:system_file:s0        148 2025-11-27 18:53 daemon
+-rw-r--r--  1 root root u:object_r:system_file:s0    1060352 2025-11-27 18:53 libtricky_store.so
+-rw-r--r--  1 root root u:object_r:system_file:s0         96 2025-11-27 18:53 machikado
+-rw-r--r--  1 root root u:object_r:system_file:s0         96 2025-11-27 18:53 mazoku
+-rw-r--r--  1 root root u:object_r:system_file:s0        223 2025-11-27 18:53 module.prop
+-rw-r--r--  1 root root u:object_r:system_file:s0         15 2025-11-27 18:53 post-fs-data.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0         36 2025-11-27 18:53 sepolicy.rule
+-rw-r--r--  1 root root u:object_r:system_file:s0    2409346 2025-11-27 18:53 service.apk
+-rw-r--r--  1 root root u:object_r:system_file:s0        164 2025-11-27 18:53 service.sh
+lrwxrwxrwx  1 root root u:object_r:system_file:s0         30 2026-02-10 21:03 webroot -> /data/adb/modules/TA_utl/webui
+
+/data/adb/modules/vbmeta-fixer:
+total 25
+drwxr-xr-x  3 root root u:object_r:system_file:s0    3452 2025-11-27 18:47 .
+drwxr-xr-x 17 root root u:object_r:adb_data_file:s0  3452 1970-03-19 02:47 ..
+-rw-r--r--  1 root root u:object_r:system_file:s0     192 2025-11-27 17:58 module.prop
+drwxr-xr-x  2 root root u:object_r:system_file:s0    3452 2025-11-27 17:58 service
+-rw-r--r--  1 root root u:object_r:system_file:s0    4945 2025-11-27 17:58 service.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0     125 2025-11-27 17:58 uninstall.sh
+
+/data/adb/modules/vbmeta-fixer/service:
+total 3186
+drwxr-xr-x 2 root root u:object_r:system_file:s0     3452 2025-11-27 17:58 .
+drwxr-xr-x 3 root root u:object_r:system_file:s0     3452 2025-11-27 18:47 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0        0 2025-11-27 17:58 .gitkeep
+-rw-r--r-- 1 root root u:object_r:system_file:s0  3252332 2025-11-27 17:58 service.apk
+
+/data/adb/modules/zram-swap-manager:
+total 25
+drwxr-xr-x  3 root root u:object_r:system_file:s0    3452 2025-11-27 18:36 .
+drwxr-xr-x 17 root root u:object_r:adb_data_file:s0  3452 1970-03-19 02:47 ..
+-rwxr-xr-x  1 root root u:object_r:system_file:s0     737 2025-10-14 06:28 busybox.sh
+-rw-r--r--  1 root root u:object_r:system_file:s0     337 2025-10-14 06:28 module.prop
+-rwxr-xr-x  1 root root u:object_r:system_file:s0     205 2025-10-14 06:28 service.sh
+drwxr-xr-x  3 root root u:object_r:system_file:s0    3452 2025-10-14 06:28 system
+-rw-r-xr-x  1 root root u:object_r:system_file:s0     737 2025-10-14 06:28 uninstall.sh
+
+/data/adb/modules/zram-swap-manager/system:
+total 9
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 2025-10-14 06:28 .
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 2025-11-27 18:36 ..
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2025-10-14 06:28 bin
+
+/data/adb/modules/zram-swap-manager/system/bin:
+total 26
+drwxr-xr-x 2 root root u:object_r:system_file:s0  3452 2025-10-14 06:28 .
+drwxr-xr-x 3 root root u:object_r:system_file:s0  3452 2025-10-14 06:28 ..
+-rwxr-xr-x 1 root root u:object_r:system_file:s0  6597 2025-10-14 06:28 zram-swap-manager
+-rwxr-xr-x 1 root root u:object_r:system_file:s0   736 2025-10-14 06:28 zram-swap-manager-uninstall
+-rwxr-xr-x 1 root root u:object_r:system_file:s0  6597 2025-10-14 06:28 zsm
+
+/data/adb/modules/zygisk_lsposed:
+total 7226
+drwxr-xr-x  6 root root  u:object_r:system_file:s0       3452 1970-02-21 22:42 .
+drwxr-xr-x 17 root root  u:object_r:adb_data_file:s0     3452 1970-03-19 02:47 ..
+-rw-r--r--  1 root root  u:object_r:system_file:s0        265 2026-01-15 23:24 action.sh
+drwxr-xr-x  2 root shell u:object_r:system_file:s0       3452 2026-01-15 23:24 bin
+-rwxr--r--  1 root root  u:object_r:system_file:s0        414 2026-01-15 23:24 daemon
+-rw-r--r--  1 root root  u:object_r:system_file:s0    4403835 2026-01-15 23:24 daemon.apk
+drwxr-xr-x  2 root root  u:object_r:system_file:s0       3452 2026-01-15 23:24 framework
+drwxr-xr-x  2 root root  u:object_r:system_file:s0       3452 2026-01-15 23:24 lib
+-rwxr--r--  1 root root  u:object_r:system_file:s0        911 2026-01-15 23:24 lspd
+-rw-r--r--  1 root root  u:object_r:system_file:s0         96 2026-01-15 23:24 machikado
+-rw-r--r--  1 root root  u:object_r:system_file:s0    2930520 2026-01-15 23:24 manager.apk
+-rw-r--r--  1 root root  u:object_r:system_file:s0         96 2026-01-15 23:24 mazoku
+-rw-r--r--  1 root root  u:object_r:system_file:s0        327 2026-01-15 23:24 module.prop
+-rw-r--r--  1 root root  u:object_r:system_file:s0        836 2026-01-15 23:24 post-fs-data.sh
+lrwxrwxrwx  1 root root  u:object_r:system_file:s0         15 2026-01-15 23:24 post-mount.sh -> post-fs-data.sh
+-rw-r--r--  1 root root  u:object_r:system_file:s0        184 2026-01-15 23:24 sepolicy.rule
+-rw-r--r--  1 root root  u:object_r:system_file:s0        769 2026-01-15 23:24 uninstall.sh
+drwxr-xr-x  2 root root  u:object_r:system_file:s0       3452 2026-01-15 23:24 zygisk
+
+/data/adb/modules/zygisk_lsposed/bin:
+total 190
+drwxr-xr-x 2 root shell u:object_r:system_file:s0     3452 2026-01-15 23:24 .
+drwxr-xr-x 6 root root  u:object_r:system_file:s0     3452 1970-02-21 22:42 ..
+-rwxr-xr-x 1 root shell u:object_r:dex2oat_exec:s0  184968 2026-01-15 23:24 dex2oat
+
+/data/adb/modules/zygisk_lsposed/framework:
+total 206
+drwxr-xr-x 2 root root u:object_r:system_file:s0    3452 2026-01-15 23:24 .
+drwxr-xr-x 6 root root u:object_r:system_file:s0    3452 1970-02-21 22:42 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0  201224 2026-01-15 23:24 lspd.dex
+
+/data/adb/modules/zygisk_lsposed/lib:
+total 142
+drwxr-xr-x 2 root root u:object_r:system_file:s0   3452 2026-01-15 23:24 .
+drwxr-xr-x 6 root root u:object_r:system_file:s0   3452 1970-02-21 22:42 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0  45060 2026-01-15 23:24 libpreload32.so
+-rw-r--r-- 1 root root u:object_r:system_file:s0  87920 2026-01-15 23:24 libpreload64.so
+
+/data/adb/modules/zygisk_lsposed/zygisk:
+total 3146
+drwxr-xr-x 2 root root u:object_r:system_file:s0     3452 2026-01-15 23:24 .
+drwxr-xr-x 6 root root u:object_r:system_file:s0     3452 1970-02-21 22:42 ..
+-rw-r--r-- 1 root root u:object_r:system_file:s0  2123192 2026-01-15 23:24 arm64-v8a.so
+-rw-r--r-- 1 root root u:object_r:system_file:s0  1088024 2026-01-15 23:24 armeabi-v7a.so
+
+/data/adb/modules_update:
+total 6
+drwx------  2 root root u:object_r:system_file:s0    3452 1970-03-19 02:47 .
+drwx------ 14 root root u:object_r:adb_data_file:s0  3452 1970-01-01 19:13 ..
+
+/data/adb/rezygisk:
+total 14
+dr-xr-xr-x  2 root root u:object_r:system_file:s0    3452 2026-02-10 21:03 .
+drwx------ 14 root root u:object_r:adb_data_file:s0  3452 1970-01-01 19:13 ..
+srwxrwxrwx  1 root root u:object_r:zygisk_file:s0       0 2026-02-10 21:03 cp32.sock
+srwxrwxrwx  1 root root u:object_r:zygisk_file:s0       0 2026-02-10 21:03 cp64.sock
+srwxrwxrwx  1 root root u:object_r:system_file:s0       0 1970-01-01 19:13 init_monitor
+-rw-r--r--  1 root root u:object_r:system_file:s0     356 2026-02-10 21:03 module.prop
+-rw-rw-rw-  1 root root u:object_r:system_file:s0     318 2026-02-10 21:03 state.json
+
+/data/adb/susfs4ksu:
+total 34
+drwxr-xr-x  2 root root u:object_r:adb_data_file:s0  3452 2026-02-10 21:03 .
+drwx------ 14 root root u:object_r:adb_data_file:s0  3452 1970-01-01 19:13 ..
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0   872 2026-02-10 21:03 config.sh
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0   206 2025-11-17 18:54 sus_maps.txt
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0   152 2025-11-17 18:54 sus_mount.txt
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0   292 2026-01-15 02:57 sus_open_redirect.txt
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0   175 2025-11-17 18:54 sus_path.txt
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0   175 2025-11-17 18:54 sus_path_loop.txt
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0   133 2025-11-17 18:54 try_umount.txt
+
+/data/adb/tricky_store:
+total 65
+drwxr-xr-x  3 root root u:object_r:adb_data_file:s0   3452 2026-01-29 02:34 .
+drwx------ 14 root root u:object_r:adb_data_file:s0   3452 1970-01-01 19:13 ..
+-rw-rw-rw-  1 root root u:object_r:adb_data_file:s0      0 2026-01-25 02:58 exception
+drwxrwxrwx  2 root root u:object_r:adb_data_file:s0   3452 2026-02-10 02:54 key_db
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0  12549 2026-01-29 02:34 keybox.xml
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0  13059 2025-12-27 17:57 keybox.xml.bak
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     46 2026-02-10 21:03 security_patch.txt
+-rw-------  1 root root u:object_r:adb_data_file:s0      0 2025-12-27 17:57 security_patch_auto_config
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0     66 2025-11-29 19:22 system_app
+-rw-r--r--  1 root root u:object_r:adb_data_file:s0   8235 2026-01-29 02:34 target.txt
+-rw-rw-rw-  1 root root u:object_r:adb_data_file:s0     14 2026-02-10 21:03 tee_status
+
+/data/adb/tricky_store/key_db:
+total 758
+drwxrwxrwx 2 root root u:object_r:adb_data_file:s0    3452 2026-02-10 02:54 .
+drwxr-xr-x 3 root root u:object_r:adb_data_file:s0    3452 2026-01-29 02:34 ..
+-rw------- 1 root root u:object_r:adb_data_file:s0  286720 2026-02-10 21:04 keystore.db
+-rw------- 1 root root u:object_r:adb_data_file:s0   32768 2026-02-10 21:05 keystore.db-shm
+-rw------- 1 root root u:object_r:adb_data_file:s0  449112 2026-02-10 21:05 keystore.db-wal
+
+/data/adb/vr25:
+total 9
+drwxr-xr-x  3 root root u:object_r:adb_data_file:s0  3452 2025-10-14 06:28 .
+drwx------ 14 root root u:object_r:adb_data_file:s0  3452 1970-01-01 19:13 ..
+drwxr-xr-x  3 root root u:object_r:adb_data_file:s0  3452 2025-10-14 06:30 zram-swap-manager-data
+
+/data/adb/vr25/zram-swap-manager-data:
+total 13
+drwxr-xr-x 3 root root u:object_r:adb_data_file:s0  3452 2025-10-14 06:30 .
+drwxr-xr-x 3 root root u:object_r:adb_data_file:s0  3452 2025-10-14 06:28 ..
+-rw-r-xr-x 1 root root u:object_r:adb_data_file:s0  1051 2025-10-14 06:28 config.txt
+drwxrwxrwx 2 root root u:object_r:adb_data_file:s0  3452 2025-10-14 06:30 logs
+
+/data/adb/vr25/zram-swap-manager-data/logs:
+total 14
+drwxrwxrwx 2 root root u:object_r:adb_data_file:s0  3452 2025-10-14 06:30 .
+drwxr-xr-x 3 root root u:object_r:adb_data_file:s0  3452 2025-10-14 06:30 ..
+-rw-rw-rw- 1 root root u:object_r:adb_data_file:s0  5488 2026-02-10 21:03 service.log
