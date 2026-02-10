@@ -17,7 +17,7 @@ Custom kernel source for **OnePlus 9 Pro (lemonadep)** based on crDroid 12.7 (An
 
 This repository is **NOT** compatible to build for any other Snapdragon 888 (SM8350/Lahaina) devices.
 
-This project is a work in progress. It may contain bugs. If you encounter one, please [open an issue](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/issues) or submit a feature request.
+This project is a **work in progress**. It may contain bugs. If you encounter one, please [open an issue](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/issues) or submit a feature request.
 
 ## Problem
 
