@@ -185,10 +185,21 @@ ccache -M 50G
 
 ### 7. Build
 
+for OnePlus 9 Pro (lemonadep):
+
 ```bash
 cd ~/crDroid
 . build/envsetup.sh
-brunch lemonadep``` (for OnePlus 9 Pro (lemonadep)) or ```brunch lemonade``` (for OnePlus 9 (lemonade))
+brunch lemonadep
+```
+
+for OnePlus 9 (lemonade):
+
+```bash
+cd ~/crDroid
+. build/envsetup.sh
+brunch lemonade
+```
 
 The build system will automatically:
 
