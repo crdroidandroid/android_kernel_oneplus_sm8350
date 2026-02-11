@@ -192,7 +192,7 @@ mkdir -p ~/crDroid/vendor/keys && cd ~/crDroid/vendor/keys
 
 SUBJECT="/C=US/ST=State/L=City/O=MyROM/OU=MyROM/CN=MyROM"
 
-for key in releasekey platform shared media networkstack; do
+for key in releasekey platform shared media networkstack sdk_sandbox bluetooth; do
     openssl genrsa -out ${key}.pem 4096
     openssl req -new -x509 -sha256 \
         -key ${key}.pem \
@@ -205,7 +205,18 @@ for key in releasekey platform shared media networkstack; do
 done
 ```
 
-This creates 5 RSA-4096 key pairs (`.pem`, `.x509.pem`, `.pk8` for each). The `.pk8` (PKCS#8 DER) files are what the Android build system actually uses.
+This creates 7 RSA-4096 key pairs (`.pem`, `.x509.pem`, `.pk8` for each). The `.pk8` (PKCS#8 DER) files are what the Android build system actually uses.
+
+> **Alternatively**, you can use the AOSP key generation tool from the crDroid source root:
+> ```bash
+> cd ~/crDroid
+> for key in releasekey platform shared media networkstack sdk_sandbox bluetooth; do
+>     development/tools/make_key vendor/keys/$key '/CN=Android'
+> done
+> ```
+> Leave the password blank when prompted.
+
+> **Troubleshooting:** If the build fails with `ninja: 'vendor/keys/sdk_sandbox.x509.pem' missing` or similar, it means a required key is missing. Run the key generation commands above to create all 7 keys.
 
 Make sure the keys don't get committed to version control:
 
