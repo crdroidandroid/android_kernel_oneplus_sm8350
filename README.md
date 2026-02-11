@@ -186,7 +186,7 @@ By default, the Android build system signs all APKs and system partitions with p
 cd ~/crDroid
 ```
 
-**Create the required directions**
+**Create directions**
 ```bash
 mkdir -p ~/crDroid/vendor/keys && cd ~/crDroid/vendor/keys
 ```
@@ -211,6 +211,15 @@ for key in releasekey platform shared media networkstack sdk_sandbox bluetooth; 
 done
 ```
 This creates 7 RSA-4096 key pairs (`.pem`, `.x509.pem`, `.pk8` for each). The `.pk8` (PKCS#8 DER) files are what the Android build system actually uses.
+
+**Generate the NFC APEX signing key**
+```bash
+openssl genrsa -out nfc.key 4096
+openssl req -new -x509 -sha256 -key nfc.key \
+-out nfc.x509.pem -days 10000 -subj '/CN=NfcNci/'
+openssl pkcs8 -topk8 -inform PEM -outform DER \
+-in nfc.key -out nfc.pk8 -nocrypt
+```
 
 **Make sure the keys don't get committed to version control**
 ```bash
