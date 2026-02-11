@@ -193,7 +193,29 @@ for key in releasekey platform shared media networkstack sdk_sandbox bluetooth; 
 done
 ```
 
-This generates 7 key pairs (`.x509.pem` + `.pk8` for each) inside `vendor/keys/`. You can customize the `subject` field — it has no functional impact.
+This generates 7 key pairs (`.x509.pem` + `.pk8` for each) inside `vendor/keys/`.
+
+**Customizing the `subject` field:**
+
+The `subject` string is an X.509 certificate distinguished name embedded in each signing key. It has **no functional impact** on the build or the device — it is purely metadata that identifies the key owner. You can (and should) replace the default AOSP placeholder values with your own:
+
+| Field | Meaning | Example |
+|-------|---------|---------|
+| `/C=` | Country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)) | `TR` (Turkey), `DE` (Germany), `US` |
+| `/ST=` | State or province | `Istanbul`, `Bavaria`, `California` |
+| `/L=` | City / locality | `Kadikoy`, `Munich`, `San Francisco` |
+| `/O=` | Organization name | `MyROM`, your name, or anything you like |
+| `/OU=` | Organizational unit (subdivision) | `Development`, `Kernel`, or leave same as `/O=` |
+| `/CN=` | Common name (key identity) | `MyROM Release`, your name, etc. |
+| `/emailAddress=` | Contact email | `you@example.com` |
+
+For example, a Turkish developer might use:
+
+```bash
+subject='/C=TR/ST=Istanbul/L=Kadikoy/O=MyROM/OU=Development/CN=MyROM Release/emailAddress=dev@example.com'
+```
+
+> **Note:** These values are baked into the certificate at generation time and cannot be changed later without regenerating the keys. While any values will work, using real information makes it easier to identify your builds.
 
 **Generate the NFC APEX signing key**
 
