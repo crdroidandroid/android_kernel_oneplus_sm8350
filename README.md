@@ -179,7 +179,41 @@ Replace the kernel entry with your fork's repository.
 
 The key line is the `kernel/oneplus/sm8350` entry — change the `name` to point to your own GitHub fork if you have one. After editing, run `repo sync` again to pull your kernel source.
 
-### 6. Set Up ccache (Optional but Recommended)
+### 6. Sign the Build with Your Own Keys (Recommended)
+
+By default, the Android build system signs all APKs and system partitions with publicly known test keys. This means anyone can sign a package that your system will trust. Generating your own private signing keys prevents this.
+
+**Generate the keys** (run this once, on your build machine):
+
+```bash
+mkdir -p ~/.android-certs && cd ~/.android-certs
+
+SUBJECT="/C=US/ST=State/L=City/O=MyROM/OU=MyROM/CN=MyROM"
+
+for key in releasekey platform shared media networkstack; do
+    openssl genrsa -out ${key}.pem 4096
+    openssl req -new -x509 -sha256 \
+        -key ${key}.pem \
+        -out ${key}.x509.pem \
+        -days 36500 \
+        -subj "$SUBJECT"
+    openssl pkcs8 -topk8 -inform PEM -outform DER -nocrypt \
+        -in ${key}.pem \
+        -out ${key}.pk8
+done
+```
+
+This creates 5 RSA-4096 key pairs (`.pem`, `.x509.pem`, `.pk8` for each). The `.pk8` (PKCS#8 DER) files are what the Android build system actually uses.
+
+**Tell the build system to use them** by adding this line to the end of your device tree makefile (`device/oneplus/lemonadep/device.mk` or `device/oneplus/sm8350-common/common.mk`):
+
+```makefile
+PRODUCT_DEFAULT_DEV_CERTIFICATE := $(HOME)/.android-certs/releasekey
+```
+
+> **Back up your keys.** OTA updates must be signed with the same keys. If you lose them, users will have to clean flash.
+
+### 7. Set Up ccache (Optional but Recommended)
 
 ```bash
 export USE_CCACHE=1
@@ -187,7 +221,7 @@ export CCACHE_EXEC=$(which ccache)
 ccache -M 50G
 ```
 
-### 7. Build
+### 8. Build
 
 for OnePlus 9 Pro (lemonadep):
 
@@ -211,7 +245,7 @@ The build system will automatically:
 - Enable KernelSU + SUSFS (via Kconfig defaults)
 - Package the entire ROM
 
-### 8. Output
+### 9. Output
 
 After a successful build, the ROM zip will be at:
 
