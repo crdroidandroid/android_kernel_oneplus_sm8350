@@ -109,12 +109,13 @@ Instead of using kprobes (which can be detected), this kernel uses **9 inline ho
 
 This kernel is built as part of the full crDroid ROM — there is no need to compile the kernel separately. The `brunch` build system handles everything automatically.
 
-### 1. System Requirements
+### 1. Requirements
 
 - Ubuntu 20.04+ (or 22.04/24.04) (Linux Mint recommended)
 - Minimum 450 GB free disk space
 - Minimum 16 GB RAM (32 GB recommended)
 - Good internet connection (source code is ~100 GB)
+- 10+ hours, requiring a lot of patience
 
 ### 2. Install Dependencies
 
