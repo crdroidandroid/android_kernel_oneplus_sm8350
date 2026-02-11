@@ -1,6 +1,8 @@
 # crDroid 12.7 + KernelSU Next v3.0.1 + SuSFS v2.0.0 for OnePlus 9 Pro (lemonadep) & OnePlus 9 (lemonade)
 
-Custom kernel source for **OnePlus 9 Pro (lemonadep)** and **OnePlus 9 (lemonade)** based on crDroid 12.7 (Android 16) with **KernelSU Next v3.0.1** and **SuSFS v2.0.0** integrated directly into the kernel source.
+This is a custom kernel source for the **OnePlus 9 Pro (lemonadep)** and the **OnePlus 9 (lemonade)**. It's upstreamed from [crDroid Project](https://crdroid.net) with **KernelSU Next v3.0.1** + **SuSFS v2.0.0** integrated directly into the kernel source.
+
+**I know what I'm doing. Take me to the** [installation](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350#installation-for-oneplus-9-pro-lemonadep)
 
 # **AI Awareness Notice:**
 ⚠️ **Disclaimer**: This code has been *enhanced* with **Claude Code**. I'm **NOT** responsible or any involuntary *eye twitching*, *mental blackouts*, or *AI-induced existential dread* resulting from reviewing kernel patches patches at any hour of the day.
@@ -17,6 +19,8 @@ Custom kernel source for **OnePlus 9 Pro (lemonadep)** and **OnePlus 9 (lemonade
 ### This repository is **NOT** compatible to build for any other Snapdragon 888 (SM8350/Lahaina) devices.
 
 ### This project is a **work in progress**. It may contain bugs. If you encounter one, please [open an issue](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/issues).
+
+### If you'd like to support the project, feel free to leave a star ⭐
 
 ## Problem
 
@@ -38,7 +42,7 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 4. (Optional) Open KernelSU Next manager and install the a meta-module for Magick Mount module management alongside OverlayFS. *[Hybrid Mount](https://github.com/Hybrid-Mount/meta-hybrid_mount) recommended.*
 5. Install the [SuSFS module](https://github.com/sidex15/susfs4ksu-module) by susfs4ksu from within the manager to control SuSFS features.
 
-## Build & Installation for **OnePlus 9 (lemonade)**
+## Building & Installation for **OnePlus 9 (lemonade)**
 
 > The installation process is identical to a standard crDroid installation.
 
