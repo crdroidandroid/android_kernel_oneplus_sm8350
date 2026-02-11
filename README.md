@@ -230,6 +230,8 @@ openssl pkcs8 -topk8 -inform PEM -outform DER \
     -in nfc.key -out nfc.pk8 -nocrypt
 ```
 
+> **Do not modify these commands.** Unlike the `subject` field above, the `/CN=NfcNci/` value is **required** by the NFC APEX module and must remain exactly as shown. The other parameters (4096-bit RSA, SHA-256, 10000-day validity) are sensible defaults and do not need to be changed.
+
 **Make sure the keys don't get committed to version control**
 ```bash
 echo "vendor/keys/" >> ~/crDroid/.gitignore
