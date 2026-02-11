@@ -83,14 +83,14 @@
 │   ├── lock
 │   ├── log
 │   │   ├── kmsg.log
-│   │   ├── modules_1970-01-01T19:13:52.955026.log
+│   │   ├── modules_1970-01-02T11:22:13.08377.log
 │   │   ├── props.txt
-│   │   └── verbose_1970-01-01T19:13:52.953984.log
+│   │   └── verbose_1970-01-02T11:22:13.082154.log
 │   ├── log.old
 │   │   ├── kmsg.log
-│   │   ├── modules_1970-01-01T19:11:00.493001.log
+│   │   ├── modules_1970-01-02T11:16:36.537271.log
 │   │   ├── props.txt
-│   │   └── verbose_1970-01-01T19:11:00.491937.log
+│   │   └── verbose_1970-01-02T11:16:36.536492.log
 │   └── monitor
 ├── magisk.db
 ├── meta-hybrid

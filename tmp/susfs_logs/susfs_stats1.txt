@@ -1,4 +1,4 @@
 sus_path=0
 sus_map=0
 sus_mount=0
-try_umount=3
+try_umount=9

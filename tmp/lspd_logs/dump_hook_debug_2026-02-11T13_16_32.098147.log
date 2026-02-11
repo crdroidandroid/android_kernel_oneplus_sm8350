@@ -1,0 +1,1934 @@
+pid=20280 uid=1110668 name=com.instagram.android 64bit debugInfo=0x7c85e026b0 entryPointOff=24 accessFlagsOff=4
+  0xb400007d78b3adf0 android.os.LocaleList android.os.LocaleList.getAdjustedDefault()
+    hooked=0x71acca70 backup=0x7b80319030
+    expectedEntryPoint=0x7f55e37180 realEntryPoint=0x7f55e37180 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b39530 android.os.LocaleList android.os.LocaleList.getDefault()
+    hooked=0x71acca90 backup=0x7b802f8030
+    expectedEntryPoint=0x7f55e37168 realEntryPoint=0x7f55e37168 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b3b030 void android.content.res.Configuration.setLocales(android.os.LocaleList)
+    hooked=0x71a036e0 backup=0x7b802d7030
+    expectedEntryPoint=0x7f55e37150 realEntryPoint=0x7f55e37150 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d78b3ab20 android.os.LocaleList android.content.res.Configuration.getLocales()
+    hooked=0x71a03400 backup=0x7b802b6030
+    expectedEntryPoint=0x7f55e37138 realEntryPoint=0x7f55e37138 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d78b3c620 java.util.Locale java.util.Locale.getDefault(java.util.Locale$Category)
+    hooked=0x70fc1888 backup=0x7b80295030
+    expectedEntryPoint=0x7f55e37120 realEntryPoint=0x7f55e37120 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d98b28b10 void android.content.res.Configuration.<init>()
+    hooked=0x71a03140 backup=0x7b80274030
+    expectedEntryPoint=0x7f55e37108 realEntryPoint=0x7f55e37108 eq=true
+    expectedAccessFlags=0x12390001 realAccessFlags=0x12390001 eq=true
+  0xb400007d78b3b660 android.content.res.Resources android.content.res.Resources.getSystem()
+    hooked=0x71a026f8 backup=0x7b80253030
+    expectedEntryPoint=0x7f55e370f0 realEntryPoint=0x7f55e370f0 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b3b810 void android.content.res.Configuration.setLocale(java.util.Locale)
+    hooked=0x71a036c0 backup=0x7b80232030
+    expectedEntryPoint=0x7f55e370d8 realEntryPoint=0x7f55e370d8 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007e48b2b510 void android.content.res.Resources.updateConfiguration(android.content.res.Configuration, android.util.DisplayMetrics)
+    hooked=0x71a02c78 backup=0x7b80211030
+    expectedEntryPoint=0x7f55e370c0 realEntryPoint=0x7f55e370c0 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d78b41840 android.content.res.Configuration android.content.res.Resources.getConfiguration()
+    hooked=0x71a02258 backup=0x7b801f0030
+    expectedEntryPoint=0x7f55e370a8 realEntryPoint=0x7f55e370a8 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d98b28250 java.util.Locale java.util.Locale.getDefault()
+    hooked=0x70fc1868 backup=0x7b801cf030
+    expectedEntryPoint=0x7f55e37090 realEntryPoint=0x7f55e37090 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b3eea0 void android.app.ActivityThread.attach(boolean, long)
+    hooked=0x71cca230 backup=0x7b8010c050
+    expectedEntryPoint=0x7f55e37078 realEntryPoint=0x7f55e37078 eq=true
+    expectedAccessFlags=0x2000002 realAccessFlags=0x2000002 eq=true
+  0xb400007d78b42260 void android.app.LoadedApk.createOrUpdateClassLoaderLocked(java.util.List)
+    hooked=0x7198f428 backup=0x7b800ca030
+    expectedEntryPoint=0x7f55e37060 realEntryPoint=0x7f55e37060 eq=true
+    expectedAccessFlags=0x2380002 realAccessFlags=0x2380002 eq=true
+  0xb400007ca8b300b0 void android.app.LoadedApk.<init>(android.app.ActivityThread, android.content.pm.ApplicationInfo, android.content.res.CompatibilityInfo, java.lang.ClassLoader, boolean, boolean, boolean)
+    hooked=0x7198f288 backup=0x7b800a9030
+    expectedEntryPoint=0x7f55e37048 realEntryPoint=0x7f55e37048 eq=true
+    expectedAccessFlags=0x2290001 realAccessFlags=0x2290001 eq=true
+  0xb400007cc8b74670 java.lang.Object dalvik.system.DexFile.openInMemoryDexFiles(java.nio.ByteBuffer[], java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c58 backup=0x7b80088030
+    expectedEntryPoint=0x7f55e37030 realEntryPoint=0x7f55e37030 eq=true
+    expectedAccessFlags=0x238000a realAccessFlags=0x238000a eq=true
+  0xb400007cc8b78e30 java.lang.Object dalvik.system.DexFile.openDexFile(java.lang.String, java.lang.String, int, java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c18 backup=0x7b80067030
+    expectedEntryPoint=0x7f55e37018 realEntryPoint=0x7f55e37018 eq=true
+    expectedAccessFlags=0x228000a realAccessFlags=0x228000a eq=true
+  0xb400007d78b4cc40 void java.lang.Thread.dispatchUncaughtException(java.lang.Throwable)
+    hooked=0x710177f8 backup=0x7b80046030
+    expectedEntryPoint=0x7f55e37000 realEntryPoint=0x7f55e37000 eq=true
+    expectedAccessFlags=0x2380011 realAccessFlags=0x2380011 eq=true
+  0xb400007de8b91930 deoptimized java.io.File android.app.ContextImpl.getSharedPreferencesPath(java.lang.String)
+    hooked=0x7196dd10 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40380001 realAccessFlags=0x40380001 eq=true
+  0xb400007cc8b78b90 deoptimized android.app.Application android.app.Instrumentation.newApplication(java.lang.ClassLoader, java.lang.String, android.content.Context)
+    hooked=0x71cd74c8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x50380001 realAccessFlags=0x50380001 eq=true
+  0xb400007e48b29a10 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation, boolean)
+    hooked=0x7198f928 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280002 realAccessFlags=0x40280002 eq=true
+  0xb400007de8b92010 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation)
+    hooked=0x7198f908 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+  0xb400007de8b8ede0 deoptimized android.app.Application android.app.LoadedApk.makeApplication(boolean, android.app.Instrumentation)
+    hooked=0x7198f8e8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+
+pid=15497 uid=10668 name=com.instagram.android 64bit debugInfo=0x7c85e026b0 entryPointOff=24 accessFlagsOff=4
+  0xb400007e48b2ad90 android.app.Activity android.app.Instrumentation.newActivity(java.lang.ClassLoader, java.lang.String, android.content.Intent)
+    hooked=0x71cd7488 backup=0x7b80426030
+    expectedEntryPoint=0x7f55e371c8 realEntryPoint=0x7f55e371c8 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d08b371d0 void X.0yK.A0E(java.util.Collection)
+    hooked=0x4e6257c0 backup=0x7b80406050
+    expectedEntryPoint=0x7f55e371b0 realEntryPoint=0x7f55e371b0 eq=true
+    expectedAccessFlags=0x12300002 realAccessFlags=0x12300002 eq=true
+  0xb400007d98b26a40 void com.instagram.app.InstagramAppShell.onCreate()
+    hooked=0x4e663888 backup=0x7b8037f030
+    expectedEntryPoint=0x7f55e37198 realEntryPoint=0x7f55e37198 eq=true
+    expectedAccessFlags=0x12380011 realAccessFlags=0x12380011 eq=true
+  0xb400007d78b39800 android.os.LocaleList android.os.LocaleList.getAdjustedDefault()
+    hooked=0x71acca70 backup=0x7b8033a030
+    expectedEntryPoint=0x7f55e37180 realEntryPoint=0x7f55e37180 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b39da0 android.os.LocaleList android.os.LocaleList.getDefault()
+    hooked=0x71acca90 backup=0x7b80319030
+    expectedEntryPoint=0x7f55e37168 realEntryPoint=0x7f55e37168 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b39650 void android.content.res.Configuration.setLocales(android.os.LocaleList)
+    hooked=0x71a036e0 backup=0x7b802f8030
+    expectedEntryPoint=0x7f55e37150 realEntryPoint=0x7f55e37150 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d78b3ad60 android.os.LocaleList android.content.res.Configuration.getLocales()
+    hooked=0x71a03400 backup=0x7b802d7030
+    expectedEntryPoint=0x7f55e37138 realEntryPoint=0x7f55e37138 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d78b3b390 java.util.Locale java.util.Locale.getDefault(java.util.Locale$Category)
+    hooked=0x70fc1888 backup=0x7b802b6030
+    expectedEntryPoint=0x7f55e37120 realEntryPoint=0x7f55e37120 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d98b273e0 void android.content.res.Configuration.<init>()
+    hooked=0x71a03140 backup=0x7b80295030
+    expectedEntryPoint=0x7f55e37108 realEntryPoint=0x7f55e37108 eq=true
+    expectedAccessFlags=0x12390001 realAccessFlags=0x12390001 eq=true
+  0xb400007d78b3cb30 android.content.res.Resources android.content.res.Resources.getSystem()
+    hooked=0x71a026f8 backup=0x7b80274030
+    expectedEntryPoint=0x7f55e370f0 realEntryPoint=0x7f55e370f0 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b3ba50 void android.content.res.Configuration.setLocale(java.util.Locale)
+    hooked=0x71a036c0 backup=0x7b80253030
+    expectedEntryPoint=0x7f55e370d8 realEntryPoint=0x7f55e370d8 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007e48b2b510 void android.content.res.Resources.updateConfiguration(android.content.res.Configuration, android.util.DisplayMetrics)
+    hooked=0x71a02c78 backup=0x7b80232030
+    expectedEntryPoint=0x7f55e370c0 realEntryPoint=0x7f55e370c0 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d78b420b0 android.content.res.Configuration android.content.res.Resources.getConfiguration()
+    hooked=0x71a02258 backup=0x7b80211030
+    expectedEntryPoint=0x7f55e370a8 realEntryPoint=0x7f55e370a8 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d98b27610 java.util.Locale java.util.Locale.getDefault()
+    hooked=0x70fc1868 backup=0x7b801f0030
+    expectedEntryPoint=0x7f55e37090 realEntryPoint=0x7f55e37090 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b3eea0 void android.app.ActivityThread.attach(boolean, long)
+    hooked=0x71cca230 backup=0x7b8010c050
+    expectedEntryPoint=0x7f55e37078 realEntryPoint=0x7f55e37078 eq=true
+    expectedAccessFlags=0x2000002 realAccessFlags=0x2000002 eq=true
+  0xb400007d78b42260 void android.app.LoadedApk.createOrUpdateClassLoaderLocked(java.util.List)
+    hooked=0x7198f428 backup=0x7b800ca030
+    expectedEntryPoint=0x7f55e37060 realEntryPoint=0x7f55e37060 eq=true
+    expectedAccessFlags=0x2380002 realAccessFlags=0x2380002 eq=true
+  0xb400007ca8b25250 void android.app.LoadedApk.<init>(android.app.ActivityThread, android.content.pm.ApplicationInfo, android.content.res.CompatibilityInfo, java.lang.ClassLoader, boolean, boolean, boolean)
+    hooked=0x7198f288 backup=0x7b800a9030
+    expectedEntryPoint=0x7f55e37048 realEntryPoint=0x7f55e37048 eq=true
+    expectedAccessFlags=0x2290001 realAccessFlags=0x2290001 eq=true
+  0xb400007cc8b74670 java.lang.Object dalvik.system.DexFile.openInMemoryDexFiles(java.nio.ByteBuffer[], java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c58 backup=0x7b80088030
+    expectedEntryPoint=0x7f55e37030 realEntryPoint=0x7f55e37030 eq=true
+    expectedAccessFlags=0x238000a realAccessFlags=0x238000a eq=true
+  0xb400007cc8b78e30 java.lang.Object dalvik.system.DexFile.openDexFile(java.lang.String, java.lang.String, int, java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c18 backup=0x7b80067030
+    expectedEntryPoint=0x7f55e37018 realEntryPoint=0x7f55e37018 eq=true
+    expectedAccessFlags=0x228000a realAccessFlags=0x228000a eq=true
+  0xb400007d78b4cc40 void java.lang.Thread.dispatchUncaughtException(java.lang.Throwable)
+    hooked=0x710177f8 backup=0x7b80046030
+    expectedEntryPoint=0x7f55e37000 realEntryPoint=0x7f55e37000 eq=true
+    expectedAccessFlags=0x2380011 realAccessFlags=0x2380011 eq=true
+  0xb400007de8b91930 deoptimized java.io.File android.app.ContextImpl.getSharedPreferencesPath(java.lang.String)
+    hooked=0x7196dd10 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40380001 realAccessFlags=0x40380001 eq=true
+  0xb400007cc8b78b90 deoptimized android.app.Application android.app.Instrumentation.newApplication(java.lang.ClassLoader, java.lang.String, android.content.Context)
+    hooked=0x71cd74c8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x50380001 realAccessFlags=0x50380001 eq=true
+  0xb400007e48b29a10 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation, boolean)
+    hooked=0x7198f928 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280002 realAccessFlags=0x40280002 eq=true
+  0xb400007de8b92010 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation)
+    hooked=0x7198f908 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+  0xb400007de8b8ede0 deoptimized android.app.Application android.app.LoadedApk.makeApplication(boolean, android.app.Instrumentation)
+    hooked=0x7198f8e8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+
+pid=20949 uid=2000 name=com.android.shell 64bit debugInfo=0x7c85e026b0 entryPointOff=24 accessFlagsOff=4
+  0xb400007ca8b31610 void android.app.ActivityThread.performStopActivityInner(android.app.ActivityThread$ActivityClientRecord, android.app.servertransaction.PendingTransactionActions$StopInfo, boolean, boolean, java.lang.String)
+    hooked=0x71ccb9f0 backup=0x7b8016f030
+    expectedEntryPoint=0x7f559b00c0 realEntryPoint=0x7f559b00c0 eq=true
+    expectedAccessFlags=0x2200002 realAccessFlags=0x2200002 eq=true
+  0xb400007d78b3f320 android.webkit.WebViewFactoryProvider android.webkit.WebViewFactory.getProvider()
+    hooked=0x71bf0d78 backup=0x7b8014e030
+    expectedEntryPoint=0x7f559b00a8 realEntryPoint=0x7f559b00a8 eq=true
+    expectedAccessFlags=0x2380008 realAccessFlags=0x2380008 eq=true
+  0xb400007de8b92b10 void android.app.ActivityThread.deliverNewIntents(android.app.ActivityThread$ActivityClientRecord, java.util.List)
+    hooked=0x71cca510 backup=0x7b8012d030
+    expectedEntryPoint=0x7f559b0090 realEntryPoint=0x7f559b0090 eq=true
+    expectedAccessFlags=0x2300002 realAccessFlags=0x2300002 eq=true
+  0xb400007ca8b2f9f0 android.app.ContentProviderHolder android.app.ActivityThread.installProvider(android.content.Context, android.app.ContentProviderHolder, android.content.pm.ProviderInfo, boolean, boolean, boolean)
+    hooked=0x71ccb4b0 backup=0x7b8010c030
+    expectedEntryPoint=0x7f559b0078 realEntryPoint=0x7f559b0078 eq=true
+    expectedAccessFlags=0x2200002 realAccessFlags=0x2200002 eq=true
+  0xb400007de8b950e0 void android.app.ActivityThread.handleReceiver(android.app.ActivityThread$ReceiverData)
+    hooked=0x71ccb030 backup=0x7b800eb030
+    expectedEntryPoint=0x7f559b0060 realEntryPoint=0x7f559b0060 eq=true
+    expectedAccessFlags=0x2300002 realAccessFlags=0x2300002 eq=true
+  0xb400007d48b1cf50 void android.app.ActivityThread$ActivityClientRecord.<init>(android.os.IBinder, android.content.Intent, int, android.content.pm.ActivityInfo, android.content.res.Configuration, java.lang.String, com.android.internal.app.IVoiceInteractor, android.os.Bundle, android.os.PersistableBundle, java.util.List, java.util.List, android.app.ActivityOptions$SceneTransitionInfo, boolean, android.app.ProfilerInfo, android.app.ClientTransactionHandler, android.os.IBinder, android.os.IBinder, boolean, android.os.IBinder, android.os.IBinder, android.window.ActivityWindowInfo)
+    hooked=0x7195db68 backup=0x7b800a9030
+    expectedEntryPoint=0x7f559b0048 realEntryPoint=0x7f559b0048 eq=true
+    expectedAccessFlags=0x2290001 realAccessFlags=0x2290001 eq=true
+  0xb400007d78b525b0 void android.app.ActivityThread$ActivityClientRecord.<init>()
+    hooked=0x7195db48 backup=0x7b80088030
+    expectedEntryPoint=0x7f559b0030 realEntryPoint=0x7f559b0030 eq=true
+    expectedAccessFlags=0x2390001 realAccessFlags=0x2390001 eq=true
+  0xb400007d78b4cc40 java.lang.ClassLoader android.app.LoadedApk.getClassLoader()
+    hooked=0x7198f588 backup=0x7b80067030
+    expectedEntryPoint=0x7f559b0018 realEntryPoint=0x7f559b0018 eq=true
+    expectedAccessFlags=0x2380001 realAccessFlags=0x2380001 eq=true
+  0xb400007de8b90cd0 void android.app.ActivityThread.handleBindApplication(android.app.ActivityThread$AppBindData)
+    hooked=0x71ccacb0 backup=0x7b80046030
+    expectedEntryPoint=0x7f559b0000 realEntryPoint=0x7f559b0000 eq=true
+    expectedAccessFlags=0x2300002 realAccessFlags=0x2300002 eq=true
+  0xb400007de8b91930 deoptimized java.io.File android.app.ContextImpl.getSharedPreferencesPath(java.lang.String)
+    hooked=0x7196dd10 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40380001 realAccessFlags=0x40380001 eq=true
+  0xb400007cc8b78b90 deoptimized android.app.Application android.app.Instrumentation.newApplication(java.lang.ClassLoader, java.lang.String, android.content.Context)
+    hooked=0x71cd74c8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x50380001 realAccessFlags=0x50380001 eq=true
+  0xb400007e48b29a10 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation, boolean)
+    hooked=0x7198f928 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280002 realAccessFlags=0x40280002 eq=true
+  0xb400007de8b92010 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation)
+    hooked=0x7198f908 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+  0xb400007de8b8ede0 deoptimized android.app.Application android.app.LoadedApk.makeApplication(boolean, android.app.Instrumentation)
+    hooked=0x7198f8e8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+
+pid=15368 uid=10500 name=com.google.android.youtube 64bit debugInfo=0x7c85e026b0 entryPointOff=24 accessFlagsOff=4
+  0xb400007e48b29f50 android.app.Activity android.app.Instrumentation.newActivity(java.lang.ClassLoader, java.lang.String, android.content.Intent)
+    hooked=0x71cd7488 backup=0x7b81005030
+    expectedEntryPoint=0x7f55e37ae0 realEntryPoint=0x7f55e37ae0 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d28bcb480 jlv arzp.aa()
+    hooked=0x4f129558 backup=0x7b80fe4050
+    expectedEntryPoint=0x7f55e37ac8 realEntryPoint=0x7f55e37ac8 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007de8b9d380 void com.google.android.libraries.social.licenses.LicenseActivity.onSaveInstanceState(android.os.Bundle)
+    hooked=0x4f358960 backup=0x7b80fc3030
+    expectedEntryPoint=0x7f55e37ab0 realEntryPoint=0x7f55e37ab0 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007de8b9c040 void com.google.android.libraries.social.licenses.LicenseActivity.onRestoreInstanceState(android.os.Bundle)
+    hooked=0x4f358940 backup=0x7b80fa2030
+    expectedEntryPoint=0x7f55e37a98 realEntryPoint=0x7f55e37a98 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007de8b9c5c0 void com.google.android.libraries.social.licenses.LicenseActivity.onCreate(android.os.Bundle)
+    hooked=0x4f358900 backup=0x7b80f81030
+    expectedEntryPoint=0x7f55e37a80 realEntryPoint=0x7f55e37a80 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d08b37f50 void cf.onCreate(android.os.Bundle)
+    hooked=0x4f2070a0 backup=0x7b80f60030
+    expectedEntryPoint=0x7f55e37a68 realEntryPoint=0x7f55e37a68 eq=true
+    expectedAccessFlags=0x12300004 realAccessFlags=0x12300004 eq=true
+  0xb400007d28becd60 void efy.q(int)
+    hooked=0x4f3517e8 backup=0x7b80f3f030
+    expectedEntryPoint=0x7f55e37a50 realEntryPoint=0x7f55e37a50 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12200011 eq=true
+  0xb400007ca8b45a10 androidx.preference.Preference egc.a(org.xmlpull.v1.XmlPullParser, androidx.preference.PreferenceGroup, android.content.Context, java.lang.Object[], egg, java.lang.String[])
+    hooked=0x4f3518b0 backup=0x7b80f1e050
+    expectedEntryPoint=0x7f55e37a38 realEntryPoint=0x7f55e37a38 eq=true
+    expectedAccessFlags=0x12300019 realAccessFlags=0x12300019 eq=true
+  0xb400007de8b9cbf0 void acdi.onFailed(org.chromium.net.UrlRequest, org.chromium.net.UrlResponseInfo, org.chromium.net.CronetException)
+    hooked=0x4f07db48 backup=0x7b80efd030
+    expectedEntryPoint=0x7f55e37a20 realEntryPoint=0x7f55e37a20 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d78b35fc0 void acdi.onSucceeded(org.chromium.net.UrlRequest, org.chromium.net.UrlResponseInfo)
+    hooked=0x4f07dbc8 backup=0x7b80edc030
+    expectedEntryPoint=0x7f55e37a08 realEntryPoint=0x7f55e37a08 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d98b319b0 void fsy.<init>(java.lang.String, fsz)
+    hooked=0x4efb6e18 backup=0x7b80ebb030
+    expectedEntryPoint=0x7f55e379f0 realEntryPoint=0x7f55e379f0 eq=true
+    expectedAccessFlags=0x12310001 realAccessFlags=0x12310001 eq=true
+  0xb400007d28bc4cc0 void ankh.f(agyn)
+    hooked=0x4f0f3570 backup=0x7b80e9a030
+    expectedEntryPoint=0x7f55e379d8 realEntryPoint=0x7f55e379d8 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d08b36f90 void anuq.d(agyn, anlw, aixm, aoby)
+    hooked=0x4f0fb4b0 backup=0x7b80e79030
+    expectedEntryPoint=0x7f55e379c0 realEntryPoint=0x7f55e379c0 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d28bc3ff0 boolean anzi.h()
+    hooked=0x4f2754f8 backup=0x7b80e58030
+    expectedEntryPoint=0x7f55e379a8 realEntryPoint=0x7f55e379a8 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d98b33850 boolean albt.ds(java.util.Set, java.util.Set, atid)
+    hooked=0x4f26af28 backup=0x7b80e37030
+    expectedEntryPoint=0x7f55e37990 realEntryPoint=0x7f55e37990 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d78b54650 int[] android.view.Display$HdrCapabilities.getSupportedHdrTypes()
+    hooked=0x71b8fa38 backup=0x7b80e16030
+    expectedEntryPoint=0x7f55e37978 realEntryPoint=0x7f55e37978 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d28be69b0 boolean agvy.M()
+    hooked=0x4f256698 backup=0x7b80df5050
+    expectedEntryPoint=0x7f55e37960 realEntryPoint=0x7f55e37960 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d78b53600 java.lang.String agno.cX(azfo, long, java.lang.String)
+    hooked=0x4f09c310 backup=0x7b80dd4030
+    expectedEntryPoint=0x7f55e37948 realEntryPoint=0x7f55e37948 eq=true
+    expectedAccessFlags=0x1200000a realAccessFlags=0x1200000a eq=true
+  0xb400007d08b3cff0 long agno.e(azfo, long, long)
+    hooked=0x4f09c690 backup=0x7b80db3030
+    expectedEntryPoint=0x7f55e37930 realEntryPoint=0x7f55e37930 eq=true
+    expectedAccessFlags=0x12000009 realAccessFlags=0x12000009 eq=true
+  0xb400007d08b3c6f0 double agno.cW(azfo, long, double)
+    hooked=0x4f09c2f0 backup=0x7b80d92030
+    expectedEntryPoint=0x7f55e37918 realEntryPoint=0x7f55e37918 eq=true
+    expectedAccessFlags=0x1200000a realAccessFlags=0x1200000a eq=true
+  0xb400007d08b36ff0 boolean agno.o(azfo, long, boolean)
+    hooked=0x4f09c7d0 backup=0x7b80d71030
+    expectedEntryPoint=0x7f55e37900 realEntryPoint=0x7f55e37900 eq=true
+    expectedAccessFlags=0x12000009 realAccessFlags=0x12000009 eq=true
+  0xb400007d28be6dc0 float antm.a()
+    hooked=0x4f0f8738 backup=0x7b80d50050
+    expectedEntryPoint=0x7f55e378e8 realEntryPoint=0x7f55e378e8 eq=true
+    expectedAccessFlags=0x12100011 realAccessFlags=0x12100011 eq=true
+  0xb400007d28b4e660 void mrn.run()
+    hooked=0x4f01d068 backup=0x7b80d2f030
+    expectedEntryPoint=0x7f55e378d0 realEntryPoint=0x7f55e378d0 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d08b3cf90 void mie.c(bhnm[], int)
+    hooked=0x4f1c73b8 backup=0x7b80d0e030
+    expectedEntryPoint=0x7f55e378b8 realEntryPoint=0x7f55e378b8 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12200011 eq=true
+  0xb400007d28bd64c0 bhnm[] amnl.a(agyn)
+    hooked=0x4f2713d0 backup=0x7b80ced050
+    expectedEntryPoint=0x7f55e378a0 realEntryPoint=0x7f55e378a0 eq=true
+    expectedAccessFlags=0x12300009 realAccessFlags=0x12300009 eq=true
+  0xb400007d08b3cb70 void aklo.A(float, agyd)
+    hooked=0x4f264de8 backup=0x7b80ccc050
+    expectedEntryPoint=0x7f55e37888 realEntryPoint=0x7f55e37888 eq=true
+    expectedAccessFlags=0x12000011 realAccessFlags=0x12000011 eq=true
+  0xb400007d08b3bf70 float acqm.a(float, float, float)
+    hooked=0x4f086458 backup=0x7b80cab050
+    expectedEntryPoint=0x7f55e37870 realEntryPoint=0x7f55e37870 eq=true
+    expectedAccessFlags=0x12000009 realAccessFlags=0x12000009 eq=true
+  0xb400007d78b53a80 int android.content.res.Resources.getDimensionPixelSize(int)
+    hooked=0x71a022b8 backup=0x7b80c8a030
+    expectedEntryPoint=0x7f55e37858 realEntryPoint=0x7f55e37858 eq=true
+    expectedAccessFlags=0x12280001 realAccessFlags=0x12280001 eq=true
+  0xb400007d78b37910 void mjt.f(android.content.Context, android.view.View)
+    hooked=0x4f013ba8 backup=0x7b80c69030
+    expectedEntryPoint=0x7f55e37840 realEntryPoint=0x7f55e37840 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d98b28cd0 void acqm.aq(android.view.View, boolean)
+    hooked=0x4f0869b8 backup=0x7b80c48050
+    expectedEntryPoint=0x7f55e37828 realEntryPoint=0x7f55e37828 eq=true
+    expectedAccessFlags=0x12200009 realAccessFlags=0x12200009 eq=true
+  0xb400007d98b2ff70 gds tbs.b(gdx, umn, byte[], unl, bmup)
+    hooked=0x4f29ee10 backup=0x7b80c27050
+    expectedEntryPoint=0x7f55e37810 realEntryPoint=0x7f55e37810 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d28bd9670 boolean blzw.dB()
+    hooked=0x4f193418 backup=0x7b80c06030
+    expectedEntryPoint=0x7f55e377f8 realEntryPoint=0x7f55e377f8 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d08b3a7d0 void prm.a(java.lang.Object)
+    hooked=0x4f03b548 backup=0x7b80be5050
+    expectedEntryPoint=0x7f55e377e0 realEntryPoint=0x7f55e377e0 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d98b2b430 void pva.<init>(java.lang.Object, boolean, int)
+    hooked=0x4f03d6f8 backup=0x7b80bc4030
+    expectedEntryPoint=0x7f55e377c8 realEntryPoint=0x7f55e377c8 eq=true
+    expectedAccessFlags=0x12211001 realAccessFlags=0x12211001 eq=true
+  0xb400007d98b2a1d0 ors[] ors.e(android.content.Context, bhte, bpcq)
+    hooked=0x4f1c9518 backup=0x7b80ba3030
+    expectedEntryPoint=0x7f55e377b0 realEntryPoint=0x7f55e377b0 eq=true
+    expectedAccessFlags=0x12300008 realAccessFlags=0x12300008 eq=true
+  0xb400007de8b9c720 android.view.View otg.O(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
+    hooked=0x4f35a528 backup=0x7b80b82050
+    expectedEntryPoint=0x7f55e37798 realEntryPoint=0x7f55e37798 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007de8b9c7d0 android.view.View oso.O(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
+    hooked=0x4f23a148 backup=0x7b80b61050
+    expectedEntryPoint=0x7f55e37780 realEntryPoint=0x7f55e37780 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007de8b9d170 android.view.View android.view.LayoutInflater.inflate(int, android.view.ViewGroup, boolean)
+    hooked=0x71d80b50 backup=0x7b80b40030
+    expectedEntryPoint=0x7f55e37768 realEntryPoint=0x7f55e37768 eq=true
+    expectedAccessFlags=0x12280001 realAccessFlags=0x12280001 eq=true
+  0xb400007e48b2a610 void apuc.<init>(aptw, android.support.v7.widget.RecyclerView, aphc, tif, aivg, uoc, uny, anvr, bnzy, bnzy, pqr, apwc, apoy)
+    hooked=0x4f27b638 backup=0x7b80b1f030
+    expectedEntryPoint=0x7f55e37750 realEntryPoint=0x7f55e37750 eq=true
+    expectedAccessFlags=0x12310001 realAccessFlags=0x12310001 eq=true
+  0xb400007d98b2eed0 void android.support.v7.widget.RecyclerView.aI(qz)
+    hooked=0x4f1fe1b8 backup=0x7b80afe050
+    expectedEntryPoint=0x7f55e37738 realEntryPoint=0x7f55e37738 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d28bdc730 avnh amre.g(bizo)
+    hooked=0x4f361298 backup=0x7b80add030
+    expectedEntryPoint=0x7f55e37720 realEntryPoint=0x7f55e37720 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d28bd6330 void antm.U(agyf)
+    hooked=0x4f0f8678 backup=0x7b80abc050
+    expectedEntryPoint=0x7f55e37708 realEntryPoint=0x7f55e37708 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d78b355a0 void otf.onItemClick(android.widget.AdapterView, android.view.View, int, long)
+    hooked=0x4f23a470 backup=0x7b80a9b030
+    expectedEntryPoint=0x7f55e376f0 realEntryPoint=0x7f55e376f0 eq=true
+    expectedAccessFlags=0x12000011 realAccessFlags=0x12000011 eq=true
+  0xb400007de8b861a0 boolean com.google.android.apps.youtube.app.watchwhile.MainActivity.dispatchKeyEvent(android.view.KeyEvent)
+    hooked=0x4f211da8 backup=0x7b80a7a030
+    expectedEntryPoint=0x7f55e376d8 realEntryPoint=0x7f55e376d8 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d78b349d0 boolean android.app.Activity.dispatchTouchEvent(android.view.MotionEvent)
+    hooked=0x71cc29f0 backup=0x7b80a59030
+    expectedEntryPoint=0x7f55e376c0 realEntryPoint=0x7f55e376c0 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007de8b9ca90 boolean com.google.android.apps.youtube.app.watchwhile.MainActivity.dispatchTouchEvent(android.view.MotionEvent)
+    hooked=0x4f211dc8 backup=0x7b80a38030
+    expectedEntryPoint=0x7f55e376a8 realEntryPoint=0x7f55e376a8 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d78b33e90 void com.google.android.apps.youtube.app.watchwhile.MainActivity.onStart()
+    hooked=0x4f212268 backup=0x7b80a17030
+    expectedEntryPoint=0x7f55e37690 realEntryPoint=0x7f55e37690 eq=true
+    expectedAccessFlags=0x12300014 realAccessFlags=0x12300014 eq=true
+  0xb400007d78b35090 void com.google.android.apps.youtube.app.watchwhile.MainActivity.<init>()
+    hooked=0x4f211cc8 backup=0x7b809f6030
+    expectedEntryPoint=0x7f55e37678 realEntryPoint=0x7f55e37678 eq=true
+    expectedAccessFlags=0x12310001 realAccessFlags=0x12310001 eq=true
+  0xb400007cc8b81790 void apvd.<init>(com.google.android.libraries.youtube.rendering.ui.pivotbar.PivotBar, android.widget.TextView, java.lang.CharSequence)
+    hooked=0x4f118460 backup=0x7b809d5030
+    expectedEntryPoint=0x7f55e37660 realEntryPoint=0x7f55e37660 eq=true
+    expectedAccessFlags=0x12310001 realAccessFlags=0x12310001 eq=true
+  0xb400007d78b33d70 void android.widget.TextView.setText(java.lang.CharSequence)
+    hooked=0x71bfdeb0 backup=0x7b809b4030
+    expectedEntryPoint=0x7f55e37648 realEntryPoint=0x7f55e37648 eq=true
+    expectedAccessFlags=0x12380011 realAccessFlags=0x12380011 eq=true
+  0xb400007cc8b83d30 void ahaa.<init>(android.content.Context, bahk, android.telephony.TelephonyManager, svr, bnzy, bnzy, agnk, agno, ahal, abyo, aozt, asdk, j$.util.Optional, acio)
+    hooked=0x4f0a3330 backup=0x7b80994030
+    expectedEntryPoint=0x7f55e37630 realEntryPoint=0x7f55e37630 eq=true
+    expectedAccessFlags=0x12310001 realAccessFlags=0x12310001 eq=true
+  0xb400007d98b2a160 boolean acrj.c(android.content.Context)
+    hooked=0x4f2525b0 backup=0x7b80974030
+    expectedEntryPoint=0x7f55e37618 realEntryPoint=0x7f55e37618 eq=true
+    expectedAccessFlags=0x12300009 realAccessFlags=0x12300009 eq=true
+  0xb400007d08b2cf10 int jcv.b(azxx, boolean)
+    hooked=0x4f229e18 backup=0x7b80954050
+    expectedEntryPoint=0x7f55e37600 realEntryPoint=0x7f55e37600 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12200011 eq=true
+  0xb400007d88b98270 void nvn.<init>(gd, arzp, android.view.ViewGroup, int, ajkz, ajkz, ixz, nww, bnzy, bnzy, aivf, agnk, ppa, ptf, ptf, bpc, pqr, llg, iwl, ajkz, blof, agnq, ozm, qur, jhi, alvv, aclo, blzt, blzv, iev, blzw, agno, acio, bmud, bmud, hpn, aoqm, appn, acjq, bnzy, blof, lmt, nxy, agno)
+    hooked=0x4f2388b0 backup=0x7b8092d030
+    expectedEntryPoint=0x7f55e375e8 realEntryPoint=0x7f55e375e8 eq=true
+    expectedAccessFlags=0x12210004 realAccessFlags=0x12210004 eq=true
+  0xb400007d78b36dd0 void com.google.android.apps.youtube.app.watchwhile.MainActivity.onBackPressed()
+    hooked=0x4f211fa8 backup=0x7b8090c030
+    expectedEntryPoint=0x7f55e375d0 realEntryPoint=0x7f55e375d0 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d98b29210 void android.view.View.setSelected(boolean)
+    hooked=0x71b9cbd0 backup=0x7b808eb030
+    expectedEntryPoint=0x7f55e375b8 realEntryPoint=0x7f55e375b8 eq=true
+    expectedAccessFlags=0x12280001 realAccessFlags=0x12280001 eq=true
+  0xb400007de8b9c9e0 void com.google.android.libraries.youtube.rendering.ui.pivotbar.PivotBar.m(int, boolean)
+    hooked=0x4f29e520 backup=0x7b808ca030
+    expectedEntryPoint=0x7f55e375a0 realEntryPoint=0x7f55e375a0 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12200011 eq=true
+  0xb400007de8b84e60 android.view.View com.google.android.libraries.youtube.rendering.ui.pivotbar.PivotBar.d(apva, boolean, int, bdvg)
+    hooked=0x4f29e3a0 backup=0x7b808a9030
+    expectedEntryPoint=0x7f55e37588 realEntryPoint=0x7f55e37588 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12200011 eq=true
+  0xb400007d88b983d0 android.view.View com.google.android.libraries.youtube.rendering.ui.pivotbar.PivotBar.c(android.graphics.drawable.Drawable, java.lang.CharSequence, boolean, int, java.util.Map, bdvg, j$.util.Optional, j$.util.Optional, j$.util.Optional, j$.util.Optional, j$.util.Optional)
+    hooked=0x4f29e380 backup=0x7b80888030
+    expectedEntryPoint=0x7f55e37570 realEntryPoint=0x7f55e37570 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12200011 eq=true
+  0xb400007d28bd7050 void prq.U(boolean)
+    hooked=0x4f03b858 backup=0x7b80867050
+    expectedEntryPoint=0x7f55e37558 realEntryPoint=0x7f55e37558 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12200011 eq=true
+  0xb400007d28bd6830 azxx azxx.a(int)
+    hooked=0x4f2e9918 backup=0x7b80846050
+    expectedEntryPoint=0x7f55e37540 realEntryPoint=0x7f55e37540 eq=true
+    expectedAccessFlags=0x12200009 realAccessFlags=0x12200009 eq=true
+  0xb400007d78b39410 void hxz.e(java.util.Map, bdmh, java.lang.String, bdmg)
+    hooked=0x4f1c1728 backup=0x7b80825030
+    expectedEntryPoint=0x7f55e37528 realEntryPoint=0x7f55e37528 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d28bd6a60 void aayu.b(boolean)
+    hooked=0x4f1d6ef8 backup=0x7b80804050
+    expectedEntryPoint=0x7f55e37510 realEntryPoint=0x7f55e37510 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12200011 eq=true
+  0xb400007d98b29830 void android.view.View.setVisibility(int)
+    hooked=0x71b9d030 backup=0x7b807e3030
+    expectedEntryPoint=0x7f55e374f8 realEntryPoint=0x7f55e374f8 eq=true
+    expectedAccessFlags=0x12280001 realAccessFlags=0x12280001 eq=true
+  0xb400007d28bde3a0 void msa.F()
+    hooked=0x4f234d20 backup=0x7b807c2050
+    expectedEntryPoint=0x7f55e374e0 realEntryPoint=0x7f55e374e0 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d78b37010 android.view.View android.view.LayoutInflater.inflate(int, android.view.ViewGroup)
+    hooked=0x71d80b30 backup=0x7b807a1030
+    expectedEntryPoint=0x7f55e374c8 realEntryPoint=0x7f55e374c8 eq=true
+    expectedAccessFlags=0x12280001 realAccessFlags=0x12280001 eq=true
+  0xb400007d78b36050 void mmh.iP(java.lang.CharSequence, java.lang.CharSequence, java.lang.CharSequence)
+    hooked=0x4f1c7af8 backup=0x7b80780030
+    expectedEntryPoint=0x7f55e374b0 realEntryPoint=0x7f55e374b0 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007de8b86eb0 void android.graphics.BaseRecordingCanvas.drawCircle(float, float, float, android.graphics.Paint)
+    hooked=0x71cf62f0 backup=0x7b8075f030
+    expectedEntryPoint=0x7f55e37498 realEntryPoint=0x7f55e37498 eq=true
+    expectedAccessFlags=0x12080011 realAccessFlags=0x12080011 eq=true
+  0xb400007d98b24580 void android.graphics.Rect.set(int, int, int, int)
+    hooked=0x71a12258 backup=0x7b8073e030
+    expectedEntryPoint=0x7f55e37480 realEntryPoint=0x7f55e37480 eq=true
+    expectedAccessFlags=0x12280001 realAccessFlags=0x12280001 eq=true
+  0xb400007d98b27fb0 void imb.onDraw(android.graphics.Canvas)
+    hooked=0x4eff1898 backup=0x7b8071d030
+    expectedEntryPoint=0x7f55e37468 realEntryPoint=0x7f55e37468 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007de8b81ef0 void android.support.constraint.ConstraintLayout.onLayout(boolean, int, int, int, int)
+    hooked=0x4ef83f08 backup=0x7b806fc030
+    expectedEntryPoint=0x7f55e37450 realEntryPoint=0x7f55e37450 eq=true
+    expectedAccessFlags=0x12200014 realAccessFlags=0x12200014 eq=true
+  0xb400007d98b298a0 void msa.jb(android.view.MotionEvent)
+    hooked=0x4f235560 backup=0x7b806db030
+    expectedEntryPoint=0x7f55e37438 realEntryPoint=0x7f55e37438 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d98b27920 void android.view.View.setTranslationY(float)
+    hooked=0x71b9ced0 backup=0x7b806ba030
+    expectedEntryPoint=0x7f55e37420 realEntryPoint=0x7f55e37420 eq=true
+    expectedAccessFlags=0x12080001 realAccessFlags=0x12080001 eq=true
+  0xb400007d08b36ab0 void mld.a(android.view.View)
+    hooked=0x4f014870 backup=0x7b80699050
+    expectedEntryPoint=0x7f55e37408 realEntryPoint=0x7f55e37408 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d08b2b890 void msa.ac(boolean, boolean)
+    hooked=0x4f235020 backup=0x7b80678050
+    expectedEntryPoint=0x7f55e373f0 realEntryPoint=0x7f55e373f0 eq=true
+    expectedAccessFlags=0x12200012 realAccessFlags=0x12200012 eq=true
+  0xb400007d98b23b00 android.view.View android.view.ViewStub.inflate()
+    hooked=0x71bc27b0 backup=0x7b80657030
+    expectedEntryPoint=0x7f55e373d8 realEntryPoint=0x7f55e373d8 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d28bd7c80 void ancv.a(ancp)
+    hooked=0x4f1e0b10 backup=0x7b80636050
+    expectedEntryPoint=0x7f55e373c0 realEntryPoint=0x7f55e373c0 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007de8b87640 android.view.View aojp.O(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
+    hooked=0x4f3621d0 backup=0x7b80615050
+    expectedEntryPoint=0x7f55e373a8 realEntryPoint=0x7f55e373a8 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007de8b877a0 void com.google.android.apps.youtube.app.common.player.overlay.YouTubePlayerOverlaysLayout.j(ift)
+    hooked=0x4ef9a398 backup=0x7b805f4030
+    expectedEntryPoint=0x7f55e37390 realEntryPoint=0x7f55e37390 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d08b3af50 void min.l(agyf[], int, boolean)
+    hooked=0x4f013430 backup=0x7b805d3030
+    expectedEntryPoint=0x7f55e37378 realEntryPoint=0x7f55e37378 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12200011 eq=true
+  0xb400007d08b3a710 void agyf.<init>(agvy, avxo, atjb)
+    hooked=0x4f258830 backup=0x7b805b2030
+    expectedEntryPoint=0x7f55e37360 realEntryPoint=0x7f55e37360 eq=true
+    expectedAccessFlags=0x12310001 realAccessFlags=0x12310001 eq=true
+  0xb400007d78b38a80 void agyf.<init>(int, avxo, java.lang.String, boolean, atjb)
+    hooked=0x4f258810 backup=0x7b80591030
+    expectedEntryPoint=0x7f55e37348 realEntryPoint=0x7f55e37348 eq=true
+    expectedAccessFlags=0x12210001 realAccessFlags=0x12210001 eq=true
+  0xb400007d78b390b0 void agyf.<init>(int, avxo, java.lang.String, boolean)
+    hooked=0x4f2587f0 backup=0x7b80570030
+    expectedEntryPoint=0x7f55e37330 realEntryPoint=0x7f55e37330 eq=true
+    expectedAccessFlags=0x12210001 realAccessFlags=0x12210001 eq=true
+  0xb400007d28bd60b0 avnh amre.h(bizp)
+    hooked=0x4f3612b8 backup=0x7b8054f030
+    expectedEntryPoint=0x7f55e37318 realEntryPoint=0x7f55e37318 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d28bd5f20 osu lfe.j(cf)
+    hooked=0x4f05c350 backup=0x7b8052e030
+    expectedEntryPoint=0x7f55e37300 realEntryPoint=0x7f55e37300 eq=true
+    expectedAccessFlags=0x12300009 realAccessFlags=0x12300009 eq=true
+  0xb400007d78b38570 void osu.onItemClick(android.widget.AdapterView, android.view.View, int, long)
+    hooked=0x4f35a4e0 backup=0x7b8050d030
+    expectedEntryPoint=0x7f55e372e8 realEntryPoint=0x7f55e372e8 eq=true
+    expectedAccessFlags=0x12000011 realAccessFlags=0x12000011 eq=true
+  0xb400007d28bd5890 void antm.Q(float)
+    hooked=0x4f0f85f8 backup=0x7b804ec050
+    expectedEntryPoint=0x7f55e372d0 realEntryPoint=0x7f55e372d0 eq=true
+    expectedAccessFlags=0x12000011 realAccessFlags=0x12000011 eq=true
+  0xb400007de8b85ac0 void ampn.<init>(long, long, long, long, long, long, long, boolean, java.lang.String)
+    hooked=0x4f0eac90 backup=0x7b804cb030
+    expectedEntryPoint=0x7f55e372b8 realEntryPoint=0x7f55e372b8 eq=true
+    expectedAccessFlags=0x12010001 realAccessFlags=0x12010001 eq=true
+  0xb400007d28bd4ee0 void imb.fI()
+    hooked=0x4eff16f8 backup=0x7b804aa030
+    expectedEntryPoint=0x7f55e372a0 realEntryPoint=0x7f55e372a0 eq=true
+    expectedAccessFlags=0x12300014 realAccessFlags=0x12300014 eq=true
+  0xb400007d08b398d0 void ajmg.cp(int, aaur)
+    hooked=0x4f360700 backup=0x7b8048a030
+    expectedEntryPoint=0x7f55e37288 realEntryPoint=0x7f55e37288 eq=true
+    expectedAccessFlags=0x12200012 realAccessFlags=0x12200012 eq=true
+  0xb400007d88b94a10 void aocf.<init>(svr, aklo, albo, anvs, anmr, anvr, anlo, anmt, agyb, acqz, aofs, aoch, agnq, agnk, aofj, aoco, blof, vld, aocq, j$.util.Optional, anui, akyf, j$.util.Optional, anka, agno, anum, bpcq, blof, bnzy, aofs, akgb, bplp, blof)
+    hooked=0x4f2760b8 backup=0x7b8046a030
+    expectedEntryPoint=0x7f55e37270 realEntryPoint=0x7f55e37270 eq=true
+    expectedAccessFlags=0x12310001 realAccessFlags=0x12310001 eq=true
+  0xb400007ca8b3fa70 anph anpf.b(java.lang.String, byte[], java.lang.String, java.lang.String, int, boolean, int, bewl, java.util.Set, java.lang.String, java.lang.String, aixm, boolean, boolean, boolean, j$.time.Duration)
+    hooked=0x4f0f5c20 backup=0x7b80446050
+    expectedEntryPoint=0x7f55e37258 realEntryPoint=0x7f55e37258 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12200011 eq=true
+  0xb400007d08b39990 void aoem.B(agyn, java.lang.String)
+    hooked=0x4f2775e0 backup=0x7b80425050
+    expectedEntryPoint=0x7f55e37240 realEntryPoint=0x7f55e37240 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d78b375b0 android.view.View android.view.View.findViewById(int)
+    hooked=0x71b96190 backup=0x7b80404030
+    expectedEntryPoint=0x7f55e37228 realEntryPoint=0x7f55e37228 eq=true
+    expectedAccessFlags=0x12280011 realAccessFlags=0x12280011 eq=true
+  0xb400007d08b39f30 void ggs.<init>(int, int, int)
+    hooked=0x4efbc498 backup=0x7b803e3030
+    expectedEntryPoint=0x7f55e37210 realEntryPoint=0x7f55e37210 eq=true
+    expectedAccessFlags=0x12210001 realAccessFlags=0x12210001 eq=true
+  0xb400007d78b3a100 gds ths.a(gdx, umn, twj, java.util.List, unl, boolean)
+    hooked=0x4f145fb0 backup=0x7b803c2050
+    expectedEntryPoint=0x7f55e371f8 realEntryPoint=0x7f55e371f8 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12200011 eq=true
+  0xb400007d98b24660 void aurw.f(int, java.nio.ByteBuffer)
+    hooked=0x4f17d000 backup=0x7b803a1030
+    expectedEntryPoint=0x7f55e371e0 realEntryPoint=0x7f55e371e0 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12200011 eq=true
+  0xb400007d78b39ec0 boolean androidx.swiperefreshlayout.widget.SwipeRefreshLayout.n()
+    hooked=0x4f200218 backup=0x7b80380030
+    expectedEntryPoint=0x7f55e371c8 realEntryPoint=0x7f55e371c8 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007de8b86d50 android.content.Intent android.content.Intent.putExtra(java.lang.String, java.lang.String)
+    hooked=0x71ce8b08 backup=0x7b8035f030
+    expectedEntryPoint=0x7f55e371b0 realEntryPoint=0x7f55e371b0 eq=true
+    expectedAccessFlags=0x12300001 realAccessFlags=0x12300001 eq=true
+  0xb400007de8b86e00 android.content.ClipData android.content.ClipData.newPlainText(java.lang.CharSequence, java.lang.CharSequence)
+    hooked=0x719d4078 backup=0x7b8033e030
+    expectedEntryPoint=0x7f55e37198 realEntryPoint=0x7f55e37198 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007e48b2b450 void jiw.<init>(cf, aubq, bnzy, bnzy, bnzy, bnzy, bnzy, bnzy, bnzy, blof, achr, arzp, aoqm, agnq, blzw, blzw, bmud, acio, bnzy)
+    hooked=0x4f22bc20 backup=0x7b8031d030
+    expectedEntryPoint=0x7f55e37180 realEntryPoint=0x7f55e37180 eq=true
+    expectedAccessFlags=0x12310001 realAccessFlags=0x12310001 eq=true
+  0xb400007d08b2ae10 boolean agno.p(long, boolean)
+    hooked=0x4f09c7f0 backup=0x7b802fc030
+    expectedEntryPoint=0x7f55e37168 realEntryPoint=0x7f55e37168 eq=true
+    expectedAccessFlags=0x12000011 realAccessFlags=0x12000011 eq=true
+  0xb400007d08b2b1d0 void pkb.l(int, ift, bcwx)
+    hooked=0x4f035680 backup=0x7b802db030
+    expectedEntryPoint=0x7f55e37150 realEntryPoint=0x7f55e37150 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12200011 eq=true
+  0xb400007d28d45e50 boolean aoqm.bh()
+    hooked=0x4f1096e0 backup=0x7b802ba030
+    expectedEntryPoint=0x7f55e37138 realEntryPoint=0x7f55e37138 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d28bd5660 boolean azz.W()
+    hooked=0x4f04d978 backup=0x7b80299050
+    expectedEntryPoint=0x7f55e37120 realEntryPoint=0x7f55e37120 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d28bda570 boolean amlp.y(bauk)
+    hooked=0x4f0e9290 backup=0x7b80278030
+    expectedEntryPoint=0x7f55e37108 realEntryPoint=0x7f55e37108 eq=true
+    expectedAccessFlags=0x12300009 realAccessFlags=0x12300009 eq=true
+  0xb400007d28bdd770 boolean amlp.v(bauk)
+    hooked=0x4f0e9230 backup=0x7b80257030
+    expectedEntryPoint=0x7f55e370f0 realEntryPoint=0x7f55e370f0 eq=true
+    expectedAccessFlags=0x12300009 realAccessFlags=0x12300009 eq=true
+  0xb400007d28bddb80 boolean amlp.t(bauk)
+    hooked=0x4f0e91f0 backup=0x7b80237030
+    expectedEntryPoint=0x7f55e370d8 realEntryPoint=0x7f55e370d8 eq=true
+    expectedAccessFlags=0x12300009 realAccessFlags=0x12300009 eq=true
+  0xb400007d08b36bd0 void aaab.t(java.util.List)
+    hooked=0x4f0672f0 backup=0x7b80217030
+    expectedEntryPoint=0x7f55e370c0 realEntryPoint=0x7f55e370c0 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007de8b88ae0 void com.google.android.apps.youtube.app.watchwhile.MainActivity.onCreate(android.os.Bundle)
+    hooked=0x4f211fe8 backup=0x7b801f4030
+    expectedEntryPoint=0x7f55e370a8 realEntryPoint=0x7f55e370a8 eq=true
+    expectedAccessFlags=0x12300014 realAccessFlags=0x12300014 eq=true
+  0xb400007d28bdd860 void hhl.onCreate()
+    hooked=0x4f20c1f0 backup=0x7b8018f030
+    expectedEntryPoint=0x7f55e37090 realEntryPoint=0x7f55e37090 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d78b3eea0 void android.app.ActivityThread.attach(boolean, long)
+    hooked=0x71cca230 backup=0x7b8010c050
+    expectedEntryPoint=0x7f55e37078 realEntryPoint=0x7f55e37078 eq=true
+    expectedAccessFlags=0x2000002 realAccessFlags=0x2000002 eq=true
+  0xb400007d78b42260 void android.app.LoadedApk.createOrUpdateClassLoaderLocked(java.util.List)
+    hooked=0x7198f428 backup=0x7b800ca030
+    expectedEntryPoint=0x7f55e37060 realEntryPoint=0x7f55e37060 eq=true
+    expectedAccessFlags=0x2380002 realAccessFlags=0x2380002 eq=true
+  0xb400007ca8b23e10 void android.app.LoadedApk.<init>(android.app.ActivityThread, android.content.pm.ApplicationInfo, android.content.res.CompatibilityInfo, java.lang.ClassLoader, boolean, boolean, boolean)
+    hooked=0x7198f288 backup=0x7b800a9030
+    expectedEntryPoint=0x7f55e37048 realEntryPoint=0x7f55e37048 eq=true
+    expectedAccessFlags=0x2290001 realAccessFlags=0x2290001 eq=true
+  0xb400007cc8b74670 java.lang.Object dalvik.system.DexFile.openInMemoryDexFiles(java.nio.ByteBuffer[], java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c58 backup=0x7b80088030
+    expectedEntryPoint=0x7f55e37030 realEntryPoint=0x7f55e37030 eq=true
+    expectedAccessFlags=0x238000a realAccessFlags=0x238000a eq=true
+  0xb400007cc8b78e30 java.lang.Object dalvik.system.DexFile.openDexFile(java.lang.String, java.lang.String, int, java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c18 backup=0x7b80067030
+    expectedEntryPoint=0x7f55e37018 realEntryPoint=0x7f55e37018 eq=true
+    expectedAccessFlags=0x228000a realAccessFlags=0x228000a eq=true
+  0xb400007d78b4cc40 void java.lang.Thread.dispatchUncaughtException(java.lang.Throwable)
+    hooked=0x710177f8 backup=0x7b80046030
+    expectedEntryPoint=0x7f55e37000 realEntryPoint=0x7f55e37000 eq=true
+    expectedAccessFlags=0x2380011 realAccessFlags=0x2380011 eq=true
+  0xb400007de8b91930 deoptimized java.io.File android.app.ContextImpl.getSharedPreferencesPath(java.lang.String)
+    hooked=0x7196dd10 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40380001 realAccessFlags=0x40380001 eq=true
+  0xb400007cc8b78b90 deoptimized android.app.Application android.app.Instrumentation.newApplication(java.lang.ClassLoader, java.lang.String, android.content.Context)
+    hooked=0x71cd74c8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x50380001 realAccessFlags=0x50380001 eq=true
+  0xb400007e48b29a10 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation, boolean)
+    hooked=0x7198f928 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280002 realAccessFlags=0x40280002 eq=true
+  0xb400007de8b92010 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation)
+    hooked=0x7198f908 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+  0xb400007de8b8ede0 deoptimized android.app.Application android.app.LoadedApk.makeApplication(boolean, android.app.Instrumentation)
+    hooked=0x7198f8e8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+
+pid=5205 uid=10437 name=com.android.systemui 64bit debugInfo=0x7c85e026b0 entryPointOff=24 accessFlagsOff=4
+  0xb400007d78b50480 void com.android.systemui.qs.QSTileRevealController$1.run()
+    hooked=0x7b801bee70 backup=0x7b802d9030
+    expectedEntryPoint=0x7f55b71150 realEntryPoint=0x7f55b71150 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d78b420b0 void com.android.systemui.qs.QSPanelControllerBase.setTiles()
+    hooked=0x7b801bec90 backup=0x7b802b8030
+    expectedEntryPoint=0x7f55b71138 realEntryPoint=0x7f55b71138 eq=true
+    expectedAccessFlags=0x1a300001 realAccessFlags=0x1a300001 eq=true
+  0xb400007de8b85070 boolean com.android.systemui.statusbar.phone.PhoneStatusBarView.onTouchEvent(android.view.MotionEvent)
+    hooked=0x7b801be820 backup=0x7b80297030
+    expectedEntryPoint=0x7f55b71120 realEntryPoint=0x7f55b71120 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12380011 eq=false
+  0xb400007d78b40d90 void com.android.systemui.statusbar.phone.PhoneStatusBarView.onDetachedFromWindow()
+    hooked=0x7b801be7a0 backup=0x7b80276030
+    expectedEntryPoint=0x7f55b71108 realEntryPoint=0x7f55b71108 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12380011 eq=false
+  0xb400007e48b2b450 void com.android.systemui.statusbar.phone.PhoneStatusBarView.onConfigurationChanged(android.content.res.Configuration)
+    hooked=0x7b801be780 backup=0x7b80255030
+    expectedEntryPoint=0x7f55b710f0 realEntryPoint=0x7f55b710f0 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12380011 eq=false
+  0xb400007d78b41b10 void com.android.systemui.statusbar.phone.PhoneStatusBarView.onAttachedToWindow()
+    hooked=0x7b801be760 backup=0x7b80234030
+    expectedEntryPoint=0x7f55b710d8 realEntryPoint=0x7f55b710d8 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12380011 eq=false
+  0xb400007de8b837b0 void com.android.systemui.statusbar.policy.BatteryController$BatteryStateChangeCallback.onPowerSaveChanged(boolean)
+    hooked=0x7b801bdf30 backup=0x7b80213030
+    expectedEntryPoint=0x7f55b710c0 realEntryPoint=0x7f55b710c0 eq=true
+    expectedAccessFlags=0x12600001 realAccessFlags=0x12680001 eq=false
+  0xb400007d78b4f280 void com.android.systemui.qs.tiles.BatterySaverTile.onPowerSaveChanged(boolean)
+    hooked=0x7b801be0e0 backup=0x7b801f2030
+    expectedEntryPoint=0x7f55b710a8 realEntryPoint=0x7f55b710a8 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12280011 eq=false
+  0xb400007e48b2ad90 void com.android.settingslib.fuelgauge.BatterySaverUtils.setPowerSaveMode(int, android.content.Context, boolean, boolean)
+    hooked=0x7b801b6180 backup=0x7b801d1030
+    expectedEntryPoint=0x7f55b71090 realEntryPoint=0x7f55b71090 eq=true
+    expectedAccessFlags=0x12220009 realAccessFlags=0x12220009 eq=true
+  0xb400007d78b3eea0 void android.app.ActivityThread.attach(boolean, long)
+    hooked=0x71cca230 backup=0x7b8010c050
+    expectedEntryPoint=0x7f55b71078 realEntryPoint=0x7f55b71078 eq=true
+    expectedAccessFlags=0x2000002 realAccessFlags=0x2000002 eq=true
+  0xb400007d78b42260 void android.app.LoadedApk.createOrUpdateClassLoaderLocked(java.util.List)
+    hooked=0x7198f428 backup=0x7b800ca030
+    expectedEntryPoint=0x7f55b71060 realEntryPoint=0x7f55b71060 eq=true
+    expectedAccessFlags=0x2380002 realAccessFlags=0x2380002 eq=true
+  0xb400007ca8b23f30 void android.app.LoadedApk.<init>(android.app.ActivityThread, android.content.pm.ApplicationInfo, android.content.res.CompatibilityInfo, java.lang.ClassLoader, boolean, boolean, boolean)
+    hooked=0x7198f288 backup=0x7b800a9030
+    expectedEntryPoint=0x7f55b71048 realEntryPoint=0x7f55b71048 eq=true
+    expectedAccessFlags=0x2290001 realAccessFlags=0x2290001 eq=true
+  0xb400007cc8b75d30 java.lang.Object dalvik.system.DexFile.openInMemoryDexFiles(java.nio.ByteBuffer[], java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c58 backup=0x7b80088030
+    expectedEntryPoint=0x7f55b71030 realEntryPoint=0x7f55b71030 eq=true
+    expectedAccessFlags=0x238000a realAccessFlags=0x238000a eq=true
+  0xb400007cc8b74670 java.lang.Object dalvik.system.DexFile.openDexFile(java.lang.String, java.lang.String, int, java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c18 backup=0x7b80067030
+    expectedEntryPoint=0x7f55b71018 realEntryPoint=0x7f55b71018 eq=true
+    expectedAccessFlags=0x228000a realAccessFlags=0x228000a eq=true
+  0xb400007d78b4cc40 void java.lang.Thread.dispatchUncaughtException(java.lang.Throwable)
+    hooked=0x710177f8 backup=0x7b80046030
+    expectedEntryPoint=0x7f55b71000 realEntryPoint=0x7f55b71000 eq=true
+    expectedAccessFlags=0x2380011 realAccessFlags=0x2380011 eq=true
+  0xb400007de8b91930 deoptimized java.io.File android.app.ContextImpl.getSharedPreferencesPath(java.lang.String)
+    hooked=0x7196dd10 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40380001 realAccessFlags=0x40380001 eq=true
+  0xb400007cc8b78e30 deoptimized android.app.Application android.app.Instrumentation.newApplication(java.lang.ClassLoader, java.lang.String, android.content.Context)
+    hooked=0x71cd74c8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x50380001 realAccessFlags=0x50380001 eq=true
+  0xb400007e48b29a10 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation, boolean)
+    hooked=0x7198f928 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280002 realAccessFlags=0x40280002 eq=true
+  0xb400007de8b92010 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation)
+    hooked=0x7198f908 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+  0xb400007de8b8ede0 deoptimized android.app.Application android.app.LoadedApk.makeApplication(boolean, android.app.Instrumentation)
+    hooked=0x7198f8e8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+
+pid=18569 uid=10361 name=com.android.externalstorage 64bit debugInfo=0x7c85e026b0 entryPointOff=24 accessFlagsOff=4
+  0xb400007de8b9e8d0 boolean com.android.externalstorage.ExternalStorageProvider.shouldHideDocument(java.lang.String)
+    hooked=0x7b8014e4d0 backup=0x7b80190030
+    expectedEntryPoint=0x7f55b710a8 realEntryPoint=0x7f55b710a8 eq=true
+    expectedAccessFlags=0x1a300004 realAccessFlags=0x1a380004 eq=false
+  0xb400007de8b9e140 boolean com.android.externalstorage.ExternalStorageProvider.shouldBlockDirectoryFromTree(java.lang.String)
+    hooked=0x7b8014e4b0 backup=0x7b8016f030
+    expectedEntryPoint=0x7f55b71090 realEntryPoint=0x7f55b71090 eq=true
+    expectedAccessFlags=0x1a300004 realAccessFlags=0x1a380004 eq=false
+  0xb400007d78b3eea0 void android.app.ActivityThread.attach(boolean, long)
+    hooked=0x71cca230 backup=0x7b8010c050
+    expectedEntryPoint=0x7f55b71078 realEntryPoint=0x7f55b71078 eq=true
+    expectedAccessFlags=0x2000002 realAccessFlags=0x2000002 eq=true
+  0xb400007d78b42260 void android.app.LoadedApk.createOrUpdateClassLoaderLocked(java.util.List)
+    hooked=0x7198f428 backup=0x7b800ca030
+    expectedEntryPoint=0x7f55b71060 realEntryPoint=0x7f55b71060 eq=true
+    expectedAccessFlags=0x2380002 realAccessFlags=0x2380002 eq=true
+  0xb400007ca8b31190 void android.app.LoadedApk.<init>(android.app.ActivityThread, android.content.pm.ApplicationInfo, android.content.res.CompatibilityInfo, java.lang.ClassLoader, boolean, boolean, boolean)
+    hooked=0x7198f288 backup=0x7b800a9030
+    expectedEntryPoint=0x7f55b71048 realEntryPoint=0x7f55b71048 eq=true
+    expectedAccessFlags=0x2290001 realAccessFlags=0x2290001 eq=true
+  0xb400007cc8b75d30 java.lang.Object dalvik.system.DexFile.openInMemoryDexFiles(java.nio.ByteBuffer[], java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c58 backup=0x7b80088030
+    expectedEntryPoint=0x7f55b71030 realEntryPoint=0x7f55b71030 eq=true
+    expectedAccessFlags=0x238000a realAccessFlags=0x238000a eq=true
+  0xb400007cc8b74670 java.lang.Object dalvik.system.DexFile.openDexFile(java.lang.String, java.lang.String, int, java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c18 backup=0x7b80067030
+    expectedEntryPoint=0x7f55b71018 realEntryPoint=0x7f55b71018 eq=true
+    expectedAccessFlags=0x228000a realAccessFlags=0x228000a eq=true
+  0xb400007d78b4cc40 void java.lang.Thread.dispatchUncaughtException(java.lang.Throwable)
+    hooked=0x710177f8 backup=0x7b80046030
+    expectedEntryPoint=0x7f55b71000 realEntryPoint=0x7f55b71000 eq=true
+    expectedAccessFlags=0x2380011 realAccessFlags=0x2380011 eq=true
+  0xb400007de8b91930 deoptimized java.io.File android.app.ContextImpl.getSharedPreferencesPath(java.lang.String)
+    hooked=0x7196dd10 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40380001 realAccessFlags=0x40380001 eq=true
+  0xb400007cc8b78e30 deoptimized android.app.Application android.app.Instrumentation.newApplication(java.lang.ClassLoader, java.lang.String, android.content.Context)
+    hooked=0x71cd74c8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x50380001 realAccessFlags=0x50380001 eq=true
+  0xb400007e48b29a10 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation, boolean)
+    hooked=0x7198f928 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280002 realAccessFlags=0x40280002 eq=true
+  0xb400007de8b92010 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation)
+    hooked=0x7198f908 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+  0xb400007de8b8ede0 deoptimized android.app.Application android.app.LoadedApk.makeApplication(boolean, android.app.Instrumentation)
+    hooked=0x7198f8e8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+
+pid=21482 uid=10938 name=com.twitter.android 64bit debugInfo=0x7c85e026b0 entryPointOff=24 accessFlagsOff=4
+  0xb400007de8b80d10 void com.google.firebase.crashlytics.FirebaseCrashlytics.setCrashlyticsCollectionEnabled(boolean)
+    hooked=0x4f37d5b0 backup=0x7b803c5030
+    expectedEntryPoint=0x7f55e371e0 realEntryPoint=0x7f55e371e0 eq=true
+    expectedAccessFlags=0x12200001 realAccessFlags=0x12200001 eq=true
+  0xb400007de8b80160 void java.lang.Runtime.loadLibrary0(java.lang.ClassLoader, java.lang.Class, java.lang.String)
+    hooked=0x7101f828 backup=0x7b803a5030
+    expectedEntryPoint=0x7f55e371c8 realEntryPoint=0x7f55e371c8 eq=true
+    expectedAccessFlags=0x23a0002 realAccessFlags=0x23a0002 eq=true
+  0xb400007de8b87e80 void android.widget.TextView.setText(java.lang.CharSequence, android.widget.TextView$BufferType, boolean, int)
+    hooked=0x71bfdef0 backup=0x7b80362030
+    expectedEntryPoint=0x7f55e371b0 realEntryPoint=0x7f55e371b0 eq=true
+    expectedAccessFlags=0x2280002 realAccessFlags=0x2280002 eq=true
+  0xb400007de8b88e50 void com.twitter.deeplink.implementation.UrlInterpreterActivity.onCreate(android.os.Bundle)
+    hooked=0x4f63e4d8 backup=0x7b8033e030
+    expectedEntryPoint=0x7f55e37198 realEntryPoint=0x7f55e37198 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007de8b8aea0 android.content.ClipData android.content.ClipData.newPlainText(java.lang.CharSequence, java.lang.CharSequence)
+    hooked=0x719d4078 backup=0x7b8031d030
+    expectedEntryPoint=0x7f55e37180 realEntryPoint=0x7f55e37180 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007cc8b81790 android.content.Intent android.content.Intent.createChooser(android.content.Intent, java.lang.CharSequence, android.content.IntentSender)
+    hooked=0x71ce7b08 backup=0x7b802fc030
+    expectedEntryPoint=0x7f55e37168 realEntryPoint=0x7f55e37168 eq=true
+    expectedAccessFlags=0x12300009 realAccessFlags=0x12300009 eq=true
+  0xb400007d78b38840 android.content.Intent android.content.Intent.replaceExtras(android.os.Bundle)
+    hooked=0x71ce8e88 backup=0x7b802db030
+    expectedEntryPoint=0x7f55e37150 realEntryPoint=0x7f55e37150 eq=true
+    expectedAccessFlags=0x12300001 realAccessFlags=0x12300001 eq=true
+  0xb400007d78b3a4f0 android.content.Intent android.content.Intent.replaceExtras(android.content.Intent)
+    hooked=0x71ce8e68 backup=0x7b802ba030
+    expectedEntryPoint=0x7f55e37138 realEntryPoint=0x7f55e37138 eq=true
+    expectedAccessFlags=0x12300001 realAccessFlags=0x12300001 eq=true
+  0xb400007cc8b73f70 com.twitter.model.json.timeline.urt.JsonTimelineModule com.twitter.model.json.timeline.urt.JsonTimelineModule$$JsonObjectMapper.parse(com.fasterxml.jackson.core.h)
+    hooked=0x4f5d9688 backup=0x7b80299030
+    expectedEntryPoint=0x7f55e37120 realEntryPoint=0x7f55e37120 eq=true
+    expectedAccessFlags=0x12300001 realAccessFlags=0x12300001 eq=true
+  0xb400007cc8b7ed90 com.twitter.model.json.timeline.urt.JsonTimelineEntry com.twitter.model.json.timeline.urt.JsonTimelineEntry$$JsonObjectMapper.parse(com.fasterxml.jackson.core.h)
+    hooked=0x4f5d9398 backup=0x7b80278030
+    expectedEntryPoint=0x7f55e37108 realEntryPoint=0x7f55e37108 eq=true
+    expectedAccessFlags=0x12300001 realAccessFlags=0x12300001 eq=true
+  0xb400007d08b2e350 void android.app.Activity.onResume()
+    hooked=0x71cc41b0 backup=0x7b80257030
+    expectedEntryPoint=0x7f55e370f0 realEntryPoint=0x7f55e370f0 eq=true
+    expectedAccessFlags=0x12380004 realAccessFlags=0x12380004 eq=true
+  0xb400007d78b3a100 boolean com.twitter.app.settings.a.onPreferenceClick(android.preference.Preference)
+    hooked=0x7b801844f0 backup=0x7b80236030
+    expectedEntryPoint=0x7f55e370d8 realEntryPoint=0x7f55e370d8 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007de8b8b0b0 void android.widget.ImageView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+    hooked=0x71bf6b60 backup=0x7b80216030
+    expectedEntryPoint=0x7f55e370c0 realEntryPoint=0x7f55e370c0 eq=true
+    expectedAccessFlags=0x12290001 realAccessFlags=0x12290001 eq=true
+  0xb400007d98b27610 void android.app.Application.onCreate()
+    hooked=0x71967f58 backup=0x7b801b0030
+    expectedEntryPoint=0x7f55e370a8 realEntryPoint=0x7f55e370a8 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d78b3a220 void android.app.Application.attach(android.content.Context)
+    hooked=0x71967b98 backup=0x7b8018f050
+    expectedEntryPoint=0x7f55e37090 realEntryPoint=0x7f55e37090 eq=true
+    expectedAccessFlags=0x2380010 realAccessFlags=0x2380010 eq=true
+  0xb400007d78b3eea0 void android.app.ActivityThread.attach(boolean, long)
+    hooked=0x71cca230 backup=0x7b8010c050
+    expectedEntryPoint=0x7f55e37078 realEntryPoint=0x7f55e37078 eq=true
+    expectedAccessFlags=0x2000002 realAccessFlags=0x2000002 eq=true
+  0xb400007d78b42260 void android.app.LoadedApk.createOrUpdateClassLoaderLocked(java.util.List)
+    hooked=0x7198f428 backup=0x7b800ca030
+    expectedEntryPoint=0x7f55e37060 realEntryPoint=0x7f55e37060 eq=true
+    expectedAccessFlags=0x2380002 realAccessFlags=0x2380002 eq=true
+  0xb400007ca8b23990 void android.app.LoadedApk.<init>(android.app.ActivityThread, android.content.pm.ApplicationInfo, android.content.res.CompatibilityInfo, java.lang.ClassLoader, boolean, boolean, boolean)
+    hooked=0x7198f288 backup=0x7b800a9030
+    expectedEntryPoint=0x7f55e37048 realEntryPoint=0x7f55e37048 eq=true
+    expectedAccessFlags=0x2290001 realAccessFlags=0x2290001 eq=true
+  0xb400007cc8b75fd0 java.lang.Object dalvik.system.DexFile.openInMemoryDexFiles(java.nio.ByteBuffer[], java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c58 backup=0x7b80088030
+    expectedEntryPoint=0x7f55e37030 realEntryPoint=0x7f55e37030 eq=true
+    expectedAccessFlags=0x238000a realAccessFlags=0x238000a eq=true
+  0xb400007cc8b74670 java.lang.Object dalvik.system.DexFile.openDexFile(java.lang.String, java.lang.String, int, java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c18 backup=0x7b80067030
+    expectedEntryPoint=0x7f55e37018 realEntryPoint=0x7f55e37018 eq=true
+    expectedAccessFlags=0x228000a realAccessFlags=0x228000a eq=true
+  0xb400007d78b4cc40 void java.lang.Thread.dispatchUncaughtException(java.lang.Throwable)
+    hooked=0x710177f8 backup=0x7b80046030
+    expectedEntryPoint=0x7f55e37000 realEntryPoint=0x7f55e37000 eq=true
+    expectedAccessFlags=0x2380011 realAccessFlags=0x2380011 eq=true
+  0xb400007de8b91930 deoptimized java.io.File android.app.ContextImpl.getSharedPreferencesPath(java.lang.String)
+    hooked=0x7196dd10 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40380001 realAccessFlags=0x40380001 eq=true
+  0xb400007cc8b78e30 deoptimized android.app.Application android.app.Instrumentation.newApplication(java.lang.ClassLoader, java.lang.String, android.content.Context)
+    hooked=0x71cd74c8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x50380001 realAccessFlags=0x50380001 eq=true
+  0xb400007e48b29a10 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation, boolean)
+    hooked=0x7198f928 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280002 realAccessFlags=0x40280002 eq=true
+  0xb400007de8b92010 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation)
+    hooked=0x7198f908 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+  0xb400007de8b8ede0 deoptimized android.app.Application android.app.LoadedApk.makeApplication(boolean, android.app.Instrumentation)
+    hooked=0x7198f8e8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+
+pid=20654 uid=1110668 name=com.instagram.android:fbns 64bit debugInfo=0x7c85e026b0 entryPointOff=24 accessFlagsOff=4
+  0xb400007d78b3ad60 android.os.LocaleList android.os.LocaleList.getAdjustedDefault()
+    hooked=0x71acca70 backup=0x7b80319030
+    expectedEntryPoint=0x7f55e37180 realEntryPoint=0x7f55e37180 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b3ac40 android.os.LocaleList android.os.LocaleList.getDefault()
+    hooked=0x71acca90 backup=0x7b802f8030
+    expectedEntryPoint=0x7f55e37168 realEntryPoint=0x7f55e37168 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b3bdb0 void android.content.res.Configuration.setLocales(android.os.LocaleList)
+    hooked=0x71a036e0 backup=0x7b802d7030
+    expectedEntryPoint=0x7f55e37150 realEntryPoint=0x7f55e37150 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d78b3be40 android.os.LocaleList android.content.res.Configuration.getLocales()
+    hooked=0x71a03400 backup=0x7b802b6030
+    expectedEntryPoint=0x7f55e37138 realEntryPoint=0x7f55e37138 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d78b3b660 java.util.Locale java.util.Locale.getDefault(java.util.Locale$Category)
+    hooked=0x70fc1888 backup=0x7b80295030
+    expectedEntryPoint=0x7f55e37120 realEntryPoint=0x7f55e37120 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d98b26a40 void android.content.res.Configuration.<init>()
+    hooked=0x71a03140 backup=0x7b80274030
+    expectedEntryPoint=0x7f55e37108 realEntryPoint=0x7f55e37108 eq=true
+    expectedAccessFlags=0x12390001 realAccessFlags=0x12390001 eq=true
+  0xb400007d78b3bed0 android.content.res.Resources android.content.res.Resources.getSystem()
+    hooked=0x71a026f8 backup=0x7b80253030
+    expectedEntryPoint=0x7f55e370f0 realEntryPoint=0x7f55e370f0 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b3b930 void android.content.res.Configuration.setLocale(java.util.Locale)
+    hooked=0x71a036c0 backup=0x7b80232030
+    expectedEntryPoint=0x7f55e370d8 realEntryPoint=0x7f55e370d8 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007e48b2b450 void android.content.res.Resources.updateConfiguration(android.content.res.Configuration, android.util.DisplayMetrics)
+    hooked=0x71a02c78 backup=0x7b80211030
+    expectedEntryPoint=0x7f55e370c0 realEntryPoint=0x7f55e370c0 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d78b31cd0 android.content.res.Configuration android.content.res.Resources.getConfiguration()
+    hooked=0x71a02258 backup=0x7b801f0030
+    expectedEntryPoint=0x7f55e370a8 realEntryPoint=0x7f55e370a8 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d98b263b0 java.util.Locale java.util.Locale.getDefault()
+    hooked=0x70fc1868 backup=0x7b801cf030
+    expectedEntryPoint=0x7f55e37090 realEntryPoint=0x7f55e37090 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b3eea0 void android.app.ActivityThread.attach(boolean, long)
+    hooked=0x71cca230 backup=0x7b8010c050
+    expectedEntryPoint=0x7f55e37078 realEntryPoint=0x7f55e37078 eq=true
+    expectedAccessFlags=0x2000002 realAccessFlags=0x2000002 eq=true
+  0xb400007d78b42260 void android.app.LoadedApk.createOrUpdateClassLoaderLocked(java.util.List)
+    hooked=0x7198f428 backup=0x7b800ca030
+    expectedEntryPoint=0x7f55e37060 realEntryPoint=0x7f55e37060 eq=true
+    expectedAccessFlags=0x2380002 realAccessFlags=0x2380002 eq=true
+  0xb400007ca8b26450 void android.app.LoadedApk.<init>(android.app.ActivityThread, android.content.pm.ApplicationInfo, android.content.res.CompatibilityInfo, java.lang.ClassLoader, boolean, boolean, boolean)
+    hooked=0x7198f288 backup=0x7b800a9030
+    expectedEntryPoint=0x7f55e37048 realEntryPoint=0x7f55e37048 eq=true
+    expectedAccessFlags=0x2290001 realAccessFlags=0x2290001 eq=true
+  0xb400007cc8b75fd0 java.lang.Object dalvik.system.DexFile.openInMemoryDexFiles(java.nio.ByteBuffer[], java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c58 backup=0x7b80088030
+    expectedEntryPoint=0x7f55e37030 realEntryPoint=0x7f55e37030 eq=true
+    expectedAccessFlags=0x238000a realAccessFlags=0x238000a eq=true
+  0xb400007cc8b74670 java.lang.Object dalvik.system.DexFile.openDexFile(java.lang.String, java.lang.String, int, java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c18 backup=0x7b80067030
+    expectedEntryPoint=0x7f55e37018 realEntryPoint=0x7f55e37018 eq=true
+    expectedAccessFlags=0x228000a realAccessFlags=0x228000a eq=true
+  0xb400007d78b4cc40 void java.lang.Thread.dispatchUncaughtException(java.lang.Throwable)
+    hooked=0x710177f8 backup=0x7b80046030
+    expectedEntryPoint=0x7f55e37000 realEntryPoint=0x7f55e37000 eq=true
+    expectedAccessFlags=0x2380011 realAccessFlags=0x2380011 eq=true
+  0xb400007de8b91930 deoptimized java.io.File android.app.ContextImpl.getSharedPreferencesPath(java.lang.String)
+    hooked=0x7196dd10 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40380001 realAccessFlags=0x40380001 eq=true
+  0xb400007cc8b78e30 deoptimized android.app.Application android.app.Instrumentation.newApplication(java.lang.ClassLoader, java.lang.String, android.content.Context)
+    hooked=0x71cd74c8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x50380001 realAccessFlags=0x50380001 eq=true
+  0xb400007e48b29a10 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation, boolean)
+    hooked=0x7198f928 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280002 realAccessFlags=0x40280002 eq=true
+  0xb400007de8b92010 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation)
+    hooked=0x7198f908 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+  0xb400007de8b8ede0 deoptimized android.app.Application android.app.LoadedApk.makeApplication(boolean, android.app.Instrumentation)
+    hooked=0x7198f8e8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+
+pid=14430 uid=10509 name=com.google.android.apps.youtube.music 64bit debugInfo=0x7c85e026b0 entryPointOff=24 accessFlagsOff=4
+  0xb400007e48b2a610 android.app.Activity android.app.Instrumentation.newActivity(java.lang.ClassLoader, java.lang.String, android.content.Intent)
+    hooked=0x71cd7488 backup=0x7b804a9030
+    expectedEntryPoint=0x7f55e2d288 realEntryPoint=0x7f55e2d288 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007de8b81970 void com.google.android.gms.common.api.GoogleApiActivity.onSaveInstanceState(android.os.Bundle)
+    hooked=0x4ee9e2b0 backup=0x7b80488030
+    expectedEntryPoint=0x7f55e2d270 realEntryPoint=0x7f55e2d270 eq=true
+    expectedAccessFlags=0x12300014 realAccessFlags=0x12300014 eq=true
+  0xb400007de8b82d60 void com.google.android.gms.common.api.GoogleApiActivity.onCancel(android.content.DialogInterface)
+    hooked=0x4ee9e270 backup=0x7b80467030
+    expectedEntryPoint=0x7f55e2d258 realEntryPoint=0x7f55e2d258 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007de8b827e0 void com.google.android.gms.common.api.GoogleApiActivity.onActivityResult(int, int, android.content.Intent)
+    hooked=0x4ee9e250 backup=0x7b80446030
+    expectedEntryPoint=0x7f55e2d240 realEntryPoint=0x7f55e2d240 eq=true
+    expectedAccessFlags=0x12200014 realAccessFlags=0x12200014 eq=true
+  0xb400007d78b36dd0 void com.google.android.gms.common.api.GoogleApiActivity.b()
+    hooked=0x4ee9e230 backup=0x7b80425050
+    expectedEntryPoint=0x7f55e2d228 realEntryPoint=0x7f55e2d228 eq=true
+    expectedAccessFlags=0x12300012 realAccessFlags=0x12300012 eq=true
+  0xb400007d78b37010 void com.google.android.gms.common.api.GoogleApiActivity.onCreate(android.os.Bundle)
+    hooked=0x4ee9e290 backup=0x7b80404030
+    expectedEntryPoint=0x7f55e2d210 realEntryPoint=0x7f55e2d210 eq=true
+    expectedAccessFlags=0x12300014 realAccessFlags=0x12300014 eq=true
+  0xb400007d78b36830 void android.app.Activity.onCreate(android.os.Bundle)
+    hooked=0x71cc39d0 backup=0x7b803e3030
+    expectedEntryPoint=0x7f55e2d1f8 realEntryPoint=0x7f55e2d1f8 eq=true
+    expectedAccessFlags=0x12380004 realAccessFlags=0x12380004 eq=true
+  0xb400007d78b36d40 void emn.setPreferencesFromResource(int, java.lang.String)
+    hooked=0x4efda560 backup=0x7b803c2030
+    expectedEntryPoint=0x7f55e2d1e0 realEntryPoint=0x7f55e2d1e0 eq=true
+    expectedAccessFlags=0x12200001 realAccessFlags=0x12200001 eq=true
+  0xb400007de8b81810 android.content.Intent android.content.Intent.putExtra(java.lang.String, java.lang.String)
+    hooked=0x71ce8b08 backup=0x7b803a1030
+    expectedEntryPoint=0x7f55e2d1c8 realEntryPoint=0x7f55e2d1c8 eq=true
+    expectedAccessFlags=0x12300001 realAccessFlags=0x12300001 eq=true
+  0xb400007de8b81b80 android.content.ClipData android.content.ClipData.newPlainText(java.lang.CharSequence, java.lang.CharSequence)
+    hooked=0x719d4078 backup=0x7b80380030
+    expectedEntryPoint=0x7f55e2d1b0 realEntryPoint=0x7f55e2d1b0 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d08b3acb0 long aniw.e(botc, long, long)
+    hooked=0x4eef9db0 backup=0x7b8035f030
+    expectedEntryPoint=0x7f55e2d198 realEntryPoint=0x7f55e2d198 eq=true
+    expectedAccessFlags=0x12000009 realAccessFlags=0x12000009 eq=true
+  0xb400007d08b3a710 double aniw.u(botc, long, double)
+    hooked=0x4eef9fb0 backup=0x7b8033e030
+    expectedEntryPoint=0x7f55e2d180 realEntryPoint=0x7f55e2d180 eq=true
+    expectedAccessFlags=0x1200000a realAccessFlags=0x1200000a eq=true
+  0xb400007d08b2b8f0 boolean aniw.j(botc, long, boolean)
+    hooked=0x4eef9e50 backup=0x7b8031d030
+    expectedEntryPoint=0x7f55e2d168 realEntryPoint=0x7f55e2d168 eq=true
+    expectedAccessFlags=0x12000009 realAccessFlags=0x12000009 eq=true
+  0xb400007d28bd70f0 boolean kbz.e()
+    hooked=0x4ee5a750 backup=0x7b802fc030
+    expectedEntryPoint=0x7f55e2d150 realEntryPoint=0x7f55e2d150 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d08b3aad0 java.lang.CharSequence kbx.d()
+    hooked=0x4ee5a5e8 backup=0x7b802db030
+    expectedEntryPoint=0x7f55e2d138 realEntryPoint=0x7f55e2d138 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d28bd90d0 void pqs.n()
+    hooked=0x4f018ca0 backup=0x7b802ba030
+    expectedEntryPoint=0x7f55e2d120 realEntryPoint=0x7f55e2d120 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d08b3a9b0 void lep.<init>(aovj, boolean)
+    hooked=0x4ee60398 backup=0x7b80299030
+    expectedEntryPoint=0x7f55e2d108 realEntryPoint=0x7f55e2d108 eq=true
+    expectedAccessFlags=0x12210001 realAccessFlags=0x12210001 eq=true
+  0xb400007d08b39f30 void qxg.c(int, nay, boolean)
+    hooked=0x4f01af88 backup=0x7b80278030
+    expectedEntryPoint=0x7f55e2d0f0 realEntryPoint=0x7f55e2d0f0 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12200011 eq=true
+  0xb400007d28bd9350 boolean aymu.g(bqrd)
+    hooked=0x4ef4cc88 backup=0x7b80257030
+    expectedEntryPoint=0x7f55e2d0d8 realEntryPoint=0x7f55e2d0d8 eq=true
+    expectedAccessFlags=0x12300009 realAccessFlags=0x12300009 eq=true
+  0xb400007d28bdd4a0 void baba.bj(baip)
+    hooked=0x4f0598d8 backup=0x7b80237030
+    expectedEntryPoint=0x7f55e2d0c0 realEntryPoint=0x7f55e2d0c0 eq=true
+    expectedAccessFlags=0x12300012 realAccessFlags=0x12300012 eq=true
+  0xb400007d28bd7910 void bahj.d(boolean)
+    hooked=0x4ef57508 backup=0x7b80217030
+    expectedEntryPoint=0x7f55e2d0a8 realEntryPoint=0x7f55e2d0a8 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12200011 eq=true
+  0xb400007d28be60a0 void ivx.onCreate()
+    hooked=0x4efd3730 backup=0x7b8018f030
+    expectedEntryPoint=0x7f55e2d090 realEntryPoint=0x7f55e2d090 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007d78b3ebd0 void android.app.ActivityThread.attach(boolean, long)
+    hooked=0x71cca230 backup=0x7b8010c050
+    expectedEntryPoint=0x7f55e2d078 realEntryPoint=0x7f55e2d078 eq=true
+    expectedAccessFlags=0x2000002 realAccessFlags=0x2000002 eq=true
+  0xb400007d78b417b0 void android.app.LoadedApk.createOrUpdateClassLoaderLocked(java.util.List)
+    hooked=0x7198f428 backup=0x7b800ca030
+    expectedEntryPoint=0x7f55e2d060 realEntryPoint=0x7f55e2d060 eq=true
+    expectedAccessFlags=0x2380002 realAccessFlags=0x2380002 eq=true
+  0xb400007ca8b30410 void android.app.LoadedApk.<init>(android.app.ActivityThread, android.content.pm.ApplicationInfo, android.content.res.CompatibilityInfo, java.lang.ClassLoader, boolean, boolean, boolean)
+    hooked=0x7198f288 backup=0x7b800a9030
+    expectedEntryPoint=0x7f55e2d048 realEntryPoint=0x7f55e2d048 eq=true
+    expectedAccessFlags=0x2290001 realAccessFlags=0x2290001 eq=true
+  0xb400007cc8b74670 java.lang.Object dalvik.system.DexFile.openInMemoryDexFiles(java.nio.ByteBuffer[], java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c58 backup=0x7b80088030
+    expectedEntryPoint=0x7f55e2d030 realEntryPoint=0x7f55e2d030 eq=true
+    expectedAccessFlags=0x238000a realAccessFlags=0x238000a eq=true
+  0xb400007cc8b78e30 java.lang.Object dalvik.system.DexFile.openDexFile(java.lang.String, java.lang.String, int, java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c18 backup=0x7b80067030
+    expectedEntryPoint=0x7f55e2d018 realEntryPoint=0x7f55e2d018 eq=true
+    expectedAccessFlags=0x228000a realAccessFlags=0x228000a eq=true
+  0xb400007d78b42260 void java.lang.Thread.dispatchUncaughtException(java.lang.Throwable)
+    hooked=0x710177f8 backup=0x7b80046030
+    expectedEntryPoint=0x7f55e2d000 realEntryPoint=0x7f55e2d000 eq=true
+    expectedAccessFlags=0x2380011 realAccessFlags=0x2380011 eq=true
+  0xb400007de8b91930 deoptimized java.io.File android.app.ContextImpl.getSharedPreferencesPath(java.lang.String)
+    hooked=0x7196dd10 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40380001 realAccessFlags=0x40380001 eq=true
+  0xb400007cc8b78b90 deoptimized android.app.Application android.app.Instrumentation.newApplication(java.lang.ClassLoader, java.lang.String, android.content.Context)
+    hooked=0x71cd74c8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x50380001 realAccessFlags=0x50380001 eq=true
+  0xb400007e48b29a10 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation, boolean)
+    hooked=0x7198f928 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280002 realAccessFlags=0x40280002 eq=true
+  0xb400007de8b92010 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation)
+    hooked=0x7198f908 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+  0xb400007de8b8ede0 deoptimized android.app.Application android.app.LoadedApk.makeApplication(boolean, android.app.Instrumentation)
+    hooked=0x7198f8e8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+
+pid=16250 uid=10668 name=com.instagram.android:fbns 64bit debugInfo=0x7c85e026b0 entryPointOff=24 accessFlagsOff=4
+  0xb400007e48b2b450 android.app.Activity android.app.Instrumentation.newActivity(java.lang.ClassLoader, java.lang.String, android.content.Intent)
+    hooked=0x71cd7488 backup=0x7b80426030
+    expectedEntryPoint=0x7f55e371c8 realEntryPoint=0x7f55e371c8 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d08b39ab0 void X.0yK.A0E(java.util.Collection)
+    hooked=0x4e6257c0 backup=0x7b80406050
+    expectedEntryPoint=0x7f55e371b0 realEntryPoint=0x7f55e371b0 eq=true
+    expectedAccessFlags=0x12300002 realAccessFlags=0x12300002 eq=true
+  0xb400007d98b28410 void com.instagram.app.InstagramAppShell.onCreate()
+    hooked=0x4e663888 backup=0x7b8037f030
+    expectedEntryPoint=0x7f55e37198 realEntryPoint=0x7f55e37198 eq=true
+    expectedAccessFlags=0x12380011 realAccessFlags=0x12380011 eq=true
+  0xb400007d78b399b0 android.os.LocaleList android.os.LocaleList.getAdjustedDefault()
+    hooked=0x71acca70 backup=0x7b8033a030
+    expectedEntryPoint=0x7f55e37180 realEntryPoint=0x7f55e37180 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b3a190 android.os.LocaleList android.os.LocaleList.getDefault()
+    hooked=0x71acca90 backup=0x7b80319030
+    expectedEntryPoint=0x7f55e37168 realEntryPoint=0x7f55e37168 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b3a850 void android.content.res.Configuration.setLocales(android.os.LocaleList)
+    hooked=0x71a036e0 backup=0x7b802f8030
+    expectedEntryPoint=0x7f55e37150 realEntryPoint=0x7f55e37150 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d78b39fe0 android.os.LocaleList android.content.res.Configuration.getLocales()
+    hooked=0x71a03400 backup=0x7b802d7030
+    expectedEntryPoint=0x7f55e37138 realEntryPoint=0x7f55e37138 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d78b39800 java.util.Locale java.util.Locale.getDefault(java.util.Locale$Category)
+    hooked=0x70fc1888 backup=0x7b802b6030
+    expectedEntryPoint=0x7f55e37120 realEntryPoint=0x7f55e37120 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d98b24d60 void android.content.res.Configuration.<init>()
+    hooked=0x71a03140 backup=0x7b80295030
+    expectedEntryPoint=0x7f55e37108 realEntryPoint=0x7f55e37108 eq=true
+    expectedAccessFlags=0x12390001 realAccessFlags=0x12390001 eq=true
+  0xb400007d78b395c0 android.content.res.Resources android.content.res.Resources.getSystem()
+    hooked=0x71a026f8 backup=0x7b80274030
+    expectedEntryPoint=0x7f55e370f0 realEntryPoint=0x7f55e370f0 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b39530 void android.content.res.Configuration.setLocale(java.util.Locale)
+    hooked=0x71a036c0 backup=0x7b80253030
+    expectedEntryPoint=0x7f55e370d8 realEntryPoint=0x7f55e370d8 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007e48b29dd0 void android.content.res.Resources.updateConfiguration(android.content.res.Configuration, android.util.DisplayMetrics)
+    hooked=0x71a02c78 backup=0x7b80232030
+    expectedEntryPoint=0x7f55e370c0 realEntryPoint=0x7f55e370c0 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d78b3eb40 android.content.res.Configuration android.content.res.Resources.getConfiguration()
+    hooked=0x71a02258 backup=0x7b80211030
+    expectedEntryPoint=0x7f55e370a8 realEntryPoint=0x7f55e370a8 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d98b29f30 java.util.Locale java.util.Locale.getDefault()
+    hooked=0x70fc1868 backup=0x7b801f0030
+    expectedEntryPoint=0x7f55e37090 realEntryPoint=0x7f55e37090 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b3eea0 void android.app.ActivityThread.attach(boolean, long)
+    hooked=0x71cca230 backup=0x7b8010c050
+    expectedEntryPoint=0x7f55e37078 realEntryPoint=0x7f55e37078 eq=true
+    expectedAccessFlags=0x2000002 realAccessFlags=0x2000002 eq=true
+  0xb400007d78b42260 void android.app.LoadedApk.createOrUpdateClassLoaderLocked(java.util.List)
+    hooked=0x7198f428 backup=0x7b800ca030
+    expectedEntryPoint=0x7f55e37060 realEntryPoint=0x7f55e37060 eq=true
+    expectedAccessFlags=0x2380002 realAccessFlags=0x2380002 eq=true
+  0xb400007ca8b2ea30 void android.app.LoadedApk.<init>(android.app.ActivityThread, android.content.pm.ApplicationInfo, android.content.res.CompatibilityInfo, java.lang.ClassLoader, boolean, boolean, boolean)
+    hooked=0x7198f288 backup=0x7b800a9030
+    expectedEntryPoint=0x7f55e37048 realEntryPoint=0x7f55e37048 eq=true
+    expectedAccessFlags=0x2290001 realAccessFlags=0x2290001 eq=true
+  0xb400007cc8b75fd0 java.lang.Object dalvik.system.DexFile.openInMemoryDexFiles(java.nio.ByteBuffer[], java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c58 backup=0x7b80088030
+    expectedEntryPoint=0x7f55e37030 realEntryPoint=0x7f55e37030 eq=true
+    expectedAccessFlags=0x238000a realAccessFlags=0x238000a eq=true
+  0xb400007cc8b74670 java.lang.Object dalvik.system.DexFile.openDexFile(java.lang.String, java.lang.String, int, java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c18 backup=0x7b80067030
+    expectedEntryPoint=0x7f55e37018 realEntryPoint=0x7f55e37018 eq=true
+    expectedAccessFlags=0x228000a realAccessFlags=0x228000a eq=true
+  0xb400007d78b4cc40 void java.lang.Thread.dispatchUncaughtException(java.lang.Throwable)
+    hooked=0x710177f8 backup=0x7b80046030
+    expectedEntryPoint=0x7f55e37000 realEntryPoint=0x7f55e37000 eq=true
+    expectedAccessFlags=0x2380011 realAccessFlags=0x2380011 eq=true
+  0xb400007de8b91930 deoptimized java.io.File android.app.ContextImpl.getSharedPreferencesPath(java.lang.String)
+    hooked=0x7196dd10 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40380001 realAccessFlags=0x40380001 eq=true
+  0xb400007cc8b78e30 deoptimized android.app.Application android.app.Instrumentation.newApplication(java.lang.ClassLoader, java.lang.String, android.content.Context)
+    hooked=0x71cd74c8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x50380001 realAccessFlags=0x50380001 eq=true
+  0xb400007e48b29a10 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation, boolean)
+    hooked=0x7198f928 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280002 realAccessFlags=0x40280002 eq=true
+  0xb400007de8b92010 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation)
+    hooked=0x7198f908 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+  0xb400007de8b8ede0 deoptimized android.app.Application android.app.LoadedApk.makeApplication(boolean, android.app.Instrumentation)
+    hooked=0x7198f8e8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+
+pid=15899 uid=10668 name=com.instagram.android:mqtt 64bit debugInfo=0x7c85e026b0 entryPointOff=24 accessFlagsOff=4
+  0xb400007e48b28c90 android.app.Activity android.app.Instrumentation.newActivity(java.lang.ClassLoader, java.lang.String, android.content.Intent)
+    hooked=0x71cd7488 backup=0x7b80426030
+    expectedEntryPoint=0x7f55e371c8 realEntryPoint=0x7f55e371c8 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d08b3a170 void X.0yK.A0E(java.util.Collection)
+    hooked=0x4e6257c0 backup=0x7b80406050
+    expectedEntryPoint=0x7f55e371b0 realEntryPoint=0x7f55e371b0 eq=true
+    expectedAccessFlags=0x12300002 realAccessFlags=0x12300002 eq=true
+  0xb400007d98b26a40 void com.instagram.app.InstagramAppShell.onCreate()
+    hooked=0x4e663888 backup=0x7b8037f030
+    expectedEntryPoint=0x7f55e37198 realEntryPoint=0x7f55e37198 eq=true
+    expectedAccessFlags=0x12380011 realAccessFlags=0x12380011 eq=true
+  0xb400007d78b39800 android.os.LocaleList android.os.LocaleList.getAdjustedDefault()
+    hooked=0x71acca70 backup=0x7b8033a030
+    expectedEntryPoint=0x7f55e37180 realEntryPoint=0x7f55e37180 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b39da0 android.os.LocaleList android.os.LocaleList.getDefault()
+    hooked=0x71acca90 backup=0x7b80319030
+    expectedEntryPoint=0x7f55e37168 realEntryPoint=0x7f55e37168 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b39650 void android.content.res.Configuration.setLocales(android.os.LocaleList)
+    hooked=0x71a036e0 backup=0x7b802f8030
+    expectedEntryPoint=0x7f55e37150 realEntryPoint=0x7f55e37150 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d78b3ad60 android.os.LocaleList android.content.res.Configuration.getLocales()
+    hooked=0x71a03400 backup=0x7b802d7030
+    expectedEntryPoint=0x7f55e37138 realEntryPoint=0x7f55e37138 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d78b3b390 java.util.Locale java.util.Locale.getDefault(java.util.Locale$Category)
+    hooked=0x70fc1888 backup=0x7b802b6030
+    expectedEntryPoint=0x7f55e37120 realEntryPoint=0x7f55e37120 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d98b273e0 void android.content.res.Configuration.<init>()
+    hooked=0x71a03140 backup=0x7b80295030
+    expectedEntryPoint=0x7f55e37108 realEntryPoint=0x7f55e37108 eq=true
+    expectedAccessFlags=0x12390001 realAccessFlags=0x12390001 eq=true
+  0xb400007d78b3cb30 android.content.res.Resources android.content.res.Resources.getSystem()
+    hooked=0x71a026f8 backup=0x7b80274030
+    expectedEntryPoint=0x7f55e370f0 realEntryPoint=0x7f55e370f0 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b3ba50 void android.content.res.Configuration.setLocale(java.util.Locale)
+    hooked=0x71a036c0 backup=0x7b80253030
+    expectedEntryPoint=0x7f55e370d8 realEntryPoint=0x7f55e370d8 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007e48b2b510 void android.content.res.Resources.updateConfiguration(android.content.res.Configuration, android.util.DisplayMetrics)
+    hooked=0x71a02c78 backup=0x7b80232030
+    expectedEntryPoint=0x7f55e370c0 realEntryPoint=0x7f55e370c0 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d78b420b0 android.content.res.Configuration android.content.res.Resources.getConfiguration()
+    hooked=0x71a02258 backup=0x7b80211030
+    expectedEntryPoint=0x7f55e370a8 realEntryPoint=0x7f55e370a8 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d98b27610 java.util.Locale java.util.Locale.getDefault()
+    hooked=0x70fc1868 backup=0x7b801f0030
+    expectedEntryPoint=0x7f55e37090 realEntryPoint=0x7f55e37090 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b3eea0 void android.app.ActivityThread.attach(boolean, long)
+    hooked=0x71cca230 backup=0x7b8010c050
+    expectedEntryPoint=0x7f55e37078 realEntryPoint=0x7f55e37078 eq=true
+    expectedAccessFlags=0x2000002 realAccessFlags=0x2000002 eq=true
+  0xb400007d78b42260 void android.app.LoadedApk.createOrUpdateClassLoaderLocked(java.util.List)
+    hooked=0x7198f428 backup=0x7b800ca030
+    expectedEntryPoint=0x7f55e37060 realEntryPoint=0x7f55e37060 eq=true
+    expectedAccessFlags=0x2380002 realAccessFlags=0x2380002 eq=true
+  0xb400007ca8b2f7b0 void android.app.LoadedApk.<init>(android.app.ActivityThread, android.content.pm.ApplicationInfo, android.content.res.CompatibilityInfo, java.lang.ClassLoader, boolean, boolean, boolean)
+    hooked=0x7198f288 backup=0x7b800a9030
+    expectedEntryPoint=0x7f55e37048 realEntryPoint=0x7f55e37048 eq=true
+    expectedAccessFlags=0x2290001 realAccessFlags=0x2290001 eq=true
+  0xb400007cc8b75fd0 java.lang.Object dalvik.system.DexFile.openInMemoryDexFiles(java.nio.ByteBuffer[], java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c58 backup=0x7b80088030
+    expectedEntryPoint=0x7f55e37030 realEntryPoint=0x7f55e37030 eq=true
+    expectedAccessFlags=0x238000a realAccessFlags=0x238000a eq=true
+  0xb400007cc8b74670 java.lang.Object dalvik.system.DexFile.openDexFile(java.lang.String, java.lang.String, int, java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c18 backup=0x7b80067030
+    expectedEntryPoint=0x7f55e37018 realEntryPoint=0x7f55e37018 eq=true
+    expectedAccessFlags=0x228000a realAccessFlags=0x228000a eq=true
+  0xb400007d78b4cc40 void java.lang.Thread.dispatchUncaughtException(java.lang.Throwable)
+    hooked=0x710177f8 backup=0x7b80046030
+    expectedEntryPoint=0x7f55e37000 realEntryPoint=0x7f55e37000 eq=true
+    expectedAccessFlags=0x2380011 realAccessFlags=0x2380011 eq=true
+  0xb400007de8b91930 deoptimized java.io.File android.app.ContextImpl.getSharedPreferencesPath(java.lang.String)
+    hooked=0x7196dd10 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40380001 realAccessFlags=0x40380001 eq=true
+  0xb400007cc8b78e30 deoptimized android.app.Application android.app.Instrumentation.newApplication(java.lang.ClassLoader, java.lang.String, android.content.Context)
+    hooked=0x71cd74c8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x50380001 realAccessFlags=0x50380001 eq=true
+  0xb400007e48b29a10 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation, boolean)
+    hooked=0x7198f928 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280002 realAccessFlags=0x40280002 eq=true
+  0xb400007de8b92010 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation)
+    hooked=0x7198f908 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+  0xb400007de8b8ede0 deoptimized android.app.Application android.app.LoadedApk.makeApplication(boolean, android.app.Instrumentation)
+    hooked=0x7198f8e8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+
+pid=2609 uid=1000 name=system 64bit debugInfo=0x7c85e026b0 entryPointOff=24 accessFlagsOff=4
+  0xb400007d78ba7810 long android.os.SystemProperties.getLong(java.lang.String, long)
+    hooked=0x71d59d78 backup=0x7b8138a030
+    expectedEntryPoint=0x7f55b679f0 realEntryPoint=0x7f55b679f0 eq=true
+    expectedAccessFlags=0x12080009 realAccessFlags=0x12080009 eq=true
+  0xb400007d78ba7660 int android.os.SystemProperties.getInt(java.lang.String, int)
+    hooked=0x71d59d58 backup=0x7b81369030
+    expectedEntryPoint=0x7f55b679d8 realEntryPoint=0x7f55b679d8 eq=true
+    expectedAccessFlags=0x12280009 realAccessFlags=0x12280009 eq=true
+  0xb400007d78ba79c0 boolean android.os.SystemProperties.getBoolean(java.lang.String, boolean)
+    hooked=0x71d59d38 backup=0x7b81349030
+    expectedEntryPoint=0x7f55b679c0 realEntryPoint=0x7f55b679c0 eq=true
+    expectedAccessFlags=0x12280009 realAccessFlags=0x12280009 eq=true
+  0xb400007d78ba76f0 java.lang.String android.os.SystemProperties.get(java.lang.String, java.lang.String)
+    hooked=0x71d59d18 backup=0x7b81329030
+    expectedEntryPoint=0x7f55b679a8 realEntryPoint=0x7f55b679a8 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78ba6610 java.lang.String android.os.SystemProperties.get(java.lang.String)
+    hooked=0x71d59cf8 backup=0x7b81309030
+    expectedEntryPoint=0x7f55b67990 realEntryPoint=0x7f55b67990 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007e48b54fd0 java.lang.String android.provider.Settings$Secure.getStringForUser(android.content.ContentResolver, java.lang.String, int)
+    hooked=0x71d62038 backup=0x7b812e9030
+    expectedEntryPoint=0x7f55b67978 realEntryPoint=0x7f55b67978 eq=true
+    expectedAccessFlags=0x2280009 realAccessFlags=0x2280009 eq=true
+  0xb400007e48b55150 java.lang.String android.provider.Settings$Global.getStringForUser(android.content.ContentResolver, java.lang.String, int)
+    hooked=0x71d61bf0 backup=0x7b812c9030
+    expectedEntryPoint=0x7f55b67960 realEntryPoint=0x7f55b67960 eq=true
+    expectedAccessFlags=0x2280009 realAccessFlags=0x2280009 eq=true
+  0xb400007e48b51fd0 android.app.Application android.app.Instrumentation.newApplication(java.lang.ClassLoader, java.lang.String, android.content.Context)
+    hooked=0x71cd74c8 backup=0x7b8121f030
+    expectedEntryPoint=0x7f55b67948 realEntryPoint=0x7f55b67948 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007de8b8e180 android.app.Application android.app.Instrumentation.newApplication(java.lang.Class, android.content.Context)
+    hooked=0x71cd74a8 backup=0x7b811fe030
+    expectedEntryPoint=0x7f55b67930 realEntryPoint=0x7f55b67930 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007ca8c158b0 android.database.Cursor com.android.providers.settings.SettingsProvider.query(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String)
+    hooked=0x7b8119c130 backup=0x7b811dd030
+    expectedEntryPoint=0x7f55b67918 realEntryPoint=0x7f55b67918 eq=true
+    expectedAccessFlags=0x1a300001 realAccessFlags=0x1a380001 eq=false
+  0xb400007e48b54e50 android.os.Bundle com.android.providers.settings.SettingsProvider.call(java.lang.String, java.lang.String, android.os.Bundle)
+    hooked=0x7b8119b5f0 backup=0x7b811bc030
+    expectedEntryPoint=0x7f55b67900 realEntryPoint=0x7f55b67900 eq=true
+    expectedAccessFlags=0x1a300001 realAccessFlags=0x1a380001 eq=false
+  0xb400007de8b5b900 android.media.AudioAttributes$Builder android.media.AudioAttributes$Builder.setAllowedCapturePolicy(int)
+    hooked=0x71a75910 backup=0x7b8117b030
+    expectedEntryPoint=0x7f55b678e8 realEntryPoint=0x7f55b678e8 eq=true
+    expectedAccessFlags=0x12280001 realAccessFlags=0x12280001 eq=true
+  0xb400007da8b5f190 android.os.Process$ProcessStartResult android.os.ZygoteProcess.start(java.lang.String, java.lang.String, int, int, int[], int, int, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, int, boolean, long[], java.util.Map, java.util.Map, boolean, boolean, boolean, long, java.lang.String[])
+    hooked=0x71d4cd18 backup=0x7b81139030
+    expectedEntryPoint=0x7f55b678d0 realEntryPoint=0x7f55b678d0 eq=true
+    expectedAccessFlags=0x2080011 realAccessFlags=0x2080011 eq=true
+  0xb400007cc8be4590 java.util.List com.android.server.inputmethod.InputMethodManagerService.getEnabledInputMethodSubtypeListInternal(java.lang.String, boolean, int, int)
+    hooked=0x7b80dee898 backup=0x7b81119030
+    expectedEntryPoint=0x7f55b678b8 realEntryPoint=0x7f55b678b8 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12200011 eq=true
+  0xb400007e48b2be10 android.view.inputmethod.InputMethodSubtype com.android.server.inputmethod.InputMethodManagerService.getLastInputMethodSubtype(int)
+    hooked=0x7b80dee9b8 backup=0x7b810f9030
+    expectedEntryPoint=0x7f55b678a0 realEntryPoint=0x7f55b678a0 eq=true
+    expectedAccessFlags=0x12200001 realAccessFlags=0x12200001 eq=true
+  0xb400007cc8be4210 android.view.inputmethod.InputMethodSubtype com.android.server.inputmethod.InputMethodManagerService.getCurrentInputMethodSubtype(int)
+    hooked=0x7b80dee7f8 backup=0x7b810d9030
+    expectedEntryPoint=0x7f55b67888 realEntryPoint=0x7f55b67888 eq=true
+    expectedAccessFlags=0x12200001 realAccessFlags=0x12200001 eq=true
+  0xb400007de8b3f1e0 java.util.List com.android.server.inputmethod.InputMethodManagerService.getEnabledInputMethodListInternal(int, int)
+    hooked=0x7b80dee838 backup=0x7b810b9030
+    expectedEntryPoint=0x7f55b67870 realEntryPoint=0x7f55b67870 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12200011 eq=true
+  0xb400007de8b3f600 java.util.List com.android.server.inputmethod.InputMethodManagerService.getInputMethodListInternal(int, int, int)
+    hooked=0x7b80dee938 backup=0x7b81099030
+    expectedEntryPoint=0x7f55b67858 realEntryPoint=0x7f55b67858 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12200011 eq=true
+  0xb400007cc8be8570 android.view.inputmethod.InputMethodInfo com.android.server.inputmethod.InputMethodManagerService.getCurrentInputMethodInfoAsUser(int)
+    hooked=0x7b80dee7d8 backup=0x7b81079030
+    expectedEntryPoint=0x7f55b67840 realEntryPoint=0x7f55b67840 eq=true
+    expectedAccessFlags=0x12200001 realAccessFlags=0x12200001 eq=true
+  0xb400007ca8bf58d0 android.os.Bundle android.content.ContentProvider$Transport.call(android.content.AttributionSource, java.lang.String, java.lang.String, java.lang.String, android.os.Bundle)
+    hooked=0x719d5e78 backup=0x7b81059030
+    expectedEntryPoint=0x7f55b67828 realEntryPoint=0x7f55b67828 eq=true
+    expectedAccessFlags=0x2380001 realAccessFlags=0x2380001 eq=true
+  0xb400007ca8bf8810 android.database.Cursor android.content.ContentProvider$Transport.query(android.content.AttributionSource, android.net.Uri, java.lang.String[], android.os.Bundle, android.os.ICancellationSignal)
+    hooked=0x719d6118 backup=0x7b81039030
+    expectedEntryPoint=0x7f55b67810 realEntryPoint=0x7f55b67810 eq=true
+    expectedAccessFlags=0x2380001 realAccessFlags=0x2380001 eq=true
+  0xb400007cc8be8f10 long com.android.server.accessibility.AccessibilityManagerService.addClient(android.view.accessibility.IAccessibilityManagerClient, int)
+    hooked=0x7b80ddfdf8 backup=0x7b81019050
+    expectedEntryPoint=0x7f55b677f8 realEntryPoint=0x7f55b677f8 eq=true
+    expectedAccessFlags=0x1a200001 realAccessFlags=0x1a280001 eq=false
+  0xb400007e48b2e090 java.util.List com.android.server.accessibility.AccessibilityManagerService.getEnabledAccessibilityServiceList(int, int)
+    hooked=0x7b80de02d8 backup=0x7b80ff9030
+    expectedEntryPoint=0x7f55b677e0 realEntryPoint=0x7f55b677e0 eq=true
+    expectedAccessFlags=0x1a200001 realAccessFlags=0x1a280001 eq=false
+  0xb400007cc8be8d50 android.content.pm.ParceledListSlice com.android.server.accessibility.AccessibilityManagerService.getInstalledAccessibilityServiceList(int)
+    hooked=0x7b80de0378 backup=0x7b80fd9030
+    expectedEntryPoint=0x7f55b677c8 realEntryPoint=0x7f55b677c8 eq=true
+    expectedAccessFlags=0x1a200001 realAccessFlags=0x1a280001 eq=false
+  0xb400007d88b457b0 void com.android.server.pm.BroadcastHelper.sendPackageBroadcastAndNotify(java.lang.String, java.lang.String, android.os.Bundle, int, java.lang.String, android.content.IIntentReceiver, int[], int[], android.util.SparseArray, android.os.Bundle)
+    hooked=0x7b80d11990 backup=0x7b80fb9030
+    expectedEntryPoint=0x7f55b677b0 realEntryPoint=0x7f55b677b0 eq=true
+    expectedAccessFlags=0x12280011 realAccessFlags=0x12280011 eq=true
+  0xb400007cc8be6b30 java.util.List com.android.server.pm.ComputerEngine.applyPostResolutionFilter(java.util.List, java.lang.String, boolean, int, boolean, int, android.content.Intent)
+    hooked=0x7b8046f0f0 backup=0x7b80f99050
+    expectedEntryPoint=0x7f55b67798 realEntryPoint=0x7f55b67798 eq=true
+    expectedAccessFlags=0x12280011 realAccessFlags=0x12280011 eq=true
+  0xb400007da8b6a250 boolean com.android.server.wm.ActivityTaskSupervisor.checkStartAnyActivityPermission(android.content.Intent, android.content.pm.ActivityInfo, java.lang.String, int, int, int, java.lang.String, java.lang.String, boolean, boolean, com.android.server.wm.WindowProcessController, com.android.server.wm.ActivityRecord, com.android.server.wm.Task)
+    hooked=0x7b80473950 backup=0x7b80f79030
+    expectedEntryPoint=0x7f55b67780 realEntryPoint=0x7f55b67780 eq=true
+    expectedAccessFlags=0x1a280001 realAccessFlags=0x1a280001 eq=true
+  0xb400007d98b2cd90 int com.android.server.wm.ActivityStarter.execute()
+    hooked=0x7b80ddd1e8 backup=0x7b80f59030
+    expectedEntryPoint=0x7f55b67768 realEntryPoint=0x7f55b67768 eq=true
+    expectedAccessFlags=0x1a300001 realAccessFlags=0x1a380001 eq=false
+  0xb400007de8b3f290 boolean com.android.server.compat.PlatformCompat.isChangeEnabled(long, android.content.pm.ApplicationInfo)
+    hooked=0x7b80c4bae0 backup=0x7b80f39030
+    expectedEntryPoint=0x7f55b67750 realEntryPoint=0x7f55b67750 eq=true
+    expectedAccessFlags=0x1a080001 realAccessFlags=0x1a080001 eq=true
+  0xb400007de8b407e0 java.lang.String com.android.server.pm.IPackageManagerBase.getInstallerPackageName(java.lang.String)
+    hooked=0x4a5d1470 backup=0x7b80f19030
+    expectedEntryPoint=0x7f55b67738 realEntryPoint=0x7f55b67738 eq=true
+    expectedAccessFlags=0x12380011 realAccessFlags=0x12380011 eq=true
+  0xb400007e48b51e50 android.content.pm.InstallSourceInfo com.android.server.pm.IPackageManagerBase.getInstallSourceInfo(java.lang.String, int)
+    hooked=0x4a5d13f0 backup=0x7b80ef9030
+    expectedEntryPoint=0x7f55b67720 realEntryPoint=0x7f55b67720 eq=true
+    expectedAccessFlags=0x12280011 realAccessFlags=0x12280011 eq=true
+  0xb400007de8b43280 java.lang.String com.android.server.pm.PackageManagerNative.getInstallerForPackage(java.lang.String)
+    hooked=0x7b80d80248 backup=0x7b80ed9030
+    expectedEntryPoint=0x7f55b67708 realEntryPoint=0x7f55b67708 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007e48b51610 android.content.pm.ApplicationInfo com.android.server.pm.ComputerEngine.getApplicationInfoInternal(java.lang.String, long, int, int)
+    hooked=0x7b8046f890 backup=0x7b80eb9030
+    expectedEntryPoint=0x7f55b676f0 realEntryPoint=0x7f55b676f0 eq=true
+    expectedAccessFlags=0x12080011 realAccessFlags=0x12080011 eq=true
+  0xb400007e48b510d0 android.content.pm.PackageInfo com.android.server.pm.ComputerEngine.getPackageInfoInternal(java.lang.String, long, long, int, int)
+    hooked=0x7b8046fd90 backup=0x7b80e99030
+    expectedEntryPoint=0x7f55b676d8 realEntryPoint=0x7f55b676d8 eq=true
+    expectedAccessFlags=0x12080011 realAccessFlags=0x12080011 eq=true
+  0xb400007e48b516d0 boolean com.android.server.pm.ComputerEngine.isCallerInstallerOfRecord(com.android.server.pm.pkg.AndroidPackage, int)
+    hooked=0x7b804704b0 backup=0x7b80e79030
+    expectedEntryPoint=0x7f55b676c0 realEntryPoint=0x7f55b676c0 eq=true
+    expectedAccessFlags=0x1a280001 realAccessFlags=0x1a280001 eq=true
+  0xb400007ca8bfb090 void com.android.server.pm.ComputerEngine.addPackageHoldingPermissions(java.util.ArrayList, com.android.server.pm.pkg.PackageStateInternal, java.lang.String[], boolean[], long, int)
+    hooked=0x7b8046f0b0 backup=0x7b80e59050
+    expectedEntryPoint=0x7f55b676a8 realEntryPoint=0x7f55b676a8 eq=true
+    expectedAccessFlags=0x12080011 realAccessFlags=0x12080011 eq=true
+  0xb400007d78ba62b0 android.util.ArrayMap com.android.server.pm.ComputerEngine.getPackageStates()
+    hooked=0x7b8046fe90 backup=0x7b80e39030
+    expectedEntryPoint=0x7f55b67690 realEntryPoint=0x7f55b67690 eq=true
+    expectedAccessFlags=0x1a380001 realAccessFlags=0x1a380001 eq=true
+  0xb400007cc8be5d30 android.content.pm.ArchivedPackageParcel com.android.server.pm.PackageManagerService.getArchivedPackageInternal(java.lang.String, int)
+    hooked=0x7b80467d30 backup=0x7b80e19030
+    expectedEntryPoint=0x7f55b67678 realEntryPoint=0x7f55b67678 eq=true
+    expectedAccessFlags=0x1a200001 realAccessFlags=0x1a200001 eq=true
+  0xb400007ca8c12730 boolean com.android.server.pm.AppsFilterBase.shouldFilterApplication(com.android.server.pm.snapshot.PackageDataSnapshot, int, java.lang.Object, com.android.server.pm.pkg.PackageStateInternal, int)
+    hooked=0x7b80d0f590 backup=0x7b80df9030
+    expectedEntryPoint=0x7f55b67660 realEntryPoint=0x7f55b67660 eq=true
+    expectedAccessFlags=0x1a280001 realAccessFlags=0x1a280001 eq=true
+  0xb400007d78b538d0 boolean com.android.server.wm.WindowState.isSecureLocked()
+    hooked=0x4a5ea240 backup=0x7b80c22030
+    expectedEntryPoint=0x7f55b67648 realEntryPoint=0x7f55b67648 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007da8b63250 com.android.server.display.DisplayDevice com.android.server.display.VirtualDisplayAdapter.createVirtualDisplayLocked(android.hardware.display.IVirtualDisplayCallback, android.media.projection.IMediaProjection, int, java.lang.String, java.lang.String, android.view.Surface, int, android.hardware.display.VirtualDisplayConfig)
+    hooked=0x7b80a4be70 backup=0x7b80c01030
+    expectedEntryPoint=0x7f55b67630 realEntryPoint=0x7f55b67630 eq=true
+    expectedAccessFlags=0x1a200001 realAccessFlags=0x1a280001 eq=false
+  0xb400007de8b85d80 android.os.IBinder com.android.server.display.DisplayControl.createVirtualDisplay(java.lang.String, boolean)
+    hooked=0x7b803b8590 backup=0x7b80be0030
+    expectedEntryPoint=0x7f55b67618 realEntryPoint=0x7f55b67618 eq=true
+    expectedAccessFlags=0x12200009 realAccessFlags=0x12280009 eq=false
+  0xb400007e48b28990 int android.window.ScreenCaptureInternal.nativeCaptureLayers(android.window.ScreenCaptureInternal$LayerCaptureArgs, long, boolean)
+    hooked=0x7f54e44f60 backup=0x7b80bbf030
+    expectedEntryPoint=0x7f55b67600 realEntryPoint=0x7f55b67600 eq=true
+    expectedAccessFlags=0x200010a realAccessFlags=0x200010a eq=true
+  0xb400007e48b28b10 int android.window.ScreenCaptureInternal.nativeCaptureDisplay(android.window.ScreenCaptureInternal$DisplayCaptureArgs, long)
+    hooked=0x7f54e44f40 backup=0x7b80b9f030
+    expectedEntryPoint=0x7f55b675e8 realEntryPoint=0x7f55b675e8 eq=true
+    expectedAccessFlags=0x200010a realAccessFlags=0x200010a eq=true
+  0xb400007cc8b863b0 void com.android.server.wm.ActivityTaskManagerService.registerScreenCaptureObserver(android.os.IBinder, android.app.IScreenCaptureObserver)
+    hooked=0x7b8047e030 backup=0x7b80b7f030
+    expectedEntryPoint=0x7f55b675d0 realEntryPoint=0x7f55b675d0 eq=true
+    expectedAccessFlags=0x1a300001 realAccessFlags=0x1a300001 eq=true
+  0xb400007e48b282d0 boolean com.android.server.wm.WindowManagerService.registerScreenRecordingCallback(android.window.IScreenRecordingCallback)
+    hooked=0x7b80360870 backup=0x7b80b5f030
+    expectedEntryPoint=0x7f55b675b8 realEntryPoint=0x7f55b675b8 eq=true
+    expectedAccessFlags=0x1a300001 realAccessFlags=0x1a380001 eq=false
+  0xb400007d88b848f0 deoptimized int com.android.server.wm.WindowManagerService.relayoutWindow(com.android.server.wm.Session, android.view.IWindow, android.view.WindowManager$LayoutParams, int, int, int, int, int, int, android.view.WindowRelayoutResult, android.view.SurfaceControl)
+    hooked=0x7b80360930 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x4c6b3650 eq=false
+    expectedAccessFlags=0x18200001 realAccessFlags=0x18a80001 eq=false
+  0xb400007de8b85cd0 deoptimized android.view.SurfaceControl com.android.server.wm.WindowStateAnimator.createSurfaceLocked()
+    hooked=0x7b80a38330 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c86489440 eq=false
+    expectedAccessFlags=0x18300001 realAccessFlags=0x18380001 eq=false
+  0xb400007de8b85ee0 void com.android.server.wm.ScreenRecordingCallbackController.dispatchCallbacks(android.util.ArraySet, boolean)
+    hooked=0x7b80a37fe0 backup=0x7b80b38030
+    expectedEntryPoint=0x7f55b675a0 realEntryPoint=0x7f55b675a0 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12280011 eq=false
+  0xb400007de8b85c20 boolean com.android.server.wm.ScreenRecordingCallbackController.register(android.window.IScreenRecordingCallback)
+    hooked=0x7b80a380e0 backup=0x7b80b17030
+    expectedEntryPoint=0x7f55b67588 realEntryPoint=0x7f55b67588 eq=true
+    expectedAccessFlags=0x1a300001 realAccessFlags=0x1a380001 eq=false
+  0xb400007ca8b3af10 void com.android.server.wm.WindowManagerService.onShellCommand(java.io.FileDescriptor, java.io.FileDescriptor, java.io.FileDescriptor, java.lang.String[], android.os.ShellCallback, android.os.ResultReceiver)
+    hooked=0x7b80360510 backup=0x7b80af6030
+    expectedEntryPoint=0x7f55b67570 realEntryPoint=0x7f55b67570 eq=true
+    expectedAccessFlags=0x1a300001 realAccessFlags=0x1a380001 eq=false
+  0xb400007de8b87a60 java.util.List com.android.server.wm.WindowManagerService.notifyScreenshotListeners(int)
+    hooked=0x7b80360370 backup=0x7b80ad5030
+    expectedEntryPoint=0x7f55b67558 realEntryPoint=0x7f55b67558 eq=true
+    expectedAccessFlags=0x1a200001 realAccessFlags=0x1a280001 eq=false
+  0xb400007de8b86930 boolean com.android.server.clipboard.ClipboardService.isDefaultIme(int, java.lang.String)
+    hooked=0x7b80a37ad0 backup=0x7b80ab4030
+    expectedEntryPoint=0x7f55b67540 realEntryPoint=0x7f55b67540 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12280011 eq=false
+  0xb400007d78b53de0 void android.os.ServiceManager.addService(java.lang.String, android.os.IBinder)
+    hooked=0x71d58178 backup=0x7b80a94050
+    expectedEntryPoint=0x7f55b67528 realEntryPoint=0x7f55b67528 eq=true
+    expectedAccessFlags=0x2380009 realAccessFlags=0x2380009 eq=true
+  0xb400007e48b28090 void com.android.server.am.ActivityManagerService.systemReady(java.lang.Runnable, com.android.server.utils.TimingsTraceAndSlog)
+    hooked=0x7b8035b450 backup=0x7b80a51030
+    expectedEntryPoint=0x7f55b67510 realEntryPoint=0x7f55b67510 eq=true
+    expectedAccessFlags=0x1a300001 realAccessFlags=0x1a300001 eq=true
+  0xb400007de8b86040 boolean com.android.server.wm.ActivityTaskManagerService.isGetTasksAllowed(java.lang.String, int, int)
+    hooked=0x7b8047d930 backup=0x7b80a10030
+    expectedEntryPoint=0x7f55b674f8 realEntryPoint=0x7f55b674f8 eq=true
+    expectedAccessFlags=0x1a200001 realAccessFlags=0x1a200001 eq=true
+  0xb400007d48b2a3d0 void com.android.server.wm.ActivityRecord.<init>(com.android.server.wm.ActivityTaskManagerService, com.android.server.wm.WindowProcessController, int, int, java.lang.String, java.lang.String, android.content.Intent, java.lang.String, android.content.pm.ActivityInfo, android.content.res.Configuration, com.android.server.wm.ActivityRecord, java.lang.String, int, boolean, boolean, com.android.server.wm.ActivityTaskSupervisor, android.app.ActivityOptions, com.android.server.wm.ActivityRecord, android.os.PersistableBundle, android.app.ActivityManager$TaskDescription, long, com.android.server.wm.ActivityRecord-IA)
+    hooked=0x7b80477590 backup=0x7b809ef030
+    expectedEntryPoint=0x7f55b674e0 realEntryPoint=0x7f55b674e0 eq=true
+    expectedAccessFlags=0x12011001 realAccessFlags=0x12091001 eq=false
+  0xb400007d48b25f10 void com.android.server.wm.ActivityRecord.<init>(com.android.server.wm.ActivityTaskManagerService, com.android.server.wm.WindowProcessController, int, int, java.lang.String, java.lang.String, android.content.Intent, java.lang.String, android.content.pm.ActivityInfo, android.content.res.Configuration, com.android.server.wm.ActivityRecord, java.lang.String, int, boolean, boolean, com.android.server.wm.ActivityTaskSupervisor, android.app.ActivityOptions, com.android.server.wm.ActivityRecord, android.os.PersistableBundle, android.app.ActivityManager$TaskDescription, long)
+    hooked=0x7b80477570 backup=0x7b809ce030
+    expectedEntryPoint=0x7f55b674c8 realEntryPoint=0x7f55b674c8 eq=true
+    expectedAccessFlags=0x12010001 realAccessFlags=0x12090001 eq=false
+  0xb400007de8b86250 java.lang.String android.provider.Settings$Global.getString(android.content.ContentResolver, java.lang.String)
+    hooked=0x71d61bd0 backup=0x7b8098d030
+    expectedEntryPoint=0x7f55b674b0 realEntryPoint=0x7f55b674b0 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007de8b86880 int android.provider.Settings$Global.getInt(android.content.ContentResolver, java.lang.String, int)
+    hooked=0x71d61b10 backup=0x7b8096c030
+    expectedEntryPoint=0x7f55b67498 realEntryPoint=0x7f55b67498 eq=true
+    expectedAccessFlags=0x12280009 realAccessFlags=0x12280009 eq=true
+  0xb400007de8b88fb0 int android.provider.Settings$Global.getInt(android.content.ContentResolver, java.lang.String)
+    hooked=0x71d61af0 backup=0x7b8094b030
+    expectedEntryPoint=0x7f55b67480 realEntryPoint=0x7f55b67480 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007de8b87220 java.lang.String android.provider.Settings$Secure.getString(android.content.ContentResolver, java.lang.String)
+    hooked=0x71d62018 backup=0x7b8092a030
+    expectedEntryPoint=0x7f55b67468 realEntryPoint=0x7f55b67468 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007de8b86720 int android.provider.Settings$Secure.getInt(android.content.ContentResolver, java.lang.String, int)
+    hooked=0x71d61ed8 backup=0x7b80909030
+    expectedEntryPoint=0x7f55b67450 realEntryPoint=0x7f55b67450 eq=true
+    expectedAccessFlags=0x12280009 realAccessFlags=0x12280009 eq=true
+  0xb400007de8b884b0 int android.provider.Settings$Secure.getInt(android.content.ContentResolver, java.lang.String)
+    hooked=0x71d61eb8 backup=0x7b808e9030
+    expectedEntryPoint=0x7f55b67438 realEntryPoint=0x7f55b67438 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007d78b33aa0 void android.app.Instrumentation.callApplicationOnCreate(android.app.Application)
+    hooked=0x71cd7068 backup=0x7b808c9030
+    expectedEntryPoint=0x7f55b67420 realEntryPoint=0x7f55b67420 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007de8b89320 void android.app.Application.onConfigurationChanged(android.content.res.Configuration)
+    hooked=0x71967f38 backup=0x7b808a5030
+    expectedEntryPoint=0x7f55b67408 realEntryPoint=0x7f55b67408 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d98b2bc80 void android.app.Application.onTrimMemory(int)
+    hooked=0x71967fb8 backup=0x7b80884030
+    expectedEntryPoint=0x7f55b673f0 realEntryPoint=0x7f55b673f0 eq=true
+    expectedAccessFlags=0x12280001 realAccessFlags=0x12280001 eq=true
+  0xb400007d98b2e140 void android.app.Application.onLowMemory()
+    hooked=0x71967f78 backup=0x7b80863030
+    expectedEntryPoint=0x7f55b673d8 realEntryPoint=0x7f55b673d8 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d98b29a60 void android.app.Application.onTerminate()
+    hooked=0x71967f98 backup=0x7b80842030
+    expectedEntryPoint=0x7f55b673c0 realEntryPoint=0x7f55b673c0 eq=true
+    expectedAccessFlags=0x12380001 realAccessFlags=0x12380001 eq=true
+  0xb400007d78b35000 void android.app.Application.attach(android.content.Context)
+    hooked=0x71967b98 backup=0x7b80821050
+    expectedEntryPoint=0x7f55b673a8 realEntryPoint=0x7f55b673a8 eq=true
+    expectedAccessFlags=0x2380010 realAccessFlags=0x2380010 eq=true
+  0xb400007de8b88f00 java.util.List com.android.server.pm.ComputerEngine.getInstalledApplications(long, int, int, boolean)
+    hooked=0x7b8046fb50 backup=0x7b807df030
+    expectedEntryPoint=0x7f55b67390 realEntryPoint=0x7f55b67390 eq=true
+    expectedAccessFlags=0x1a000001 realAccessFlags=0x1a080001 eq=false
+  0xb400007e48b28210 android.content.pm.ApplicationInfo com.android.server.pm.ComputerEngine.getApplicationInfo(java.lang.String, long, int)
+    hooked=0x7b8046f870 backup=0x7b807be030
+    expectedEntryPoint=0x7f55b67378 realEntryPoint=0x7f55b67378 eq=true
+    expectedAccessFlags=0x12000011 realAccessFlags=0x12080011 eq=false
+  0xb400007cc8b85f50 void com.android.server.pm.PackageManagerServiceUtils.checkDowngrade(com.android.server.pm.PackageSetting, android.content.pm.PackageInfoLite)
+    hooked=0x7b8046a010 backup=0x7b8079d030
+    expectedEntryPoint=0x7f55b67360 realEntryPoint=0x7f55b67360 eq=true
+    expectedAccessFlags=0x12300009 realAccessFlags=0x12380009 eq=false
+  0xb400007e48b27310 void com.android.server.pm.ScanPackageUtils.assertMinSignatureSchemeIsValid(com.android.server.pm.pkg.AndroidPackage, int)
+    hooked=0x7b8046c710 backup=0x7b8077c050
+    expectedEntryPoint=0x7f55b67348 realEntryPoint=0x7f55b67348 eq=true
+    expectedAccessFlags=0x12200009 realAccessFlags=0x12280009 eq=false
+  0xb400007cc8b86810 void com.android.server.pm.PackageManagerServiceUtils.checkDowngrade(com.android.server.pm.pkg.AndroidPackage, android.content.pm.PackageInfoLite)
+    hooked=0x7b8046a030 backup=0x7b8075b030
+    expectedEntryPoint=0x7f55b67330 realEntryPoint=0x7f55b67330 eq=true
+    expectedAccessFlags=0x12300009 realAccessFlags=0x12380009 eq=false
+  0xb400007d88ba0930 deoptimized java.util.List com.android.server.pm.ReconcilePackageUtils.reconcilePackages(java.util.List, java.util.Map, java.util.Map, com.android.server.pm.SharedLibrariesImpl, com.android.server.pm.KeySetManagerService, com.android.server.pm.Settings, com.android.server.SystemConfig)
+    hooked=0x7b8046c960 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x4c60e2c0 eq=false
+    expectedAccessFlags=0x10300009 realAccessFlags=0x10380009 eq=false
+  0xb400007cc8b84c10 void android.util.apk.ApkSigningBlockUtils.verifyIntegrityForVerityBasedAlgorithm(byte[], java.io.RandomAccessFile, android.util.apk.SignatureInfo)
+    hooked=0x71b89800 backup=0x7b8073a030
+    expectedEntryPoint=0x7f55b67318 realEntryPoint=0x7f55b67318 eq=true
+    expectedAccessFlags=0x238000a realAccessFlags=0x238000a eq=true
+  0xb400007e48b27550 byte[] android.util.apk.ApkSigningBlockUtils.parseVerityDigestAndVerifySourceLength(byte[], long, android.util.apk.SignatureInfo)
+    hooked=0x71b89740 backup=0x7b80719030
+    expectedEntryPoint=0x7f55b67300 realEntryPoint=0x7f55b67300 eq=true
+    expectedAccessFlags=0x2080008 realAccessFlags=0x2080008 eq=true
+  0xb400007ca8b399b0 deoptimized boolean com.android.server.pm.PackageManagerServiceUtils.canJoinSharedUserId(java.lang.String, android.content.pm.SigningDetails, com.android.server.pm.SharedUserSetting, int)
+    hooked=0x7b80469fd0 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x10200009 realAccessFlags=0x10280009 eq=false
+  0xb400007e48b28750 void android.util.jar.StrictJarVerifier.<init>(java.lang.String, android.util.jar.StrictJarManifest, java.util.HashMap, boolean)
+    hooked=0x71b8a978 backup=0x7b806f8030
+    expectedEntryPoint=0x7f55b672e8 realEntryPoint=0x7f55b672e8 eq=true
+    expectedAccessFlags=0x2290000 realAccessFlags=0x2290000 eq=true
+  0xb400007cc8b837f0 boolean com.android.server.pm.InstallPackageHelper.doesSignatureMatchForPermissions(java.lang.String, com.android.internal.pm.parsing.pkg.ParsedPackage, int)
+    hooked=0x7b803ba7a0 backup=0x7b806d7030
+    expectedEntryPoint=0x7f55b672d0 realEntryPoint=0x7f55b672d0 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12280011 eq=false
+  0xb400007de8b87dd0 boolean android.content.pm.SigningDetails.signaturesMatchExactly(android.content.pm.SigningDetails)
+    hooked=0x719fc6a0 backup=0x7b806b6030
+    expectedEntryPoint=0x7f55b672b8 realEntryPoint=0x7f55b672b8 eq=true
+    expectedAccessFlags=0x2380001 realAccessFlags=0x2380001 eq=true
+  0xb400007e48b2a910 boolean com.android.server.pm.VerifyingSession.isVerificationEnabled(android.content.pm.PackageInfoLite, int, java.util.List)
+    hooked=0x7b8046c1b0 backup=0x7b80695030
+    expectedEntryPoint=0x7f55b672a0 realEntryPoint=0x7f55b672a0 eq=true
+    expectedAccessFlags=0x12200011 realAccessFlags=0x12200011 eq=true
+  0xb400007de8b89c10 void com.android.server.pm.SharedUserSetting.addPackage(com.android.server.pm.PackageSetting)
+    hooked=0x7b8046a7f0 backup=0x7b80674050
+    expectedEntryPoint=0x7f55b67288 realEntryPoint=0x7f55b67288 eq=true
+    expectedAccessFlags=0x12300001 realAccessFlags=0x12380001 eq=false
+  0xb400007de8b88cf0 boolean com.android.server.pm.SharedUserSetting.removePackage(com.android.server.pm.PackageSetting)
+    hooked=0x7b8046aa10 backup=0x7b80653030
+    expectedEntryPoint=0x7f55b67270 realEntryPoint=0x7f55b67270 eq=true
+    expectedAccessFlags=0x12300001 realAccessFlags=0x12380001 eq=false
+  0xb400007d88b9fa10 deoptimized boolean com.android.server.pm.PackageManagerServiceUtils.verifySignatures(com.android.server.pm.PackageSetting, com.android.server.pm.SharedUserSetting, com.android.server.pm.PackageSetting, android.content.pm.SigningDetails, boolean, boolean, boolean)
+    hooked=0x7b8046a650 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x4c61b1b0 eq=false
+    expectedAccessFlags=0x10200009 realAccessFlags=0x10280009 eq=false
+  0xb400007de8b87c70 boolean android.content.pm.SigningDetails.hasCommonAncestor(android.content.pm.SigningDetails)
+    hooked=0x719fc540 backup=0x7b80632030
+    expectedEntryPoint=0x7f55b67258 realEntryPoint=0x7f55b67258 eq=true
+    expectedAccessFlags=0x2380001 realAccessFlags=0x2380001 eq=true
+  0xb400007ca8b38e70 boolean com.android.server.pm.KeySetManagerService.checkUpgradeKeySetLocked(com.android.server.pm.pkg.PackageStateInternal, com.android.server.pm.pkg.AndroidPackage)
+    hooked=0x7b80469690 backup=0x7b80611030
+    expectedEntryPoint=0x7f55b67240 realEntryPoint=0x7f55b67240 eq=true
+    expectedAccessFlags=0x1a300001 realAccessFlags=0x1a380001 eq=false
+  0xb400007ca8b35990 boolean com.android.server.pm.KeySetManagerService.shouldCheckUpgradeKeySetLocked(com.android.server.pm.pkg.PackageStateInternal, com.android.server.pm.pkg.SharedUserApi, int)
+    hooked=0x7b80469930 backup=0x7b805f0030
+    expectedEntryPoint=0x7f55b67228 realEntryPoint=0x7f55b67228 eq=true
+    expectedAccessFlags=0x1a200001 realAccessFlags=0x1a280001 eq=false
+  0xb400007d78b36ef0 boolean android.content.pm.ApplicationInfo.isPackageWhitelistedForHiddenApis()
+    hooked=0x719e4600 backup=0x7b805cf030
+    expectedEntryPoint=0x7f55b67210 realEntryPoint=0x7f55b67210 eq=true
+    expectedAccessFlags=0x2380002 realAccessFlags=0x2380002 eq=true
+  0xb400007d78b36320 boolean android.content.pm.SigningDetails.checkCapability(java.lang.String, int)
+    hooked=0x719fc340 backup=0x7b805ae030
+    expectedEntryPoint=0x7f55b671f8 realEntryPoint=0x7f55b671f8 eq=true
+    expectedAccessFlags=0x2280001 realAccessFlags=0x2280001 eq=true
+  0xb400007de8b88400 boolean android.content.pm.SigningDetails.checkCapability(android.content.pm.SigningDetails, int)
+    hooked=0x719fc320 backup=0x7b8058d030
+    expectedEntryPoint=0x7f55b671e0 realEntryPoint=0x7f55b671e0 eq=true
+    expectedAccessFlags=0x2280001 realAccessFlags=0x2280001 eq=true
+  0xb400007ca8b35f30 android.content.pm.parsing.result.ParseResult android.util.apk.ApkSignatureVerifier.verifyV1Signature(android.content.pm.parsing.result.ParseInput, java.lang.String, boolean)
+    hooked=0x71b89310 backup=0x7b8056c030
+    expectedEntryPoint=0x7f55b671c8 realEntryPoint=0x7f55b671c8 eq=true
+    expectedAccessFlags=0x228000a realAccessFlags=0x228000a eq=true
+  0xb400007de8b88820 java.security.cert.Certificate[] android.util.jar.StrictJarVerifier.verifyBytes(byte[], byte[])
+    hooked=0x71b8aad8 backup=0x7b8054b030
+    expectedEntryPoint=0x7f55b671b0 realEntryPoint=0x7f55b671b0 eq=true
+    expectedAccessFlags=0x2380008 realAccessFlags=0x2380008 eq=true
+  0xb400007de8b87fe0 int android.util.apk.ApkSignatureVerifier.getMinimumSignatureSchemeVersionForTargetSdk(int)
+    hooked=0x71b891f0 backup=0x7b8052a030
+    expectedEntryPoint=0x7f55b67198 realEntryPoint=0x7f55b67198 eq=true
+    expectedAccessFlags=0x2280009 realAccessFlags=0x2280009 eq=true
+  0xb400007d78b360e0 boolean android.content.res.AssetManager.containsAllocatedTable()
+    hooked=0x71ced858 backup=0x7b8050a030
+    expectedEntryPoint=0x7f55b67180 realEntryPoint=0x7f55b67180 eq=true
+    expectedAccessFlags=0x2380001 realAccessFlags=0x2380001 eq=true
+  0xb400007d78b36440 boolean java.security.MessageDigest.isEqual(byte[], byte[])
+    hooked=0x70f8fb68 backup=0x7b804e7030
+    expectedEntryPoint=0x7f55b67168 realEntryPoint=0x7f55b67168 eq=true
+    expectedAccessFlags=0x12380009 realAccessFlags=0x12380009 eq=true
+  0xb400007e48b29f50 boolean android.util.jar.StrictJarVerifier.verify(java.util.jar.Attributes, java.lang.String, byte[], int, int, boolean, boolean)
+    hooked=0x71b8aab8 backup=0x7b804c6030
+    expectedEntryPoint=0x7f55b67150 realEntryPoint=0x7f55b67150 eq=true
+    expectedAccessFlags=0x2280002 realAccessFlags=0x2280002 eq=true
+  0xb400007d78b35d80 boolean android.util.jar.StrictJarVerifier.verifyMessageDigest(byte[], byte[])
+    hooked=0x71b8ab18 backup=0x7b804a5030
+    expectedEntryPoint=0x7f55b67138 realEntryPoint=0x7f55b67138 eq=true
+    expectedAccessFlags=0x238000a realAccessFlags=0x238000a eq=true
+  0xb400007e48b2a610 boolean com.android.server.policy.PhoneWindowManager.interceptKeyBeforeDispatching(android.os.IBinder, android.view.KeyEvent)
+    hooked=0x4a5e5ae8 backup=0x7b80484030
+    expectedEntryPoint=0x7f55b67120 realEntryPoint=0x7f55b67120 eq=true
+    expectedAccessFlags=0x12300001 realAccessFlags=0x12300001 eq=true
+  0xb400007de8b897f0 void com.android.server.pm.InstallPackageHelper.preparePackage(com.android.server.pm.InstallRequest)
+    hooked=0x7b803bac00 backup=0x7b80443030
+    expectedEntryPoint=0x7f55b67108 realEntryPoint=0x7f55b67108 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12380011 eq=false
+  0xb400007de8b9f060 void com.android.server.SystemServer.startBootstrapServices(com.android.server.utils.TimingsTraceAndSlog)
+    hooked=0x7b8033d590 backup=0x7b8037e030
+    expectedEntryPoint=0x7f55b670f0 realEntryPoint=0x7f55b670f0 eq=true
+    expectedAccessFlags=0x12300011 realAccessFlags=0x12300011 eq=true
+  0xb400007cc8b81790 void android.inputmethodservice.InputMethodService.doStartInput(android.view.inputmethod.InputConnection, android.view.inputmethod.EditorInfo, boolean)
+    hooked=0x71d1fb08 backup=0x7b802da030
+    expectedEntryPoint=0x7f55b670d8 realEntryPoint=0x7f55b670d8 eq=true
+    expectedAccessFlags=0x2280000 realAccessFlags=0x2280000 eq=true
+  0xb400007d78b4d780 void android.app.Activity.setRequestedOrientation(int)
+    hooked=0x71cc4ef0 backup=0x7b802b9030
+    expectedEntryPoint=0x7f55b670c0 realEntryPoint=0x7f55b670c0 eq=true
+    expectedAccessFlags=0x12280001 realAccessFlags=0x12280001 eq=true
+  0xb400007d98b2a320 void android.view.Window.setFlags(int, int)
+    hooked=0x71bc4a08 backup=0x7b80298030
+    expectedEntryPoint=0x7f55b670a8 realEntryPoint=0x7f55b670a8 eq=true
+    expectedAccessFlags=0x12280001 realAccessFlags=0x12280001 eq=true
+  0xb400007de8b84f10 android.view.ViewGroup com.android.internal.policy.PhoneWindow.generateLayout(com.android.internal.policy.DecorView)
+    hooked=0x71dac900 backup=0x7b80277030
+    expectedEntryPoint=0x7f55b67090 realEntryPoint=0x7f55b67090 eq=true
+    expectedAccessFlags=0x2380004 realAccessFlags=0x2380004 eq=true
+  0xb400007d98b28790 void android.view.Display.updateDisplayInfoLocked()
+    hooked=0x71b90cd8 backup=0x7b80256030
+    expectedEntryPoint=0x7f55b67078 realEntryPoint=0x7f55b67078 eq=true
+    expectedAccessFlags=0x2380002 realAccessFlags=0x2380002 eq=true
+  0xb400007d78b43580 void android.app.ActivityThread.attach(boolean, long)
+    hooked=0x71cca230 backup=0x7b800eb050
+    expectedEntryPoint=0x7f55b67060 realEntryPoint=0x7f55b67060 eq=true
+    expectedAccessFlags=0x2000002 realAccessFlags=0x2000002 eq=true
+  0xb400007d78b4e980 void android.app.LoadedApk.createOrUpdateClassLoaderLocked(java.util.List)
+    hooked=0x7198f428 backup=0x7b800ca030
+    expectedEntryPoint=0x7f55b67048 realEntryPoint=0x7f55b67048 eq=true
+    expectedAccessFlags=0x2380002 realAccessFlags=0x2380002 eq=true
+  0xb400007ca8b31850 void android.app.LoadedApk.<init>(android.app.ActivityThread, android.content.pm.ApplicationInfo, android.content.res.CompatibilityInfo, java.lang.ClassLoader, boolean, boolean, boolean)
+    hooked=0x7198f288 backup=0x7b800a9030
+    expectedEntryPoint=0x7f55b67030 realEntryPoint=0x7f55b67030 eq=true
+    expectedAccessFlags=0x2290001 realAccessFlags=0x2290001 eq=true
+  0xb400007e48b29dd0 java.lang.Runnable com.android.internal.os.ZygoteInit.handleSystemServerProcess(com.android.internal.os.ZygoteArguments)
+    hooked=0x71dab238 backup=0x7b80088030
+    expectedEntryPoint=0x7f55b67018 realEntryPoint=0x7f55b67018 eq=true
+    expectedAccessFlags=0x230000a realAccessFlags=0x230000a eq=true
+  0xb400007d78b4de40 void java.lang.Thread.dispatchUncaughtException(java.lang.Throwable)
+    hooked=0x710177f8 backup=0x7b80067030
+    expectedEntryPoint=0x7f55b67000 realEntryPoint=0x7f55b67000 eq=true
+    expectedAccessFlags=0x2380011 realAccessFlags=0x2380011 eq=true
+  0xb400007de8b90cd0 deoptimized java.io.File android.app.ContextImpl.getSharedPreferencesPath(java.lang.String)
+    hooked=0x7196dd10 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40380001 realAccessFlags=0x40380001 eq=true
+  0xb400007cc8b35e50 deoptimized android.app.Application android.app.Instrumentation.newApplication(java.lang.ClassLoader, java.lang.String, android.content.Context)
+    hooked=0x71cd74c8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7f55b67948 eq=false
+    expectedAccessFlags=0x50380001 realAccessFlags=0x12380001 eq=false
+  0xb400007e48b29a10 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation, boolean)
+    hooked=0x7198f928 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280002 realAccessFlags=0x40280002 eq=true
+  0xb400007de8b915c0 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation)
+    hooked=0x7198f908 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+  0xb400007de8b91930 deoptimized android.app.Application android.app.LoadedApk.makeApplication(boolean, android.app.Instrumentation)
+    hooked=0x7198f8e8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+
+pid=5555 uid=1001 name=com.android.phone 64bit debugInfo=0x7c85e026b0 entryPointOff=24 accessFlagsOff=4
+  0xb400007d88ba19b0 void com.android.internal.telephony.InboundSmsHandler.dispatchIntent(android.content.Intent, java.lang.String, java.lang.String, android.os.Bundle, com.android.internal.telephony.InboundSmsHandler$SmsBroadcastReceiver, android.os.UserHandle, int)
+    hooked=0x7210ec80 backup=0x7b80171030
+    expectedEntryPoint=0x7f55b710a8 realEntryPoint=0x7f55b710a8 eq=true
+    expectedAccessFlags=0x2200001 realAccessFlags=0x2200001 eq=true
+  0xb400007da8b29490 void com.android.internal.telephony.InboundSmsHandler.<init>(java.lang.String, android.content.Context, com.android.internal.telephony.SmsStorageMonitor, com.android.internal.telephony.Phone, android.os.Looper, com.android.internal.hidden_from_bootclasspath.com.android.internal.telephony.flags.FeatureFlags)
+    hooked=0x7210eaa0 backup=0x7b80150030
+    expectedEntryPoint=0x7f55b71090 realEntryPoint=0x7f55b71090 eq=true
+    expectedAccessFlags=0x2310004 realAccessFlags=0x2310004 eq=true
+  0xb400007d78b3eea0 void android.app.ActivityThread.attach(boolean, long)
+    hooked=0x71cca230 backup=0x7b8010c050
+    expectedEntryPoint=0x7f55b71078 realEntryPoint=0x7f55b71078 eq=true
+    expectedAccessFlags=0x2000002 realAccessFlags=0x2000002 eq=true
+  0xb400007d78b42260 void android.app.LoadedApk.createOrUpdateClassLoaderLocked(java.util.List)
+    hooked=0x7198f428 backup=0x7b800ca030
+    expectedEntryPoint=0x7f55b71060 realEntryPoint=0x7f55b71060 eq=true
+    expectedAccessFlags=0x2380002 realAccessFlags=0x2380002 eq=true
+  0xb400007ca8b24170 void android.app.LoadedApk.<init>(android.app.ActivityThread, android.content.pm.ApplicationInfo, android.content.res.CompatibilityInfo, java.lang.ClassLoader, boolean, boolean, boolean)
+    hooked=0x7198f288 backup=0x7b800a9030
+    expectedEntryPoint=0x7f55b71048 realEntryPoint=0x7f55b71048 eq=true
+    expectedAccessFlags=0x2290001 realAccessFlags=0x2290001 eq=true
+  0xb400007cc8b75d30 java.lang.Object dalvik.system.DexFile.openInMemoryDexFiles(java.nio.ByteBuffer[], java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c58 backup=0x7b80088030
+    expectedEntryPoint=0x7f55b71030 realEntryPoint=0x7f55b71030 eq=true
+    expectedAccessFlags=0x238000a realAccessFlags=0x238000a eq=true
+  0xb400007cc8b74670 java.lang.Object dalvik.system.DexFile.openDexFile(java.lang.String, java.lang.String, int, java.lang.ClassLoader, dalvik.system.DexPathList$Element[])
+    hooked=0x71113c18 backup=0x7b80067030
+    expectedEntryPoint=0x7f55b71018 realEntryPoint=0x7f55b71018 eq=true
+    expectedAccessFlags=0x228000a realAccessFlags=0x228000a eq=true
+  0xb400007d78b4cc40 void java.lang.Thread.dispatchUncaughtException(java.lang.Throwable)
+    hooked=0x710177f8 backup=0x7b80046030
+    expectedEntryPoint=0x7f55b71000 realEntryPoint=0x7f55b71000 eq=true
+    expectedAccessFlags=0x2380011 realAccessFlags=0x2380011 eq=true
+  0xb400007de8b91930 deoptimized java.io.File android.app.ContextImpl.getSharedPreferencesPath(java.lang.String)
+    hooked=0x7196dd10 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40380001 realAccessFlags=0x40380001 eq=true
+  0xb400007cc8b78e30 deoptimized android.app.Application android.app.Instrumentation.newApplication(java.lang.ClassLoader, java.lang.String, android.content.Context)
+    hooked=0x71cd74c8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x50380001 realAccessFlags=0x50380001 eq=true
+  0xb400007e48b29a10 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation, boolean)
+    hooked=0x7198f928 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280002 realAccessFlags=0x40280002 eq=true
+  0xb400007de8b92010 deoptimized android.app.Application android.app.LoadedApk.makeApplicationInner(boolean, android.app.Instrumentation)
+    hooked=0x7198f908 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+  0xb400007de8b8ede0 deoptimized android.app.Application android.app.LoadedApk.makeApplication(boolean, android.app.Instrumentation)
+    hooked=0x7198f8e8 backup=0x0
+    expectedEntryPoint=0x7c861141e0 realEntryPoint=0x7c861141e0 eq=true
+    expectedAccessFlags=0x40280001 realAccessFlags=0x40280001 eq=true
+
