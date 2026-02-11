@@ -227,7 +227,7 @@ openssl pkcs8 -topk8 -inform PEM -outform DER \
 echo "vendor/keys/" >> ~/crDroid/.gitignore
 ```
 
-**Add this line to the end of your device tree makefile stored at** `device/oneplus/lemonadep/device.mk` **or** `device/oneplus/lemonade/device.mk`
+**Add this line to the end of your device tree makefile stored at** `~/crDroid/device/oneplus/lemonadep/device.mk` **or** `~/crDroid/device/oneplus/lemonade/device.mk`
 
 ```makefile
 PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/keys/releasekey
