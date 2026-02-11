@@ -213,7 +213,7 @@ done
 ```
 This creates 7 RSA-4096 key pairs (`.pem`, `.x509.pem`, `.pk8` for each). The `.pk8` (PKCS#8 DER) files are what the Android build system actually uses.
 
-**Generate the NFC APEX signing key** (still inside `~/crDroid/vendor/keys`):
+**Generate the NFC APEX signing key**
 ```bash
 openssl genrsa -out nfc.key 4096
 openssl req -new -x509 -sha256 -key nfc.key \
@@ -227,7 +227,7 @@ openssl pkcs8 -topk8 -inform PEM -outform DER \
 echo "vendor/keys/" >> ~/crDroid/.gitignore
 ```
 
-**Add this line to the end of your device tree makefile stored at `device/oneplus/lemonadep/device.mk` or `device/oneplus/lemonade/device.mk`**
+**Add this line to the end of your device tree makefile stored at** `device/oneplus/lemonadep/device.mk` **or** `device/oneplus/lemonade/device.mk`
 
 ```makefile
 PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/keys/releasekey
