@@ -178,74 +178,7 @@ Replace the kernel entry with your fork's repository.
 </manifest>
 ```
 
-### 6. Sign the Build with Your Own Keys (Required)
-
-By default, the Android build system signs all APKs and system partitions with publicly known **test keys**. If you skip this step, apps like **RomSignCheck** will show **"Rom sign is testkey"** — meaning anyone can forge a signed package that your system will trust. Generating your own private signing keys prevents this and is **required** for a secure build.
-
-**Generate signing keys using AOSP's `make_key` tool**
-
-```bash
-cd ~/crDroid
-mkdir -p vendor/keys
-subject='/C=US/ST=California/L=Mountain View/O=Android/OU=Android/CN=Android/emailAddress=android@android.com'
-for key in releasekey platform shared media networkstack sdk_sandbox bluetooth; do
-    development/tools/make_key vendor/keys/$key "$subject"
-done
-```
-
-This generates 7 key pairs (`.x509.pem` + `.pk8` for each) inside `vendor/keys/`.
-
-**Customizing the `subject` field:**
-
-The `subject` string is an X.509 certificate distinguished name embedded in each signing key. It has **no functional impact** on the build or the device — it is purely metadata that identifies the key owner. You can (and should) replace the default AOSP placeholder values with your own:
-
-| Field | Meaning | Example |
-|-------|---------|---------|
-| `/C=` | Country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)) | `TR` (Turkey), `DE` (Germany), `US` |
-| `/ST=` | State or province | `Istanbul`, `Bavaria`, `California` |
-| `/L=` | City / locality | `Kadikoy`, `Munich`, `San Francisco` |
-| `/O=` | Organization name | `MyROM`, your name, or anything you like |
-| `/OU=` | Organizational unit (subdivision) | `Development`, `Kernel`, or leave same as `/O=` |
-| `/CN=` | Common name (key identity) | `MyROM Release`, your name, etc. |
-| `/emailAddress=` | Contact email | `you@example.com` |
-
-For example, a Turkish developer might use:
-
-```bash
-subject='/C=TR/ST=Istanbul/L=Kadikoy/O=MyROM/OU=Development/CN=MyROM Release/emailAddress=dev@example.com'
-```
-
-> **Note:** These values are baked into the certificate at generation time and cannot be changed later without regenerating the keys. While any values will work, using real information makes it easier to identify your builds.
-
-**Generate the NFC APEX signing key**
-
-The NFC APEX key requires a different CN and must be generated separately with OpenSSL:
-
-```bash
-cd ~/crDroid/vendor/keys
-openssl genrsa -out nfc.key 4096
-openssl req -new -x509 -sha256 -key nfc.key \
-    -out nfc.x509.pem -days 10000 -subj '/CN=NfcNci/'
-openssl pkcs8 -topk8 -inform PEM -outform DER \
-    -in nfc.key -out nfc.pk8 -nocrypt
-```
-
-> **Do not modify these commands.** Unlike the `subject` field above, the `/CN=NfcNci/` value is **required** by the NFC APEX module and must remain exactly as shown. The other parameters (4096-bit RSA, SHA-256, 10000-day validity) are sensible defaults and do not need to be changed.
-
-**Make sure the keys don't get committed to version control**
-```bash
-echo "vendor/keys/" >> ~/crDroid/.gitignore
-```
-
-**Add this line to the end of your device tree makefile stored at** `~/crDroid/device/oneplus/lemonadep/device.mk` **or** `~/crDroid/device/oneplus/lemonade/device.mk`
-
-```makefile
-PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/keys/releasekey
-```
-
-> **Back up your keys.** OTA updates must be signed with the same keys. If you lose them, users will have to clean flash.
-
-### 7. Set Up ccache (Optional but Recommended)
+### 6. Set Up ccache (Optional but Recommended)
 
 ```bash
 export USE_CCACHE=1
@@ -253,7 +186,7 @@ export CCACHE_EXEC=$(which ccache)
 ccache -M 50G
 ```
 
-### 8. Build
+### 7. Build
 
 for OnePlus 9 Pro (lemonadep):
 
@@ -277,7 +210,7 @@ The build system will automatically:
 - Enable KernelSU + SUSFS (via Kconfig defaults)
 - Package the entire ROM
 
-### 9. Output
+### 8. Output
 
 After a successful build, the ROM zip will be at:
 
