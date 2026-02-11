@@ -25,7 +25,7 @@ extern bool susfs_is_current_ksu_domain(void);
 #ifdef CONFIG_KSU_SUSFS_ENABLE_LOG
 bool susfs_is_log_enabled __read_mostly = true;
 #define SUSFS_LOGI(fmt, ...) if (susfs_is_log_enabled) pr_info("susfs:[%u][%d][%s] " fmt, current_uid().val, current->pid, __func__, ##__VA_ARGS__)
-#define SUSFS_LOGE(fmt, ...) if (susfs_is_log_enabled) pr_err("susfs:[%u][%d][%s]" fmt, current_uid().val, current->pid, __func__, ##__VA_ARGS__)
+#define SUSFS_LOGE(fmt, ...) if (susfs_is_log_enabled) pr_err("susfs:[%u][%d][%s] " fmt, current_uid().val, current->pid, __func__, ##__VA_ARGS__)
 #else
 #define SUSFS_LOGI(fmt, ...)
 #define SUSFS_LOGE(fmt, ...)
@@ -370,7 +370,7 @@ bool susfs_is_sus_android_data_d_name_found(const char *d_name) {
 		    (d_name[cursor->path_len] == '\0' || d_name[cursor->path_len] == '/') &&
 			is_i_uid_in_android_data_not_allowed(cursor->info.i_uid))
 		{
-			SUSFS_LOGI("hiding path '%s'\n", cursor->target_pathname);
+			pr_debug("susfs: hiding path '%s'\n", cursor->target_pathname);
 			return true;
 		}
 	}
@@ -388,7 +388,7 @@ bool susfs_is_sus_sdcard_d_name_found(const char *d_name) {
 		    (d_name[cursor->path_len] == '\0' || d_name[cursor->path_len] == '/') &&
 			is_i_uid_in_sdcard_not_allowed())
 		{
-			SUSFS_LOGI("hiding path '%s'\n", cursor->target_pathname);
+			pr_debug("susfs: hiding path '%s'\n", cursor->target_pathname);
 			return true;
 		}
 	}
@@ -400,7 +400,7 @@ bool susfs_is_inode_sus_path(struct mnt_idmap* idmap, struct inode *inode) {
 	if (unlikely(inode->i_mapping->flags & BIT_SUS_PATH &&
 		is_i_uid_not_allowed(i_uid_into_vfsuid(idmap, inode).val)))
 	{
-		SUSFS_LOGI("hiding path with ino '%lu'\n", inode->i_ino);
+		pr_debug("susfs: hiding path with ino '%lu'\n", inode->i_ino);
 		return true;
 	}
 	return false;
@@ -410,7 +410,7 @@ bool susfs_is_inode_sus_path(struct inode *inode) {
 	if (unlikely(inode->i_mapping->flags & BIT_SUS_PATH &&
 		is_i_uid_not_allowed(i_uid_into_mnt(i_user_ns(inode), inode).val)))
 	{
-		SUSFS_LOGI("hiding path with ino '%lu'\n", inode->i_ino);
+		pr_debug("susfs: hiding path with ino '%lu'\n", inode->i_ino);
 		return true;
 	}
 	return false;
@@ -420,7 +420,7 @@ bool susfs_is_inode_sus_path(struct inode *inode) {
 	if (unlikely(inode->i_mapping->flags & BIT_SUS_PATH &&
 		is_i_uid_not_allowed(inode->i_uid.val)))
 	{
-		SUSFS_LOGI("hiding path with ino '%lu'\n", inode->i_ino);
+		pr_debug("susfs: hiding path with ino '%lu'\n", inode->i_ino);
 		return true;
 	}
 	return false;
@@ -756,7 +756,7 @@ void susfs_set_cmdline_or_bootconfig(void __user **user_info) {
 		SUSFS_LOGI("fake_cmdline_or_bootconfig is set, length of string: %d\n", res);
 		info->err = 0;
 	} else {
-		SUSFS_LOGI("failed setting fake_cmdline_or_bootconfig\n");
+		SUSFS_LOGE("failed setting fake_cmdline_or_bootconfig\n");
 		info->err = -EINVAL;
 	}
 	spin_unlock(&susfs_spin_lock_set_cmdline_or_bootconfig);

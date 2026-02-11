@@ -15,6 +15,12 @@
 #ifdef CONFIG_KSU_SUSFS
 #include <linux/namei.h>
 #include <linux/susfs.h>
+#ifdef CONFIG_KSU_SUSFS_ENABLE_LOG
+extern bool susfs_is_log_enabled __read_mostly;
+#define SUSFS_PR_INFO(fmt, ...) do { if (susfs_is_log_enabled) pr_info(fmt, ##__VA_ARGS__); } while (0)
+#else
+#define SUSFS_PR_INFO(fmt, ...)
+#endif
 #endif // #ifdef CONFIG_KSU_SUSFS
 
 #include "supercalls.h"
@@ -946,18 +952,18 @@ int ksu_handle_sys_reboot(int magic1, int magic2, unsigned int cmd, void __user 
 #ifdef CONFIG_KSU_SUSFS_SUS_PATH
 		if (cmd == CMD_SUSFS_ADD_SUS_PATH) {
 			susfs_add_sus_path(&user_info);
-			pr_info("susfs: CMD_SUSFS_ADD_SUS_PATH\n");
+			SUSFS_PR_INFO("susfs: CMD_SUSFS_ADD_SUS_PATH\n");
 			return 0;
 		}
 		if (cmd == CMD_SUSFS_ADD_SUS_PATH_LOOP) {
 			susfs_add_sus_path_loop(&user_info);
-			pr_info("susfs: CMD_SUSFS_ADD_SUS_PATH_LOOP\n");
+			SUSFS_PR_INFO("susfs: CMD_SUSFS_ADD_SUS_PATH_LOOP\n");
 			return 0;
 		}
 		if (cmd == CMD_SUSFS_SET_ANDROID_DATA_ROOT_PATH ||
 		    cmd == CMD_SUSFS_SET_SDCARD_ROOT_PATH) {
 			susfs_set_i_state_on_external_dir(&user_info);
-			pr_info("susfs: CMD_SUSFS_SET_%s_ROOT_PATH\n",
+			SUSFS_PR_INFO("susfs: CMD_SUSFS_SET_%s_ROOT_PATH\n",
 				cmd == CMD_SUSFS_SET_ANDROID_DATA_ROOT_PATH ? "ANDROID_DATA" : "SDCARD");
 			return 0;
 		}
@@ -965,81 +971,81 @@ int ksu_handle_sys_reboot(int magic1, int magic2, unsigned int cmd, void __user 
 #ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
 		if (cmd == CMD_SUSFS_ADD_SUS_MOUNT) {
 			/* deprecated in v2.0.0, no-op */
-			pr_info("susfs: CMD_SUSFS_ADD_SUS_MOUNT -> deprecated, no-op\n");
+			pr_debug("susfs: CMD_SUSFS_ADD_SUS_MOUNT -> deprecated, no-op\n");
 			return 0;
 		}
 		if (cmd == CMD_SUSFS_HIDE_SUS_MNTS_FOR_NON_SU_PROCS) {
 			susfs_set_hide_sus_mnts_for_non_su_procs(&user_info);
-			pr_info("susfs: CMD_SUSFS_HIDE_SUS_MNTS_FOR_NON_SU_PROCS\n");
+			SUSFS_PR_INFO("susfs: CMD_SUSFS_HIDE_SUS_MNTS_FOR_NON_SU_PROCS\n");
 			return 0;
 		}
 #endif //#ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
 #ifdef CONFIG_KSU_SUSFS_SUS_KSTAT
 		if (cmd == CMD_SUSFS_ADD_SUS_KSTAT || cmd == CMD_SUSFS_ADD_SUS_KSTAT_STATICALLY) {
 			susfs_add_sus_kstat(&user_info);
-			pr_info("susfs: CMD_SUSFS_ADD_SUS_KSTAT\n");
+			SUSFS_PR_INFO("susfs: CMD_SUSFS_ADD_SUS_KSTAT\n");
 			return 0;
 		}
 		if (cmd == CMD_SUSFS_UPDATE_SUS_KSTAT) {
 			susfs_update_sus_kstat(&user_info);
-			pr_info("susfs: CMD_SUSFS_UPDATE_SUS_KSTAT\n");
+			SUSFS_PR_INFO("susfs: CMD_SUSFS_UPDATE_SUS_KSTAT\n");
 			return 0;
 		}
 #endif //#ifdef CONFIG_KSU_SUSFS_SUS_KSTAT
 		if (cmd == CMD_SUSFS_ADD_TRY_UMOUNT) {
 			/* deprecated in v2.0.0, no-op */
-			pr_info("susfs: CMD_SUSFS_ADD_TRY_UMOUNT -> deprecated, no-op\n");
+			pr_debug("susfs: CMD_SUSFS_ADD_TRY_UMOUNT -> deprecated, no-op\n");
 			return 0;
 		}
 #ifdef CONFIG_KSU_SUSFS_SPOOF_UNAME
 		if (cmd == CMD_SUSFS_SET_UNAME) {
 			susfs_set_uname(&user_info);
-			pr_info("susfs: CMD_SUSFS_SET_UNAME\n");
+			SUSFS_PR_INFO("susfs: CMD_SUSFS_SET_UNAME\n");
 			return 0;
 		}
 #endif //#ifdef CONFIG_KSU_SUSFS_SPOOF_UNAME
 #ifdef CONFIG_KSU_SUSFS_ENABLE_LOG
 		if (cmd == CMD_SUSFS_ENABLE_LOG) {
 			susfs_enable_log(&user_info);
-			pr_info("susfs: CMD_SUSFS_ENABLE_LOG\n");
+			SUSFS_PR_INFO("susfs: CMD_SUSFS_ENABLE_LOG\n");
 			return 0;
 		}
 #endif //#ifdef CONFIG_KSU_SUSFS_ENABLE_LOG
 #ifdef CONFIG_KSU_SUSFS_SPOOF_CMDLINE_OR_BOOTCONFIG
 		if (cmd == CMD_SUSFS_SET_CMDLINE_OR_BOOTCONFIG) {
 			susfs_set_cmdline_or_bootconfig(&user_info);
-			pr_info("susfs: CMD_SUSFS_SET_CMDLINE_OR_BOOTCONFIG\n");
+			SUSFS_PR_INFO("susfs: CMD_SUSFS_SET_CMDLINE_OR_BOOTCONFIG\n");
 			return 0;
 		}
 #endif //#ifdef CONFIG_KSU_SUSFS_SPOOF_CMDLINE_OR_BOOTCONFIG
 #ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT
 		if (cmd == CMD_SUSFS_ADD_OPEN_REDIRECT) {
 			susfs_add_open_redirect(&user_info);
-			pr_info("susfs: CMD_SUSFS_ADD_OPEN_REDIRECT\n");
+			SUSFS_PR_INFO("susfs: CMD_SUSFS_ADD_OPEN_REDIRECT\n");
 			return 0;
 		}
 #endif //#ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT
 		if (cmd == CMD_SUSFS_SUS_SU || cmd == CMD_SUSFS_SHOW_SUS_SU_WORKING_MODE ||
 		    cmd == CMD_SUSFS_IS_SUS_SU_READY) {
 			/* deprecated in v2.0.0, no-op */
-			pr_info("susfs: CMD_SUSFS_SUS_SU -> deprecated, no-op\n");
+			pr_debug("susfs: CMD_SUSFS_SUS_SU -> deprecated, no-op\n");
 			return 0;
 		}
 #ifdef CONFIG_KSU_SUSFS_SUS_MAP
 		if (cmd == CMD_SUSFS_ADD_SUS_MAP) {
 			susfs_add_sus_map(&user_info);
-			pr_info("susfs: CMD_SUSFS_ADD_SUS_MAP\n");
+			SUSFS_PR_INFO("susfs: CMD_SUSFS_ADD_SUS_MAP\n");
 			return 0;
 		}
 #endif // #ifdef CONFIG_KSU_SUSFS_SUS_MAP
 		if (cmd == CMD_SUSFS_ENABLE_AVC_LOG_SPOOFING) {
 			susfs_set_avc_log_spoofing(&user_info);
-			pr_info("susfs: CMD_SUSFS_ENABLE_AVC_LOG_SPOOFING\n");
+			SUSFS_PR_INFO("susfs: CMD_SUSFS_ENABLE_AVC_LOG_SPOOFING\n");
 			return 0;
 		}
 		if (cmd == CMD_SUSFS_SHOW_ENABLED_FEATURES) {
 			susfs_get_enabled_features(&user_info);
-			pr_info("susfs: CMD_SUSFS_SHOW_ENABLED_FEATURES\n");
+			SUSFS_PR_INFO("susfs: CMD_SUSFS_SHOW_ENABLED_FEATURES\n");
 			return 0;
 		}
 		if (cmd == CMD_SUSFS_SHOW_VARIANT) {
