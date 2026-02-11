@@ -254,6 +254,10 @@ int ksu_handle_faccessat(int *dfd, const char __user **filename_user, int *mode,
 {
 	char path[sizeof(su_path) + 1] = {0};
 
+	if (!ksu_is_allow_uid_for_current(current_uid().val)) {
+		return 0;
+	}
+
 	strncpy_from_user_nofault(path, *filename_user, sizeof(path));
 
 	if (unlikely(!memcmp(path, su_path, sizeof(su_path)))) {
@@ -262,12 +266,14 @@ int ksu_handle_faccessat(int *dfd, const char __user **filename_user, int *mode,
 	}
 
 	return 0;
-
-	return 0;
 }
 
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
 int ksu_handle_stat(int *dfd, struct filename **filename, int *flags) {
+	if (!ksu_is_allow_uid_for_current(current_uid().val)) {
+		return 0;
+	}
+
 	if (unlikely(IS_ERR(*filename) || (*filename)->name == NULL)) {
 		return 0;
 	}
@@ -283,11 +289,15 @@ int ksu_handle_stat(int *dfd, struct filename **filename, int *flags) {
 #else
 int ksu_handle_stat(int *dfd, const char __user **filename_user, int *flags)
 {
-	if (unlikely(!filename_user)) {
+	char path[sizeof(su_path) + 1] = {0};
+
+	if (!ksu_is_allow_uid_for_current(current_uid().val)) {
 		return 0;
 	}
 
-	char path[sizeof(su_path) + 1] = {0};
+	if (unlikely(!filename_user)) {
+		return 0;
+	}
 
 	strncpy_from_user_nofault(path, *filename_user, sizeof(path));
 

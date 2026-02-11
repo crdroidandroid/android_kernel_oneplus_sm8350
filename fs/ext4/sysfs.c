@@ -431,8 +431,15 @@ int ext4_register_sysfs(struct super_block *sb)
 		return err;
 	}
 
-	if (ext4_proc_root)
-		sbi->s_proc = proc_mkdir(sb->s_id, ext4_proc_root);
+	if (ext4_proc_root) {
+#ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
+		if (sb->s_bdev && sb->s_bdev->bd_disk &&
+		    strncmp(sb->s_bdev->bd_disk->disk_name, "loop", 4) == 0)
+			sbi->s_proc = NULL;
+		else
+#endif
+			sbi->s_proc = proc_mkdir(sb->s_id, ext4_proc_root);
+	}
 	if (sbi->s_proc) {
 		proc_create_single_data("options", S_IRUGO, sbi->s_proc,
 				ext4_seq_options_show, sb);
