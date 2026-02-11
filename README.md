@@ -177,21 +177,27 @@ Replace the kernel entry with your fork's repository.
 </manifest>
 ```
 
-The key line is the `kernel/oneplus/sm8350` entry — change the `name` to point to your own GitHub fork if you have one. After editing, run `repo sync` again to pull your kernel source.
-
 ### 6. Sign the Build with Your Own Keys (Recommended)
 
 By default, the Android build system signs all APKs and system partitions with publicly known test keys. This means anyone can sign a package that your system will trust. Generating your own private signing keys prevents this.
 
-**Generate the keys** (run this once, from your crDroid source root):
+**Change directory to crDroid source root**
+```bash
+cd ~/crDroid
+```
 
-> **Important:** The keys **must** be stored inside the source tree. The Soong build system cannot resolve paths outside the source directory.
-
+**Create the required directions**
 ```bash
 mkdir -p ~/crDroid/vendor/keys && cd ~/crDroid/vendor/keys
+```
 
+**Certificate information (you can change it as you wish, there is no functional difference)**
+```bash
 SUBJECT="/C=US/ST=State/L=City/O=MyROM/OU=MyROM/CN=MyROM"
+```
 
+**Generate the keys**
+```bash
 for key in releasekey platform shared media networkstack sdk_sandbox bluetooth; do
     openssl genrsa -out ${key}.pem 4096
     openssl req -new -x509 -sha256 \
@@ -204,27 +210,14 @@ for key in releasekey platform shared media networkstack sdk_sandbox bluetooth; 
         -out ${key}.pk8
 done
 ```
-
 This creates 7 RSA-4096 key pairs (`.pem`, `.x509.pem`, `.pk8` for each). The `.pk8` (PKCS#8 DER) files are what the Android build system actually uses.
 
-> **Alternatively**, you can use the AOSP key generation tool from the crDroid source root:
-> ```bash
-> cd ~/crDroid
-> for key in releasekey platform shared media networkstack sdk_sandbox bluetooth; do
->     development/tools/make_key vendor/keys/$key '/CN=Android'
-> done
-> ```
-> Leave the password blank when prompted.
-
-> **Troubleshooting:** If the build fails with `ninja: 'vendor/keys/sdk_sandbox.x509.pem' missing` or similar, it means a required key is missing. Run the key generation commands above to create all 7 keys.
-
-Make sure the keys don't get committed to version control:
-
+**Make sure the keys don't get committed to version control**
 ```bash
 echo "vendor/keys/" >> ~/crDroid/.gitignore
 ```
 
-**Tell the build system to use them** by adding this line to the end of your device tree makefile (`device/oneplus/lemonadep/device.mk` or `device/oneplus/sm8350-common/common.mk`):
+**Add this line to the end of your device tree makefile stored at `device/oneplus/lemonadep/device.mk` or `device/oneplus/lemonade/device.mk`**
 
 ```makefile
 PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/keys/releasekey
