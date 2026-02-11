@@ -183,10 +183,12 @@ The key line is the `kernel/oneplus/sm8350` entry — change the `name` to point
 
 By default, the Android build system signs all APKs and system partitions with publicly known test keys. This means anyone can sign a package that your system will trust. Generating your own private signing keys prevents this.
 
-**Generate the keys** (run this once, on your build machine):
+**Generate the keys** (run this once, from your crDroid source root):
+
+> **Important:** The keys **must** be stored inside the source tree. The Soong build system cannot resolve paths outside the source directory.
 
 ```bash
-mkdir -p ~/.android-certs && cd ~/.android-certs
+mkdir -p ~/crDroid/vendor/keys && cd ~/crDroid/vendor/keys
 
 SUBJECT="/C=US/ST=State/L=City/O=MyROM/OU=MyROM/CN=MyROM"
 
@@ -205,10 +207,16 @@ done
 
 This creates 5 RSA-4096 key pairs (`.pem`, `.x509.pem`, `.pk8` for each). The `.pk8` (PKCS#8 DER) files are what the Android build system actually uses.
 
+Make sure the keys don't get committed to version control:
+
+```bash
+echo "vendor/keys/" >> ~/crDroid/.gitignore
+```
+
 **Tell the build system to use them** by adding this line to the end of your device tree makefile (`device/oneplus/lemonadep/device.mk` or `device/oneplus/sm8350-common/common.mk`):
 
 ```makefile
-PRODUCT_DEFAULT_DEV_CERTIFICATE := $(HOME)/.android-certs/releasekey
+PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/keys/releasekey
 ```
 
 > **Back up your keys.** OTA updates must be signed with the same keys. If you lose them, users will have to clean flash.
