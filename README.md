@@ -32,15 +32,15 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 
 > The prebuilt zip in Releases contains the full crDroid 12.7 ROM + this custom kernel. The installation process is identical to a standard crDroid installation.
 
-> The build script retrieves the sources directly from the crDroid upstream repositories. Whenever an update is released on the [official crDroid website](https://crdroid.net/lemonadep/12), I rebuild the ROM and kernel and post them in the Releases section. Alternatively, you can [build the ROM with my custom kernel repository yourself](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350?tab=readme-ov-file#building-from-source).
+> The build script retrieves the sources directly from the crDroid upstream repositories. Whenever an update is released on the official crDroid website, I rebuild the ROM and kernel and post them in the Releases section. Alternatively, you can [build the ROM with my custom kernel repository yourself](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350?tab=readme-ov-file#building-from-source).
 
 1. Follow the official [crDroid installation guide for OnePlus 9 Pro](https://crdroid.net/lemonadep/12/install).
 2. At the **zip flashing step**, flash the zip you downloaded from this repository's [releases](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/releases) *instead of the stock crDroid zip*.
 3. After booting, install [KernelSU Next manager v3.0.1](https://github.com/KernelSU-Next/KernelSU-Next/releases) on your device.
-4. (Optional) Open KernelSU Next manager and install the a meta-module for Magick Mount module management alongside OverlayFS. *[Hybrid Mount](https://github.com/Hybrid-Mount/meta-hybrid_mount) recommended.*
-5. Install the [BRENE module](https://github.com/rrr333nnn333/BRENE) by [rrr333nnn333](https://github.com/rrr333nnn333) from within the manager to control SuSFS features.
+4. (Optional) Open KernelSU Next manager and install the a meta-module for Magick Mount module management alongside OverlayFS. *Hybrid Mount recommended.*
+5. Install the [BRENE module](https://github.com/rrr333nnn333/BRENE) by rrr333nnn333 from within the manager to control SuSFS features.
 
-> In step 5, you can use the [susfs4ksu module](https://github.com/sidex15/susfs4ksu-module) module from [sidex15](https://github.com/sidex15), but [BRENE module](https://github.com/rrr333nnn333/BRENE) **hides better**.
+> In step 5, you can use the [susfs4ksu module](https://github.com/sidex15/susfs4ksu-module) module from sidex15, but [BRENE module](https://github.com/rrr333nnn333/BRENE) **hides better**.
 
 ## Building & Installation for **OnePlus 9 (lemonade)**
 
@@ -49,10 +49,10 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 1. Follow the official [crDroid installation guide for OnePlus 9](https://crdroid.net/lemonade/12/install).
 2. Before the **zip flashing step**, you **MUST** [build from source](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350#building-from-source). When the build is completed, flash your the zip *instead of the stock crDroid zip*.
 3. After booting, install [KernelSU Next manager v3.0.1](https://github.com/KernelSU-Next/KernelSU-Next/releases) on your device.
-4. (Optional) Open KernelSU Next manager and install the a meta-module for Magick Mount module management alongside OverlayFS. *[Hybrid Mount](https://github.com/Hybrid-Mount/meta-hybrid_mount) recommended.*
-5. Install the [BRENE module](https://github.com/rrr333nnn333/BRENE) by [rrr333nnn333](https://github.com/rrr333nnn333) from within the manager to control SuSFS features.
+4. (Optional) Open KernelSU Next manager and install the a meta-module for Magick Mount module management alongside OverlayFS. *Hybrid Mount recommended.*
+5. Install the [BRENE module](https://github.com/rrr333nnn333/BRENE) by rrr333nnn333 from within the manager to control SuSFS features.
 
-> In step 5, you can use the [susfs4ksu module](https://github.com/sidex15/susfs4ksu-module) module from [sidex15](https://github.com/sidex15), but [BRENE module](https://github.com/rrr333nnn333/BRENE) **hides better**.
+> In step 5, you can use the [susfs4ksu module](https://github.com/sidex15/susfs4ksu-module) module from sidex15, but [BRENE module](https://github.com/rrr333nnn333/BRENE) **hides better**.
 
 ### If you'd like to support the project, feel free to leave a star ⭐
 
