@@ -20,8 +20,6 @@ This is a custom kernel source for the **OnePlus 9 Pro (lemonadep)** and the **O
 
 ### This project is a **work in progress**. It may contain bugs. If you encounter one, please [open an issue](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/issues).
 
-### If you'd like to support the project, feel free to leave a star ⭐
-
 ## Problem
 
 Stock crDroid kernel does not include the newest KernelSU Next or the newest root hiding capabilities (SuSFS). Traditional root solutions are increasingly detectable by banking apps, Play Integrity API checks (SafetyNet successor), and other tamper detection mechanisms. Users who need root for legitimate purposes (ad blocking, customization, call recording, etc.) are locked out of these apps.
@@ -51,6 +49,8 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 3. After booting, install [KernelSU Next manager v3.0.1](https://github.com/KernelSU-Next/KernelSU-Next/releases) on your device.
 4. (Optional) Open KernelSU Next manager and install the a meta-module for Magick Mount module management alongside OverlayFS. *[Hybrid Mount](https://github.com/Hybrid-Mount/meta-hybrid_mount) recommended.*
 5. Install the [SuSFS module](https://github.com/sidex15/susfs4ksu-module) by susfs4ksu from within the manager to control SuSFS features.
+
+### If you'd like to support the project, feel free to leave a star ⭐
 
 ## Features
 
