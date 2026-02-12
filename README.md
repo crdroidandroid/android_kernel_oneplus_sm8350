@@ -1,4 +1,4 @@
-# crDroid 12.7 + KernelSU Next v3.0.1 + SuSFS v2.0.0 for OnePlus 9 Pro (lemonadep) & OnePlus 9 (lemonade)
+# crDroid 12.7 (latest) + KernelSU Next v3.0.1 + SuSFS v2.0.0 for OnePlus 9 Pro (lemonadep) & OnePlus 9 (lemonade)
 
 This is a custom kernel source for the **OnePlus 9 Pro (lemonadep)** and the **OnePlus 9 (lemonade)**. It's upstreamed from [crDroid Project](https://crdroid.net) with **KernelSU Next v3.0.1** + **SuSFS v2.0.0** integrated directly into the kernel source.
 
@@ -26,17 +26,17 @@ Stock crDroid kernel does not include the newest KernelSU Next or the newest roo
 
 ## Solution
 
-This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-Next) v3.0.1 and [SuSFS](https://gitlab.com/simonpunk/susfs4ksu) v2.0.0 directly into the kernel source tree, shipped as a single flashable crDroid 12.7 (Android 16) ROM zip. Instead of kprobes, root is implemented through **9 inline syscall hooks** hand-placed in kernel source files — making detection significantly harder. SuSFS hides all root artifacts (paths, mounts, maps, kernel symbols) while SELinux remains Enforcing and Play Integrity passes at DEVICE level.
+This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-Next) v3.0.1 and [SuSFS](https://gitlab.com/simonpunk/susfs4ksu) v2.0.0 directly into the kernel source tree, shipped as a single flashable crDroid 12.7 (Android 16) ROM (latest) zip. Instead of kprobes, root is implemented through **9 inline syscall hooks** hand-placed in kernel source files — making detection significantly harder. SuSFS hides all root artifacts (paths, mounts, maps, kernel symbols) while SELinux remains Enforcing and Play Integrity passes at DEVICE level.
 
 ## Installation for **OnePlus 9 Pro (lemonadep)**
 
-> The prebuilt zip in Releases contains the full crDroid 12.7 ROM + this custom kernel. The installation process is identical to a standard crDroid installation.
+> The prebuilt zip in Releases contains the full crDroid 12.7 ROM (latest) + this custom kernel. The installation process is identical to a standard crDroid installation.
 
 > The build script retrieves the sources directly from the crDroid upstream repositories. Whenever an update is released on the official crDroid website, I rebuild the ROM and kernel and post them in the Releases section. Alternatively, you can [build the ROM with my custom kernel repository yourself](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350?tab=readme-ov-file#building-from-source).
 
 1. Follow the official [crDroid installation guide for OnePlus 9 Pro](https://crdroid.net/lemonadep/12/install).
 2. At the **zip flashing step**, flash the zip you downloaded from this repository's [releases](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/releases) *instead of the stock crDroid zip*.
-3. After booting, install [KernelSU Next manager v3.0.1](https://github.com/KernelSU-Next/KernelSU-Next/releases) on your device. You can use [nightly manager](https://t.me/ksunext_ci) instead.
+3. After booting up, install the latest version of [KernelSU Next manager](https://github.com/KernelSU-Next/KernelSU-Next/releases) on your device. Alternatively, you can use the [nightly manager](https://t.me/ksunext_ci).
 4. (Optional) Open KernelSU Next manager and install the a meta-module for Magick Mount module management alongside OverlayFS. *Hybrid Mount* recommended.
 5. Install the [BRENE module](https://github.com/rrr333nnn333/BRENE) by rrr333nnn333 from within the manager to control SuSFS features.
 
@@ -48,7 +48,7 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 
 1. Follow the official [crDroid installation guide for OnePlus 9](https://crdroid.net/lemonade/12/install).
 2. Before the **zip flashing step**, you **MUST** [build from source](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350#building-from-source). When the build is completed, flash your the zip *instead of the stock crDroid zip*.
-3. After booting, install [KernelSU Next manager v3.0.1](https://github.com/KernelSU-Next/KernelSU-Next/releases) on your device. You can use [nightly manager](https://t.me/ksunext_ci) instead.
+3. After booting up, install the latest version of [KernelSU Next manager](https://github.com/KernelSU-Next/KernelSU-Next/releases) on your device. Alternatively, you can use the [nightly manager](https://t.me/ksunext_ci).
 4. (Optional) Open KernelSU Next manager and install the a meta-module for Magick Mount module management alongside OverlayFS. *Hybrid Mount* recommended.
 5. Install the [BRENE module](https://github.com/rrr333nnn333/BRENE) by rrr333nnn333 from within the manager to control SuSFS features.
 
@@ -61,7 +61,7 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 | Component | Details |
 |-----------|---------|
 | **Kernel** | 5.4.302 (aarch64) |
-| **ROM** | crDroid 12.7 (Android 16) |
+| **ROM** | crDroid 12.7 (Android 16) (latest) |
 | **Device** | OnePlus 9 Pro (lemonadep) or OnePlus 9 (lemonade) |
 | **SoC** | Qualcomm Snapdragon 888 (SM8350/Lahaina) |
 | **KernelSU Next** | v3.0.1 (version code 32992) |
@@ -109,7 +109,7 @@ Instead of using kprobes (which can be detected), this kernel uses **9 inline ho
 
 ## Building from Source
 
-### crDroid 12.7 (Android 16) — OnePlus 9 Pro (lemonadep) or OnePlus 9 (lemonade)  Build Guide
+### crDroid 12.7 (Android 16) (latest) — OnePlus 9 Pro (lemonadep) or OnePlus 9 (lemonade)  Build Guide
 
 This kernel is built as part of the full crDroid ROM — there is no need to compile the kernel separately. The `brunch` build system handles everything automatically.
 
