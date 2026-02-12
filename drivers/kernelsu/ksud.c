@@ -136,6 +136,12 @@ void on_boot_completed(void)
 #ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
     susfs_is_boot_completed_triggered = true;
 #endif
+#ifdef CONFIG_KSU_SUSFS
+    {
+        extern void susfs_schedule_hosts_check(void);
+        susfs_schedule_hosts_check();
+    }
+#endif
     track_throne(true);
     ksu_avc_spoof_late_init();
 }

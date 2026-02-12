@@ -17,6 +17,7 @@
 #include <linux/namei.h>
 #include <linux/fs.h>
 #include <linux/stat.h>
+#include <linux/workqueue.h>
 #endif // #ifdef CONFIG_KSU_SUSFS
 
 #include "allowlist.h"
@@ -73,52 +74,88 @@ static const char susfs_clean_hosts_content[] =
 	"127.0.0.1       localhost\n"
 	"::1             ip6-localhost\n";
 
-void susfs_on_module_mounted(void)
+static struct delayed_work susfs_hosts_delayed_work;
+static bool susfs_hosts_hide_done = false;
+
+static void susfs_try_setup_hosts_hide(const char *caller)
 {
 	struct path p;
 	struct kstat kst;
 	int err;
 
-	pr_info("susfs: on_module_mounted auto-init\n");
+	if (susfs_hosts_hide_done)
+		return;
 
 	/* Check if hosts file is abnormally large (> 1KB means adblock list) */
 	err = kern_path("/system/etc/hosts", LOOKUP_FOLLOW, &p);
-	if (err)
+	if (err) {
+		pr_info("susfs: %s: hosts path not found (err=%d)\n", caller, err);
 		return;
+	}
 
 	err = vfs_getattr(&p, &kst, STATX_SIZE, AT_STATX_SYNC_AS_STAT);
 	path_put(&p);
-	if (err)
+	if (err) {
+		pr_warn("susfs: %s: vfs_getattr failed (err=%d)\n", caller, err);
 		return;
+	}
 
-	if (kst.size > 1024) {
-		pr_info("susfs: hosts file is %lld bytes, setting up auto-hide\n", kst.size);
+	if (kst.size <= 1024) {
+		pr_info("susfs: %s: hosts file is %lld bytes, no hiding needed\n",
+			caller, kst.size);
+		return;
+	}
 
-		/* 1. Create a clean hosts file for redirection */
-		err = susfs_create_file_with_content(
-			"/data/adb/.susfs/hosts_clean",
-			susfs_clean_hosts_content,
-			sizeof(susfs_clean_hosts_content) - 1);
-		if (err) {
-			pr_warn("susfs: failed to create clean hosts file: %d\n", err);
-			return;
-		}
+	pr_info("susfs: %s: hosts file is %lld bytes, setting up auto-hide\n",
+		caller, kst.size);
+
+	/* 1. Create a clean hosts file for redirection */
+	err = susfs_create_file_with_content(
+		"/data/adb/.susfs/hosts_clean",
+		susfs_clean_hosts_content,
+		sizeof(susfs_clean_hosts_content) - 1);
+	if (err) {
+		pr_warn("susfs: failed to create clean hosts file: %d\n", err);
+		return;
+	}
 
 #ifdef CONFIG_KSU_SUSFS_SUS_KSTAT
-		/* 2. Spoof stat to show small file size */
-		susfs_auto_add_sus_kstat_internal(
-			"/system/etc/hosts",
-			(long long)(sizeof(susfs_clean_hosts_content) - 1),
-			8);
+	/* 2. Spoof stat to show small file size */
+	susfs_auto_add_sus_kstat_internal(
+		"/system/etc/hosts",
+		(long long)(sizeof(susfs_clean_hosts_content) - 1),
+		8);
 #endif
 
 #ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT
-		/* 3. Redirect file reads to clean hosts */
-		susfs_auto_add_open_redirect_internal(
-			"/system/etc/hosts",
-			"/data/adb/.susfs/hosts_clean");
+	/* 3. Redirect file reads to clean hosts */
+	susfs_auto_add_open_redirect_internal(
+		"/system/etc/hosts",
+		"/data/adb/.susfs/hosts_clean");
 #endif
-	}
+
+	susfs_hosts_hide_done = true;
+}
+
+static void susfs_hosts_check_work_fn(struct work_struct *work)
+{
+	susfs_try_setup_hosts_hide("delayed_check");
+}
+
+void susfs_schedule_hosts_check(void)
+{
+	if (susfs_hosts_hide_done)
+		return;
+	INIT_DELAYED_WORK(&susfs_hosts_delayed_work, susfs_hosts_check_work_fn);
+	schedule_delayed_work(&susfs_hosts_delayed_work, msecs_to_jiffies(30000));
+	pr_info("susfs: scheduled delayed hosts check (30s)\n");
+}
+
+void susfs_on_module_mounted(void)
+{
+	pr_info("susfs: on_module_mounted auto-init\n");
+
+	susfs_try_setup_hosts_hide("on_module_mounted");
 }
 
 static inline bool is_zygote_isolated_service_uid(uid_t uid)
