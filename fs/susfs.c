@@ -336,6 +336,74 @@ void susfs_run_sus_path_loop(uid_t uid) {
 	}
 }
 
+int susfs_auto_add_sus_path_internal(const char *pathname) {
+	struct st_susfs_sus_path_list *cursor = NULL, *temp = NULL;
+	struct st_susfs_sus_path_list *new_list = NULL;
+	struct path path;
+	struct inode *inode = NULL;
+	char *resolved_pathname = NULL, *tmp_buf = NULL;
+	int err = 0;
+
+	err = kern_path(pathname, 0, &path);
+	if (err) {
+		SUSFS_LOGI("auto_add_sus_path: path '%s' not found, skipping\n", pathname);
+		return err;
+	}
+
+	if (!path.dentry->d_inode) {
+		err = -EINVAL;
+		goto out_path_put;
+	}
+	inode = d_inode(path.dentry);
+
+	tmp_buf = kmalloc(PAGE_SIZE, GFP_KERNEL);
+	if (!tmp_buf) {
+		err = -ENOMEM;
+		goto out_path_put;
+	}
+
+	resolved_pathname = d_path(&path, tmp_buf, PAGE_SIZE);
+	if (IS_ERR_OR_NULL(resolved_pathname)) {
+		err = -ENOMEM;
+		goto out_kfree;
+	}
+
+	/* Check if already in the loop list */
+	list_for_each_entry_safe(cursor, temp, &LH_SUS_PATH_LOOP, list) {
+		if (unlikely(!strcmp(cursor->info.target_pathname, resolved_pathname))) {
+			SUSFS_LOGI("auto_add_sus_path: '%s' already in LH_SUS_PATH_LOOP\n", resolved_pathname);
+			goto out_set_flag;
+		}
+	}
+
+	new_list = kmalloc(sizeof(struct st_susfs_sus_path_list), GFP_KERNEL);
+	if (!new_list) {
+		err = -ENOMEM;
+		goto out_kfree;
+	}
+	new_list->info.target_ino = inode->i_ino;
+	strncpy(new_list->info.target_pathname, resolved_pathname, SUSFS_MAX_LEN_PATHNAME - 1);
+	strncpy(new_list->target_pathname, resolved_pathname, SUSFS_MAX_LEN_PATHNAME - 1);
+	new_list->info.i_uid = 0;
+	new_list->path_len = strlen(new_list->info.target_pathname);
+	INIT_LIST_HEAD(&new_list->list);
+	spin_lock(&susfs_spin_lock_sus_path);
+	list_add_tail(&new_list->list, &LH_SUS_PATH_LOOP);
+	spin_unlock(&susfs_spin_lock_sus_path);
+	SUSFS_LOGI("auto_add_sus_path: '%s' added to LH_SUS_PATH_LOOP\n", resolved_pathname);
+
+out_set_flag:
+	spin_lock(&inode->i_lock);
+	set_bit(AS_FLAGS_SUS_PATH, &inode->i_mapping->flags);
+	spin_unlock(&inode->i_lock);
+	SUSFS_LOGI("auto_add_sus_path: '%s' flagged as AS_FLAGS_SUS_PATH\n", resolved_pathname);
+out_kfree:
+	kfree(tmp_buf);
+out_path_put:
+	path_put(&path);
+	return err;
+}
+
 static inline bool is_i_uid_in_android_data_not_allowed(uid_t i_uid) {
 	return (likely(susfs_is_current_proc_umounted()) &&
 		unlikely(current_uid().val != i_uid));
@@ -432,7 +500,7 @@ bool susfs_is_inode_sus_path(struct inode *inode) {
 /* sus_mount */
 #ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
 static DEFINE_SPINLOCK(susfs_spin_lock_sus_mount);
-bool susfs_hide_sus_mnts_for_non_su_procs = false;
+bool susfs_hide_sus_mnts_for_non_su_procs = true;
 
 void susfs_set_hide_sus_mnts_for_non_su_procs(void __user **user_info) {
 	struct st_susfs_hide_sus_mnts_for_non_su_procs info;
@@ -643,6 +711,74 @@ void susfs_sus_ino_for_show_map_vma(unsigned long ino, dev_t *out_dev, unsigned 
 			return;
 		}
 	}
+}
+
+int susfs_auto_add_sus_kstat_internal(const char *pathname, long long spoofed_size, unsigned long long spoofed_blocks) {
+	struct st_susfs_sus_kstat_hlist *new_entry = NULL;
+	struct path p;
+	struct inode *inode = NULL;
+	struct kstat real_stat;
+	int err = 0;
+
+	err = kern_path(pathname, LOOKUP_FOLLOW, &p);
+	if (err) {
+		SUSFS_LOGI("auto_add_sus_kstat: path '%s' not found, skipping\n", pathname);
+		return err;
+	}
+
+	inode = d_inode(p.dentry);
+	if (!inode) {
+		err = -EINVAL;
+		goto out_path_put;
+	}
+
+	/* Get real stat values */
+	err = vfs_getattr(&p, &real_stat, STATX_BASIC_STATS, AT_STATX_SYNC_AS_STAT);
+	if (err) {
+		SUSFS_LOGE("auto_add_sus_kstat: vfs_getattr failed for '%s'\n", pathname);
+		goto out_path_put;
+	}
+
+	new_entry = kzalloc(sizeof(*new_entry), GFP_KERNEL);
+	if (!new_entry) {
+		err = -ENOMEM;
+		goto out_path_put;
+	}
+
+	/* Fill with real values, override size and blocks */
+	new_entry->target_ino = inode->i_ino;
+	new_entry->info.target_ino = inode->i_ino;
+	strncpy(new_entry->info.target_pathname, pathname, SUSFS_MAX_LEN_PATHNAME - 1);
+	new_entry->info.spoofed_ino = real_stat.ino;
+	new_entry->info.spoofed_dev = real_stat.dev;
+	new_entry->info.spoofed_nlink = real_stat.nlink;
+	new_entry->info.spoofed_size = spoofed_size;
+	new_entry->info.spoofed_atime_tv_sec = real_stat.atime.tv_sec;
+	new_entry->info.spoofed_atime_tv_nsec = real_stat.atime.tv_nsec;
+	new_entry->info.spoofed_mtime_tv_sec = real_stat.mtime.tv_sec;
+	new_entry->info.spoofed_mtime_tv_nsec = real_stat.mtime.tv_nsec;
+	new_entry->info.spoofed_ctime_tv_sec = real_stat.ctime.tv_sec;
+	new_entry->info.spoofed_ctime_tv_nsec = real_stat.ctime.tv_nsec;
+	new_entry->info.spoofed_blksize = real_stat.blksize;
+	new_entry->info.spoofed_blocks = spoofed_blocks;
+
+	/* Set inode flag */
+	if (!(inode->i_mapping->flags & BIT_SUS_KSTAT)) {
+		spin_lock(&inode->i_lock);
+		set_bit(AS_FLAGS_SUS_KSTAT, &inode->i_mapping->flags);
+		spin_unlock(&inode->i_lock);
+	}
+
+	/* Add to hash table */
+	spin_lock(&susfs_spin_lock_sus_kstat);
+	hash_add(SUS_KSTAT_HLIST, &new_entry->node, inode->i_ino);
+	spin_unlock(&susfs_spin_lock_sus_kstat);
+	SUSFS_LOGI("auto_add_sus_kstat: '%s' (ino=%lu) spoofed size=%lld blocks=%llu\n",
+		pathname, inode->i_ino, spoofed_size, spoofed_blocks);
+
+out_path_put:
+	path_put(&p);
+	return err;
 }
 #endif // #ifdef CONFIG_KSU_SUSFS_SUS_KSTAT
 
@@ -875,6 +1011,51 @@ struct filename* susfs_get_redirected_path(unsigned long ino) {
 		}
 	}
 	return ERR_PTR(-ENOENT);
+}
+
+int susfs_auto_add_open_redirect_internal(const char *target, const char *redirect) {
+	struct st_susfs_open_redirect_hlist *new_entry = NULL;
+	struct path path_target;
+	struct inode *inode_target = NULL;
+	int err = 0;
+
+	err = kern_path(target, LOOKUP_FOLLOW, &path_target);
+	if (err) {
+		SUSFS_LOGI("auto_add_open_redirect: target '%s' not found, skipping\n", target);
+		return err;
+	}
+
+	inode_target = d_inode(path_target.dentry);
+	if (!inode_target) {
+		err = -EINVAL;
+		goto out_path_put;
+	}
+
+	new_entry = kzalloc(sizeof(*new_entry), GFP_KERNEL);
+	if (!new_entry) {
+		err = -ENOMEM;
+		goto out_path_put;
+	}
+
+	new_entry->target_ino = inode_target->i_ino;
+	strncpy(new_entry->target_pathname, target, SUSFS_MAX_LEN_PATHNAME - 1);
+	strncpy(new_entry->redirected_pathname, redirect, SUSFS_MAX_LEN_PATHNAME - 1);
+
+	/* Set inode flag */
+	spin_lock(&inode_target->i_lock);
+	set_bit(AS_FLAGS_OPEN_REDIRECT, &inode_target->i_mapping->flags);
+	spin_unlock(&inode_target->i_lock);
+
+	/* Add to hash table */
+	spin_lock(&susfs_spin_lock_open_redirect);
+	hash_add(OPEN_REDIRECT_HLIST, &new_entry->node, inode_target->i_ino);
+	spin_unlock(&susfs_spin_lock_open_redirect);
+	SUSFS_LOGI("auto_add_open_redirect: '%s' -> '%s' (ino=%lu)\n",
+		target, redirect, inode_target->i_ino);
+
+out_path_put:
+	path_put(&path_target);
+	return err;
 }
 #endif // #ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT
 
@@ -1178,6 +1359,51 @@ void susfs_start_sdcard_monitor_fn(void) {
 	if (IS_ERR(t)) {
 		pr_err("susfs: failed to start sdcard monitor thread: %ld\n", PTR_ERR(t));
 	}
+}
+
+/* susfs auto-init file creation helper */
+int susfs_create_file_with_content(const char *filepath, const char *content, size_t len) {
+	struct file *filp = NULL;
+	struct path parent_path;
+	struct dentry *dentry = NULL;
+	struct inode *dir = NULL;
+	loff_t pos = 0;
+	int ret = 0;
+
+	/* Create /data/adb/.susfs/ directory if needed */
+	ret = kern_path("/data/adb", LOOKUP_FOLLOW, &parent_path);
+	if (ret) {
+		SUSFS_LOGE("create_file: /data/adb not found\n");
+		return ret;
+	}
+	dir = d_inode(parent_path.dentry);
+	inode_lock(dir);
+	dentry = lookup_one_len(".susfs", parent_path.dentry, 6);
+	if (!IS_ERR(dentry)) {
+		if (d_is_negative(dentry))
+			vfs_mkdir(dir, dentry, 0700);
+		dput(dentry);
+	}
+	inode_unlock(dir);
+	path_put(&parent_path);
+
+	/* Create and write the file */
+	filp = filp_open(filepath, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (IS_ERR(filp)) {
+		SUSFS_LOGE("create_file: failed to open '%s': %ld\n", filepath, PTR_ERR(filp));
+		return PTR_ERR(filp);
+	}
+
+	ret = kernel_write(filp, content, len, &pos);
+	filp_close(filp, NULL);
+
+	if (ret < 0) {
+		SUSFS_LOGE("create_file: failed to write '%s': %d\n", filepath, ret);
+		return ret;
+	}
+
+	SUSFS_LOGI("create_file: '%s' created (%zu bytes)\n", filepath, len);
+	return 0;
 }
 
 /* susfs_init */

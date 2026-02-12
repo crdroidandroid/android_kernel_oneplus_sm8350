@@ -166,6 +166,7 @@ struct st_susfs_version {
 void susfs_set_i_state_on_external_dir(void __user **user_info);
 void susfs_add_sus_path(void __user **user_info);
 void susfs_add_sus_path_loop(void __user **user_info);
+int susfs_auto_add_sus_path_internal(const char *pathname);
 #endif
 
 /* sus_mount */
@@ -179,6 +180,7 @@ void susfs_add_sus_kstat(void __user **user_info);
 void susfs_update_sus_kstat(void __user **user_info);
 void susfs_sus_ino_for_generic_fillattr(unsigned long ino, struct kstat *stat);
 void susfs_sus_ino_for_show_map_vma(unsigned long ino, dev_t *out_dev, unsigned long *out_ino);
+int susfs_auto_add_sus_kstat_internal(const char *pathname, long long spoofed_size, unsigned long long spoofed_blocks);
 #endif
 
 /* spoof_uname */
@@ -202,6 +204,7 @@ int susfs_spoof_cmdline_or_bootconfig(struct seq_file *m);
 #ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT
 void susfs_add_open_redirect(void __user **user_info);
 struct filename* susfs_get_redirected_path(unsigned long ino);
+int susfs_auto_add_open_redirect_internal(const char *target, const char *redirect);
 #endif
 
 /* sus_map */
@@ -216,6 +219,9 @@ void susfs_show_variant(void __user **user_info);
 void susfs_show_version(void __user **user_info);
 
 void susfs_start_sdcard_monitor_fn(void);
+
+/* susfs auto-init helpers */
+int susfs_create_file_with_content(const char *filepath, const char *content, size_t len);
 
 /* susfs_init */
 void susfs_init(void);
