@@ -155,3 +155,10 @@ arch/arm/boot/dts/vendor
 #Ignoring Android.bp link file
 #
 Android.bp
+
+#
+# Debug/temporary files
+#
+tmp/
+PLAN.md
+plan.md
