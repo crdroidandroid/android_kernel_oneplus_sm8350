@@ -1,4 +1,4 @@
-Kernel: 5.4.302-qgki-g052626d30254
+Kernel: 5.4.302-qgki-gfca6143a94ca
 BRAND: OnePlus
 MODEL: LE2127
 PRODUCT: OnePlus9Pro
@@ -10,8 +10,8 @@ FINGERPRINT: OnePlus/OnePlus9Pro/OnePlus9Pro:14/UKQ1.230924.001/R.209d31b_1-3932
 DEVICE: OnePlus9Pro
 Manager: (v3.0.1, 32967)
 SELinux: Enforcing
-KernelRelease: 5.4.302-qgki-g052626d30254
-KernelVersion: #16 SMP PREEMPT Wed Feb 11 06:49:09 +03 2026
+KernelRelease: 5.4.302-qgki-gfca6143a94ca
+KernelVersion: #19 SMP PREEMPT Thu Feb 12 16:49:16 +03 2026
 Machine: aarch64
 Nodename: localhost
 Sysname: Linux
