@@ -18,7 +18,7 @@ While AI did the heavy lifting, human oversight remained mandatory. Every commit
 
 ### This repository is **NOT** compatible to build for any other Snapdragon 888 (SM8350/Lahaina) devices.
 
-### This project is still a work in progress. Everything has been tested but it may still contain bugs. If you encounter a bug, please [open an issue](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/issues).
+### Although everything has been tested, this project is still a work in progress and may contain bugs. If you encounter a bug, please [open an issue](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/issues).
 
 ## Problem
 
