@@ -115,7 +115,8 @@ This kernel is built as part of the full crDroid ROM — there is no need to com
 - Minimum 450 GB free disk space
 - Minimum 16 GB RAM (32 GB recommended)
 - Good internet connection (source code is ~100 GB)
-- 10+ hours, requiring a lot of patience
+- Depending on your system, the **first build** takes 4-10 hours.
+> Once you have configured `ccache`, which is step 6, the **second compilation** will only take 30-60 minutes.
 
 ### 2. Install Dependencies
 
