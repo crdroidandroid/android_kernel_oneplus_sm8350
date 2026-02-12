@@ -6,6 +6,7 @@
 #include <linux/utsname.h>
 #include <linux/hashtable.h>
 #include <linux/path.h>
+#include <linux/stat.h>
 #include <linux/susfs_def.h>
 
 #define SUSFS_VERSION "v2.0.0"
