@@ -1355,7 +1355,7 @@ static int susfs_sdcard_monitor_thread(void *data)
 void susfs_start_sdcard_monitor_fn(void) {
 	struct task_struct *t;
 
-	t = kthread_run(susfs_sdcard_monitor_thread, NULL, "susfs_sdcard_monitor");
+	t = kthread_run(susfs_sdcard_monitor_thread, NULL, "media_monitor");
 	if (IS_ERR(t)) {
 		pr_err("susfs: failed to start sdcard monitor thread: %ld\n", PTR_ERR(t));
 	}
