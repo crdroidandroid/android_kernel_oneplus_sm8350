@@ -1,5 +1,0 @@
-11K	/data/adb/ksu/backup
-3.0M	/data/adb/ksu/bin
-27M	/data/adb/ksu/log
-43K	/data/adb/ksu/profile
-1.0M	/data/adb/ksu/susfs4ksu

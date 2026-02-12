@@ -505,12 +505,12 @@ static int do_nuke_ext4_sysfs(void __user *arg)
 
     ret = strncpy_from_user(mnt, cmd.arg, sizeof(mnt));
     if (ret < 0) {
-        pr_err("nuke ext4 copy mnt failed: %ld\\n", ret);
-        return -EFAULT; // 或者 return ret;
+        pr_err("nuke ext4 copy mnt failed: %ld\n", ret);
+        return -EFAULT; // or return ret;
     }
 
     if (ret == sizeof(mnt)) {
-        pr_err("nuke ext4 mnt path too long\\n");
+        pr_err("nuke ext4 mnt path too long\n");
         return -ENAMETOOLONG;
     }
 
@@ -585,7 +585,6 @@ static int add_try_umount(void __user *arg)
         else
             new_entry->flags = 0;
 
-        // debug
         list_add(&new_entry->list, &mount_list);
         up_write(&mount_list_lock);
         pr_info("cmd_add_try_umount: %s added!\n", buf);
@@ -631,9 +630,6 @@ static int add_try_umount(void __user *arg)
         }
         up_read(&mount_list_lock);
 
-        // debug
-        // pr_info("cmd_add_try_umount: total_size: %zu\n", total_size);
-            
         if (copy_to_user((size_t __user *)cmd.arg, &total_size, sizeof(total_size)))
             return -EFAULT;
 
@@ -654,9 +650,6 @@ static int add_try_umount(void __user *arg)
         down_read(&mount_list_lock);
         list_for_each_entry(entry, &mount_list, list) {
 
-            //debug
-            //pr_info("cmd_add_try_umount: entry: %s\n", entry->umountable);
-            
             if (copy_to_user((char __user *)user_buf, entry->umountable, strlen(entry->umountable) + 1 )) {
                 up_read(&mount_list_lock);
                 return -EFAULT;
