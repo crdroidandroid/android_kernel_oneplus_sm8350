@@ -70,6 +70,7 @@ bool ksu_input_hook __read_mostly = true;
 
 #ifdef CONFIG_KSU_SUSFS
 extern void susfs_on_post_fs_data(void);
+extern void susfs_on_module_mounted(void);
 #endif
 
 void on_post_fs_data(void)
@@ -118,6 +119,9 @@ void on_module_mounted(void)
 {
 	pr_info("on_module_mounted!\n");
 	ksu_module_mounted = true;
+#ifdef CONFIG_KSU_SUSFS
+	susfs_on_module_mounted();
+#endif
 }
 
 #ifdef CONFIG_KSU_SUSFS

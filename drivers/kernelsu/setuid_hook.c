@@ -13,7 +13,10 @@
 #include <linux/uidgid.h>
 #ifdef CONFIG_KSU_SUSFS
 #include <linux/susfs_def.h>
+#include <linux/susfs.h>
 #include <linux/namei.h>
+#include <linux/fs.h>
+#include <linux/stat.h>
 #endif // #ifdef CONFIG_KSU_SUSFS
 
 #include "allowlist.h"
@@ -58,8 +61,64 @@ extern void susfs_reorder_mnt_id(void);
 
 void susfs_on_post_fs_data(void)
 {
-	/* v2.0.0: removed AUTO_ADD and SUS_SU features */
-	pr_info("susfs: post_fs_data triggered (v2.0.0)\n");
+	pr_info("susfs: post_fs_data triggered (v2.0.0 + auto-init)\n");
+
+#ifdef CONFIG_KSU_SUSFS_SUS_PATH
+	/* Auto-hide /system/addon.d - not present on stock Android */
+	susfs_auto_add_sus_path_internal("/system/addon.d");
+#endif
+}
+
+static const char susfs_clean_hosts_content[] =
+	"127.0.0.1       localhost\n"
+	"::1             ip6-localhost\n";
+
+void susfs_on_module_mounted(void)
+{
+	struct path p;
+	struct kstat kst;
+	int err;
+
+	pr_info("susfs: on_module_mounted auto-init\n");
+
+	/* Check if hosts file is abnormally large (> 1KB means adblock list) */
+	err = kern_path("/system/etc/hosts", LOOKUP_FOLLOW, &p);
+	if (err)
+		return;
+
+	err = vfs_getattr(&p, &kst, STATX_SIZE, AT_STATX_SYNC_AS_STAT);
+	path_put(&p);
+	if (err)
+		return;
+
+	if (kst.size > 1024) {
+		pr_info("susfs: hosts file is %lld bytes, setting up auto-hide\n", kst.size);
+
+		/* 1. Create a clean hosts file for redirection */
+		err = susfs_create_file_with_content(
+			"/data/adb/.susfs/hosts_clean",
+			susfs_clean_hosts_content,
+			sizeof(susfs_clean_hosts_content) - 1);
+		if (err) {
+			pr_warn("susfs: failed to create clean hosts file: %d\n", err);
+			return;
+		}
+
+#ifdef CONFIG_KSU_SUSFS_SUS_KSTAT
+		/* 2. Spoof stat to show small file size */
+		susfs_auto_add_sus_kstat_internal(
+			"/system/etc/hosts",
+			(long long)(sizeof(susfs_clean_hosts_content) - 1),
+			8);
+#endif
+
+#ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT
+		/* 3. Redirect file reads to clean hosts */
+		susfs_auto_add_open_redirect_internal(
+			"/system/etc/hosts",
+			"/data/adb/.susfs/hosts_clean");
+#endif
+	}
 }
 
 static inline bool is_zygote_isolated_service_uid(uid_t uid)
