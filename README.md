@@ -146,7 +146,7 @@ This kernel includes a comprehensive set of performance and battery life optimiz
 | **ZRAM with LZ4** | Compressed RAM swap using the fast LZ4 algorithm instead of lzo-rle |
 | **Page Cluster: 0** | Swap read-ahead disabled — unnecessary with ZRAM since data is already in memory |
 | **VFS Cache Pressure: 50** | Dentry/inode caches retained longer, reducing filesystem metadata I/O |
-| **Dirty Ratio: 40%** | Allows more dirty pages in RAM before forcing writeback — improves burst write performance without excessive writeback storms |
+| **Dirty Ratio: 30%** | Allows more dirty pages in RAM before forcing writeback — balances burst write performance with Dynamic Fsync screen-on flush safety |
 | **VM Stat Interval: 30s** | Per-CPU vmstat counter flush reduced from every 1s to every 30s — less jitter |
 
 ### Power Management
