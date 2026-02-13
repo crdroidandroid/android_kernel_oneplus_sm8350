@@ -111,6 +111,24 @@ Instead of using kprobes (which can be detected), this kernel uses **9 inline ho
 | `kernel/reboot.c` | reboot handler (IOCTL communication) |
 | `kernel/seccomp.c` | seccomp bypass for reboot supercall |
 
+### Performance & Optimizations
+
+- **Tier 1 Kernel Optimizations**:
+  - **BBR TCP Congestion Control**: Enabled by default with `FQ` and `FQ_CODEL` schedulers.
+  - **ZRAM Compression**: Switched default compressor from `lzo-rle` to **lz4** for 2-3x faster decompression.
+  - **CPU Governor**: Switched default to **schedutil** for better battery life and sustained performance.
+  - **Power-Efficient Workqueues**: Enabled to schedule non-critical work on LITTLE cores.
+  - **Debloated**: Disabled unnecessary debug flags for a smaller kernel image and reduced runtime overhead.
+
+- **Adrenoboost GPU Support**:
+  - Adds configurable GPU frequency boost to `msm-adreno-tz` governor.
+  - Boost levels: `0` (off), `1` (low), `2` (medium), `3` (high).
+  > Control via sysfs: `/sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost`
+
+- **Dynamic Fsync**:
+  - Implements **Dynamic Fsync** for battery savings. Skips `fsync()` calls when screen is off and flushes data when screen turns on.
+  > Control via sysfs: `/sys/kernel/dyn_fsync/Fsync_enabled`
+
 ## Building from Source
 
 ### crDroid 12.7 (Android 16) (latest) — OnePlus 9 Pro (lemonadep) or OnePlus 9 (lemonade)  Build Guide
