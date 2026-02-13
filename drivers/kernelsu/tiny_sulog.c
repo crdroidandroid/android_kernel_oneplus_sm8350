@@ -13,13 +13,14 @@ static uint8_t sulog_index_next = 0;
 
 static DEFINE_SPINLOCK(sulog_lock);
 
-void sulog_init_heap()
+int sulog_init_heap(void)
 {
 	sulog_buf_ptr = kzalloc(SULOG_BUFSIZ, GFP_KERNEL);
 	if (!sulog_buf_ptr)
-		sulog_buf_ptr = NULL;
-	
+		return -ENOMEM;
+
 	pr_info("sulog_init: allocated %lu bytes on 0x%p \n", SULOG_BUFSIZ, sulog_buf_ptr);
+	return 0;
 }
 
 void write_sulog(uint8_t sym)

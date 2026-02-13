@@ -4,7 +4,7 @@
 #include <linux/init.h>
 #include <linux/types.h>
 
-void ksu_setuid_hook_init(void);
+int ksu_setuid_hook_init(void);
 void ksu_setuid_hook_exit(void);
 
 // Handler functions for hook_manager

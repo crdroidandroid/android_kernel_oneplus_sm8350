@@ -331,7 +331,7 @@ static void ksu_sys_enter_handler(void *data, struct pt_regs *regs, long id)
 }
 #endif
 
-void ksu_syscall_hook_manager_init(void)
+int ksu_syscall_hook_manager_init(void)
 {
     int ret;
     pr_info("hook_manager: ksu_hook_manager_init called\n");
@@ -361,6 +361,7 @@ void ksu_syscall_hook_manager_init(void)
     ksu_setuid_hook_init();
     ksu_sucompat_init();
     ksu_avc_spoof_init();
+    return 0;
 }
 
 void ksu_syscall_hook_manager_exit(void)

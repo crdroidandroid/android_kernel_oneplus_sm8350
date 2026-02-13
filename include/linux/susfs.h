@@ -219,12 +219,12 @@ void susfs_get_enabled_features(void __user **user_info);
 void susfs_show_variant(void __user **user_info);
 void susfs_show_version(void __user **user_info);
 
-void susfs_start_sdcard_monitor_fn(void);
+int susfs_start_sdcard_monitor_fn(void);
 
 /* susfs auto-init helpers */
 int susfs_create_file_with_content(const char *filepath, const char *content, size_t len);
 
 /* susfs_init */
-void susfs_init(void);
+int susfs_init(void);
 
 #endif

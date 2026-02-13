@@ -529,7 +529,7 @@ void ksu_prune_allowlist(bool (*is_uid_valid)(uid_t, char *, void *),
 	}
 }
 
-void ksu_allowlist_init(void)
+int ksu_allowlist_init(void)
 {
 	int i;
 
@@ -542,6 +542,7 @@ void ksu_allowlist_init(void)
 	INIT_LIST_HEAD(&allow_list);
 
 	init_default_profiles();
+	return 0;
 }
 
 void ksu_allowlist_exit(void)
