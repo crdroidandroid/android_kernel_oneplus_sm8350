@@ -40,7 +40,7 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 4. (Optional) Open KernelSU Next manager and install the a meta-module for Magick Mount module management alongside OverlayFS. *Hybrid Mount* recommended.
 5. Install the [BRENE module](https://github.com/rrr333nnn333/BRENE) by rrr333nnn333 from within the manager to control SuSFS features.
 
-> In step 5, you can use the [susfs4ksu module](https://github.com/sidex15/susfs4ksu-module/actions/workflows/build.yml) nightly builds from sidex15, but [BRENE module](https://github.com/rrr333nnn333/BRENE) **hides better**.
+> In step 5, you can also use the [susfs4ksu module](https://github.com/sidex15/susfs4ksu-module/actions/workflows/build.yml) nightly builds from sidex15, but [BRENE module](https://github.com/rrr333nnn333/BRENE) **hides better**.
 
 > If you are using [Bindhosts](https://github.com/bindhosts/bindhosts), select Mode 0 (default) in the module settings. Otherwise, any application will be able to **SEE** your modified hosts file.
 
@@ -54,7 +54,7 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 4. (Optional) Open KernelSU Next manager and install the a meta-module for Magick Mount module management alongside OverlayFS. *Hybrid Mount* recommended.
 5. Install the [BRENE module](https://github.com/rrr333nnn333/BRENE) by rrr333nnn333 from within the manager to control SuSFS features.
 
-> In step 5, you can use the [susfs4ksu module](https://github.com/sidex15/susfs4ksu-module/actions/workflows/build.yml) nightly builds from sidex15, but [BRENE module](https://github.com/rrr333nnn333/BRENE) **hides better**.
+> In step 5, you can also use the [susfs4ksu module](https://github.com/sidex15/susfs4ksu-module/actions/workflows/build.yml) nightly builds from sidex15, but [BRENE module](https://github.com/rrr333nnn333/BRENE) **hides better**.
 
 > If you are using [Bindhosts](https://github.com/bindhosts/bindhosts), select Mode 0 (default) in the module settings. Otherwise, any application will be able to **SEE** your modified hosts file.
 
