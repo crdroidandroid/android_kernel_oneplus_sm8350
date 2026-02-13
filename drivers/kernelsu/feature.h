@@ -31,7 +31,7 @@ int ksu_get_feature(u32 feature_id, u64 *value, bool *supported);
 
 int ksu_set_feature(u32 feature_id, u64 value);
 
-void ksu_feature_init(void);
+int ksu_feature_init(void);
 
 void ksu_feature_exit(void);
 

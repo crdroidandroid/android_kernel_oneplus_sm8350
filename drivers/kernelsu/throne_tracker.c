@@ -348,9 +348,10 @@ out:
 	}
 }
 
-void ksu_throne_tracker_init()
+int ksu_throne_tracker_init(void)
 {
 	// nothing to do
+	return 0;
 }
 
 void ksu_throne_tracker_exit()

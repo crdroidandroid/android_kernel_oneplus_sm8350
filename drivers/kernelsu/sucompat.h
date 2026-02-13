@@ -4,7 +4,7 @@
 
 extern bool ksu_su_compat_enabled;
 
-void ksu_sucompat_init(void);
+int ksu_sucompat_init(void);
 void ksu_sucompat_exit(void);
 
 // Handler functions exported for hook_manager

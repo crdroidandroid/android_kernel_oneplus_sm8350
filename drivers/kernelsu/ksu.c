@@ -23,7 +23,7 @@
 #include "file_wrapper.h"
 
 #ifdef CONFIG_KSU_SUSFS
-extern void ksu_avc_spoof_init(void);
+extern int ksu_avc_spoof_init(void);
 extern void ksu_avc_spoof_exit(void);
 #endif
 
@@ -31,6 +31,8 @@ struct cred *ksu_cred;
 
 int __init kernelsu_init(void)
 {
+	int ret;
+
 #ifdef CONFIG_KSU_DEBUG
 	pr_alert("*************************************************************");
 	pr_alert("**     NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE    **");
@@ -41,38 +43,65 @@ int __init kernelsu_init(void)
 	pr_alert("*************************************************************");
 #endif
 
-    ksu_cred = prepare_creds();
-    if (!ksu_cred) {
-        pr_err("prepare cred failed!\n");
-        return -ENOMEM;
-    }
+	ksu_cred = prepare_creds();
+	if (!ksu_cred) {
+		pr_err("prepare cred failed!\n");
+		return -ENOMEM;
+	}
 
-	ksu_feature_init();
+	ret = ksu_feature_init();
+	if (ret)
+		goto err_cred;
 
-	ksu_supercalls_init();
+	ret = ksu_supercalls_init();
+	if (ret)
+		goto err_feature;
 
 #ifndef CONFIG_KSU_SUSFS
-	ksu_syscall_hook_manager_init();
+	ret = ksu_syscall_hook_manager_init();
+	if (ret)
+		goto err_supercalls;
 #else
-	ksu_setuid_hook_init();
-	ksu_sucompat_init();
-	ksu_avc_spoof_init();
+	ret = ksu_setuid_hook_init();
+	if (ret)
+		goto err_supercalls;
+
+	ret = ksu_sucompat_init();
+	if (ret)
+		goto err_setuid_hook;
+
+	ret = ksu_avc_spoof_init();
+	if (ret)
+		goto err_sucompat;
 #endif // #ifndef CONFIG_KSU_SUSFS
 
-	ksu_allowlist_init();
+	ret = ksu_allowlist_init();
+	if (ret)
+		goto err_hooks;
 
-	ksu_throne_tracker_init();
+	ret = ksu_throne_tracker_init();
+	if (ret)
+		goto err_allowlist;
 
 #ifdef CONFIG_KSU_SUSFS
-	susfs_init();
-	susfs_start_sdcard_monitor_fn();
+	ret = susfs_init();
+	if (ret)
+		goto err_throne;
+
+	ret = susfs_start_sdcard_monitor_fn();
+	if (ret)
+		goto err_throne;
 #endif // #ifdef CONFIG_KSU_SUSFS
 
 #ifndef CONFIG_KSU_SUSFS
-	ksu_ksud_init();
+	ret = ksu_ksud_init();
+	if (ret)
+		goto err_throne;
 #endif // #ifndef CONFIG_KSU_SUSFS
 
-    ksu_file_wrapper_init();
+	ret = ksu_file_wrapper_init();
+	if (ret)
+		goto err_ksud;
 
 #ifdef MODULE
 #ifndef CONFIG_KSU_DEBUG
@@ -80,6 +109,33 @@ int __init kernelsu_init(void)
 #endif
 #endif
 	return 0;
+
+err_ksud:
+#ifndef CONFIG_KSU_SUSFS
+	ksu_ksud_exit();
+#endif
+err_throne:
+	ksu_throne_tracker_exit();
+err_allowlist:
+	ksu_allowlist_exit();
+err_hooks:
+#ifndef CONFIG_KSU_SUSFS
+	ksu_syscall_hook_manager_exit();
+#else
+	ksu_avc_spoof_exit();
+err_sucompat:
+	ksu_sucompat_exit();
+err_setuid_hook:
+	ksu_setuid_hook_exit();
+#endif // #ifndef CONFIG_KSU_SUSFS
+err_supercalls:
+	ksu_supercalls_exit();
+err_feature:
+	ksu_feature_exit();
+err_cred:
+	put_cred(ksu_cred);
+	ksu_cred = NULL;
+	return ret;
 }
 
 extern void ksu_observer_exit(void);

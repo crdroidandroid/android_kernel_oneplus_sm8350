@@ -6,7 +6,7 @@
 #include <linux/thread_info.h>
 
 // Hook manager initialization and cleanup
-void ksu_syscall_hook_manager_init(void);
+int ksu_syscall_hook_manager_init(void);
 void ksu_syscall_hook_manager_exit(void);
 
 // Process marking for tracepoint
@@ -19,7 +19,7 @@ int ksu_get_task_mark(pid_t pid);
 int ksu_set_task_mark(pid_t pid, bool mark);
 
 // extras.c
-void ksu_avc_spoof_init(void);
+int ksu_avc_spoof_init(void);
 void ksu_avc_spoof_exit(void);
 
 static inline void ksu_set_task_tracepoint_flag(struct task_struct *t)

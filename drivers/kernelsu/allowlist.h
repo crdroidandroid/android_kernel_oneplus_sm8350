@@ -11,7 +11,7 @@
 #define FIRST_ISOLATED_UID 99000
 #define LAST_ISOLATED_UID 99999
 
-void ksu_allowlist_init(void);
+int ksu_allowlist_init(void);
 
 void ksu_allowlist_exit(void);
 

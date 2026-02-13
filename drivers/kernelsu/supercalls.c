@@ -1072,9 +1072,9 @@ int ksu_handle_sys_reboot(int magic1, int magic2, unsigned int cmd, void __user 
 }
 #endif // #ifndef CONFIG_KSU_SUSFS
 
-void ksu_supercalls_init(void)
+int ksu_supercalls_init(void)
 {
-	int i;
+	int i, ret;
 
 	pr_info("KernelSU IOCTL Commands:\n");
 	for (i = 0; ksu_ioctl_handlers[i].handler; i++) {
@@ -1091,7 +1091,16 @@ void ksu_supercalls_init(void)
 	}
 #endif // #ifndef CONFIG_KSU_SUSFS
 
-	sulog_init_heap(); // grab heap memory
+	ret = sulog_init_heap();
+	if (ret) {
+		pr_err("sulog_init_heap failed: %d\n", ret);
+#ifndef CONFIG_KSU_SUSFS
+		unregister_kprobe(&reboot_kp);
+#endif
+		return ret;
+	}
+
+	return 0;
 }
 
 void ksu_supercalls_exit(void)
