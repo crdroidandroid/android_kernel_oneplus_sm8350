@@ -111,23 +111,63 @@ Instead of using kprobes (which can be detected), this kernel uses **9 inline ho
 | `kernel/reboot.c` | reboot handler (IOCTL communication) |
 | `kernel/seccomp.c` | seccomp bypass for reboot supercall |
 
-### Performance & Optimizations
+## Performance Optimizations
 
-- **Tier 1 Kernel Optimizations**:
-  - **BBR TCP Congestion Control**: Enabled by default with `FQ` and `FQ_CODEL` schedulers.
-  - **ZRAM Compression**: Switched default compressor from `lzo-rle` to **lz4** for 2-3x faster decompression.
-  - **CPU Governor**: Switched default to **schedutil** for better battery life and sustained performance.
-  - **Power-Efficient Workqueues**: Enabled to schedule non-critical work on LITTLE cores.
-  - **Debloated**: Disabled unnecessary debug flags for a smaller kernel image and reduced runtime overhead.
+This kernel includes a comprehensive set of performance and battery life optimizations applied directly at the source level — no Magisk modules or post-boot scripts required. All tweaks are active from the moment the kernel boots.
 
-- **Adrenoboost GPU Support**:
-  - Adds configurable GPU frequency boost to `msm-adreno-tz` governor.
-  - Boost levels: `0` (off), `1` (low), `2` (medium), `3` (high).
-  > Control via sysfs: `/sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost`
+### Network & I/O
 
-- **Dynamic Fsync**:
-  - Implements **Dynamic Fsync** for battery savings. Skips `fsync()` calls when screen is off and flushes data when screen turns on.
-  > Control via sysfs: `/sys/kernel/dyn_fsync/Fsync_enabled`
+| Optimization | Details |
+|-------------|---------|
+| **BBR TCP Congestion Control** | Google's BBR algorithm as default — better throughput and lower latency than CUBIC, especially on lossy mobile networks |
+| **FQ/FQ_CODEL Qdisc** | Fair Queue and CoDel packet scheduling for reduced bufferbloat |
+| **TCP Timestamps Disabled** | Saves 12 bytes per TCP packet header; reduces overhead on mobile connections |
+| **BFQ I/O Scheduler** | Budget Fair Queueing as default — optimized for interactive workloads and flash storage |
+| **Block I/O Stats Disabled** | Per-I/O accounting overhead removed from all block devices by default |
+| **MMC SPI CRC Disabled** | Eliminates unnecessary CRC checks on storage transfers (modern UFS/eMMC have hardware ECC) |
+
+### CPU & Scheduler
+
+| Optimization | Details |
+|-------------|---------|
+| **Schedutil Governor** | Frequency scaling driven directly by the scheduler's utilization signals |
+| **Tunable Scaling: None** | Prevents auto-scaling of scheduler granularity values by CPU count — our tuned values are used as-is |
+| **Min Granularity: 1ms** | CFS minimum timeslice increased from 750us — fewer context switches, better throughput |
+| **Wakeup Granularity: 1.5ms** | Wakeup preemption threshold raised from 1ms — reduces unnecessary task preemption |
+| **Migration Cost: 50us** | Reduced 10x from 500us — scheduler migrates tasks across CPUs more aggressively for lower latency |
+| **Child Runs First** | Forked child processes run before parent — reduces Copy-on-Write page faults on fork+exec |
+| **Colocation Threshold: 0** | Top-app tasks always receive sched boost regardless of utilization |
+| **Perf CPU Overhead: 10%** | Perf sampling CPU time limit reduced from 25% to 10% |
+
+### Memory & VM
+
+| Optimization | Details |
+|-------------|---------|
+| **ZRAM with LZ4** | Compressed RAM swap using the fast LZ4 algorithm instead of lzo-rle |
+| **Page Cluster: 0** | Swap read-ahead disabled — unnecessary with ZRAM since data is already in memory |
+| **VFS Cache Pressure: 50** | Dentry/inode caches retained longer, reducing filesystem metadata I/O |
+| **Dirty Ratio: 60%** | Allows more dirty pages in RAM before forcing writeback — improves burst write performance |
+| **VM Stat Interval: 30s** | Per-CPU vmstat counter flush reduced from every 1s to every 30s — less jitter |
+
+### Power Management
+
+| Optimization | Details |
+|-------------|---------|
+| **Power-Efficient Workqueues** | Enabled by default — workqueue tasks prefer idle CPUs |
+| **Timer Migration Disabled** | Timers stay on their CPU instead of migrating to busy cores — idle CPUs reach deeper sleep states |
+| **Dynamic Fsync** | Fsync calls are skipped while the screen is off; all pending data is flushed when the screen turns on (`/sys/kernel/dyn_fsync/Fsync_enabled`) |
+
+### GPU
+
+| Optimization | Details |
+|-------------|---------|
+| **Adrenoboost** | GPU frequency boost on heavy workloads — three levels configurable via `/sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost` (0=off, 1=light, 2=medium, 3=aggressive) |
+
+### Debug Overhead Removed
+
+Disabled at compile time: `PROFILING`, `SCHEDSTATS`, `DEBUG_INFO`, `DEBUG_STACK_USAGE`, `DEBUG_MEMORY_INIT`, `FUNCTION_ERROR_INJECTION` — reduces kernel image size and eliminates runtime tracing overhead.
+
+> **Note:** All runtime-tuneable parameters (scheduler, VM, network) can still be adjusted via `sysctl` or `sysfs` if you want to override the defaults. Inspired by [YAKT](https://github.com/NotZeetaa/YAKT), [kdrag0n](https://github.com/kdrag0n), and [tytydraco](https://github.com/tytydraco).
 
 ## Building from Source
 
