@@ -1,0 +1,20 @@
+Kernel: 5.4.302-BRENE-v0.0.26
+BRAND: OnePlus
+MODEL: LE2127
+PRODUCT: OnePlus9Pro
+MANUFACTURER: OnePlus
+ANDROID: 16
+SDK: 36
+PREVIEW_SDK: 0
+FINGERPRINT: OnePlus/OnePlus9Pro/OnePlus9Pro:14/UKQ1.230924.001/R.209d31b_1-39324b:user/release-keys
+DEVICE: OnePlus9Pro
+Manager: (v3.0.1-32-g000852fe, 32999)
+SELinux: Enforcing
+KernelRelease: 5.4.302-BRENE-v0.0.26
+KernelVersion: #1 SMP PREEMPT Mon Jan 1 18:00:00 UTC 2010
+Machine: aarch64
+Nodename: localhost
+Sysname: Linux
+KernelSU: 32992
+SafeMode: false
+LKM: false

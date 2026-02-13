@@ -1,0 +1,561 @@
+/data/adb
+├── appops
+│   ├── appops.db
+│   ├── appops.db-shm
+│   ├── appops.db-wal
+│   ├── historical_ops.db
+│   ├── historical_ops.db-shm
+│   ├── historical_ops.db-wal
+│   └── license
+├── bindhosts
+│   ├── bindhosts_cron.log
+│   ├── bindhosts_state
+│   ├── blacklist.txt
+│   ├── crontabs
+│   │   └── root
+│   ├── custom.txt
+│   ├── root_manager.sh
+│   ├── sources.txt
+│   ├── sources_whitelist.txt
+│   └── whitelist.txt
+├── boot_hash
+├── ksu
+│   ├── backup
+│   │   ├── allowlist
+│   │   └── modules
+│   ├── bin
+│   │   ├── bindhosts -> /data/adb/modules/bindhosts/bindhosts.sh
+│   │   ├── bootctl
+│   │   ├── busybox
+│   │   ├── ksu_susfs
+│   │   ├── ksud -> /data/adb/ksud
+│   │   ├── magiskboot
+│   │   ├── resetprop
+│   │   ├── sus_su
+│   │   └── susfsd
+│   ├── log
+│   │   ├── dmesg.log
+│   │   ├── dmesg.old.log
+│   │   ├── logcat.log
+│   │   ├── logcat.old.log
+│   │   ├── modules_info
+│   │   ├── modules_info.old
+│   │   ├── znctx
+│   │   └── znctx.old
+│   ├── profile
+│   │   └── templates
+│   │       ├── adaway.root
+│   │       ├── adb
+│   │       ├── cemiuiler.readproc
+│   │       ├── incompetent.root
+│   │       ├── kernelmanager.root
+│   │       ├── nethunter.root
+│   │       ├── rootexploler.root
+│   │       ├── shizuku.root
+│   │       └── system
+│   └── susfs4ksu
+│       ├── dmesg.log
+│       ├── ksu_module_list.txt
+│       ├── latest_dmesg_susfs.log
+│       ├── logs
+│       │   ├── boot_stage_time.sh
+│       │   ├── susfs.log
+│       │   ├── susfs1.log
+│       │   └── susfs_active
+│       ├── pid1_mountinfo.txt
+│       ├── susfs_stats.txt
+│       ├── susfs_stats1.txt
+│       ├── zygote64_maps.txt
+│       └── zygote64_mountinfo.txt
+├── ksud
+├── lspd
+│   ├── config
+│   │   ├── dex2oat_service.db
+│   │   ├── dex2oat_service.db-shm
+│   │   ├── dex2oat_service.db-wal
+│   │   ├── modules_config.db
+│   │   ├── modules_config.db-shm
+│   │   └── modules_config.db-wal
+│   ├── config_backup
+│   │   ├── modules_config.db
+│   │   ├── modules_config.db-shm
+│   │   └── modules_config.db-wal
+│   ├── lock
+│   ├── log
+│   │   ├── kmsg.log
+│   │   ├── modules_1970-01-03T15:31:32.573794.log
+│   │   ├── props.txt
+│   │   └── verbose_1970-01-03T15:31:32.572758.log
+│   ├── log.old
+│   │   ├── kmsg.log
+│   │   ├── modules_1970-01-03T15:23:03.592581.log
+│   │   ├── props.txt
+│   │   └── verbose_1970-01-03T15:23:03.591478.log
+│   └── monitor
+├── magisk.db
+├── meta-hybrid
+│   ├── config.toml
+│   ├── modules.img
+│   └── run
+│       └── daemon_state.json
+├── metamodule -> /data/adb/modules/meta-hybrid
+├── modules
+│   ├── EnableTheRemoveGameFPSLimitDevSettingAutomatically
+│   │   ├── module.prop
+│   │   ├── service.sh
+│   │   └── uninstall.sh
+│   ├── SKIAUIRenderer
+│   │   ├── LICENSE
+│   │   ├── debug.log
+│   │   ├── function.sh
+│   │   ├── module.prop
+│   │   ├── sepolicy.rule
+│   │   ├── service.sh
+│   │   └── uninstall.sh
+│   ├── TA_utl
+│   │   ├── common
+│   │   │   ├── bin
+│   │   │   │   └── keygen
+│   │   │   ├── get_extra.sh
+│   │   │   ├── manager.sh
+│   │   │   ├── repo.json
+│   │   │   ├── tmp
+│   │   │   │   ├── skiplist
+│   │   │   │   └── xposed
+│   │   │   └── update
+│   │   │       ├── module.prop
+│   │   │       └── service.sh
+│   │   ├── post-fs-data.sh
+│   │   ├── prop.sh
+│   │   ├── service.sh
+│   │   ├── uninstall.sh
+│   │   └── webui
+│   │       ├── assets
+│   │       │   ├── icon-DJuj7YfB.png
+│   │       │   ├── index-9-Q_-PK2.css
+│   │       │   ├── index-nqSVzVQP.js
+│   │       │   └── material-symbols-outlined-D4N9P62f.woff2
+│   │       ├── config.json
+│   │       ├── icon.png
+│   │       ├── index.html
+│   │       └── locales
+│   │           ├── CONTRIBUTOR.md
+│   │           ├── GUIDE.md
+│   │           ├── languages.json
+│   │           ├── strings
+│   │           │   ├── ar.xml
+│   │           │   ├── az.xml
+│   │           │   ├── bn.xml
+│   │           │   ├── de.xml
+│   │           │   ├── el.xml
+│   │           │   ├── en.xml
+│   │           │   ├── es-ES.xml
+│   │           │   ├── fa.xml
+│   │           │   ├── fr.xml
+│   │           │   ├── id.xml
+│   │           │   ├── it.xml
+│   │           │   ├── ja.xml
+│   │           │   ├── ko.xml
+│   │           │   ├── pl.xml
+│   │           │   ├── pt-BR.xml
+│   │           │   ├── ru.xml
+│   │           │   ├── th.xml
+│   │           │   ├── tl.xml
+│   │           │   ├── tr.xml
+│   │           │   ├── uk.xml
+│   │           │   ├── vi.xml
+│   │           │   ├── zh-CN.xml
+│   │           │   └── zh-TW.xml
+│   │           ├── template.xml
+│   │           └── version
+│   ├── bindhosts
+│   │   ├── README
+│   │   ├── action.sh
+│   │   ├── bindhosts-app.sh
+│   │   ├── bindhosts.sh
+│   │   ├── common
+│   │   │   └── repo.json
+│   │   ├── mode.sh
+│   │   ├── module.prop
+│   │   ├── post-fs-data.sh
+│   │   ├── service.sh
+│   │   ├── skip_mount
+│   │   ├── system
+│   │   │   └── etc
+│   │   │       └── hosts
+│   │   ├── uninstall.sh
+│   │   ├── utils.sh
+│   │   └── webroot
+│   │       ├── assets
+│   │       │   ├── home-BZUlQHzE.js
+│   │       │   ├── home-BtB2iHzt.css
+│   │       │   ├── home-Cj9KjtuP.js
+│   │       │   ├── hosts-B0Lm-y8M.css
+│   │       │   ├── hosts-CgiDz7Fn.js
+│   │       │   ├── hosts-Pag9Ys2t.js
+│   │       │   ├── index-BUT7Oy2q.js
+│   │       │   ├── index-DCcIemY5.css
+│   │       │   ├── more-B-UzIVfI.css
+│   │       │   ├── more-CoqmD4jf.js
+│   │       │   └── more-Cs1ItQEF.js
+│   │       ├── config.json
+│   │       ├── icon.png
+│   │       ├── index.html
+│   │       ├── link
+│   │       │   ├── MODDIR -> /data/adb/modules/bindhosts
+│   │       │   ├── PERSISTENT_DIR -> /data/adb/bindhosts
+│   │       │   └── hosts.txt -> /data/adb/modules/bindhosts/system/etc/hosts
+│   │       └── locales
+│   │           ├── CONTRIBUTOR.md
+│   │           ├── languages.json
+│   │           ├── strings
+│   │           │   ├── ar.xml
+│   │           │   ├── cs.xml
+│   │           │   ├── de.xml
+│   │           │   ├── el.xml
+│   │           │   ├── en.xml
+│   │           │   ├── es-ES.xml
+│   │           │   ├── fr.xml
+│   │           │   ├── id.xml
+│   │           │   ├── it.xml
+│   │           │   ├── ja.xml
+│   │           │   ├── pl.xml
+│   │           │   ├── pt-BR.xml
+│   │           │   ├── ru.xml
+│   │           │   ├── sv.xml
+│   │           │   ├── tr.xml
+│   │           │   ├── uk.xml
+│   │           │   ├── zh-CN.xml
+│   │           │   └── zh-TW.xml
+│   │           ├── template.xml
+│   │           └── version
+│   ├── bootanimation-maker
+│   │   ├── What's new.txt
+│   │   ├── module.prop
+│   │   ├── system
+│   │   │   └── product
+│   │   │       └── media
+│   │   │           └── bootanimation.zip
+│   │   ├── system.prop
+│   │   └── video
+│   │       ├── OnePlusBootAnim60FPSCapCutWhite.mp4
+│   │       └── configs.prop
+│   ├── com.chiller3.bcr
+│   │   ├── LICENSE
+│   │   ├── boot_common.sh
+│   │   ├── module.prop
+│   │   ├── post-fs-data.sh
+│   │   ├── service.sh
+│   │   └── system
+│   │       ├── etc
+│   │       │   └── permissions
+│   │       │       └── privapp-permissions-com.chiller3.bcr.xml
+│   │       └── priv-app
+│   │           └── com.chiller3.bcr
+│   │               └── app-release.apk
+│   ├── meta-hybrid
+│   │   ├── config.toml
+│   │   ├── meta-hybrid
+│   │   ├── metainstall.sh
+│   │   ├── metamount.sh
+│   │   ├── metauninstall.sh
+│   │   ├── module.prop
+│   │   ├── tools
+│   │   │   └── mkfs.erofs
+│   │   ├── uninstall.sh
+│   │   └── webroot
+│   │       ├── assets
+│   │       │   ├── donate
+│   │       │   │   ├── tools_wechat.jpg
+│   │       │   │   ├── yuzaki_alipay.jpg
+│   │       │   │   ├── yuzaki_binance.jpg
+│   │       │   │   └── yuzaki_wechat.jpg
+│   │       │   ├── index-5Andktt5.js
+│   │       │   ├── index-BXK7DZyv.js
+│   │       │   └── index-DdmTJOB6.css
+│   │       └── index.html
+│   ├── mmrl_wpd
+│   │   ├── action.sh
+│   │   ├── config.json
+│   │   ├── modconf
+│   │   │   ├── assets
+│   │   │   │   └── main.dex
+│   │   │   └── modconf.json
+│   │   ├── module.prop
+│   │   └── system
+│   │       └── bin
+│   │           └── wpd
+│   ├── playintegrityfix
+│   │   ├── action.sh
+│   │   ├── app_replace_list.txt
+│   │   ├── autopif4.sh
+│   │   ├── classes.dex
+│   │   ├── common_func.sh
+│   │   ├── common_setup.sh
+│   │   ├── custom.pif.prop
+│   │   ├── example.pif.prop
+│   │   ├── killpi.sh
+│   │   ├── migrate.sh
+│   │   ├── module.prop
+│   │   ├── post-fs-data.sh
+│   │   ├── service.sh
+│   │   ├── uninstall.sh
+│   │   └── zygisk
+│   │       ├── arm64-v8a.so
+│   │       ├── armeabi-v7a.so
+│   │       ├── x86.so
+│   │       └── x86_64.so
+│   ├── rezygisk
+│   │   ├── bin
+│   │   │   ├── zygisk-ptrace32
+│   │   │   ├── zygisk-ptrace64
+│   │   │   ├── zygiskd32
+│   │   │   └── zygiskd64
+│   │   ├── lib
+│   │   │   └── libzygisk.so
+│   │   ├── lib64
+│   │   │   └── libzygisk.so
+│   │   ├── machikado.arm
+│   │   ├── machikado.arm64
+│   │   ├── module.prop
+│   │   ├── post-fs-data.sh
+│   │   ├── sepolicy.rule
+│   │   ├── service.sh
+│   │   ├── uninstall.sh
+│   │   └── webroot
+│   │       ├── LICENSE
+│   │       ├── assets
+│   │       │   ├── actions
+│   │       │   │   ├── filled.svg
+│   │       │   │   └── outlined.svg
+│   │       │   ├── back.svg
+│   │       │   ├── close.svg
+│   │       │   ├── content.svg
+│   │       │   ├── delete.svg
+│   │       │   ├── ec-icon.svg
+│   │       │   ├── error.svg
+│   │       │   ├── expand.svg
+│   │       │   ├── home
+│   │       │   │   ├── filled.svg
+│   │       │   │   └── outlined.svg
+│   │       │   ├── mark.svg
+│   │       │   ├── modules
+│   │       │   │   ├── filled.svg
+│   │       │   │   └── outlined.svg
+│   │       │   ├── settings
+│   │       │   │   ├── filled.svg
+│   │       │   │   └── outlined.svg
+│   │       │   ├── tick.svg
+│   │       │   └── warn.svg
+│   │       ├── css
+│   │       │   ├── error.css
+│   │       │   ├── icons.css
+│   │       │   └── index.css
+│   │       ├── fonts
+│   │       │   ├── header.css
+│   │       │   └── poppins.ttf
+│   │       ├── index.html
+│   │       ├── js
+│   │       │   ├── browserRedirect.js
+│   │       │   ├── errorCatcher.js
+│   │       │   ├── errorScreen.js
+│   │       │   ├── kernelsu.js
+│   │       │   ├── language.js
+│   │       │   ├── main.js
+│   │       │   ├── monitorActions.js
+│   │       │   ├── navbar.js
+│   │       │   ├── restoreError.js
+│   │       │   ├── smallPage
+│   │       │   │   ├── errorHistory.js
+│   │       │   │   ├── language.js
+│   │       │   │   └── theme.js
+│   │       │   ├── smallPageDesabler.js
+│   │       │   ├── switcher
+│   │       │   │   └── fontChanger.js
+│   │       │   ├── themes
+│   │       │   │   ├── amoled.js
+│   │       │   │   ├── dark.js
+│   │       │   │   ├── darkNavbar.js
+│   │       │   │   ├── light.js
+│   │       │   │   ├── lightIcon.js
+│   │       │   │   └── lightNavbar.js
+│   │       │   └── translate
+│   │       │       ├── actions.js
+│   │       │       ├── home.js
+│   │       │       ├── modules.js
+│   │       │       └── settings.js
+│   │       └── lang
+│   │           ├── ar_EG.json
+│   │           ├── de_DE.json
+│   │           ├── en_US.json
+│   │           ├── es_AR.json
+│   │           ├── es_ES.json
+│   │           ├── es_MX.json
+│   │           ├── fr_FR.json
+│   │           ├── id_ID.json
+│   │           ├── it_IT.json
+│   │           ├── ja_JP.json
+│   │           ├── ms_MS.json
+│   │           ├── nl_NL.json
+│   │           ├── pt_BR.json
+│   │           ├── ru_RU.json
+│   │           ├── tr_TR.json
+│   │           ├── uk_UA.json
+│   │           ├── vi_VN.json
+│   │           └── zh_CN.json
+│   ├── susfs4ksu
+│   │   ├── CHANGELOG.md
+│   │   ├── LICENSE
+│   │   ├── action.sh
+│   │   ├── banner.png
+│   │   ├── boot-completed.sh
+│   │   ├── module.prop
+│   │   ├── post-fs-data.sh
+│   │   ├── post-mount.sh
+│   │   ├── sepolicy.rule
+│   │   ├── service.sh
+│   │   ├── susfs-bin-check.sh
+│   │   ├── susfs-bin-update.sh
+│   │   ├── susfs_reset.sh
+│   │   ├── uninstall.sh
+│   │   ├── update.json
+│   │   ├── utils.sh
+│   │   └── webroot
+│   │       ├── assets
+│   │       │   ├── AmaticSC-Bold-t5U5bEu8.ttf
+│   │       │   ├── AmaticSC-Regular-CCetldNi.ttf
+│   │       │   ├── Impostograph-Regular-DKWEku3n.ttf
+│   │       │   ├── black-CWwxUpmx.png
+│   │       │   ├── blue-CDd1JgFA.png
+│   │       │   ├── brown-DkMF-zd4.png
+│   │       │   ├── creditsjs-BfjoyHvA.js
+│   │       │   ├── cyan-CxxU9VUc.png
+│   │       │   ├── cyan1-BWTE1JdY.png
+│   │       │   ├── fade-4ApaDT9x.js
+│   │       │   ├── green-BwBzMX7_.png
+│   │       │   ├── i18n-CuIujUHf.js
+│   │       │   ├── index-BkZPgubJ.css
+│   │       │   ├── index-DzwXTQ4A.js
+│   │       │   ├── lime-DPDNUj7v.png
+│   │       │   ├── orange-Dz5Wr5v6.png
+│   │       │   ├── orange1-CeH2ZIyG.png
+│   │       │   ├── pink-BsJVk9ad.png
+│   │       │   ├── purple-b3Qaozit.png
+│   │       │   ├── red-DsgSinuJ.png
+│   │       │   ├── susfs_error-BRcgEdpI.png
+│   │       │   ├── susfs_update-BC5m6nLp.png
+│   │       │   ├── white-BOZMyur9.png
+│   │       │   ├── yellow-CMDT5nHw.png
+│   │       │   └── yellow1-Bmr_vY2u.png
+│   │       ├── config.json
+│   │       ├── contributors.json
+│   │       ├── credits.html
+│   │       ├── custom.html
+│   │       ├── index.html
+│   │       ├── languages
+│   │       │   ├── ar.xml
+│   │       │   ├── de.xml
+│   │       │   ├── en.xml
+│   │       │   ├── es.xml
+│   │       │   ├── fa.xml
+│   │       │   ├── fr.xml
+│   │       │   ├── id.xml
+│   │       │   ├── it.xml
+│   │       │   ├── ja.xml
+│   │       │   ├── languages.json
+│   │       │   ├── pl.xml
+│   │       │   ├── ptbr.xml
+│   │       │   ├── ru.xml
+│   │       │   ├── tr.xml
+│   │       │   ├── uk.xml
+│   │       │   ├── vi.xml
+│   │       │   ├── zh-rCN.xml
+│   │       │   └── zh-rTW.xml
+│   │       ├── status.html
+│   │       └── translators.json
+│   ├── tricky_store
+│   │   ├── daemon
+│   │   ├── libtricky_store.so
+│   │   ├── machikado
+│   │   ├── mazoku
+│   │   ├── module.prop
+│   │   ├── post-fs-data.sh
+│   │   ├── sepolicy.rule
+│   │   ├── service.apk
+│   │   ├── service.sh
+│   │   └── webroot -> /data/adb/modules/TA_utl/webui
+│   ├── vbmeta-fixer
+│   │   ├── module.prop
+│   │   ├── service
+│   │   │   └── service.apk
+│   │   ├── service.sh
+│   │   └── uninstall.sh
+│   ├── zram-swap-manager
+│   │   ├── busybox.sh
+│   │   ├── module.prop
+│   │   ├── service.sh
+│   │   ├── system
+│   │   │   └── bin
+│   │   │       ├── zram-swap-manager
+│   │   │       ├── zram-swap-manager-uninstall
+│   │   │       └── zsm
+│   │   └── uninstall.sh
+│   └── zygisk_lsposed
+│       ├── action.sh
+│       ├── bin
+│       │   └── dex2oat
+│       ├── daemon
+│       ├── daemon.apk
+│       ├── framework
+│       │   └── lspd.dex
+│       ├── lib
+│       │   ├── libpreload32.so
+│       │   └── libpreload64.so
+│       ├── lspd
+│       ├── machikado
+│       ├── manager.apk
+│       ├── mazoku
+│       ├── module.prop
+│       ├── post-fs-data.sh
+│       ├── post-mount.sh -> post-fs-data.sh
+│       ├── sepolicy.rule
+│       ├── uninstall.sh
+│       └── zygisk
+│           ├── arm64-v8a.so
+│           └── armeabi-v7a.so
+├── modules_update
+├── rezygisk
+│   ├── cp32.sock
+│   ├── cp64.sock
+│   ├── init_monitor
+│   ├── module.prop
+│   └── state.json
+├── susfs4ksu
+│   ├── config.sh
+│   ├── sus_maps.txt
+│   ├── sus_mount.txt
+│   ├── sus_open_redirect.txt
+│   ├── sus_path.txt
+│   ├── sus_path_loop.txt
+│   └── try_umount.txt
+├── susfs_umount_for_zygote_system_process
+├── tricky_store
+│   ├── exception
+│   ├── key_db
+│   │   ├── keystore.db
+│   │   ├── keystore.db-shm
+│   │   └── keystore.db-wal
+│   ├── keybox.xml
+│   ├── keybox.xml.bak
+│   ├── security_patch.txt
+│   ├── security_patch_auto_config
+│   ├── system_app
+│   ├── target.txt
+│   └── tee_status
+└── vr25
+    └── zram-swap-manager-data
+        ├── config.txt
+        └── logs
+            └── service.log
+
+105 directories, 453 files
