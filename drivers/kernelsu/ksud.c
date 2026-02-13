@@ -285,6 +285,7 @@ int ksu_handle_execveat_ksud(int *fd, struct filename **filename_ptr,
 			pr_info("/system/bin/init second_stage executed\n");
 			apply_kernelsu_rules();
 			cache_sid();
+			ksu_avc_spoof_late_init();
 			setup_ksu_cred();
 			init_second_stage_executed = true;
 		}
