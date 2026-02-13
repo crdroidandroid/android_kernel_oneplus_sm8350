@@ -159,6 +159,5 @@ Android.bp
 #
 # Debug/temporary files
 #
-tmp/
 PLAN.md
 plan.md

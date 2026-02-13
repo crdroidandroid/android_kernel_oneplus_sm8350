@@ -1,0 +1,2012 @@
+make[1]: Leaving directory '/home/blackshark/crDroids/out/target/product/lemonad
+ep/obj/KERNEL_OBJ'
+make: Leaving directory '/home/blackshark/crDroids/kernel/oneplus/sm8350'
+[  0% 48/5053 1h8m32s remaining] //frameworks/base/packages/SystemUI:SystemUI-re
+warn: removing resource com.android.systemui.res:string/broadcasting_description
+_is_broadcasting without required default value.
+warn: removing resource com.android.systemui.res:string/bt_le_audio_broadcast_di
+alog_different_output without required default value.
+warn: removing resource com.android.systemui.res:string/bt_le_audio_broadcast_di
+alog_sub_title without required default value.
+warn: removing resource com.android.systemui.res:string/bt_le_audio_broadcast_di
+alog_switch_app without required default value.
+warn: removing resource com.android.systemui.res:string/bt_le_audio_broadcast_di
+alog_title without required default value.
+warn: removing resource com.android.systemui.res:string/bt_le_audio_broadcast_di
+alog_unknown_name without required default value.
+warn: removing resource com.android.systemui.res:string/car_add_user without req
+uired default value.
+warn: removing resource com.android.systemui.res:string/car_guest without requir
+ed default value.
+warn: removing resource com.android.systemui.res:string/car_new_user without req
+uired default value.
+warn: removing resource com.android.systemui.res:string/clipboard_dismiss_descri
+ption without required default value.
+warn: removing resource com.android.systemui.res:string/controls_media_resume wi
+thout required default value.
+warn: removing resource com.android.systemui.res:string/controls_media_smartspac
+e_rec_description without required default value.
+warn: removing resource com.android.systemui.res:string/controls_media_smartspac
+e_rec_header without required default value.
+warn: removing resource com.android.systemui.res:string/controls_media_smartspac
+e_rec_item_description without required default value.
+warn: removing resource com.android.systemui.res:string/controls_media_smartspac
+e_rec_item_no_artist_description without required default value.
+warn: removing resource com.android.systemui.res:string/controls_media_smartspac
+e_rec_title without required default value.
+warn: removing resource com.android.systemui.res:string/dnd_suppressing_shade_te
+xt without required default value.
+warn: removing resource com.android.systemui.res:string/dream_overlay_status_bar
+_camera_mic_off without required default value.
+warn: removing resource com.android.systemui.res:string/keyboard_shortcut_group_
+system_switch_input without required default value.
+warn: removing resource com.android.systemui.res:string/media_output_broadcast w
+ithout required default value.
+warn: removing resource com.android.systemui.res:string/media_output_broadcast_c
+ode without required default value.
+warn: removing resource com.android.systemui.res:string/media_output_broadcast_c
+ode_hint_no_less_than_min without required default value.
+warn: removing resource com.android.systemui.res:string/media_output_broadcast_d
+ialog_save without required default value.
+warn: removing resource com.android.systemui.res:string/media_output_broadcast_e
+dit_hint_no_more_than_max without required default value.
+warn: removing resource com.android.systemui.res:string/media_output_broadcast_l
+ast_update_error without required default value.
+warn: removing resource com.android.systemui.res:string/media_output_broadcast_n
+ame without required default value.
+warn: removing resource com.android.systemui.res:string/media_output_broadcast_s
+tart_failed without required default value.
+warn: removing resource com.android.systemui.res:string/media_output_broadcast_s
+tarting without required default value.
+warn: removing resource com.android.systemui.res:string/media_output_broadcast_u
+pdate_error without required default value.
+warn: removing resource com.android.systemui.res:string/media_output_broadcastin
+g_message without required default value.
+warn: removing resource com.android.systemui.res:string/media_output_dialog_disc
+onnected without required default value.
+warn: removing resource com.android.systemui.res:string/media_output_dialog_laun
+ch_app_text without required default value.
+warn: removing resource com.android.systemui.res:string/media_output_first_broad
+cast_title without required default value.
+warn: removing resource com.android.systemui.res:string/media_output_first_notif
+y_broadcast_message without required default value.
+warn: removing resource com.android.systemui.res:string/ongoing_phone_call_conte
+nt_description without required default value.
+warn: removing resource com.android.systemui.res:string/quick_settings_connected
+_battery_level without required default value.
+warn: removing resource com.android.systemui.res:string/redacted_notification_si
+ngle_line_text without required default value.
+warn: removing resource com.android.systemui.res:string/redacted_notification_si
+ngle_line_title without required default value.
+warn: removing resource com.android.systemui.res:string/shortcutHelper_category_
+recent_apps without required default value.
+warn: removing resource com.android.systemui.res:string/start_guest_session with
+out required default value.
+warn: removing resource com.android.systemui.res:string/user_add_user_message_se
+tup without required default value.
+warn: removing resource com.android.systemui.res:string/user_add_user_message_up
+date without required default value.
+[  2% 68/2451 1h7m41s remaining] //frameworks/base:framework-minus-apex javac2 [
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.unsupportedappusage.UnsupportedAppUsageProcessor' less than -
+source '21'
+warning: Policies already written, not overwriting: javax.annotation.processing.
+FilerException: Attempt to reopen a file for path out/soong/.intermediates/frame
+works/base/framework-minus-apex/android_common/javac/shard2/anno/android/process
+or/devicepolicy/policies.json
+3 warnings
+[  2% 69/2451 1h7m34s remaining] //frameworks/base/packages/SettingsLib/Spa/spa:
+frameworks/base/packages/SettingsLib/Spa/spa/src/com/android/settingslib/spa/wid
+get/scaffold/SettingsPager.kt:46:9: warning: 'fun TabRow(selectedTabIndex: Int, 
+modifier: Modifier = ..., containerColor: Color = ..., contentColor: Color = ...
+, indicator: @Composable() ComposableFunction1<@ParameterName(...) List<TabPosit
+ion>, Unit> = ..., divider: @Composable() ComposableFunction0<Unit> = ..., tabs:
+ @Composable() ComposableFunction0<Unit>): Unit' is deprecated. Replaced with Pr
+imaryTabRow and SecondaryTabRow.
+        TabRow(
+        ^^^^^^
+frameworks/base/packages/SettingsLib/Spa/spa/src/com/android/settingslib/spa/wid
+get/ui/CopyableBody.kt:87:28: warning: 'val LocalClipboardManager: ProvidableCom
+positionLocal<ClipboardManager>' is deprecated. Use LocalClipboard instead which
+ supports suspend functions.
+    val clipboardManager = LocalClipboardManager.current
+                           ^^^^^^^^^^^^^^^^^^^^^
+[  2% 70/2437 1h7m30s remaining] //frameworks/base/packages/SystemUI/compose/cor
+frameworks/base/packages/SystemUI/compose/core/src/com/android/compose/SystemUiC
+ontroller.kt:211:17: warning: 'var statusBarColor: Int' is deprecated. Deprecate
+d in Java.
+        window?.statusBarColor =
+                ^^^^^^^^^^^^^^
+frameworks/base/packages/SystemUI/compose/core/src/com/android/compose/SystemUiC
+ontroller.kt:232:17: warning: 'var navigationBarColor: Int' is deprecated. Depre
+cated in Java.
+        window?.navigationBarColor =
+                ^^^^^^^^^^^^^^^^^^
+[  3% 73/2328 1h7m10s remaining] Building dtb.img
+make: Entering directory '/home/blackshark/crDroids/kernel/oneplus/sm8350'
+make[1]: Entering directory '/home/blackshark/crDroids/out/target/product/lemona
+dep/obj/DTB_OBJ'
+  GEN     Makefile
+scripts/kconfig/conf  --olddefconfig Kconfig
+make[1]: Leaving directory '/home/blackshark/crDroids/out/target/product/lemonad
+ep/obj/DTBO_OBJ'
+make: Leaving directory '/home/blackshark/crDroids/kernel/oneplus/sm8350'
+[  7% 158/2247 1h5m47s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  7% 159/2246 1h5m44s remaining] //frameworks/base:framework-minus-apex javac11
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.unsupportedappusage.UnsupportedAppUsageProcessor' less than -
+source '21'
+2 warnings
+[  7% 160/2246 1h5m42s remaining] //frameworks/base:framework-minus-apex javac33
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.unsupportedappusage.UnsupportedAppUsageProcessor' less than -
+source '21'
+2 warnings
+[  7% 163/2246 1h5m34s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  7% 165/2245 1h5m27s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  7% 167/2244 1h5m17s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  7% 169/2243 1h5m14s remaining] //frameworks/base/services/permission:services
+frameworks/base/services/permission/java/com/android/server/permission/access/ap
+pfunction/AppFunctionAccessPregrant.kt:128:28: warning: Java type mismatch: infe
+rred type is 'Array<(out) File!>?', but 'Array<out File!>' was expected.
+                    addAll(directory.listFiles())
+                           ^^^^^^^^^^^^^^^^^^^^^
+frameworks/base/services/permission/java/com/android/server/permission/access/ap
+pfunction/AppFunctionAccessPregrant.kt:132:28: warning: Java type mismatch: infe
+rred type is 'Array<(out) File!>?', but 'Array<out File!>' was expected.
+                    addAll(directory.listFiles())
+                           ^^^^^^^^^^^^^^^^^^^^^
+frameworks/base/services/permission/java/com/android/server/permission/access/ap
+pfunction/AppFunctionAccessPregrant.kt:136:28: warning: Java type mismatch: infe
+rred type is 'Array<(out) File!>?', but 'Array<out File!>' was expected.
+                    addAll(directory.listFiles())
+                           ^^^^^^^^^^^^^^^^^^^^^
+frameworks/base/services/permission/java/com/android/server/permission/access/ap
+pfunction/AppFunctionAccessPregrant.kt:140:28: warning: Java type mismatch: infe
+rred type is 'Array<(out) File!>?', but 'Array<out File!>' was expected.
+                    addAll(directory.listFiles())
+                           ^^^^^^^^^^^^^^^^^^^^^
+frameworks/base/services/permission/java/com/android/server/permission/access/ap
+pfunction/AppFunctionAccessPregrant.kt:144:28: warning: Java type mismatch: infe
+rred type is 'Array<(out) File!>?', but 'Array<out File!>' was expected.
+                    addAll(directory.listFiles())
+                           ^^^^^^^^^^^^^^^^^^^^^
+frameworks/base/services/permission/java/com/android/server/permission/access/ap
+pfunction/AppFunctionAccessPregrant.kt:148:28: warning: Java type mismatch: infe
+rred type is 'Array<(out) File!>?', but 'Array<out File!>' was expected.
+                    addAll(directory.listFiles())
+                           ^^^^^^^^^^^^^^^^^^^^^
+frameworks/base/services/permission/java/com/android/server/permission/access/pe
+rmission/AppIdPermissionUpgrade.kt:487:37: warning: 'static field PROCESS_OUTGOI
+NG_CALLS: String' is deprecated. Deprecated in Java.
+                Manifest.permission.PROCESS_OUTGOING_CALLS,
+                                    ^^^^^^^^^^^^^^^^^^^^^^
+[  7% 175/2237 1h5m6s remaining] //frameworks/base/services/core:services.core.u
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  8% 183/2236 1h4m48s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  8% 186/2235 1h4m42s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  8% 187/2234 1h4m41s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  8% 188/2234 1h4m34s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  8% 189/2234 1h4m30s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  8% 190/2233 1h4m23s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  8% 192/2232 1h4m16s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  8% 193/2231 1h4m14s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  9% 195/2084 1h4m9s remaining] //frameworks/base/services/core:services.core.u
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  9% 197/2080 1h4m1s remaining] //frameworks/base/services/core:services.core.u
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  9% 199/2079 1h3m46s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  9% 200/2078 1h3m43s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  9% 201/2077 1h3m26s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  9% 202/2076 1h3m25s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  9% 203/2075 1h3m14s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  9% 204/2074 1h3m10s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  9% 205/2073 1h3m3s remaining] //frameworks/base/services/core:services.core.u
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  9% 206/2072 1h2m57s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[  9% 207/2071 1h2m53s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[ 10% 208/2070 1h2m47s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[ 10% 209/2069 1h2m43s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[ 10% 210/2068 1h2m37s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[ 10% 211/2067 1h2m32s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[ 10% 212/2066 1h2m24s remaining] //frameworks/base/api:api-stubs-docs-non-updat
+frameworks/base/apex/jobscheduler/framework/java/android/app/job/JobService.java
+:69: warning: Public class android.app.job.JobService stripped of unavailable su
+perclass android.view.contentcapture.ContentCaptureManager.ContentCaptureClient 
+(ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/accessibilityservice/AccessibilityService.java
+:273: warning: Public class android.accessibilityservice.AccessibilityService st
+ripped of unavailable superclass android.view.contentcapture.ContentCaptureManag
+er.ContentCaptureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/accounts/AccountAuthenticatorActivity.java:40:
+ warning: Public class android.accounts.AccountAuthenticatorActivity stripped of
+ unavailable superclass android.view.Window.OnWindowDismissedCallback (ErrorWhen
+New) [HiddenSuperclass]
+frameworks/base/core/java/android/accounts/AccountAuthenticatorActivity.java:40:
+ warning: Public class android.accounts.AccountAuthenticatorActivity stripped of
+ unavailable superclass android.view.contentcapture.ContentCaptureManager.Conten
+tCaptureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/adb/ADBRootService.java:26: warning: Invalid @
+hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/animation/AnimatorSet.java:63: warning: Public
+ class android.animation.AnimatorSet stripped of unavailable superclass android.
+animation.AnimationHandler.AnimationFrameCallback (ErrorWhenNew) [HiddenSupercla
+ss]
+frameworks/base/core/java/android/animation/ObjectAnimator.java:69: warning: Pub
+lic class android.animation.ObjectAnimator stripped of unavailable superclass an
+droid.animation.AnimationHandler.AnimationFrameCallback (ErrorWhenNew) [HiddenSu
+perclass]
+frameworks/base/core/java/android/animation/TimeAnimator.java:28: warning: Publi
+c class android.animation.TimeAnimator stripped of unavailable superclass androi
+d.animation.AnimationHandler.AnimationFrameCallback (ErrorWhenNew) [HiddenSuperc
+lass]
+frameworks/base/core/java/android/animation/ValueAnimator.java:80: warning: Publ
+ic class android.animation.ValueAnimator stripped of unavailable superclass andr
+oid.animation.AnimationHandler.AnimationFrameCallback (ErrorWhenNew) [HiddenSupe
+rclass]
+frameworks/base/core/java/android/app/Activity.java:774: warning: Public class a
+ndroid.app.Activity stripped of unavailable superclass android.view.Window.OnWin
+dowDismissedCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/app/Activity.java:774: warning: Public class a
+ndroid.app.Activity stripped of unavailable superclass android.view.contentcaptu
+re.ContentCaptureManager.ContentCaptureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/app/ActivityGroup.java:33: warning: Public cla
+ss android.app.ActivityGroup stripped of unavailable superclass android.view.Win
+dow.OnWindowDismissedCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/app/ActivityGroup.java:33: warning: Public cla
+ss android.app.ActivityGroup stripped of unavailable superclass android.view.con
+tentcapture.ContentCaptureManager.ContentCaptureClient (ErrorWhenNew) [HiddenSup
+erclass]
+frameworks/base/core/java/android/app/ActivityManager.java:4270: warning: Invali
+d @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/app/ActivityOptions.java:80: warning: Public c
+lass android.app.ActivityOptions stripped of unavailable superclass android.app.
+ComponentOptions (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/app/AlertDialog.java:73: warning: Public class
+ android.app.AlertDialog stripped of unavailable superclass android.view.Window.
+OnWindowDismissedCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/app/AliasActivity.java:46: warning: Public cla
+ss android.app.AliasActivity stripped of unavailable superclass android.view.Win
+dow.OnWindowDismissedCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/app/AliasActivity.java:46: warning: Public cla
+ss android.app.AliasActivity stripped of unavailable superclass android.view.con
+tentcapture.ContentCaptureManager.ContentCaptureClient (ErrorWhenNew) [HiddenSup
+erclass]
+frameworks/base/core/java/android/app/AppOpsManager.java:1947: warning: Invalid 
+@hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/app/BroadcastOptions.java:55: warning: Public 
+class android.app.BroadcastOptions stripped of unavailable superclass android.ap
+p.ComponentOptions (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/app/DatePickerDialog.java:45: warning: Public 
+class android.app.DatePickerDialog stripped of unavailable superclass android.vi
+ew.Window.OnWindowDismissedCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/app/Dialog.java:99: warning: Public class andr
+oid.app.Dialog stripped of unavailable superclass android.view.Window.OnWindowDi
+smissedCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/app/ExpandableListActivity.java:158: warning: 
+Public class android.app.ExpandableListActivity stripped of unavailable supercla
+ss android.view.Window.OnWindowDismissedCallback (ErrorWhenNew) [HiddenSuperclas
+s]
+frameworks/base/core/java/android/app/ExpandableListActivity.java:158: warning: 
+Public class android.app.ExpandableListActivity stripped of unavailable supercla
+ss android.view.contentcapture.ContentCaptureManager.ContentCaptureClient (Error
+WhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/app/IntentService.java:63: warning: Public cla
+ss android.app.IntentService stripped of unavailable superclass android.view.con
+tentcapture.ContentCaptureManager.ContentCaptureClient (ErrorWhenNew) [HiddenSup
+erclass]
+frameworks/base/core/java/android/app/LauncherActivity.java:61: warning: Public 
+class android.app.LauncherActivity stripped of unavailable superclass android.vi
+ew.Window.OnWindowDismissedCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/app/LauncherActivity.java:61: warning: Public 
+class android.app.LauncherActivity stripped of unavailable superclass android.vi
+ew.contentcapture.ContentCaptureManager.ContentCaptureClient (ErrorWhenNew) [Hid
+denSuperclass]
+frameworks/base/core/java/android/app/ListActivity.java:179: warning: Public cla
+ss android.app.ListActivity stripped of unavailable superclass android.view.Wind
+ow.OnWindowDismissedCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/app/ListActivity.java:179: warning: Public cla
+ss android.app.ListActivity stripped of unavailable superclass android.view.cont
+entcapture.ContentCaptureManager.ContentCaptureClient (ErrorWhenNew) [HiddenSupe
+rclass]
+frameworks/base/core/java/android/app/NativeActivity.java:52: warning: Public cl
+ass android.app.NativeActivity stripped of unavailable superclass android.view.W
+indow.OnWindowDismissedCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/app/NativeActivity.java:52: warning: Public cl
+ass android.app.NativeActivity stripped of unavailable superclass android.view.c
+ontentcapture.ContentCaptureManager.ContentCaptureClient (ErrorWhenNew) [HiddenS
+uperclass]
+frameworks/base/core/java/android/app/Presentation.java:155: warning: Public cla
+ss android.app.Presentation stripped of unavailable superclass android.view.Wind
+ow.OnWindowDismissedCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/app/ProgressDialog.java:55: warning: Public cl
+ass android.app.ProgressDialog stripped of unavailable superclass android.view.W
+indow.OnWindowDismissedCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/app/Service.java:317: warning: Public class an
+droid.app.Service stripped of unavailable superclass android.view.contentcapture
+.ContentCaptureManager.ContentCaptureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/app/TabActivity.java:37: warning: Public class
+ android.app.TabActivity stripped of unavailable superclass android.view.Window.
+OnWindowDismissedCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/app/TabActivity.java:37: warning: Public class
+ android.app.TabActivity stripped of unavailable superclass android.view.content
+capture.ContentCaptureManager.ContentCaptureClient (ErrorWhenNew) [HiddenSupercl
+ass]
+frameworks/base/core/java/android/app/TimePickerDialog.java:41: warning: Public 
+class android.app.TimePickerDialog stripped of unavailable superclass android.vi
+ew.Window.OnWindowDismissedCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/app/admin/DeviceAdminService.java:55: warning:
+ Public class android.app.admin.DeviceAdminService stripped of unavailable super
+class android.view.contentcapture.ContentCaptureManager.ContentCaptureClient (Er
+rorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/app/appfunctions/AppFunctionService.java:59: w
+arning: Public class android.app.appfunctions.AppFunctionService stripped of una
+vailable superclass android.view.contentcapture.ContentCaptureManager.ContentCap
+tureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/app/backup/BackupManagerMonitor.java:309: warn
+ing: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/app/slice/SliceProvider.java:100: warning: Pub
+lic class android.app.slice.SliceProvider stripped of unavailable superclass and
+roid.content.ContentInterface (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/appwidget/AppWidgetHostView.java:79: warning: 
+Public class android.appwidget.AppWidgetHostView stripped of unavailable supercl
+ass android.appwidget.AppWidgetHost.AppWidgetHostListener (ErrorWhenNew) [Hidden
+Superclass]
+frameworks/base/core/java/android/companion/AssociationRequest.java:498: warning
+: Public class android.companion.AssociationRequest.Builder stripped of unavaila
+ble superclass android.provider.OneTimeUseBuilder (ErrorWhenNew) [HiddenSupercla
+ss]
+frameworks/base/core/java/android/companion/BluetoothDeviceFilter.java:176: warn
+ing: Public class android.companion.BluetoothDeviceFilter.Builder stripped of un
+available superclass android.provider.OneTimeUseBuilder (ErrorWhenNew) [HiddenSu
+perclass]
+frameworks/base/core/java/android/companion/BluetoothLeDeviceFilter.java:293: wa
+rning: Public class android.companion.BluetoothLeDeviceFilter.Builder stripped o
+f unavailable superclass android.provider.OneTimeUseBuilder (ErrorWhenNew) [Hidd
+enSuperclass]
+frameworks/base/core/java/android/companion/CompanionDeviceService.java:100: war
+ning: Public class android.companion.CompanionDeviceService stripped of unavaila
+ble superclass android.view.contentcapture.ContentCaptureManager.ContentCaptureC
+lient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/content/BroadcastReceiver.java:684: warning: I
+nvalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/content/BroadcastReceiver.java:692: warning: I
+nvalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/content/ComponentName.java:302: warning: Inval
+id @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/content/ContentProvider.java:123: warning: Pub
+lic class android.content.ContentProvider stripped of unavailable superclass and
+roid.content.ContentInterface (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/content/ContentProviderClient.java:71: warning
+: Public class android.content.ContentProviderClient stripped of unavailable sup
+erclass android.content.ContentInterface (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/content/ContentResolver.java:105: warning: Pub
+lic class android.content.ContentResolver stripped of unavailable superclass and
+roid.content.ContentInterface (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/content/Intent.java:1971: warning: Invalid @hi
+de syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/content/SearchRecentSuggestionsProvider.java:7
+4: warning: Public class android.content.SearchRecentSuggestionsProvider strippe
+d of unavailable superclass android.content.ContentInterface (ErrorWhenNew) [Hid
+denSuperclass]
+frameworks/base/core/java/android/content/om/OverlayInfo.java:53: warning: Publi
+c class android.content.om.OverlayInfo stripped of unavailable superclass androi
+d.content.om.CriticalOverlayInfo (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/content/pm/PackageManager.java:5802: warning: 
+Public class android.content.pm.PackageManager.PackageInfoFlags stripped of unav
+ailable superclass android.content.pm.PackageManager.Flags (ErrorWhenNew) [Hidde
+nSuperclass]
+frameworks/base/core/java/android/content/pm/PackageManager.java:5816: warning: 
+Public class android.content.pm.PackageManager.ApplicationInfoFlags stripped of 
+unavailable superclass android.content.pm.PackageManager.Flags (ErrorWhenNew) [H
+iddenSuperclass]
+frameworks/base/core/java/android/content/pm/PackageManager.java:5830: warning: 
+Public class android.content.pm.PackageManager.ComponentInfoFlags stripped of un
+available superclass android.content.pm.PackageManager.Flags (ErrorWhenNew) [Hid
+denSuperclass]
+frameworks/base/core/java/android/content/pm/PackageManager.java:5844: warning: 
+Public class android.content.pm.PackageManager.ResolveInfoFlags stripped of unav
+ailable superclass android.content.pm.PackageManager.Flags (ErrorWhenNew) [Hidde
+nSuperclass]
+frameworks/base/core/java/android/content/pm/PackageManager.java:8149: warning: 
+Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/content/res/ColorStateList.java:148: warning: 
+Public class android.content.res.ColorStateList stripped of unavailable supercla
+ss android.content.res.ComplexColor (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/hardware/Camera.java:2028: warning: Invalid @h
+ide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/hardware/Camera.java:2032: warning: Invalid @h
+ide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/hardware/Camera.java:2036: warning: Invalid @h
+ide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/hardware/Camera.java:2040: warning: Invalid @h
+ide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/hardware/biometrics/BiometricPrompt.java:75: w
+arning: Public class android.hardware.biometrics.BiometricPrompt stripped of una
+vailable superclass android.hardware.biometrics.BiometricAuthenticator (ErrorWhe
+nNew) [HiddenSuperclass]
+frameworks/base/core/java/android/hardware/biometrics/BiometricPrompt.java:75: w
+arning: Public class android.hardware.biometrics.BiometricPrompt stripped of una
+vailable superclass android.hardware.biometrics.BiometricConstants (ErrorWhenNew
+) [HiddenSuperclass]
+frameworks/base/core/java/android/hardware/biometrics/BiometricPrompt.java:1131:
+ warning: Public class android.hardware.biometrics.BiometricPrompt.CryptoObject 
+stripped of unavailable superclass android.hardware.biometrics.CryptoObject (Err
+orWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/hardware/biometrics/BiometricPrompt.java:1299:
+ warning: Public class android.hardware.biometrics.BiometricPrompt.Authenticatio
+nResult stripped of unavailable superclass android.hardware.biometrics.Biometric
+Authenticator.AuthenticationResult (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/hardware/biometrics/BiometricPrompt.java:1338:
+ warning: Public class android.hardware.biometrics.BiometricPrompt.Authenticatio
+nCallback stripped of unavailable superclass android.hardware.biometrics.Biometr
+icAuthenticator.AuthenticationCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/hardware/camera2/impl/ExtensionKey.java:24: wa
+rning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/hardware/camera2/impl/PublicKey.java:26: warni
+ng: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/hardware/camera2/params/StreamConfigurationMap
+.java:1493: warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [I
+nvalidJavadoc]
+frameworks/base/core/java/android/hardware/display/AmbientDisplayConfiguration.j
+ava:146: warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [Inva
+lidJavadoc]
+frameworks/base/core/java/android/hardware/display/AmbientDisplayConfiguration.j
+ava:152: warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [Inva
+lidJavadoc]
+frameworks/base/core/java/android/hardware/display/AmbientDisplayConfiguration.j
+ava:157: warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [Inva
+lidJavadoc]
+frameworks/base/core/java/android/hardware/display/AmbientDisplayConfiguration.j
+ava:163: warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [Inva
+lidJavadoc]
+frameworks/base/core/java/android/hardware/display/AmbientDisplayConfiguration.j
+ava:169: warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [Inva
+lidJavadoc]
+frameworks/base/core/java/android/hardware/fingerprint/FingerprintManager.java:1
+01: warning: Public class android.hardware.fingerprint.FingerprintManager stripp
+ed of unavailable superclass android.hardware.biometrics.BiometricAuthenticator 
+(ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/hardware/fingerprint/FingerprintManager.java:1
+01: warning: Public class android.hardware.fingerprint.FingerprintManager stripp
+ed of unavailable superclass android.hardware.biometrics.BiometricFingerprintCon
+stants (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/hardware/fingerprint/FingerprintManager.java:2
+35: warning: Public class android.hardware.fingerprint.FingerprintManager.Crypto
+Object stripped of unavailable superclass android.hardware.biometrics.CryptoObje
+ct (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/hardware/fingerprint/FingerprintManager.java:3
+71: warning: Public class android.hardware.fingerprint.FingerprintManager.Authen
+ticationCallback stripped of unavailable superclass android.hardware.biometrics.
+BiometricAuthenticator.AuthenticationCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/inputmethodservice/AbstractInputMethodService.
+java:71: warning: Public class android.inputmethodservice.AbstractInputMethodSer
+vice stripped of unavailable superclass android.view.contentcapture.ContentCaptu
+reManager.ContentCaptureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/inputmethodservice/AbstractInputMethodService.
+java:71: warning: Public class android.inputmethodservice.AbstractInputMethodSer
+vice stripped of unavailable superclass android.window.ConfigurationDispatcher (
+ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/inputmethodservice/AbstractInputMethodService.
+java:71: warning: Public class android.inputmethodservice.AbstractInputMethodSer
+vice stripped of unavailable superclass android.window.WindowProvider (ErrorWhen
+New) [HiddenSuperclass]
+frameworks/base/core/java/android/inputmethodservice/AbstractInputMethodService.
+java:71: warning: Public class android.inputmethodservice.AbstractInputMethodSer
+vice stripped of unavailable superclass android.window.WindowProviderService (Er
+rorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/inputmethodservice/InputMethodService.java:339
+: warning: Public class android.inputmethodservice.InputMethodService stripped o
+f unavailable superclass android.view.contentcapture.ContentCaptureManager.Conte
+ntCaptureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/inputmethodservice/InputMethodService.java:339
+: warning: Public class android.inputmethodservice.InputMethodService stripped o
+f unavailable superclass android.window.ConfigurationDispatcher (ErrorWhenNew) [
+HiddenSuperclass]
+frameworks/base/core/java/android/inputmethodservice/InputMethodService.java:339
+: warning: Public class android.inputmethodservice.InputMethodService stripped o
+f unavailable superclass android.window.WindowProvider (ErrorWhenNew) [HiddenSup
+erclass]
+frameworks/base/core/java/android/net/Ikev2VpnProfile.java:84: warning: Invalid 
+@hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/net/Ikev2VpnProfile.java:86: warning: Invalid 
+@hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/net/NetworkPolicyManager.java:1224: warning: I
+nvalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/net/VpnManager.java:69: warning: Invalid @hide
+ syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/net/VpnService.java:136: warning: Public class
+ android.net.VpnService stripped of unavailable superclass android.view.contentc
+apture.ContentCaptureManager.ContentCaptureClient (ErrorWhenNew) [HiddenSupercla
+ss]
+frameworks/base/core/java/android/os/BatteryManager.java:172: warning: Invalid @
+hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/os/BatteryManager.java:179: warning: Invalid @
+hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/os/BatteryManager.java:287: warning: Invalid @
+hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/os/Bundle.java:51: warning: Public class andro
+id.os.Bundle stripped of unavailable superclass android.os.Parcel.ClassLoaderPro
+vider (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/os/PersistableBundle.java:53: warning: Public 
+class android.os.PersistableBundle stripped of unavailable superclass android.os
+.Parcel.ClassLoaderProvider (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/os/PersistableBundle.java:53: warning: Public 
+class android.os.PersistableBundle stripped of unavailable superclass com.androi
+d.internal.util.XmlUtils.WriteMapCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/preference/PreferenceActivity.java:112: warnin
+g: Public class android.preference.PreferenceActivity stripped of unavailable su
+perclass android.preference.PreferenceManager.OnPreferenceTreeClickListener (Err
+orWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/preference/PreferenceActivity.java:112: warnin
+g: Public class android.preference.PreferenceActivity stripped of unavailable su
+perclass android.view.Window.OnWindowDismissedCallback (ErrorWhenNew) [HiddenSup
+erclass]
+frameworks/base/core/java/android/preference/PreferenceActivity.java:112: warnin
+g: Public class android.preference.PreferenceActivity stripped of unavailable su
+perclass android.view.contentcapture.ContentCaptureManager.ContentCaptureClient 
+(ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/preference/PreferenceCategory.java:40: warning
+: Public class android.preference.PreferenceCategory stripped of unavailable sup
+erclass android.preference.GenericInflater.Parent (ErrorWhenNew) [HiddenSupercla
+ss]
+frameworks/base/core/java/android/preference/PreferenceFragment.java:102: warnin
+g: Public class android.preference.PreferenceFragment stripped of unavailable su
+perclass android.preference.PreferenceManager.OnPreferenceTreeClickListener (Err
+orWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/preference/PreferenceGroup.java:50: warning: P
+ublic class android.preference.PreferenceGroup stripped of unavailable superclas
+s android.preference.GenericInflater.Parent (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/preference/PreferenceScreen.java:98: warning: 
+Public class android.preference.PreferenceScreen stripped of unavailable supercl
+ass android.preference.GenericInflater.Parent (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/printservice/PrintService.java:161: warning: P
+ublic class android.printservice.PrintService stripped of unavailable superclass
+ android.view.contentcapture.ContentCaptureManager.ContentCaptureClient (ErrorWh
+enNew) [HiddenSuperclass]
+frameworks/base/core/java/android/provider/DocumentsProvider.java:149: warning: 
+Public class android.provider.DocumentsProvider stripped of unavailable supercla
+ss android.content.ContentInterface (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/provider/E2eeContactKeysManager.java:801: warn
+ing: Public class android.provider.E2eeContactKeysManager.E2eeContactKey strippe
+d of unavailable superclass android.provider.E2eeContactKeysManager.E2eeBaseKey 
+(ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/provider/E2eeContactKeysManager.java:967: warn
+ing: Public class android.provider.E2eeContactKeysManager.E2eeSelfKey stripped o
+f unavailable superclass android.provider.E2eeContactKeysManager.E2eeBaseKey (Er
+rorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/service/autofill/AutofillService.java:558: war
+ning: Public class android.service.autofill.AutofillService stripped of unavaila
+ble superclass android.view.contentcapture.ContentCaptureManager.ContentCaptureC
+lient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/service/autofill/CharSequenceTransformation.ja
+va:64: warning: Public class android.service.autofill.CharSequenceTransformation
+ stripped of unavailable superclass android.service.autofill.InternalTransformat
+ion (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/service/autofill/DateTransformation.java:45: w
+arning: Public class android.service.autofill.DateTransformation stripped of una
+vailable superclass android.service.autofill.InternalTransformation (ErrorWhenNe
+w) [HiddenSuperclass]
+frameworks/base/core/java/android/service/autofill/DateValueSanitizer.java:42: w
+arning: Public class android.service.autofill.DateValueSanitizer stripped of una
+vailable superclass android.service.autofill.InternalSanitizer (ErrorWhenNew) [H
+iddenSuperclass]
+frameworks/base/core/java/android/service/autofill/ImageTransformation.java:59: 
+warning: Public class android.service.autofill.ImageTransformation stripped of u
+navailable superclass android.service.autofill.InternalTransformation (ErrorWhen
+New) [HiddenSuperclass]
+frameworks/base/core/java/android/service/autofill/LuhnChecksumValidator.java:38
+: warning: Public class android.service.autofill.LuhnChecksumValidator stripped 
+of unavailable superclass android.service.autofill.InternalValidator (ErrorWhenN
+ew) [HiddenSuperclass]
+frameworks/base/core/java/android/service/autofill/RegexValidator.java:36: warni
+ng: Public class android.service.autofill.RegexValidator stripped of unavailable
+ superclass android.service.autofill.InternalValidator (ErrorWhenNew) [HiddenSup
+erclass]
+frameworks/base/core/java/android/service/autofill/TextValueSanitizer.java:43: w
+arning: Public class android.service.autofill.TextValueSanitizer stripped of una
+vailable superclass android.service.autofill.InternalSanitizer (ErrorWhenNew) [H
+iddenSuperclass]
+frameworks/base/core/java/android/service/autofill/UserData.java:52: warning: Pu
+blic class android.service.autofill.UserData stripped of unavailable superclass 
+android.service.autofill.FieldClassificationUserData (ErrorWhenNew) [HiddenSuper
+class]
+frameworks/base/core/java/android/service/autofill/VisibilitySetterAction.java:4
+1: warning: Public class android.service.autofill.VisibilitySetterAction strippe
+d of unavailable superclass android.service.autofill.InternalOnClickAction (Erro
+rWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/service/carrier/CarrierMessagingClientService.
+java:68: warning: Public class android.service.carrier.CarrierMessagingClientSer
+vice stripped of unavailable superclass android.view.contentcapture.ContentCaptu
+reManager.ContentCaptureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/service/carrier/CarrierMessagingService.java:4
+8: warning: Public class android.service.carrier.CarrierMessagingService strippe
+d of unavailable superclass android.view.contentcapture.ContentCaptureManager.Co
+ntentCaptureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/service/chooser/ChooserTargetService.java:82: 
+warning: Public class android.service.chooser.ChooserTargetService stripped of u
+navailable superclass android.view.contentcapture.ContentCaptureManager.ContentC
+aptureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/service/controls/ControlsProviderService.java:
+57: warning: Public class android.service.controls.ControlsProviderService strip
+ped of unavailable superclass android.view.contentcapture.ContentCaptureManager.
+ContentCaptureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/service/credentials/CredentialProviderService.
+java:45: warning: Public class android.service.credentials.CredentialProviderSer
+vice stripped of unavailable superclass android.view.contentcapture.ContentCaptu
+reManager.ContentCaptureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/service/dreams/DreamService.java:180: warning:
+ Public class android.service.dreams.DreamService stripped of unavailable superc
+lass android.view.contentcapture.ContentCaptureManager.ContentCaptureClient (Err
+orWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/service/media/CameraPrewarmService.java:30: wa
+rning: Public class android.service.media.CameraPrewarmService stripped of unava
+ilable superclass android.view.contentcapture.ContentCaptureManager.ContentCaptu
+reClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/service/notification/ConditionProviderService.
+java:72: warning: Public class android.service.notification.ConditionProviderSer
+vice stripped of unavailable superclass android.view.contentcapture.ContentCaptu
+reManager.ContentCaptureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/service/notification/NotificationListenerServi
+ce.java:114: warning: Public class android.service.notification.NotificationList
+enerService stripped of unavailable superclass android.view.contentcapture.Conte
+ntCaptureManager.ContentCaptureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/service/quickaccesswallet/QuickAccessWalletSer
+vice.java:165: warning: Public class android.service.quickaccesswallet.QuickAcce
+ssWalletService stripped of unavailable superclass android.view.contentcapture.C
+ontentCaptureManager.ContentCaptureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/service/quicksettings/TileService.java:96: war
+ning: Public class android.service.quicksettings.TileService stripped of unavail
+able superclass android.view.contentcapture.ContentCaptureManager.ContentCapture
+Client (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/service/settings/preferences/SettingsPreferenc
+eService.java:71: warning: Public class android.service.settings.preferences.Set
+tingsPreferenceService stripped of unavailable superclass android.view.contentca
+pture.ContentCaptureManager.ContentCaptureClient (ErrorWhenNew) [HiddenSuperclas
+s]
+frameworks/base/core/java/android/service/textservice/SpellCheckerService.java:6
+9: warning: Public class android.service.textservice.SpellCheckerService strippe
+d of unavailable superclass android.view.contentcapture.ContentCaptureManager.Co
+ntentCaptureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/service/voice/VoiceInteractionService.java:85:
+ warning: Public class android.service.voice.VoiceInteractionService stripped of
+ unavailable superclass android.view.contentcapture.ContentCaptureManager.Conten
+tCaptureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/service/voice/VoiceInteractionSessionService.j
+ava:42: warning: Public class android.service.voice.VoiceInteractionSessionServi
+ce stripped of unavailable superclass android.view.contentcapture.ContentCapture
+Manager.ContentCaptureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/service/vr/VrListenerService.java:61: warning:
+ Public class android.service.vr.VrListenerService stripped of unavailable super
+class android.view.contentcapture.ContentCaptureManager.ContentCaptureClient (Er
+rorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/service/wallpaper/WallpaperService.java:143: w
+arning: Public class android.service.wallpaper.WallpaperService stripped of unav
+ailable superclass android.view.contentcapture.ContentCaptureManager.ContentCapt
+ureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/speech/RecognitionService.java:55: warning: Pu
+blic class android.speech.RecognitionService stripped of unavailable superclass 
+android.view.contentcapture.ContentCaptureManager.ContentCaptureClient (ErrorWhe
+nNew) [HiddenSuperclass]
+frameworks/base/core/java/android/speech/tts/TextToSpeechService.java:104: warni
+ng: Public class android.speech.tts.TextToSpeechService stripped of unavailable 
+superclass android.view.contentcapture.ContentCaptureManager.ContentCaptureClien
+t (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/text/SpannableStringBuilder.java:39: warning: 
+Public class android.text.SpannableStringBuilder stripped of unavailable supercl
+ass android.text.GraphicsOperations (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/text/method/CharacterPickerDialog.java:42: war
+ning: Public class android.text.method.CharacterPickerDialog stripped of unavail
+able superclass android.view.Window.OnWindowDismissedCallback (ErrorWhenNew) [Hi
+ddenSuperclass]
+frameworks/base/core/java/android/util/proto/ProtoOutputStream.java:108: warning
+: Public class android.util.proto.ProtoOutputStream stripped of unavailable supe
+rclass android.util.proto.ProtoStream (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/view/SurfaceView.java:138: warning: Public cla
+ss android.view.SurfaceView stripped of unavailable superclass android.view.View
+RootImpl.SurfaceChangedCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/view/accessibility/CaptioningManager.java:390:
+ warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavad
+oc]
+frameworks/base/core/java/android/view/animation/AccelerateDecelerateInterpolato
+r.java:30: warning: Public class android.view.animation.AccelerateDecelerateInte
+rpolator stripped of unavailable superclass android.graphics.animation.NativeInt
+erpolator (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/view/animation/AccelerateInterpolator.java:36:
+ warning: Public class android.view.animation.AccelerateInterpolator stripped of
+ unavailable superclass android.graphics.animation.NativeInterpolator (ErrorWhen
+New) [HiddenSuperclass]
+frameworks/base/core/java/android/view/animation/AnticipateInterpolator.java:34:
+ warning: Public class android.view.animation.AnticipateInterpolator stripped of
+ unavailable superclass android.graphics.animation.NativeInterpolator (ErrorWhen
+New) [HiddenSuperclass]
+frameworks/base/core/java/android/view/animation/AnticipateOvershootInterpolator
+.java:38: warning: Public class android.view.animation.AnticipateOvershootInterp
+olator stripped of unavailable superclass android.graphics.animation.NativeInter
+polator (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/view/animation/BounceInterpolator.java:29: war
+ning: Public class android.view.animation.BounceInterpolator stripped of unavail
+able superclass android.graphics.animation.NativeInterpolator (ErrorWhenNew) [Hi
+ddenSuperclass]
+frameworks/base/core/java/android/view/animation/CycleInterpolator.java:36: warn
+ing: Public class android.view.animation.CycleInterpolator stripped of unavailab
+le superclass android.graphics.animation.NativeInterpolator (ErrorWhenNew) [Hidd
+enSuperclass]
+frameworks/base/core/java/android/view/animation/DecelerateInterpolator.java:36:
+ warning: Public class android.view.animation.DecelerateInterpolator stripped of
+ unavailable superclass android.graphics.animation.NativeInterpolator (ErrorWhen
+New) [HiddenSuperclass]
+frameworks/base/core/java/android/view/animation/LinearInterpolator.java:29: war
+ning: Public class android.view.animation.LinearInterpolator stripped of unavail
+able superclass android.graphics.animation.NativeInterpolator (ErrorWhenNew) [Hi
+ddenSuperclass]
+frameworks/base/core/java/android/view/animation/OvershootInterpolator.java:35: 
+warning: Public class android.view.animation.OvershootInterpolator stripped of u
+navailable superclass android.graphics.animation.NativeInterpolator (ErrorWhenNe
+w) [HiddenSuperclass]
+frameworks/base/core/java/android/view/animation/PathInterpolator.java:51: warni
+ng: Public class android.view.animation.PathInterpolator stripped of unavailable
+ superclass android.graphics.animation.NativeInterpolator (ErrorWhenNew) [Hidden
+Superclass]
+frameworks/base/core/java/android/view/inputmethod/InlineSuggestionsRequest.java
+:489: warning: Public class android.view.inputmethod.InlineSuggestionsRequest.Bu
+ilder stripped of unavailable superclass android.view.inputmethod.InlineSuggesti
+onsRequest.BaseBuilder (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/view/inputmethod/InsertModeGesture.java:43: wa
+rning: Public class android.view.inputmethod.InsertModeGesture stripped of unava
+ilable superclass android.view.inputmethod.CancellableHandwritingGesture (ErrorW
+henNew) [HiddenSuperclass]
+frameworks/base/core/java/android/view/textclassifier/TextClassifier.java:70: wa
+rning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/view/textclassifier/TextClassifier.java:72: wa
+rning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/view/textclassifier/TextClassifier.java:74: wa
+rning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/view/textclassifier/TextClassifier.java:83: wa
+rning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/view/textclassifier/TextClassifier.java:95: wa
+rning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/webkit/WebView.java:115: warning: Public class
+ android.webkit.WebView stripped of unavailable superclass android.view.ViewDebu
+g.HierarchyHandler (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/widget/AbsListView.java:124: warning: Public c
+lass android.widget.AbsListView stripped of unavailable superclass android.widge
+t.RemoteViewsAdapter.RemoteAdapterConnectionCallback (ErrorWhenNew) [HiddenSuper
+class]
+frameworks/base/core/java/android/widget/ActionMenuView.java:49: warning: Public
+ class android.widget.ActionMenuView stripped of unavailable superclass com.andr
+oid.internal.view.menu.MenuBuilder.ItemInvoker (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/widget/ActionMenuView.java:49: warning: Public
+ class android.widget.ActionMenuView stripped of unavailable superclass com.andr
+oid.internal.view.menu.MenuView (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/widget/AdapterViewAnimator.java:47: warning: P
+ublic class android.widget.AdapterViewAnimator stripped of unavailable superclas
+s android.widget.RemoteViewsAdapter.RemoteAdapterConnectionCallback (ErrorWhenNe
+w) [HiddenSuperclass]
+frameworks/base/core/java/android/widget/AdapterViewFlipper.java:36: warning: Pu
+blic class android.widget.AdapterViewFlipper stripped of unavailable superclass 
+android.widget.RemoteViewsAdapter.RemoteAdapterConnectionCallback (ErrorWhenNew)
+ [HiddenSuperclass]
+frameworks/base/core/java/android/widget/ExpandableListView.java:87: warning: Pu
+blic class android.widget.ExpandableListView stripped of unavailable superclass 
+android.widget.RemoteViewsAdapter.RemoteAdapterConnectionCallback (ErrorWhenNew)
+ [HiddenSuperclass]
+frameworks/base/core/java/android/widget/GridView.java:70: warning: Public class
+ android.widget.GridView stripped of unavailable superclass android.widget.Remot
+eViewsAdapter.RemoteAdapterConnectionCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/widget/ListPopupWindow.java:61: warning: Publi
+c class android.widget.ListPopupWindow stripped of unavailable superclass com.an
+droid.internal.view.menu.ShowableListMenu (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/widget/ListView.java:149: warning: Public clas
+s android.widget.ListView stripped of unavailable superclass android.widget.Remo
+teViewsAdapter.RemoteAdapterConnectionCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/widget/RemoteViewsService.java:34: warning: Pu
+blic class android.widget.RemoteViewsService stripped of unavailable superclass 
+android.view.contentcapture.ContentCaptureManager.ContentCaptureClient (ErrorWhe
+nNew) [HiddenSuperclass]
+frameworks/base/core/java/android/widget/StackView.java:54: warning: Public clas
+s android.widget.StackView stripped of unavailable superclass android.widget.Rem
+oteViewsAdapter.RemoteAdapterConnectionCallback (ErrorWhenNew) [HiddenSuperclass
+]
+frameworks/base/core/java/android/widget/TextView.java:496: warning: Invalid @hi
+de syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/android/widget/VideoView.java:83: warning: Public clas
+s android.widget.VideoView stripped of unavailable superclass android.media.Subt
+itleController.Anchor (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/widget/VideoView.java:83: warning: Public clas
+s android.widget.VideoView stripped of unavailable superclass android.view.ViewR
+ootImpl.SurfaceChangedCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/android/widget/inline/InlinePresentationSpec.java:249:
+ warning: Public class android.widget.inline.InlinePresentationSpec.Builder stri
+pped of unavailable superclass android.widget.inline.InlinePresentationSpec.Base
+Builder (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/core/java/com/android/internal/util/DataClass.java:74: warning: 
+Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/com/android/internal/util/DataClass.java:84: warning: 
+Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/com/android/internal/util/DataClass.java:104: warning:
+ Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/com/android/internal/util/DataClass.java:117: warning:
+ Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/com/android/internal/util/DataClass.java:155: warning:
+ Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/core/java/com/android/internal/util/DataClass.java:181: warning:
+ Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+frameworks/base/graphics/java/android/graphics/Canvas.java:58: warning: Public c
+lass android.graphics.Canvas stripped of unavailable superclass android.graphics
+.BaseCanvas (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/graphics/java/android/graphics/RecordingCanvas.java:37: warning:
+ Public class android.graphics.RecordingCanvas stripped of unavailable superclas
+s android.graphics.BaseRecordingCanvas (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/keystore/java/android/security/keystore/KeyGenParameterSpec.java
+:287: warning: Public class android.security.keystore.KeyGenParameterSpec stripp
+ed of unavailable superclass android.security.keystore.UserAuthArgs (ErrorWhenNe
+w) [HiddenSuperclass]
+frameworks/base/keystore/java/android/security/keystore/KeyProtection.java:222: 
+warning: Public class android.security.keystore.KeyProtection stripped of unavai
+lable superclass android.security.keystore.UserAuthArgs (ErrorWhenNew) [HiddenSu
+perclass]
+frameworks/base/media/java/android/media/AudioRecord.java:98: warning: Public cl
+ass android.media.AudioRecord stripped of unavailable superclass android.media.A
+udioRecordingMonitorClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/media/java/android/media/AudioTrack.java:101: warning: Public cl
+ass android.media.AudioTrack stripped of unavailable superclass android.media.Pl
+ayerBase (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/media/java/android/media/LoudnessCodecController.java:57: warnin
+g: Public class android.media.LoudnessCodecController stripped of unavailable su
+perclass android.media.permission.SafeCloseable (ErrorWhenNew) [HiddenSuperclass
+]
+frameworks/base/media/java/android/media/MediaPlayer.java:582: warning: Public c
+lass android.media.MediaPlayer stripped of unavailable superclass android.media.
+PlayerBase (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/media/java/android/media/MediaPlayer.java:582: warning: Public c
+lass android.media.MediaPlayer stripped of unavailable superclass android.media.
+SubtitleController.Listener (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/media/java/android/media/MediaRecorder.java:106: warning: Public
+ class android.media.MediaRecorder stripped of unavailable superclass android.me
+dia.AudioRecordingMonitorClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/media/java/android/media/MediaRoute2ProviderService.java:84: war
+ning: Public class android.media.MediaRoute2ProviderService stripped of unavaila
+ble superclass android.view.contentcapture.ContentCaptureManager.ContentCaptureC
+lient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/media/java/android/media/SoundPool.java:118: warning: Public cla
+ss android.media.SoundPool stripped of unavailable superclass android.media.Play
+erBase (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/media/java/android/media/midi/MidiDeviceService.java:48: warning
+: Public class android.media.midi.MidiDeviceService stripped of unavailable supe
+rclass android.view.contentcapture.ContentCaptureManager.ContentCaptureClient (E
+rrorWhenNew) [HiddenSuperclass]
+frameworks/base/media/java/android/media/midi/MidiUmpDeviceService.java:59: warn
+ing: Public class android.media.midi.MidiUmpDeviceService stripped of unavailabl
+e superclass android.view.contentcapture.ContentCaptureManager.ContentCaptureCli
+ent (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/media/java/android/media/tv/TvContract.java:2649: warning: Publi
+c class android.media.tv.TvContract.Programs stripped of unavailable superclass 
+android.media.tv.TvContract.ProgramColumns (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/media/java/android/media/tv/TvContract.java:3035: warning: Publi
+c class android.media.tv.TvContract.RecordedPrograms stripped of unavailable sup
+erclass android.media.tv.TvContract.ProgramColumns (ErrorWhenNew) [HiddenSupercl
+ass]
+frameworks/base/media/java/android/media/tv/TvContract.java:3186: warning: Publi
+c class android.media.tv.TvContract.PreviewPrograms stripped of unavailable supe
+rclass android.media.tv.TvContract.PreviewProgramColumns (ErrorWhenNew) [HiddenS
+uperclass]
+frameworks/base/media/java/android/media/tv/TvContract.java:3186: warning: Publi
+c class android.media.tv.TvContract.PreviewPrograms stripped of unavailable supe
+rclass android.media.tv.TvContract.ProgramColumns (ErrorWhenNew) [HiddenSupercla
+ss]
+frameworks/base/media/java/android/media/tv/TvContract.java:3238: warning: Publi
+c class android.media.tv.TvContract.WatchNextPrograms stripped of unavailable su
+perclass android.media.tv.TvContract.PreviewProgramColumns (ErrorWhenNew) [Hidde
+nSuperclass]
+frameworks/base/media/java/android/media/tv/TvContract.java:3238: warning: Publi
+c class android.media.tv.TvContract.WatchNextPrograms stripped of unavailable su
+perclass android.media.tv.TvContract.ProgramColumns (ErrorWhenNew) [HiddenSuperc
+lass]
+frameworks/base/media/java/android/media/tv/TvInputService.java:91: warning: Pub
+lic class android.media.tv.TvInputService stripped of unavailable superclass and
+roid.view.contentcapture.ContentCaptureManager.ContentCaptureClient (ErrorWhenNe
+w) [HiddenSuperclass]
+frameworks/base/media/java/android/media/tv/ad/TvAdService.java:68: warning: Pub
+lic class android.media.tv.ad.TvAdService stripped of unavailable superclass and
+roid.view.contentcapture.ContentCaptureManager.ContentCaptureClient (ErrorWhenNe
+w) [HiddenSuperclass]
+frameworks/base/media/java/android/media/tv/interactive/TvInteractiveAppService.
+java:85: warning: Public class android.media.tv.interactive.TvInteractiveAppServ
+ice stripped of unavailable superclass android.view.contentcapture.ContentCaptur
+eManager.ContentCaptureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/media/java/android/service/media/MediaBrowserService.java:79: wa
+rning: Public class android.service.media.MediaBrowserService stripped of unavai
+lable superclass android.view.contentcapture.ContentCaptureManager.ContentCaptur
+eClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/opengl/java/android/opengl/GLSurfaceView.java:163: warning: Publ
+ic class android.opengl.GLSurfaceView stripped of unavailable superclass android
+.view.ViewRootImpl.SurfaceChangedCallback (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/telecomm/framework/java/android/telecom/CallRedirectionService.j
+ava:53: warning: Public class android.telecom.CallRedirectionService stripped of
+ unavailable superclass android.view.contentcapture.ContentCaptureManager.Conten
+tCaptureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/telecomm/framework/java/android/telecom/CallScreeningService.jav
+a:121: warning: Public class android.telecom.CallScreeningService stripped of un
+available superclass android.view.contentcapture.ContentCaptureManager.ContentCa
+ptureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/telecomm/framework/java/android/telecom/ConnectionService.java:3
+21: warning: Public class android.telecom.ConnectionService stripped of unavaila
+ble superclass android.view.contentcapture.ContentCaptureManager.ContentCaptureC
+lient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/telecomm/framework/java/android/telecom/InCallService.java:255: 
+warning: Public class android.telecom.InCallService stripped of unavailable supe
+rclass android.view.contentcapture.ContentCaptureManager.ContentCaptureClient (E
+rrorWhenNew) [HiddenSuperclass]
+frameworks/base/telephony/java/android/service/carrier/CarrierService.java:56: w
+arning: Public class android.service.carrier.CarrierService stripped of unavaila
+ble superclass android.view.contentcapture.ContentCaptureManager.ContentCaptureC
+lient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/telephony/java/android/telephony/VisualVoicemailService.java:61:
+ warning: Public class android.telephony.VisualVoicemailService stripped of unav
+ailable superclass android.view.contentcapture.ContentCaptureManager.ContentCapt
+ureClient (ErrorWhenNew) [HiddenSuperclass]
+frameworks/base/telephony/java/android/telephony/cdma/CdmaSmsCbProgramData.java:
+132: warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJ
+avadoc]
+frameworks/base/telephony/java/android/telephony/cdma/CdmaSmsCbProgramData.java:
+135: warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJ
+avadoc]
+frameworks/base/telephony/java/android/telephony/cdma/CdmaSmsCbProgramData.java:
+138: warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJ
+avadoc]
+frameworks/base/telephony/java/android/telephony/cdma/CdmaSmsCbProgramData.java:
+141: warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJ
+avadoc]
+frameworks/base/telephony/java/android/telephony/cdma/CdmaSmsCbProgramData.java:
+144: warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJ
+avadoc]
+frameworks/base/telephony/java/android/telephony/cdma/CdmaSmsCbProgramData.java:
+147: warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJ
+avadoc]
+frameworks/base/telephony/java/android/telephony/cdma/CdmaSmsCbProgramData.java:
+150: warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJ
+avadoc]
+frameworks/base/telephony/java/android/telephony/cdma/CdmaSmsCbProgramData.java:
+153: warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJ
+avadoc]
+frameworks/base/telephony/java/android/telephony/cdma/CdmaSmsCbProgramData.java:
+156: warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJ
+avadoc]
+frameworks/base/telephony/java/android/telephony/cdma/CdmaSmsCbProgramData.java:
+159: warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJ
+avadoc]
+frameworks/base/telephony/java/android/telephony/cdma/CdmaSmsCbProgramData.java:
+162: warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJ
+avadoc]
+frameworks/base/telephony/java/android/telephony/cdma/CdmaSmsCbProgramData.java:
+165: warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJ
+avadoc]
+frameworks/base/telephony/java/android/telephony/ims/feature/MmTelFeature.java:8
+9: warning: Public class android.telephony.ims.feature.MmTelFeature stripped of 
+unavailable superclass android.telephony.ims.feature.ImsFeature (ErrorWhenNew) [
+HiddenSuperclass]
+frameworks/base/telephony/java/android/telephony/ims/feature/MmTelFeature.java:4
+80: warning: Public class android.telephony.ims.feature.MmTelFeature.MmTelCapabi
+lities stripped of unavailable superclass android.telephony.ims.feature.ImsFeatu
+re.Capabilities (ErrorWhenNew) [HiddenSuperclass]
+frameworks/libs/modules-utils/java/android/annotation/Hide.java:32: warning: Inv
+alid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+out/srcjars/android/adbroot/IADBRootService.java:10: warning: Invalid @hide synt
+ax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+out/srcjars/android/app/admin/MultiUserDeviceProvisioningParamsTransport.java:18
+: warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJava
+doc]
+out/srcjars/android/app/admin/PolicyValueTransport.java:14: warning: Invalid @hi
+de syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+out/srcjars/android/companion/datatransfer/continuity/IUniversalClipboardManager
+.java:12: warning: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [Inv
+alidJavadoc]
+out/srcjars/android/gsi/AvbPublicKey.java:10: warning: Invalid @hide syntax, mus
+t be a block tag (ErrorWhenNew) [InvalidJavadoc]
+out/srcjars/android/gsi/GsiProgress.java:10: warning: Invalid @hide syntax, must
+ be a block tag (ErrorWhenNew) [InvalidJavadoc]
+out/srcjars/android/gsi/IGsiService.java:10: warning: Invalid @hide syntax, must
+ be a block tag (ErrorWhenNew) [InvalidJavadoc]
+out/srcjars/android/gsi/IGsiServiceCallback.java:10: warning: Invalid @hide synt
+ax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+out/srcjars/android/gsi/IImageService.java:10: warning: Invalid @hide syntax, mu
+st be a block tag (ErrorWhenNew) [InvalidJavadoc]
+out/srcjars/android/gsi/IProgressCallback.java:10: warning: Invalid @hide syntax
+, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+out/srcjars/android/gsi/MappedImage.java:10: warning: Invalid @hide syntax, must
+ be a block tag (ErrorWhenNew) [InvalidJavadoc]
+out/srcjars/android/os/ILogd.java:10: warning: Invalid @hide syntax, must be a b
+lock tag (ErrorWhenNew) [InvalidJavadoc]
+out/srcjars/android/os/IStoraged.java:10: warning: Invalid @hide syntax, must be
+ a block tag (ErrorWhenNew) [InvalidJavadoc]
+out/srcjars/android/os/IVold.java:10: warning: Invalid @hide syntax, must be a b
+lock tag (ErrorWhenNew) [InvalidJavadoc]
+out/srcjars/android/os/IVoldListener.java:10: warning: Invalid @hide syntax, mus
+t be a block tag (ErrorWhenNew) [InvalidJavadoc]
+out/srcjars/android/os/IVoldMountCallback.java:10: warning: Invalid @hide syntax
+, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+out/srcjars/android/os/IVoldTaskListener.java:10: warning: Invalid @hide syntax,
+ must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+out/srcjars/com/libremobileos/freeform/ILMOFreeformDisplayCallback.java:10: warn
+ing: Invalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+out/srcjars/com/libremobileos/freeform/ILMOFreeformUIService.java:10: warning: I
+nvalid @hide syntax, must be a block tag (ErrorWhenNew) [InvalidJavadoc]
+[ 10% 213/2063 1h2m22s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[ 10% 214/2062 1h2m16s remaining] //frameworks/base/services/core:services.core.
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[ 10% 215/2061 1h2m7s remaining] //frameworks/base/services/core:services.core.u
+warning: Supported source version 'RELEASE_17' from annotation processor 'androi
+d.processor.compat.changeid.ChangeIdProcessor' less than -source '21'
+1 warning
+[ 10% 216/2060 1h2m7s remaining] Building Kernel Image (Image)
+FAILED: out/target/product/lemonadep/obj/KERNEL_OBJ/arch/arm64/boot/Image
+/bin/bash -c "(PATH=/home/blackshark/crDroids/out/host/linux-x86/bin:\$PATH PATH
+=/home/blackshark/crDroids/prebuilts/clang/host/linux-x86/clang-r563880c/bin:\$P
+ATH HIP_PATH=none PERL5LIB=/home/blackshark/crDroids/prebuilts/tools-lineage/com
+mon/perl-base PATH=/home/blackshark/crDroids/prebuilts/tools-lineage/linux-x86/b
+in:/home/blackshark/crDroids/prebuilts/clang/host/linux-x86/clang-r563880c/bin:/
+home/blackshark/crDroids/prebuilts/rust/linux-x86/1.88.0/bin:/home/blackshark/cr
+Droids/prebuilts/clang-tools/linux-x86/bin:\$PATH BISON_PKGDATADIR=/home/blacksh
+ark/crDroids/prebuilts/build-tools/common/bison /home/blackshark/crDroids/prebui
+lts/build-tools/linux-x86/bin/make  KBUILD_BUILD_USER=\"build-user\" KBUILD_BUIL
+D_HOST=\"build-host\" -j6 HOSTCFLAGS=\"--sysroot=/home/blackshark/crDroids/prebu
+ilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/sysroot -I/home/blackshark/cr
+Droids/prebuilts/kernel-build-tools/linux-x86/include\" HOSTLDFLAGS=\"--sysroot=
+/home/blackshark/crDroids/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.
+8/sysroot -Wl,-rpath,/home/blackshark/crDroids/prebuilts/kernel-build-tools/linu
+x-x86/lib64 -L /home/blackshark/crDroids/prebuilts/kernel-build-tools/linux-x86/
+lib64 -fuse-ld=lld --rtlib=compiler-rt\" LLVM=1 LLVM_IAS=1 LZ4=/home/blackshark/
+crDroids/prebuilts/kernel-build-tools/linux-x86/bin/lz4 LEX=/home/blackshark/crD
+roids/prebuilts/build-tools/linux-x86/bin/flex YACC=/home/blackshark/crDroids/pr
+ebuilts/build-tools/linux-x86/bin/bison M4=/home/blackshark/crDroids/prebuilts/b
+uild-tools/linux-x86/bin/m4 PAHOLE=/home/blackshark/crDroids/prebuilts/kernel-bu
+ild-tools/linux-x86/bin/pahole LIBCLANG_PATH=/home/blackshark/crDroids/prebuilts
+/clang/host/linux-x86/clang-r563880c/lib DTC_EXT=/home/blackshark/crDroids/out/h
+ost/linux-x86/bin/dtc TARGET_BOARD_PLATFORM=lahaina -C kernel/oneplus/sm8350 O=/
+home/blackshark/crDroids/out/target/product/lemonadep/obj/KERNEL_OBJ ARCH=arm64 
+  CC=\"/usr/bin/ccache clang\" LD=ld.lld Image ) && (if [ -d \"kernel/oneplus/sm
+8350/arch/arm64/boot/dts/\" ]; then 			echo \"Building DTBs\"; 
+PATH=/home/blackshark/crDroids/out/host/linux-x86/bin:\$PATH PATH=/home/blacksha
+rk/crDroids/prebuilts/clang/host/linux-x86/clang-r563880c/bin:\$PATH HIP_PATH=no
+ne PERL5LIB=/home/blackshark/crDroids/prebuilts/tools-lineage/common/perl-base P
+ATH=/home/blackshark/crDroids/prebuilts/tools-lineage/linux-x86/bin:/home/blacks
+hark/crDroids/prebuilts/clang/host/linux-x86/clang-r563880c/bin:/home/blackshark
+/crDroids/prebuilts/rust/linux-x86/1.88.0/bin:/home/blackshark/crDroids/prebuilt
+s/clang-tools/linux-x86/bin:\$PATH BISON_PKGDATADIR=/home/blackshark/crDroids/pr
+ebuilts/build-tools/common/bison /home/blackshark/crDroids/prebuilts/build-tools
+/linux-x86/bin/make  KBUILD_BUILD_USER=\"build-user\" KBUILD_BUILD_HOST=\"build-
+host\" -j6 HOSTCFLAGS=\"--sysroot=/home/blackshark/crDroids/prebuilts/gcc/linux-
+x86/host/x86_64-linux-glibc2.17-4.8/sysroot -I/home/blackshark/crDroids/prebuilt
+s/kernel-build-tools/linux-x86/include\" HOSTLDFLAGS=\"--sysroot=/home/blackshar
+k/crDroids/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/sysroot -Wl,-
+rpath,/home/blackshark/crDroids/prebuilts/kernel-build-tools/linux-x86/lib64 -L 
+/home/blackshark/crDroids/prebuilts/kernel-build-tools/linux-x86/lib64 -fuse-ld=
+lld --rtlib=compiler-rt\" LLVM=1 LLVM_IAS=1 LZ4=/home/blackshark/crDroids/prebui
+lts/kernel-build-tools/linux-x86/bin/lz4 LEX=/home/blackshark/crDroids/prebuilts
+/build-tools/linux-x86/bin/flex YACC=/home/blackshark/crDroids/prebuilts/build-t
+ools/linux-x86/bin/bison M4=/home/blackshark/crDroids/prebuilts/build-tools/linu
+x-x86/bin/m4 PAHOLE=/home/blackshark/crDroids/prebuilts/kernel-build-tools/linux
+-x86/bin/pahole LIBCLANG_PATH=/home/blackshark/crDroids/prebuilts/clang/host/lin
+ux-x86/clang-r563880c/lib DTC_EXT=/home/blackshark/crDroids/out/host/linux-x86/b
+in/dtc TARGET_BOARD_PLATFORM=lahaina -C kernel/oneplus/sm8350 O=/home/blackshark
+/crDroids/out/target/product/lemonadep/obj/KERNEL_OBJ ARCH=arm64   CC=\"/usr/bin
+/ccache clang\" LD=ld.lld dtbs; 		fi ) && (if grep -q '=m' out/tar
+get/product/lemonadep/obj/KERNEL_OBJ/.config; then 			echo \"B
+uilding Kernel Modules\"; 			PATH=/home/blackshark/crDroids/o
+ut/host/linux-x86/bin:\$PATH PATH=/home/blackshark/crDroids/prebuilts/clang/host
+/linux-x86/clang-r563880c/bin:\$PATH HIP_PATH=none PERL5LIB=/home/blackshark/crD
+roids/prebuilts/tools-lineage/common/perl-base PATH=/home/blackshark/crDroids/pr
+ebuilts/tools-lineage/linux-x86/bin:/home/blackshark/crDroids/prebuilts/clang/ho
+st/linux-x86/clang-r563880c/bin:/home/blackshark/crDroids/prebuilts/rust/linux-x
+86/1.88.0/bin:/home/blackshark/crDroids/prebuilts/clang-tools/linux-x86/bin:\$PA
+TH BISON_PKGDATADIR=/home/blackshark/crDroids/prebuilts/build-tools/common/bison
+ /home/blackshark/crDroids/prebuilts/build-tools/linux-x86/bin/make  KBUILD_BUIL
+D_USER=\"build-user\" KBUILD_BUILD_HOST=\"build-host\" -j6 HOSTCFLAGS=\"--sysroo
+t=/home/blackshark/crDroids/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-
+4.8/sysroot -I/home/blackshark/crDroids/prebuilts/kernel-build-tools/linux-x86/i
+nclude\" HOSTLDFLAGS=\"--sysroot=/home/blackshark/crDroids/prebuilts/gcc/linux-x
+86/host/x86_64-linux-glibc2.17-4.8/sysroot -Wl,-rpath,/home/blackshark/crDroids/
+prebuilts/kernel-build-tools/linux-x86/lib64 -L /home/blackshark/crDroids/prebui
+lts/kernel-build-tools/linux-x86/lib64 -fuse-ld=lld --rtlib=compiler-rt\" LLVM=1
+ LLVM_IAS=1 LZ4=/home/blackshark/crDroids/prebuilts/kernel-build-tools/linux-x86
+/bin/lz4 LEX=/home/blackshark/crDroids/prebuilts/build-tools/linux-x86/bin/flex 
+YACC=/home/blackshark/crDroids/prebuilts/build-tools/linux-x86/bin/bison M4=/hom
+e/blackshark/crDroids/prebuilts/build-tools/linux-x86/bin/m4 PAHOLE=/home/blacks
+hark/crDroids/prebuilts/kernel-build-tools/linux-x86/bin/pahole LIBCLANG_PATH=/h
+ome/blackshark/crDroids/prebuilts/clang/host/linux-x86/clang-r563880c/lib DTC_EX
+T=/home/blackshark/crDroids/out/host/linux-x86/bin/dtc TARGET_BOARD_PLATFORM=lah
+aina -C kernel/oneplus/sm8350 O=/home/blackshark/crDroids/out/target/product/lem
+onadep/obj/KERNEL_OBJ ARCH=arm64   CC=\"/usr/bin/ccache clang\" LD=ld.lld module
+s || exit \"\$?\"; 			echo \"Installing Kernel Modules\"; 	P
+ATH=/home/blackshark/crDroids/out/host/linux-x86/bin:\$PATH PATH=/home/blackshar
+k/crDroids/prebuilts/clang/host/linux-x86/clang-r563880c/bin:\$PATH HIP_PATH=non
+e PERL5LIB=/home/blackshark/crDroids/prebuilts/tools-lineage/common/perl-base PA
+TH=/home/blackshark/crDroids/prebuilts/tools-lineage/linux-x86/bin:/home/blacksh
+ark/crDroids/prebuilts/clang/host/linux-x86/clang-r563880c/bin:/home/blackshark/
+crDroids/prebuilts/rust/linux-x86/1.88.0/bin:/home/blackshark/crDroids/prebuilts
+/clang-tools/linux-x86/bin:\$PATH BISON_PKGDATADIR=/home/blackshark/crDroids/pre
+builts/build-tools/common/bison /home/blackshark/crDroids/prebuilts/build-tools/
+linux-x86/bin/make  KBUILD_BUILD_USER=\"build-user\" KBUILD_BUILD_HOST=\"build-h
+ost\" -j6 HOSTCFLAGS=\"--sysroot=/home/blackshark/crDroids/prebuilts/gcc/linux-x
+86/host/x86_64-linux-glibc2.17-4.8/sysroot -I/home/blackshark/crDroids/prebuilts
+/kernel-build-tools/linux-x86/include\" HOSTLDFLAGS=\"--sysroot=/home/blackshark
+/crDroids/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/sysroot -Wl,-r
+path,/home/blackshark/crDroids/prebuilts/kernel-build-tools/linux-x86/lib64 -L /
+home/blackshark/crDroids/prebuilts/kernel-build-tools/linux-x86/lib64 -fuse-ld=l
+ld --rtlib=compiler-rt\" LLVM=1 LLVM_IAS=1 LZ4=/home/blackshark/crDroids/prebuil
+ts/kernel-build-tools/linux-x86/bin/lz4 LEX=/home/blackshark/crDroids/prebuilts/
+build-tools/linux-x86/bin/flex YACC=/home/blackshark/crDroids/prebuilts/build-to
+ols/linux-x86/bin/bison M4=/home/blackshark/crDroids/prebuilts/build-tools/linux
+-x86/bin/m4 PAHOLE=/home/blackshark/crDroids/prebuilts/kernel-build-tools/linux-
+x86/bin/pahole LIBCLANG_PATH=/home/blackshark/crDroids/prebuilts/clang/host/linu
+x-x86/clang-r563880c/lib DTC_EXT=/home/blackshark/crDroids/out/host/linux-x86/bi
+n/dtc TARGET_BOARD_PLATFORM=lahaina -C kernel/oneplus/sm8350 O=/home/blackshark/
+crDroids/out/target/product/lemonadep/obj/KERNEL_OBJ ARCH=arm64   CC=\"/usr/bin/
+ccache clang\" LD=ld.lld INSTALL_MOD_PATH=/home/blackshark/crDroids/out/target/p
+roduct/lemonadep/obj/PACKAGING/kernel_modules_intermediates INSTALL_MOD_STRIP=1 
+modules_install; 			 			kernel_release=\
+$(cat out/target/product/lemonadep/obj/KERNEL_OBJ/include/config/kernel.release)
+ 			kernel_modules_dir=/home/blackshark/crDroids/out/target/
+product/lemonadep/obj/PACKAGING/kernel_modules_intermediates/lib/modules/\$kerne
+l_release 			all_modules=\$(find \$kernel_modules_dir -type f
+ -name '*.ko') 			  ; mv \$(echo \$all_modules | tr ' ' '\\n' | gr
+ep /wlan.ko) \$kernel_modules_dir/qca_cld3_wlan.ko; 			all_modu
+les=\$(find \$kernel_modules_dir -type f -name '*.ko'); 			d
+up_modules=\$(echo \$all_modules | tr ' ' '\\n' | xargs -n1 basename | sort | un
+iq -d); 			 err=\$(for m in \$dup_modules; do echo \"ERROR:
+ Duplicate module \$m\" 1>&2 && echo \"dup\"; done); [ -n \"\$err\" ] && exit 1;
+  			filtered_modules=\"\"; 			 (    mkdir -p o
+ut/target/product/lemonadep/vendor_dlkm/lib/modules ) && (cp \$all_modules out/t
+arget/product/lemonadep/vendor_dlkm/lib/modules ) && (rm -rf /home/blackshark/cr
+Droids/out/target/product/lemonadep/obj/PACKAGING/depmod_vendor_intermediates ) 
+&& (mkdir -p /home/blackshark/crDroids/out/target/product/lemonadep/obj/PACKAGIN
+G/depmod_vendor_intermediates/lib/modules/0.0/vendor_dlkm/lib/modules ) && (cp \
+$all_modules /home/blackshark/crDroids/out/target/product/lemonadep/obj/PACKAGIN
+G/depmod_vendor_intermediates/lib/modules/0.0/vendor_dlkm/lib/modules ) && (if [
+ -n \"\" ]; then cp -r  /home/blackshark/crDroids/out/target/product/lemonadep/o
+bj/PACKAGING/depmod_vendor_intermediates/lib/modules/0.0/; fi ) && (out/host/lin
+ux-x86/bin/depmod -ae -F out/target/product/lemonadep/obj/KERNEL_OBJ/System.map 
+-b /home/blackshark/crDroids/out/target/product/lemonadep/obj/PACKAGING/depmod_v
+endor_intermediates 0.0 2>/home/blackshark/crDroids/out/target/product/lemonadep
+/obj/PACKAGING/depmod_vendor_intermediates/depmod_stderr ) && (cat /home/blacksh
+ark/crDroids/out/target/product/lemonadep/obj/PACKAGING/depmod_vendor_intermedia
+tes/depmod_stderr >&2 ) && (if { grep -q \"needs unknown symbol\" /home/blacksha
+rk/crDroids/out/target/product/lemonadep/obj/PACKAGING/depmod_vendor_intermediat
+es/depmod_stderr; }; then echo \"ERROR: kernel module(s) need unknown symbol(s)\
+" >&2; rm -f /home/blackshark/crDroids/out/target/product/lemonadep/obj/PACKAGIN
+G/depmod_vendor_intermediates/depmod_stderr; exit 1; fi ) && (rm -f /home/blacks
+hark/crDroids/out/target/product/lemonadep/obj/PACKAGING/depmod_vendor_intermedi
+ates/depmod_stderr ) && (sed -e 's/\\(.*modules.*\\):/\\/\\1:/g' -e 's/ \\([^ ]*
+modules[^ ]*\\)/ \\/\\1/g' /home/blackshark/crDroids/out/target/product/lemonade
+p/obj/PACKAGING/depmod_vendor_intermediates/lib/modules/0.0/modules.dep > out/ta
+rget/product/lemonadep/vendor_dlkm/lib/modules/modules.dep ) && (cp /home/blacks
+hark/crDroids/out/target/product/lemonadep/obj/PACKAGING/depmod_vendor_intermedi
+ates/lib/modules/0.0/modules.softdep out/target/product/lemonadep/vendor_dlkm/li
+b/modules ) && (cp /home/blackshark/crDroids/out/target/product/lemonadep/obj/PA
+CKAGING/depmod_vendor_intermediates/lib/modules/0.0/modules.alias out/target/pro
+duct/lemonadep/vendor_dlkm/lib/modules ) && (rm -f out/target/product/lemonadep/
+vendor_dlkm/lib/modules/modules.load ) && (for MODULE in adsp_loader_dlkm.ko apr
+_dlkm.ko aw8697.ko bolero_cdc_dlkm.ko bt_fm_slim.ko btpower.ko camera.ko e4000.k
+o fc0011.ko fc0012.ko fc0013.ko fc2580.ko hdmi_dlkm.ko hid-aksys.ko it913x.ko ll
+cc_perfmon.ko m88rs6000t.ko machine_dlkm.ko max2165.ko mbhc_dlkm.ko mc44s803.ko 
+msi001.ko msm_drm.ko mt2060.ko mt2063.ko mt20xx.ko mt2131.ko mt2266.ko mxl301rf.
+ko mxl5005s.ko mxl5007t.ko native_dlkm.ko pinctrl_lpi_dlkm.ko pinctrl_wcd_dlkm.k
+o platform_dlkm.ko q6_dlkm.ko q6_notifier_dlkm.ko q6_pdr_dlkm.ko qm1d1b0004.ko q
+m1d1c0042.ko qt1010.ko r820t.ko radio-i2c-rtc6226-qca.ko rdbg.ko rmnet_core.ko r
+mnet_ctl.ko rmnet_offload.ko rmnet_shs.ko rx_macro_dlkm.ko si2157.ko slimbus.ko 
+slimbus-ngd.ko snd_event_dlkm.ko stub_dlkm.ko swr_ctrl_dlkm.ko swr_dlkm.ko swr_d
+mic_dlkm.ko swr_haptics_dlkm.ko tda18212.ko tda18218.ko tda18250.ko tda9887.ko t
+ea5761.ko tea5767.ko tfa98xx-v6_dlkm.ko tua9001.ko tuner-simple.ko tuner-types.k
+o tuner-xc2028.ko tx_macro_dlkm.ko va_macro_dlkm.ko wcd938x_dlkm.ko wcd938x_slav
+e_dlkm.ko wcd9xxx_dlkm.ko wcd_core_dlkm.ko wsa883x_dlkm.ko wsa_macro_dlkm.ko xc4
+000.ko xc5000.ko; do NAME=\$(basename \$MODULE .ko); if [ -n \"\$(find out/targe
+t/product/lemonadep/vendor_dlkm/lib/modules -type f -name \$NAME'.ko')\" ]; then
+ echo \"\$NAME\" >> out/target/product/lemonadep/vendor_dlkm/lib/modules/modules
+.load; else echo \"ERROR: \$NAME.ko was not found in the kernel modules intermed
+iates dir, module load list must be corrected\" 1>&2; ERROR=1; fi; done; if [ -n
+ \"\$ERROR\" ]; then exit 1; fi; if [ -n \"out/target/product/lemonadep/obj/PACK
+AGING/vendor_dlkm_intermediates/file_list.txt\" ]; then echo lib/modules/modules
+.alias >> \"out/target/product/lemonadep/obj/PACKAGING/vendor_dlkm_intermediates
+/file_list.txt\"; echo lib/modules/modules.dep >> \"out/target/product/lemonadep
+/obj/PACKAGING/vendor_dlkm_intermediates/file_list.txt\"; if [ ! -z \"adsp_loade
+r_dlkm.ko apr_dlkm.ko aw8697.ko bolero_cdc_dlkm.ko bt_fm_slim.ko btpower.ko came
+ra.ko e4000.ko fc0011.ko fc0012.ko fc0013.ko fc2580.ko hdmi_dlkm.ko hid-aksys.ko
+ it913x.ko llcc_perfmon.ko m88rs6000t.ko machine_dlkm.ko max2165.ko mbhc_dlkm.ko
+ mc44s803.ko msi001.ko msm_drm.ko mt2060.ko mt2063.ko mt20xx.ko mt2131.ko mt2266
+.ko mxl301rf.ko mxl5005s.ko mxl5007t.ko native_dlkm.ko pinctrl_lpi_dlkm.ko pinct
+rl_wcd_dlkm.ko platform_dlkm.ko q6_dlkm.ko q6_notifier_dlkm.ko q6_pdr_dlkm.ko qm
+1d1b0004.ko qm1d1c0042.ko qt1010.ko r820t.ko radio-i2c-rtc6226-qca.ko rdbg.ko rm
+net_core.ko rmnet_ctl.ko rmnet_offload.ko rmnet_shs.ko rx_macro_dlkm.ko si2157.k
+o slimbus.ko slimbus-ngd.ko snd_event_dlkm.ko stub_dlkm.ko swr_ctrl_dlkm.ko swr_
+dlkm.ko swr_dmic_dlkm.ko swr_haptics_dlkm.ko tda18212.ko tda18218.ko tda18250.ko
+ tda9887.ko tea5761.ko tea5767.ko tfa98xx-v6_dlkm.ko tua9001.ko tuner-simple.ko 
+tuner-types.ko tuner-xc2028.ko tx_macro_dlkm.ko va_macro_dlkm.ko wcd938x_dlkm.ko
+ wcd938x_slave_dlkm.ko wcd9xxx_dlkm.ko wcd_core_dlkm.ko wsa883x_dlkm.ko wsa_macr
+o_dlkm.ko xc4000.ko xc5000.ko\" ]; then echo lib/modules/modules.load >> \"out/t
+arget/product/lemonadep/obj/PACKAGING/vendor_dlkm_intermediates/file_list.txt\";
+ fi; echo lib/modules/modules.softdep >> \"out/target/product/lemonadep/obj/PACK
+AGING/vendor_dlkm_intermediates/file_list.txt\"; for MODULE in \$all_modules; do
+ BASENAME=\$(basename \$MODULE); echo lib/modules/\"\$BASENAME\" >> \"out/target
+/product/lemonadep/obj/PACKAGING/vendor_dlkm_intermediates/file_list.txt\"; done
+; sort -u \"out/target/product/lemonadep/obj/PACKAGING/vendor_dlkm_intermediates
+/file_list.txt\" -o \"out/target/product/lemonadep/obj/PACKAGING/vendor_dlkm_int
+ermediates/file_list.txt\"; fi;) || exit \"\$?\";  			 vendor_
+boot_modules=\$(for m in adsp_loader_dlkm.ko apr_dlkm.ko msm_drm.ko q6_notifier_
+dlkm.ko q6_pdr_dlkm.ko snd_event_dlkm.ko; do p=\$(echo \$all_modules | tr ' ' '\
+\n' | grep /\$m); if [ -n \"\$p\" ]; then echo \$p; else echo \"ERROR: \$m from 
+BOOT_KERNEL_MODULES was not found\" 1>&2 && exit 1; fi; done); [ \$? -ne 0 ] && 
+exit 1; (    mkdir -p out/target/product/lemonadep/vendor_ramdisk/lib/modules ) 
+&& (cp \$vendor_boot_modules out/target/product/lemonadep/vendor_ramdisk/lib/mod
+ules ) && (rm -rf /home/blackshark/crDroids/out/target/product/lemonadep/obj/PAC
+KAGING/depmod_vendor_ramdisk_intermediates ) && (mkdir -p /home/blackshark/crDro
+ids/out/target/product/lemonadep/obj/PACKAGING/depmod_vendor_ramdisk_intermediat
+es/lib/modules/0.0/lib/modules ) && (cp \$vendor_boot_modules /home/blackshark/c
+rDroids/out/target/product/lemonadep/obj/PACKAGING/depmod_vendor_ramdisk_interme
+diates/lib/modules/0.0/lib/modules ) && (if [ -n \"\" ]; then cp -r  /home/black
+shark/crDroids/out/target/product/lemonadep/obj/PACKAGING/depmod_vendor_ramdisk_
+intermediates/lib/modules/0.0/; fi ) && (out/host/linux-x86/bin/depmod -ae -F ou
+t/target/product/lemonadep/obj/KERNEL_OBJ/System.map -b /home/blackshark/crDroid
+s/out/target/product/lemonadep/obj/PACKAGING/depmod_vendor_ramdisk_intermediates
+ 0.0 2>/home/blackshark/crDroids/out/target/product/lemonadep/obj/PACKAGING/depm
+od_vendor_ramdisk_intermediates/depmod_stderr ) && (cat /home/blackshark/crDroid
+s/out/target/product/lemonadep/obj/PACKAGING/depmod_vendor_ramdisk_intermediates
+/depmod_stderr >&2 ) && (if { grep -q \"needs unknown symbol\" /home/blackshark/
+crDroids/out/target/product/lemonadep/obj/PACKAGING/depmod_vendor_ramdisk_interm
+ediates/depmod_stderr; }; then echo \"ERROR: kernel module(s) need unknown symbo
+l(s)\" >&2; rm -f /home/blackshark/crDroids/out/target/product/lemonadep/obj/PAC
+KAGING/depmod_vendor_ramdisk_intermediates/depmod_stderr; exit 1; fi ) && (rm -f
+ /home/blackshark/crDroids/out/target/product/lemonadep/obj/PACKAGING/depmod_ven
+dor_ramdisk_intermediates/depmod_stderr ) && (sed -e 's/\\(.*modules.*\\):/\\/\\
+1:/g' -e 's/ \\([^ ]*modules[^ ]*\\)/ \\/\\1/g' /home/blackshark/crDroids/out/ta
+rget/product/lemonadep/obj/PACKAGING/depmod_vendor_ramdisk_intermediates/lib/mod
+ules/0.0/modules.dep > out/target/product/lemonadep/vendor_ramdisk/lib/modules/m
+odules.dep ) && (cp /home/blackshark/crDroids/out/target/product/lemonadep/obj/P
+ACKAGING/depmod_vendor_ramdisk_intermediates/lib/modules/0.0/modules.softdep out
+/target/product/lemonadep/vendor_ramdisk/lib/modules ) && (cp /home/blackshark/c
+rDroids/out/target/product/lemonadep/obj/PACKAGING/depmod_vendor_ramdisk_interme
+diates/lib/modules/0.0/modules.alias out/target/product/lemonadep/vendor_ramdisk
+/lib/modules ) && (rm -f out/target/product/lemonadep/vendor_ramdisk/lib/modules
+/modules.load ) && (for MODULE in ; do NAME=\$(basename \$MODULE .ko); if [ -n \
+"\$(find out/target/product/lemonadep/vendor_ramdisk/lib/modules -type f -name \
+$NAME'.ko')\" ]; then echo \"\$NAME\" >> out/target/product/lemonadep/vendor_ram
+disk/lib/modules/modules.load; else echo \"ERROR: \$NAME.ko was not found in the
+ kernel modules intermediates dir, module load list must be corrected\" 1>&2; ER
+ROR=1; fi; done; if [ -n \"\$ERROR\" ]; then exit 1; fi; if [ -n \"\" ]; then ec
+ho lib/modules/modules.alias >> \"\"; echo lib/modules/modules.dep >> \"\"; if [
+ ! -z \"\" ]; then echo lib/modules/modules.load >> \"\"; fi; echo lib/modules/m
+odules.softdep >> \"\"; for MODULE in \$vendor_boot_modules; do BASENAME=\$(base
+name \$MODULE); echo lib/modules/\"\$BASENAME\" >> \"\"; done; sort -u \"\" -o \
+"\"; fi;) || exit \"\$?\";  			 		fi )"
+make: Entering directory '/home/blackshark/crDroids/kernel/oneplus/sm8350'
+make[1]: Entering directory '/home/blackshark/crDroids/out/target/product/lemona
+dep/obj/KERNEL_OBJ'
+  GEN     Makefile
+scripts/kconfig/conf  --syncconfig Kconfig
+  GEN     Makefile
+  UPD     include/config/kernel.release
+  UPD     include/generated/utsrelease.h
+  CALL    /home/blackshark/crDroids/kernel/oneplus/sm8350/scripts/atomic/check-a
+tomics.sh
+  CC      arch/arm64/kernel/asm-offsets.s
+  CALL    /home/blackshark/crDroids/kernel/oneplus/sm8350/scripts/checksyscalls.
+sh
+  CC      init/main.o
+  CC      arch/arm64/mm/init.o
+  CHK     include/generated/compile.h
+  CC      init/do_mounts.o
+  CC      arch/arm64/kernel/ptrace.o
+  CC      kernel/fork.o
+  CC      mm/filemap.o
+  CC      arch/arm64/mm/mmu.o
+  CC      init/do_mounts_rd.o
+  CC      arch/arm64/kernel/signal.o
+  CC      mm/mempool.o
+  CC      kernel/cpu.o
+  CC      init/do_mounts_initrd.o
+  CC      fs/open.o
+  AR      arch/arm64/mm/built-in.a
+  CC      security/selinux/avc.o
+  CC      mm/oom_kill.o
+  CC      kernel/exit.o
+  CC      init/version.o
+  AR      arch/arm64/kernel/built-in.a
+  AR      arch/arm64/built-in.a
+  CC      security/selinux/hooks.o
+  AR      init/built-in.a
+  CC      fs/file_table.o
+  CC      mm/fadvise.o
+  CC      security/selinux/selinuxfs.o
+  CC      security/commoncap.o
+  CC      block/bio.o
+  CC      kernel/sysctl.o
+  CC      fs/super.o
+  CC      mm/page-writeback.o
+  CC      drivers/android/vendor_hooks.o
+  CC      security/selinux/nlmsgtab.o
+  CC      block/elevator.o
+  CC      fs/char_dev.o
+  CC      kernel/signal.o
+  CC      mm/readahead.o
+  CC      security/selinux/netif.o
+  AR      drivers/android/built-in.a
+  CC      drivers/base/syscore.o
+  CC      fs/exec.o
+  CC      mm/swap.o
+  CC      block/blk-core.o
+  CC      security/selinux/netnode.o
+  CC      kernel/sys.o
+../../../../../../kernel/oneplus/sm8350/mm/swap.c:1074:16: error: unused variabl
+e 'megs' [-Werror,-Wunused-variable]
+ 1074 |         unsigned long megs = totalram_pages() >> (20 - PAGE_SHIFT);
+      |                       ^~~~
+1 error generated.
+make[2]: *** [/home/blackshark/crDroids/kernel/oneplus/sm8350/scripts/Makefile.b
+uild:294: mm/swap.o] Error 1
+make[1]: *** [/home/blackshark/crDroids/kernel/oneplus/sm8350/Makefile:1984: mm]
+ Error 2
+make[1]: *** Waiting for unfinished jobs....
+  CC      drivers/block/brd.o
+  CC      drivers/base/firmware_loader/fallback_table.o
+  CC      drivers/base/firmware_loader/main.o
+  CC      block/blk-sysfs.o
+  CC      fs/pipe.o
+  CC      drivers/block/loop.o
+  CC      security/selinux/netport.o
+  CC      kernel/umh.o
+  CC      drivers/base/firmware_loader/fallback.o
+  CC      block/blk-flush.o
+  AR      drivers/base/firmware_loader/built-in.a
+  CC      drivers/block/zram/zram_drv.o
+  CC      drivers/base/power/main.o
+  CC      fs/namei.o
+  CC      security/selinux/ss/ebitmap.o
+  CC      kernel/workqueue.o
+  AR      drivers/block/zram/built-in.a
+  CC      drivers/block/neuron_block_server.o
+  CC      block/blk-settings.o
+  CC      security/selinux/ss/sidtab.o
+  CC      drivers/base/power/wakeup.o
+  AR      drivers/block/built-in.a
+  CC      drivers/bluetooth/btsdio.o
+  CC      fs/ioctl.o
+  CC      block/blk-ioc.o
+  CC      kernel/task_work.o
+  CC      kernel/reboot.o
+  CC      security/selinux/ss/avtab.o
+  AR      drivers/bluetooth/built-in.a
+  CC      drivers/base/power/domain.o
+  CC      block/blk-map.o
+  CC      drivers/char/mem.o
+  CC      fs/select.o
+  CC      security/selinux/ss/policydb.o
+  CC      kernel/kmod.o
+  CC      block/blk-exec.o
+  AR      drivers/base/power/built-in.a
+  AR      drivers/char/built-in.a
+  AR      drivers/base/built-in.a
+  CC      drivers/cpufreq/cpufreq.o
+  CC      drivers/clk/qcom/gdsc-regulator.o
+  CC      block/blk-merge.o
+  CC      security/selinux/ss/services.o
+  CC      kernel/bpf/lpm_trie.o
+  CC      fs/dcache.o
+  CC      kernel/bpf/btf.o
+  AR      drivers/clk/qcom/built-in.a
+  AR      drivers/cpufreq/built-in.a
+  CC      fs/inode.o
+  AR      drivers/clk/built-in.a
+  CC      security/selinux/ss/conditional.o
+  CC      block/blk-softirq.o
+  CC      drivers/cpuidle/cpuidle.o
+  CC      security/security.o
+  CC      block/blk-timeout.o
+  CC      security/selinux/ss/mls.o
+  CC      drivers/cpuidle/lpm-levels.o
+  CC      kernel/bpf/bpf_local_storage.o
+  CC      fs/namespace.o
+  CC      block/blk-lib.o
+  CC      security/selinux/ss/status.o
+  CC      drivers/dax/super.o
+  CC      kernel/bpf/cgroup.o
+  AR      drivers/cpuidle/built-in.a
+  CC      block/blk-mq.o
+  CC      kernel/cgroup/cgroup.o
+  CC      fs/libfs.o
+  AR      security/selinux/built-in.a
+  CC      security/lsm_audit.o
+  AR      drivers/dax/built-in.a
+  CC      kernel/bpf/reuseport_array.o
+  CC      block/blk-mq-tag.o
+  CC      drivers/firmware/psci/psci.o
+  AR      security/built-in.a
+  CC      fs/fs-writeback.o
+  CC      kernel/events/core.o
+  AR      drivers/firmware/psci/built-in.a
+  CC      kernel/bpf/bpf_struct_ops.o
+  CC      block/blk-stat.o
+  AR      drivers/firmware/built-in.a
+  CC      kernel/cgroup/cpuset.o
+  CC      drivers/gpu/drm/drm_gem.o
+  CC      block/blk-mq-sysfs.o
+  CC      fs/splice.o
+  AR      kernel/bpf/built-in.a
+  AR      kernel/cgroup/built-in.a
+  CC      kernel/irq/pm.o
+  CC      kernel/events/uprobes.o
+  CC      block/blk-mq-cpumap.o
+  CC      drivers/gpu/drm/drm_gem_shmem_helper.o
+  AR      kernel/irq/built-in.a
+  CC      fs/sync.o
+  CC      drivers/gpu/msm/governor_msm_adreno_tz.o
+  CC      block/blk-mq-sched.o
+  CC      drivers/hwtracing/coresight/coresight-tmc.o
+  AR      drivers/gpu/msm/built-in.a
+  AR      kernel/events/built-in.a
+  CC      block/ioctl.o
+  CC      drivers/gpu/drm/ttm/ttm_memory.o
+  CC      kernel/power/main.o
+  CC      fs/dyn_fsync.o
+  CC      drivers/hwtracing/coresight/coresight-tmc-etf.o
+  CC      kernel/power/process.o
+  CC      fs/susfs.o
+  CC      block/genhd.o
+  CC      drivers/gpu/drm/ttm/ttm_tt.o
+  CC      kernel/power/suspend.o
+  CC      fs/buffer.o
+  CC      drivers/hwtracing/coresight/coresight-tmc-etr.o
+  CC      block/partition-generic.o
+  CC      block/ioprio.o
+  AR      drivers/gpu/drm/ttm/built-in.a
+  AR      drivers/gpu/drm/built-in.a
+  CC      kernel/power/wakelock.o
+  AR      drivers/gpu/built-in.a
+  CC      kernel/rcu/tree.o
+  CC      fs/block_dev.o
+  CC      drivers/hwtracing/coresight/coresight-byte-cntr.o
+  CC      kernel/power/wakeup_reason.o
+  CC      block/partitions/check.o
+  CC      fs/direct-io.o
+  CC      block/partitions/msdos.o
+  AR      kernel/rcu/built-in.a
+  AR      kernel/power/built-in.a
+  CC      kernel/sched/core.o
+  CC      kernel/time/timer.o
+  CC      drivers/input/misc/qpnp-power-on.o
+  CC      fs/mpage.o
+  AR      drivers/hwtracing/coresight/built-in.a
+  CC      block/blk-rq-qos.o
+  CC      block/partitions/efi.o
+  AR      block/partitions/built-in.a
+  CC      block/scsi_ioctl.o
+  AR      drivers/input/misc/built-in.a
+  CC      kernel/trace/trace.o
+  CC      drivers/input/oplus_fp_drivers/anc_driver/jiiov_platform.o
+  CC      fs/configfs/inode.o
+  AR      kernel/time/built-in.a
+  CC      drivers/input/oplus_fp_drivers/goodix_optical_fp/gf_netlink.o
+  CC      block/bsg.o
+  AR      fs/configfs/built-in.a
+  CC      fs/crypto/inline_crypt.o
+  CC      drivers/input/oplus_fp_drivers/anc_driver/jiiov_netlink.o
+  AR      drivers/input/oplus_fp_drivers/goodix_optical_fp/built-in.a
+  CC      kernel/sched/loadavg.o
+  CC      kernel/trace/blktrace.o
+  CC      drivers/irqchip/irq-gic-v3.o
+  CC      block/bsg-lib.o
+  AR      fs/crypto/built-in.a
+  AR      drivers/input/oplus_fp_drivers/anc_driver/built-in.a
+  AR      drivers/input/oplus_fp_drivers/built-in.a
+  CC      fs/exfat/inode.o
+  AR      drivers/input/built-in.a
+  CC      kernel/sched/clock.o
+  CC      kernel/trace/bpf_trace.o
+  AR      drivers/irqchip/built-in.a
+  CC      block/blk-cgroup.o
+-- KernelSU-Next version: 32992
+-- KernelSU-Next tag: v3.0.1
+-- KernelSU-Next Manager signature size: 0x3e6
+-- KernelSU-Next Manager signature hash: 79e590113c4c4c0c222978e413a5faa80166695
+7b1212a328e46c00c69821bf7
+
+-- SUSFS_VERSION: v2.0.0
+  CC      fs/exfat/namei.o
+  CC      block/mq-deadline.o
+  CC      drivers/kernelsu/ksu.o
+  CC      drivers/kernelsu/allowlist.o
+  CC      fs/exfat/dir.o
+  CC      block/kyber-iosched.o
+  CC      kernel/sched/cputime.o
+  CC      kernel/freezer.o
+  CC      drivers/kernelsu/app_profile.o
+  CC      fs/exfat/super.o
+  CC      block/bfq-iosched.o
+  AR      kernel/trace/built-in.a
+  CC      drivers/kernelsu/sucompat.o
+  CC      fs/ext4/balloc.o
+  CC      fs/exfat/fatent.o
+  CC      kernel/sched/idle.o
+  CC      block/bfq-wf2q.o
+  CC      fs/exfat/cache.o
+  CC      drivers/kernelsu/throne_tracker.o
+  CC      fs/f2fs/dir.o
+  CC      block/bfq-cgroup.o
+  CC      drivers/kernelsu/pkg_observer.o
+  CC      fs/exfat/nls.o
+  CC      fs/ext4/bitmap.o
+  CC      drivers/kernelsu/setuid_hook.o
+  CC      block/compat_ioctl.o
+  CC      fs/f2fs/file.o
+  CC      fs/exfat/misc.o
+  CC      kernel/sched/fair.o
+  CC      fs/ext4/block_validity.o
+  CC      drivers/kernelsu/kernel_umount.o
+  CC      drivers/kernelsu/supercalls.o
+  CC      fs/exfat/file.o
+  CC      block/blk-mq-pci.o
+  CC      fs/ext4/dir.o
+  CC      drivers/kernelsu/feature.o
+  CC      fs/exfat/balloc.o
+  CC      block/blk-mq-virtio.o
+  CC      fs/f2fs/inode.o
+  CC      drivers/kernelsu/ksud.o
+  CC      fs/ext4/ext4_jbd2.o
+  AR      fs/exfat/built-in.a
+  CC      kernel/smp.o
+  CC      kernel/sched/rt.o
+  CC      drivers/kernelsu/seccomp_cache.o
+  CC      block/blk-pm.o
+  CC      fs/f2fs/namei.o
+  CC      fs/ext4/extents.o
+  CC      drivers/kernelsu/file_wrapper.o
+  CC      drivers/md/dm-uevent.o
+  CC      block/keyslot-manager.o
+  CC      kernel/sched/deadline.o
+  CC      fs/f2fs/hash.o
+  CC      drivers/kernelsu/extras.o
+  CC      fs/ext4/extents_status.o
+  CC      drivers/md/dm.o
+  CC      block/bio-crypt-ctx.o
+  CC      drivers/kernelsu/selinux/selinux.o
+  CC      fs/f2fs/super.o
+  CC      kernel/sched/wait.o
+  CC      block/blk-crypto.o
+  CC      fs/ext4/file.o
+  CC      drivers/kernelsu/selinux/sepolicy.o
+  CC      drivers/md/dm-table.o
+  CC      kernel/sched/wait_bit.o
+  CC      fs/ext4/fsmap.o
+  CC      fs/f2fs/inline.o
+  CC      block/blk-crypto-fallback.o
+  CC      drivers/kernelsu/selinux/rules.o
+  CC      drivers/md/dm-target.o
+  AR      block/built-in.a
+  CC      fs/f2fs/checkpoint.o
+  CC      fs/ext4/fsync.o
+  CC      fs/fat/fatent.o
+  CC      kernel/sched/swait.o
+  AR      drivers/kernelsu/built-in.a
+  CC      drivers/md/dm-linear.o
+  CC      fs/fat/file.o
+  CC      fs/f2fs/gc.o
+  CC      fs/ext4/hash.o
+  CC      drivers/md/dm-stripe.o
+  CC      kernel/sched/completion.o
+  CC      fs/f2fs/data.o
+  CC      fs/ext4/ialloc.o
+  CC      fs/fat/inode.o
+  CC      fs/fuse/dev.o
+  CC      drivers/md/dm-ioctl.o
+  CC      kernel/sched/walt/walt.o
+  CC      drivers/md/dm-io.o
+  CC      fs/ext4/indirect.o
+  AR      fs/fat/built-in.a
+  CC      kernel/sched/walt/boost.o
+  CC      fs/fuse/dir.o
+  CC      fs/f2fs/node.o
+  CC      drivers/md/dm-kcopyd.o
+  CC      fs/ext4/inline.o
+  CC      kernel/sched/walt/sched_avg.o
+  CC      fs/fuse/file.o
+  CC      kernel/sched/walt/qc_vas.o
+  CC      fs/ext4/inode.o
+  CC      fs/f2fs/segment.o
+  CC      drivers/md/dm-sysfs.o
+  CC      fs/fuse/inode.o
+  CC      kernel/sched/walt/core_ctl.o
+  CC      fs/incfs/vfs.o
+  CC      drivers/md/dm-stats.o
+  CC      fs/f2fs/recovery.o
+  CC      fs/ext4/ioctl.o
+  CC      fs/fuse/control.o
+  AR      fs/incfs/built-in.a
+  CC      fs/iomap/apply.o
+  CC      drivers/md/dm-rq.o
+  CC      kernel/sched/walt/trace.o
+  CC      fs/f2fs/shrinker.o
+  CC      fs/fuse/xattr.o
+  CC      fs/iomap/buffered-io.o
+  CC      drivers/md/dm-builtin.o
+  CC      fs/ext4/mballoc.o
+  CC      fs/f2fs/extent_cache.o
+  CC      fs/fuse/acl.o
+  CC      kernel/sched/walt/cpu-boost.o
+  CC      fs/iomap/direct-io.o
+  CC      fs/fuse/readdir.o
+  CC      fs/f2fs/sysfs.o
+  CC      drivers/md/dm-bufio.o
+  AR      kernel/sched/walt/built-in.a
+  CC      kernel/sched/cpupri.o
+  CC      fs/iomap/fiemap.o
+  CC      fs/ext4/migrate.o
+  CC      fs/fuse/passthrough.o
+  CC      fs/f2fs/debug.o
+  CC      drivers/md/dm-crypt.o
+  CC      kernel/sched/cpudeadline.o
+  CC      fs/iomap/seek.o
+  CC      fs/ext4/mmp.o
+  AR      fs/fuse/built-in.a
+  CC      fs/jbd2/transaction.o
+  CC      fs/f2fs/xattr.o
+  CC      kernel/sched/topology.o
+  CC      drivers/md/dm-default-key.o
+  CC      fs/ext4/move_extent.o
+  CC      fs/iomap/swapfile.o
+  CC      fs/f2fs/acl.o
+  CC      drivers/md/dm-snap.o
+  CC      fs/ext4/namei.o
+  CC      fs/jbd2/commit.o
+  CC      fs/f2fs/verity.o
+  CC      kernel/sched/stop_task.o
+  AR      fs/iomap/built-in.a
+  CC      fs/kernfs/inode.o
+  CC      fs/jbd2/recovery.o
+  CC      drivers/md/dm-exception-store.o
+  AR      fs/f2fs/built-in.a
+  AR      fs/kernfs/built-in.a
+  CC      kernel/sched/pelt.o
+  CC      drivers/misc/oem_qmi_client.o
+  CC      fs/ext4/page-io.o
+  CC      fs/notify/group.o
+  CC      drivers/md/dm-snap-transient.o
+  CC      fs/jbd2/checkpoint.o
+  CC      fs/ext4/readpage.o
+  CC      kernel/sched/debug.o
+  CC      drivers/md/dm-snap-persistent.o
+  CC      fs/notify/inotify/inotify_user.o
+  CC      fs/jbd2/journal.o
+  AR      drivers/misc/built-in.a
+  CC      drivers/mmc/core/core.o
+  CC      drivers/md/dm-verity-fec.o
+  CC      fs/ext4/resize.o
+  AR      fs/notify/inotify/built-in.a
+  AR      fs/notify/built-in.a
+  CC      kernel/sched/cpuacct.o
+  CC      kernel/module.o
+  AR      fs/jbd2/built-in.a
+  CC      drivers/md/dm-verity-target.o
+  CC      fs/proc/task_mmu.o
+  CC      fs/ext4/super.o
+  CC      kernel/sched/cpufreq.o
+  CC      drivers/mmc/core/crypto.o
+  CC      drivers/md/dm-bow.o
+  CC      fs/proc/base.o
+  CC      drivers/mmc/host/cqhci-crypto.o
+  CC      drivers/mmc/core/block.o
+  CC      kernel/sched/cpufreq_schedutil.o
+  AR      drivers/md/built-in.a
+  CC      drivers/net/ppp/ppp_generic.o
+  AR      drivers/mmc/host/built-in.a
+  CC      fs/ext4/symlink.o
+  CC      fs/proc/array.o
+  CC      drivers/mmc/core/queue.o
+  CC      fs/quota/quota.o
+  CC      fs/ext4/sysfs.o
+  CC      kernel/sched/membarrier.o
+  AR      drivers/mmc/core/built-in.a
+  CC      fs/proc/meminfo.o
+  AR      drivers/mmc/built-in.a
+  CC      fs/ramfs/inode.o
+  AR      fs/quota/built-in.a
+  CC      fs/ext4/xattr.o
+  CC      drivers/net/ppp/pppox.o
+  CC      fs/ext4/xattr_trusted.o
+  CC      fs/proc/page.o
+  AR      fs/ramfs/built-in.a
+  CC      kernel/sched/isolation.o
+  CC      drivers/nvdimm/core.o
+  CC      fs/ext4/xattr_user.o
+  CC      drivers/net/ppp/pptp.o
+  AR      fs/proc/built-in.a
+  CC      kernel/sched/psi.o
+  CC      drivers/nvdimm/bus.o
+  CC      fs/ext4/acl.o
+  CC      fs/ext4/xattr_security.o
+  CC      drivers/nvdimm/dimm_devs.o
+  CC      drivers/net/slip/slhc.o
+  CC      fs/ext4/verity.o
+  AR      kernel/sched/built-in.a
+  UPD     kernel/config_data
+  CHK     kernel/kheaders_data.tar.xz
+  AR      drivers/net/ppp/built-in.a
+  CC      drivers/net/usb/r8152.o
+  CC      fs/verity/enable.o
+  CC      drivers/nvdimm/dimm.o
+  GEN     kernel/kheaders_data.tar.xz
+  AR      fs/ext4/built-in.a
+  CC      drivers/net/wireguard/main.o
+  CC      drivers/nvdimm/region_devs.o
+  AR      drivers/net/slip/built-in.a
+  CC      fs/eventpoll.o
+  AR      fs/verity/built-in.a
+  CC      drivers/net/wireguard/noise.o
+  CC      drivers/net/usb/lan78xx.o
+  CC      drivers/nvdimm/region.o
+  CC      drivers/pci/pci-driver.o
+  CC      fs/aio.o
+  CC      drivers/nvdimm/namespace_devs.o
+  CC      drivers/net/wireguard/device.o
+  CC      drivers/pci/quirks.o
+  AR      drivers/net/usb/built-in.a
+  CC      drivers/net/wireless/cnss2/main.o
+  CC      drivers/nvdimm/label.o
+  CC      drivers/net/wireguard/peer.o
+  CC      fs/io_uring.o
+  CC      drivers/nvdimm/badrange.o
+  AR      drivers/pci/built-in.a
+  CC      kernel/audit.o
+  CC      drivers/net/wireless/cnss2/pci.o
+  CC      drivers/nvdimm/claim.o
+  CC      drivers/net/wireguard/timers.o
+  CC      fs/compat_ioctl.o
+  CC      drivers/nvdimm/btt_devs.o
+  CC      drivers/nvdimm/pmem.o
+  CC      kernel/auditfilter.o
+  CC      drivers/net/wireguard/queueing.o
+  AR      drivers/net/wireless/cnss2/built-in.a
+  AR      drivers/net/wireless/built-in.a
+  CC      fs/coredump.o
+  CC      drivers/nvdimm/btt.o
+  CC      drivers/net/wireguard/send.o
+  CC      fs/drop_caches.o
+  CC      drivers/net/wireguard/receive.o
+  CC      drivers/platform/msm/ipa_fmwk/ipa_fmwk.o
+  AR      fs/built-in.a
+  AR      drivers/nvdimm/built-in.a
+  CC      drivers/net/wireguard/socket.o
+  CC      drivers/power/oplus_chg/oplus_chg_intf.o
+  CC      drivers/power/oplus_chg/oplus_adapter.o
+  CC      drivers/net/loopback.o
+  CC      drivers/power/oplus_chg/oplus_charger.o
+  CC      drivers/net/wireguard/peerlookup.o
+  CC      drivers/net/tun.o
+  AR      drivers/platform/msm/ipa_fmwk/built-in.a
+  AR      drivers/platform/msm/built-in.a
+  AR      drivers/platform/built-in.a
+  CC      drivers/power/oplus_chg/oplus_gauge.o
+  CC      drivers/net/veth.o
+  CC      drivers/power/oplus_chg/oplus_short.o
+  CC      drivers/net/wireguard/allowedips.o
+  CC      drivers/regulator/core.o
+  CC      kernel/seccomp.o
+  CC      drivers/power/oplus_chg/oplus_warp.o
+  CC      drivers/net/wireguard/ratelimiter.o
+  CC      drivers/net/wireguard/cookie.o
+  CC      drivers/power/oplus_chg/oplus_debug_info.o
+  CC      drivers/regulator/dummy.o
+  CC      drivers/regulator/fixed-helper.o
+  CC      kernel/taskstats.o
+  CC      drivers/net/wireguard/netlink.o
+  CC      drivers/power/oplus_chg/oplus_chg_comm.o
+  CC      drivers/rpmsg/qcom_glink_native.o
+  CC      drivers/regulator/helpers.o
+  CC      drivers/power/oplus_chg/adapter_ic/oplus_stm.o
+  CC      drivers/regulator/devres.o
+  AR      drivers/net/wireguard/built-in.a
+  AR      drivers/net/built-in.a
+  CC      drivers/scsi/scsi.o
+  AR      drivers/rpmsg/built-in.a
+  CC      drivers/scsi/hosts.o
+  CC      drivers/power/oplus_chg/charger_ic/oplus_sm8350.o
+  CC      drivers/soc/oplus/sensor/oplus_sensor_feedback/sensor_feedback.o
+  CC      drivers/regulator/of_regulator.o
+  CC      drivers/scsi/scsi_ioctl.o
+  CC      drivers/scsi/scsicam.o
+  CC      drivers/power/oplus_chg/charger_ic/oplus_pm8350b.o
+  AR      drivers/soc/oplus/sensor/oplus_sensor_feedback/built-in.a
+  CC      drivers/regulator/fixed.o
+  AR      drivers/soc/oplus/sensor/built-in.a
+  CC      drivers/soc/oplus/system/feedback/kernel_fb.o
+  CC      drivers/power/oplus_chg/charger_ic/oplus_short_ic.o
+  CC      drivers/scsi/scsi_error.o
+  CC      drivers/regulator/qti-fixed-regulator.o
+  CC      drivers/soc/qcom/peripheral-loader.o
+  CC      drivers/power/oplus_chg/gauge_ic/oplus_bq27541.o
+  CC      drivers/regulator/qcom_pm8008-regulator.o
+  AR      drivers/soc/oplus/system/feedback/built-in.a
+  CC      drivers/soc/oplus/system/oplus_mm_fb/oplus_mm_kevent.o
+  CC      drivers/scsi/scsi_lib.o
+  CC      drivers/power/oplus_chg/warp_ic/oplus_rk826.o
+  CC      drivers/regulator/qpnp-lcdb-regulator.o
+  CC      drivers/soc/qcom/msm_subsystem_restart.o
+  CC      drivers/soc/oplus/system/oplus_mm_fb/oplus_mm_kevent_fb.o
+  CC      drivers/scsi/scsi_lib_dma.o
+  CC      drivers/regulator/qpnp-amoled-regulator.o
+  CC      drivers/power/oplus_chg/warp_ic/oplus_op10.o
+  CC      drivers/soc/qcom/qmi_interface.o
+  CC      drivers/scsi/scsi_scan.o
+  CC      drivers/regulator/refgen.o
+  AR      drivers/soc/oplus/system/oplus_mm_fb/built-in.a
+  AR      drivers/soc/oplus/system/built-in.a
+  CC      drivers/power/oplus_chg/warp_ic/oplus_warp_fw.o
+  CC      drivers/scsi/scsi_sysfs.o
+  CC      drivers/regulator/rpmh-regulator.o
+  CC      drivers/scsi/scsi_devinfo.o
+  CC      drivers/soc/qcom/minidump_log.o
+  AR      drivers/power/oplus_chg/built-in.a
+  AR      drivers/power/built-in.a
+  CC      drivers/regulator/stub-regulator.o
+  CC      drivers/scsi/scsi_sysctl.o
+  CC      drivers/staging/android/ion/heaps/ion_page_pool.o
+  CC      drivers/scsi/scsi_trace.o
+  CC      drivers/soc/qcom/smp2p_sleepstate.o
+  AR      drivers/regulator/built-in.a
+  CC      drivers/staging/android/ashmem.o
+  CC      drivers/thermal/thermal_core.o
+  CC      drivers/staging/android/ion/heaps/ion_msm_page_pool.o
+  CC      drivers/scsi/scsi_logging.o
+  AR      drivers/soc/qcom/built-in.a
+  CC      drivers/scsi/scsi_pm.o
+  AR      drivers/soc/built-in.a
+  CC      drivers/tty/sysrq.o
+  AR      drivers/staging/android/ion/heaps/built-in.a
+  AR      drivers/staging/android/ion/built-in.a
+  AR      drivers/staging/android/built-in.a
+  CC      drivers/scsi/ufs/tc-dwc-g210-pltfrm.o
+  CC      drivers/thermal/qcom/qmi_sensors.o
+  CC      drivers/usb/gadget/function/f_mass_storage.o
+  AR      drivers/tty/built-in.a
+  CC      drivers/scsi/ufs/ufshcd-dwc.o
+  GZIP    kernel/config_data.gz
+  CC      kernel/kheaders.o
+  CC      drivers/scsi/sd.o
+  CC      drivers/thermal/qcom/cpu_isolate.o
+  CC      kernel/configs.o
+  CC      drivers/usb/gadget/function/storage_common.o
+  CC      drivers/scsi/ufs/tc-dwc-g210.o
+  AR      kernel/built-in.a
+  AR      drivers/thermal/qcom/built-in.a
+  AR      drivers/thermal/built-in.a
+  CC      drivers/scsi/sg.o
+  CC      drivers/usb/gadget/function/f_fs.o
+  CC      drivers/scsi/ufs/ufs-qcom.o
+  CC      drivers/usb/phy/phy-msm-snps-hs.o
+  CC      drivers/scsi/ufs/ufshcd.o
+  AR      drivers/usb/phy/built-in.a
+  AR      drivers/staging/built-in.a
+  CC      drivers/usb/storage/uas.o
+  CC      drivers/scsi/ufs/ufs-sysfs.o
+  CC      drivers/usb/storage/scsiglue.o
+  CC      drivers/scsi/ufs/ufs_bsg.o
+  CC      drivers/usb/gadget/function/f_gsi.o
+  CC      drivers/usb/storage/protocol.o
+  CC      drivers/scsi/ufs/ufshcd-crypto.o
+  CC      drivers/scsi/ufs/ufsfeature.o
+  CC      drivers/usb/storage/transport.o
+  CC      drivers/scsi/ufs/ufstw.o
+  CC      drivers/scsi/ufs/ufshid.o
+  CC      drivers/usb/storage/usb.o
+  CC      drivers/scsi/ufs/ufs_signal_quality.o
+  CC      drivers/usb/storage/initializers.o
+  AR      drivers/usb/gadget/function/built-in.a
+  AR      drivers/usb/gadget/built-in.a
+  CC      drivers/scsi/ufs/ufshcd-pci.o
+  CC      drivers/scsi/ufs/ufshcd-pltfrm.o
+  CC      drivers/scsi/ufs/ufshcd-crypto-qti.o
+  CC      drivers/scsi/ufs/oplus_ufs/oplus_ufs_common.o
+  CC      drivers/usb/storage/sierra_ms.o
+  CC      drivers/usb/storage/option_ms.o
+  AR      drivers/usb/storage/built-in.a
+  AR      drivers/usb/built-in.a
+  AR      drivers/scsi/ufs/oplus_ufs/built-in.a
+  AR      drivers/scsi/ufs/built-in.a
+  AR      drivers/scsi/built-in.a
+  AR      drivers/built-in.a
+make[1]: Leaving directory '/home/blackshark/crDroids/out/target/product/lemonad
+ep/obj/KERNEL_OBJ'
+make: *** [Makefile:190: sub-make] Error 2
+make: Leaving directory '/home/blackshark/crDroids/kernel/oneplus/sm8350'
+00:53:54 ninja failed with: exit status 1
+There were 4 actions that completed after the action that failed. See verbose.lo
+g.gz for their output.
