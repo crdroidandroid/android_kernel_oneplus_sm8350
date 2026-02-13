@@ -134,9 +134,9 @@ This kernel includes a comprehensive set of performance and battery life optimiz
 | **Tunable Scaling: None** | Prevents auto-scaling of scheduler granularity values by CPU count — our tuned values are used as-is |
 | **Min Granularity: 1ms** | CFS minimum timeslice increased from 750us — fewer context switches, better throughput |
 | **Wakeup Granularity: 1.5ms** | Wakeup preemption threshold raised from 1ms — reduces unnecessary task preemption |
-| **Migration Cost: 50us** | Reduced 10x from 500us — scheduler migrates tasks across CPUs more aggressively for lower latency |
+| **Migration Cost: 200us** | Reduced from 500us — scheduler migrates tasks across CPUs faster for lower latency while avoiding excessive cross-cluster thrashing |
 | **Child Runs First** | Forked child processes run before parent — reduces Copy-on-Write page faults on fork+exec |
-| **Colocation Threshold: 0** | Top-app tasks always receive sched boost regardless of utilization |
+| **Colocation Threshold: 20** | Top-app tasks receive sched boost at lower utilization than stock (35), balancing responsiveness with thermal efficiency |
 | **Perf CPU Overhead: 10%** | Perf sampling CPU time limit reduced from 25% to 10% |
 
 ### Memory & VM
@@ -146,7 +146,7 @@ This kernel includes a comprehensive set of performance and battery life optimiz
 | **ZRAM with LZ4** | Compressed RAM swap using the fast LZ4 algorithm instead of lzo-rle |
 | **Page Cluster: 0** | Swap read-ahead disabled — unnecessary with ZRAM since data is already in memory |
 | **VFS Cache Pressure: 50** | Dentry/inode caches retained longer, reducing filesystem metadata I/O |
-| **Dirty Ratio: 60%** | Allows more dirty pages in RAM before forcing writeback — improves burst write performance |
+| **Dirty Ratio: 30%** | Allows more dirty pages in RAM before forcing writeback — balances burst write performance with Dynamic Fsync screen-on flush safety |
 | **VM Stat Interval: 30s** | Per-CPU vmstat counter flush reduced from every 1s to every 30s — less jitter |
 
 ### Power Management

@@ -14,11 +14,11 @@
 #include <linux/msm_drm_notify.h>
 
 bool dyn_fsync_active __read_mostly = true;
-static bool screen_on __read_mostly = true;
+static int screen_on __read_mostly = 1;
 
 bool dyn_fsync_fsync_enabled(void)
 {
-	if (dyn_fsync_active && !screen_on)
+	if (dyn_fsync_active && !READ_ONCE(screen_on))
 		return false;
 	return true;
 }
@@ -38,11 +38,11 @@ static int dyn_fsync_fb_notifier_callback(struct notifier_block *self,
 	blank = evdata->data;
 
 	if (*blank == MSM_DRM_BLANK_UNBLANK) {
-		screen_on = true;
+		WRITE_ONCE(screen_on, 1);
 		if (dyn_fsync_active)
 			ksys_sync();
 	} else if (*blank == MSM_DRM_BLANK_POWERDOWN) {
-		screen_on = false;
+		WRITE_ONCE(screen_on, 0);
 	}
 
 	return NOTIFY_OK;
