@@ -12,6 +12,8 @@
 // theres only one feature so far anyway
 // - xx, 20251019
 
+extern u32 susfs_ksu_sid;
+extern u32 susfs_priv_app_sid;
 static u32 su_sid = 0;
 static u32 priv_app_sid = 0;
 
@@ -63,19 +65,16 @@ static const struct ksu_feature_handler avc_spoof_handler = {
 
 static int get_sid()
 {
-	// dont load at all if we cant get sids
-	int err = security_secctx_to_secid("u:r:su:s0", strlen("u:r:su:s0"), &su_sid);
-	if (err) {
-		pr_info("avc_spoof/get_sid: su_sid not found!\n");
+	// reuse SIDs already cached by cache_sid() in selinux.c
+	// instead of calling security_secctx_to_secid() independently,
+	// which would require waiting for boot_completed
+	su_sid = susfs_ksu_sid;
+	priv_app_sid = susfs_priv_app_sid;
+	if (!su_sid || !priv_app_sid) {
+		pr_info("avc_spoof/get_sid: SIDs not yet cached!\n");
 		return -1;
 	}
 	pr_info("avc_spoof/get_sid: su_sid: %u\n", su_sid);
-
-	err = security_secctx_to_secid("u:r:priv_app:s0:c512,c768", strlen("u:r:priv_app:s0:c512,c768"), &priv_app_sid);
-	if (err) {
-		pr_info("avc_spoof/get_sid: priv_app_sid not found!\n");
-		return -1;
-	}
 	pr_info("avc_spoof/get_sid: priv_app_sid: %u\n", priv_app_sid);
 	return 0;
 }
@@ -169,8 +168,12 @@ void ksu_avc_spoof_disable(void)
 	pr_info("avc_spoof/exit: slow_avc_audit spoofing disabled!\n");
 }
 
-void ksu_avc_spoof_enable(void) 
+void ksu_avc_spoof_enable(void)
 {
+	// already active, avoid re-registering kprobe
+	if (!atomic_read(&disable_spoof))
+		return;
+
 	int ret = get_sid();
 	if (ret) {
 		pr_info("avc_spoof/init: sid grab fail!\n");
