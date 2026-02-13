@@ -299,9 +299,21 @@ There is no need to compile the kernel separately — `brunch` handles everythin
 
 ## Credits
 
+#### Core
 - [KernelSU-Next](https://github.com/KernelSU-Next/KernelSU-Next) — Kernel-based root solution
 - [SuSFS](https://gitlab.com/simonpunk/susfs4ksu) — Root hiding subsystem by simonpunk
 - [crDroid](https://crdroid.net/) — Custom Android ROM
+
+#### Performance Optimizations
+- [NotZeetaa / YAKT](https://github.com/NotZeetaa/YAKT) — Yet Another Kernel Tweaker; runtime tuning defaults ported to source
+- [kdrag0n](https://github.com/kdrag0n) — VM stat interval optimization
+- [tytydraco](https://github.com/tytydraco) — Colocation threshold tweak
+- [flar2 / Aaron Segaert](https://github.com/flar2) — Dynamic Fsync and Adrenoboost implementations (blu_spark / ElementalX)
+- [arter97](https://github.com/arter97) — BBR TCP, LZ4 ZRAM, schedutil defaults (arter97-kernel)
+- [engstk / McQuaid](https://github.com/engstk) — Power-efficient workqueues, debug debloat (blu_spark)
+- [Nathan Chancellor / Eva Kernel](https://github.com/nathanchance) — Power-efficient workqueues reference
+
+#### Tooling
 - [Claude Code](https://claude.ai/code) — AI-assisted kernel integration
 
 ---
