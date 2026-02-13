@@ -57,6 +57,7 @@ static DEFINE_SPINLOCK(suspend_lock);
 static u64 suspend_time;
 static u64 suspend_start;
 static unsigned long acc_total, acc_relative_busy;
+static unsigned int adrenoboost = 0;
 
 static struct msm_adreno_extended_profile *partner_gpu_profile;
 static void do_partner_start_event(struct work_struct *work);
@@ -157,15 +158,38 @@ static ssize_t mod_percent_show(struct device *dev,
 	return scnprintf(buf, PAGE_SIZE, "%u\n", priv->mod_percent);
 }
 
+static ssize_t adrenoboost_show(struct device *dev,
+		struct device_attribute *attr, char *buf)
+{
+	return snprintf(buf, PAGE_SIZE, "%u\n", adrenoboost);
+}
+
+static ssize_t adrenoboost_store(struct device *dev,
+		struct device_attribute *attr, const char *buf, size_t count)
+{
+	unsigned int val;
+
+	if (kstrtou32(buf, 0, &val))
+		return -EINVAL;
+
+	if (val > 3)
+		val = 0;
+
+	adrenoboost = val;
+	return count;
+}
+
 static DEVICE_ATTR_RO(gpu_load);
 
 static DEVICE_ATTR_RO(suspend_time);
 static DEVICE_ATTR_RW(mod_percent);
+static DEVICE_ATTR_RW(adrenoboost);
 
 static const struct device_attribute *adreno_tz_attr_list[] = {
 		&dev_attr_gpu_load,
 		&dev_attr_suspend_time,
 		&dev_attr_mod_percent,
+		&dev_attr_adrenoboost,
 		NULL
 };
 
@@ -375,7 +399,12 @@ static int tz_get_target_freq(struct devfreq *devfreq, unsigned long *freq)
 	/* busy_time should not go over total_time */
 	stats->busy_time = min_t(u64, busy_time, stats->total_time);
 
-	priv->bin.busy_time += stats->busy_time;
+	if (adrenoboost &&
+	    (unsigned int)(priv->bin.busy_time + stats->busy_time) >= MIN_BUSY)
+		priv->bin.busy_time += stats->busy_time *
+			(1 + (adrenoboost * 3) / 2);
+	else
+		priv->bin.busy_time += stats->busy_time;
 
 	if (stats->private_data)
 		context_count =  *((int *)stats->private_data);
