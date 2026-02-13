@@ -44,6 +44,8 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 
 > In step 5, you can use the [susfs4ksu module](https://github.com/sidex15/susfs4ksu-module/actions/workflows/build.yml) nightly builds from sidex15, but [BRENE module](https://github.com/rrr333nnn333/BRENE) **hides better**.
 
+> If you are using [Bindhosts](https://github.com/bindhosts/bindhosts), select Mode 0 (default) in the module settings. Otherwise, any application will be able to **SEE** your modified hosts file.
+
 ## Building & Installation for **OnePlus 9 (lemonade)**
 
 > The installation process is identical to a standard crDroid installation.
@@ -55,6 +57,8 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 5. Install the [BRENE module](https://github.com/rrr333nnn333/BRENE) by rrr333nnn333 from within the manager to control SuSFS features.
 
 > In step 5, you can use the [susfs4ksu module](https://github.com/sidex15/susfs4ksu-module/actions/workflows/build.yml) nightly builds from sidex15, but [BRENE module](https://github.com/rrr333nnn333/BRENE) **hides better**.
+
+> If you are using [Bindhosts](https://github.com/bindhosts/bindhosts), select Mode 0 (default) in the module settings. Otherwise, any application will be able to **SEE** your modified hosts file.
 
 ### If you'd like to support the project, feel free to leave a star ⭐
 
