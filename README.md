@@ -221,7 +221,8 @@ Replace the kernel entry with your fork's repository.
 
 `roomservice.xml` for **OnePlus 9 Pro (lemonadep)**:
 
-```<?xml version="1.0" encoding="UTF-8"?>
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <project path="device/oneplus/lemonadep" remote="crdroid" name="crdroidandroid/android_device_oneplus_lemonadep" revision="16.0" />
   <project path="device/oneplus/sm8350-common" remote="crdroid" name="crdroidandroid/android_device_oneplus_sm8350-common" revision="16.0" />
@@ -234,7 +235,8 @@ Replace the kernel entry with your fork's repository.
 
 `roomservice.xml` for **OnePlus 9 (lemonade)**:
 
-```<?xml version="1.0" encoding="UTF-8"?>
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <project path="device/oneplus/lemonade" remote="crdroid" name="crdroidandroid/android_device_oneplus_lemonade" revision="16.0" />
   <project path="device/oneplus/sm8350-common" remote="crdroid" name="crdroidandroid/android_device_oneplus_sm8350-common" revision="16.0" />
