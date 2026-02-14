@@ -16,7 +16,7 @@ While AI did the heavy lifting, human oversight remained mandatory. Every commit
 > - **Prebuilt ZIP compatibility**: The prebuilt ROM+kernel zip available in the [releases](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/releases) section is for **OnePlus 9 Pro (lemonadep)** and **OnePlus 9 (lemonade)**. The prebuilt ZIP files are **NOT** compatible with each other. Flashing it on an incompatible device **WILL** brick it.
 > - **For the other devices**; This repository is **NOT** compatible to build for any other Snapdragon 888 (SM8350/Lahaina) devices.
 
-### Although everything has been tested, this project is still a work in progress and may contain bugs. If you encounter a bug, please [open an issue](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/issues).
+### Although everything has been tested, this project is still a work in progress and may contain bugs. If you encounter a bug or have a feature request, please [let me know](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/issues).
 
 ## Problem
 
@@ -54,7 +54,7 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 
 > If you are using [Bindhosts](https://github.com/bindhosts/bindhosts), select Mode 0 (default) in the module settings. Otherwise, any application will be able to **SEE** your modified hosts file.
 
-> I can't test the OnePlus 9 (lemonade)'s prebuilt zip because I don't have the device. It probably works fine, but there might be something I don't know about it. Just in case. If you want to test something and share your results, I would be happy to help you. If you find a bug, please [let me know](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/issues).
+> I can't test the OnePlus 9 (lemonade)'s prebuilt zip because I don't have the device. It probably works fine, but there might be something I don't know about. Just in case. If you would like to test it and share your results, I would be appriciate it. If you encounter a bug or want to have a feature request, please [let me know](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/issues).
 
 > The prebuilt zip in Releases contains the full crDroid 12.7 ROM (latest) + this custom kernel. The installation process is identical to a standard crDroid installation. The build script retrieves the sources directly from the crDroid upstream repositories. Whenever an update is released on the official crDroid website, I rebuild the ROM and kernel and post them in the Releases section. Alternatively, you can [build the ROM with my custom kernel repository yourself](#building-from-source).
 
