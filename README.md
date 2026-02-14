@@ -11,7 +11,7 @@ While AI did the heavy lifting, human oversight remained mandatory. Every commit
 
 ## Warning & Disclaimer
 
-> **NO WARRANTY.** This software is provided "as-is" without any warranty of any kind, express or implied. Use at your own risk. You've been **WARNED!!!**
+> - **NO WARRANTY.** This software is provided "as-is" without any warranty of any kind, express or implied. Use at your own risk. You've been **WARNED!!!**
 > - **Device brick risk**: Flashing custom kernels and ROMs can permanently brick your device. You are solely responsible for any damage to *your device*, *data loss*, *eye twitching*, *mental blackouts*, or *thermonuclear war*.
 > - **Prebuilt ZIP compatibility**: The prebuilt ROM+kernel zip available in the [releases](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/releases) section is for **OnePlus 9 Pro (lemonadep)** and **OnePlus 9 (lemonade)**. The prebuilt ZIP files are **NOT** compatible with each other. Flashing it on an incompatible device **WILL** brick it.
 > - **For the other devices**; This repository is **NOT** compatible to build for any other Snapdragon 888 (SM8350/Lahaina) devices.
