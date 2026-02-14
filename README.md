@@ -2,7 +2,7 @@
 
 This is a custom kernel source for the **OnePlus 9 Pro (lemonadep)** and the **OnePlus 9 (lemonade)**. It's upstreamed from [crDroid Project](https://crdroid.net) with **KernelSU Next v3.0.1** + **SuSFS v2.0.0** integrated directly into the kernel source.
 
-**I know what I'm doing. Take me to the** [installation](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350#installation)
+**I know what I'm doing. Take me to the** [installation](#installation)
 
 # **AI Awareness Notice:**
 ⚠️ **Disclaimer**: This code has been *enhanced* with **Claude Code**.
@@ -40,7 +40,7 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 
 > If you are using [Bindhosts](https://github.com/bindhosts/bindhosts), select Mode 0 (default) in the module settings. Otherwise, any application will be able to **SEE** your modified hosts file.
 
-> The prebuilt zip in Releases contains the full crDroid 12.7 ROM (latest) + this custom kernel. The installation process is identical to a standard crDroid installation. The build script retrieves the sources directly from the crDroid upstream repositories. Whenever an update is released on the official crDroid website, I rebuild the ROM and kernel and post them in the Releases section. Alternatively, you can [build the ROM with my custom kernel repository yourself](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350?tab=readme-ov-file#building-from-source).
+> The prebuilt zip in Releases contains the full crDroid 12.7 ROM (latest) + this custom kernel. The installation process is identical to a standard crDroid installation. The build script retrieves the sources directly from the crDroid upstream repositories. Whenever an update is released on the official crDroid website, I rebuild the ROM and kernel and post them in the Releases section. Alternatively, you can [build the ROM with my custom kernel repository yourself](#building-from-source).
 
 ### Instructions for **OnePlus 9 (lemonade)**
 
@@ -56,7 +56,7 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 
 > I can't test the OnePlus 9 (lemonade)'s prebuilt zip because I don't have the device. It probably works fine, but there might be something I don't know about it. Just in case. If you want to test something and share your results, I would be happy to help you. If you find a bug, please [let me know](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/issues).
 
-> The prebuilt zip in Releases contains the full crDroid 12.7 ROM (latest) + this custom kernel. The installation process is identical to a standard crDroid installation. The build script retrieves the sources directly from the crDroid upstream repositories. Whenever an update is released on the official crDroid website, I rebuild the ROM and kernel and post them in the Releases section. Alternatively, you can [build the ROM with my custom kernel repository yourself](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350?tab=readme-ov-file#building-from-source).
+> The prebuilt zip in Releases contains the full crDroid 12.7 ROM (latest) + this custom kernel. The installation process is identical to a standard crDroid installation. The build script retrieves the sources directly from the crDroid upstream repositories. Whenever an update is released on the official crDroid website, I rebuild the ROM and kernel and post them in the Releases section. Alternatively, you can [build the ROM with my custom kernel repository yourself](#building-from-source).
 
 ### If you'd like to support the project, feel free to leave a star ⭐
 
@@ -167,7 +167,7 @@ This kernel includes a comprehensive set of performance and battery life optimiz
 
 Disabled at compile time: `PROFILING`, `SCHEDSTATS`, `DEBUG_INFO`, `DEBUG_STACK_USAGE`, `DEBUG_MEMORY_INIT`, `FUNCTION_ERROR_INJECTION` — reduces kernel image size and eliminates runtime tracing overhead.
 
-> **Note:** All runtime-tuneable parameters (scheduler, VM, network) can still be adjusted via `sysctl` or `sysfs` if you want to override the defaults. Inspired by [YAKT](https://github.com/NotZeetaa/YAKT), [kdrag0n](https://github.com/kdrag0n), and [tytydraco](https://github.com/tytydraco).
+> **Note:** All runtime-tuneable parameters (scheduler, VM, network) can still be adjusted via `sysctl` or `sysfs` if you want to override the defaults.
 
 ## Building from Source
 
