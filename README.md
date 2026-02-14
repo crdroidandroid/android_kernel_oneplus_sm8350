@@ -2,7 +2,7 @@
 
 This is a custom kernel source for the **OnePlus 9 Pro (lemonadep)** and the **OnePlus 9 (lemonade)**. It's upstreamed from [crDroid Project](https://crdroid.net) with **KernelSU Next v3.0.1** + **SuSFS v2.0.0** integrated directly into the kernel source.
 
-**I know what I'm doing. Take me to the** [installation](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350#installation-for-oneplus-9-pro-lemonadep)
+**I know what I'm doing. Take me to the** [installation](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350#installation)
 
 # **AI Awareness Notice:**
 ⚠️ **Disclaimer**: This code has been *enhanced* with **Claude Code**.
@@ -13,10 +13,8 @@ While AI did the heavy lifting, human oversight remained mandatory. Every commit
 
 > **NO WARRANTY.** This software is provided "as-is" without any warranty of any kind, express or implied. Use at your own risk. You've been **WARNED!!!**
 > - **Device brick risk**: Flashing custom kernels and ROMs can permanently brick your device. You are solely responsible for any damage to *your device*, *data loss*, *eye twitching*, *mental blackouts*, or *thermonuclear war*.
-> - **Prebuilt zip compatibility**: The prebuilt ROM+kernel zip available in the [releases](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/releases) section is **ONLY** for **OnePlus 9 Pro (lemonadep)**. It's **NOT** directly compatible with OnePlus 9 (lemonade). Flashing it on an incompatible device **will** brick it.
-> - **For the standard OnePlus 9 (lemonade)**; manual configuration is required that specified in the [building from source](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350?tab=readme-ov-file#building-from-source) section; you must compile from source with the correct roomservice.xml file. Do not flash prebuilt binaries on an unsupported hardware.
-
-### This repository is **NOT** compatible to build for any other Snapdragon 888 (SM8350/Lahaina) devices.
+> - **Prebuilt ZIP compatibility**: The prebuilt ROM+kernel zip available in the [releases](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/releases) section is for **OnePlus 9 Pro (lemonadep)** and **OnePlus 9 (lemonade)**. The prebuilt ZIP files are **NOT** compatible with each other. Flashing it on an incompatible device **WILL** brick it.
+> - **For the other devices**; This repository is **NOT** compatible to build for any other Snapdragon 888 (SM8350/Lahaina) devices.
 
 ### Although everything has been tested, this project is still a work in progress and may contain bugs. If you encounter a bug, please [open an issue](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/issues).
 
@@ -28,11 +26,9 @@ Stock crDroid kernel does not include the newest KernelSU Next or the newest roo
 
 This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-Next) v3.0.1 and [SuSFS](https://gitlab.com/simonpunk/susfs4ksu) v2.0.0 directly into the kernel source tree, shipped as a single flashable crDroid 12.7 (Android 16) ROM (latest) zip. Instead of kprobes, root is implemented through **9 inline syscall hooks** hand-placed in kernel source files — making detection significantly harder. SuSFS hides all root artifacts (paths, mounts, maps, kernel symbols) while SELinux remains Enforcing and Play Integrity passes at DEVICE level.
 
-## Installation for **OnePlus 9 Pro (lemonadep)**
+## Installation
 
-> The prebuilt zip in Releases contains the full crDroid 12.7 ROM (latest) + this custom kernel. The installation process is identical to a standard crDroid installation.
-
-> The build script retrieves the sources directly from the crDroid upstream repositories. Whenever an update is released on the official crDroid website, I rebuild the ROM and kernel and post them in the Releases section. Alternatively, you can [build the ROM with my custom kernel repository yourself](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350?tab=readme-ov-file#building-from-source).
+### Instructions for **OnePlus 9 Pro (lemonadep)**
 
 1. Follow the official [crDroid installation guide for OnePlus 9 Pro](https://crdroid.net/lemonadep/12/install).
 2. At the **zip flashing step**, flash the zip you downloaded from this repository's [releases](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/releases) *instead of the stock crDroid zip*.
@@ -44,12 +40,12 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 
 > If you are using [Bindhosts](https://github.com/bindhosts/bindhosts), select Mode 0 (default) in the module settings. Otherwise, any application will be able to **SEE** your modified hosts file.
 
-## Building & Installation for **OnePlus 9 (lemonade)**
+> The prebuilt zip in Releases contains the full crDroid 12.7 ROM (latest) + this custom kernel. The installation process is identical to a standard crDroid installation. The build script retrieves the sources directly from the crDroid upstream repositories. Whenever an update is released on the official crDroid website, I rebuild the ROM and kernel and post them in the Releases section. Alternatively, you can [build the ROM with my custom kernel repository yourself](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350?tab=readme-ov-file#building-from-source).
 
-> The installation process is identical to a standard crDroid installation.
+### Instructions for **OnePlus 9 (lemonade)**
 
 1. Follow the official [crDroid installation guide for OnePlus 9](https://crdroid.net/lemonade/12/install).
-2. Before the **zip flashing step**, you **MUST** [build from source](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350#building-from-source). When the build is completed, flash your the zip *instead of the stock crDroid zip*.
+2. At the **zip flashing step**, flash the zip you downloaded from this repository's [releases](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/releases) *instead of the stock crDroid zip*.
 3. After booting up, install the latest version of [KernelSU Next manager](https://github.com/KernelSU-Next/KernelSU-Next/releases) on your device. Alternatively, you can use the [nightly manager](https://t.me/ksunext_ci).
 4. (Optional) Open KernelSU Next manager and install the a meta-module for Magick Mount module management alongside OverlayFS. *Hybrid Mount* recommended.
 5. Install the [BRENE module](https://github.com/rrr333nnn333/BRENE) by rrr333nnn333 from within the manager to control SuSFS features.
@@ -57,6 +53,10 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 > In step 5, you can also use the [susfs4ksu module](https://github.com/sidex15/susfs4ksu-module/actions/workflows/build.yml) nightly builds from sidex15, but [BRENE module](https://github.com/rrr333nnn333/BRENE) **hides better**.
 
 > If you are using [Bindhosts](https://github.com/bindhosts/bindhosts), select Mode 0 (default) in the module settings. Otherwise, any application will be able to **SEE** your modified hosts file.
+
+> I can't test the OnePlus 9 (lemonade)'s prebuilt zip because I don't have the device. It probably works fine, but there might be something I don't know about it. Just in case. If you want to test something and share your results, I would be happy to help you. If you find a bug, please [let me know](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/issues).
+
+> The prebuilt zip in Releases contains the full crDroid 12.7 ROM (latest) + this custom kernel. The installation process is identical to a standard crDroid installation. The build script retrieves the sources directly from the crDroid upstream repositories. Whenever an update is released on the official crDroid website, I rebuild the ROM and kernel and post them in the Releases section. Alternatively, you can [build the ROM with my custom kernel repository yourself](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350?tab=readme-ov-file#building-from-source).
 
 ### If you'd like to support the project, feel free to leave a star ⭐
 
