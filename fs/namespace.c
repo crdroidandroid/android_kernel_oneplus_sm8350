@@ -42,7 +42,7 @@ extern bool susfs_is_current_ksu_domain(void);
 extern bool susfs_is_current_zygote_domain(void);
 extern bool susfs_is_boot_completed_triggered;
 
-static DEFINE_IDA(susfs_ksu_mnt_group_ida);
+static atomic64_t susfs_ksu_mounts = ATOMIC64_INIT(0);
 
 #define CL_COPY_MNT_NS BIT(25) /* used by copy_mnt_ns() */
 #endif
@@ -161,18 +161,15 @@ static int mnt_alloc_group_id(struct mount *mnt)
 {
 #ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
 	int res;
-
-	/* - At frist susfs_is_boot_completed_triggered is set to false in kernel,
-	 *   and it is still allowed to assign our custom mnt_group_id via susfs_ksu_mnt_group_ida
-	 *   if it is ksu mounts, until susfs_is_boot_completed_triggered is set to true
-	 *   when boot-completed stage is triggered in core_hook.c 
+	/* Use the regular mnt_group_ida but allocate from a high range
+	 * when the caller is in the KSU domain, so KSU mounts get
+	 * non-contiguous group IDs that don't leak ordering info.
 	 */
-	if (!susfs_is_boot_completed_triggered && mnt->mnt_id >= DEFAULT_KSU_MNT_ID) {
-		res = ida_alloc_min(&susfs_ksu_mnt_group_ida, DEFAULT_KSU_MNT_GROUP_ID, GFP_KERNEL);
-		goto bypass_orig_flow;
+	if (susfs_is_current_ksu_domain()) {
+		res = ida_alloc_min(&mnt_group_ida, DEFAULT_KSU_MNT_GROUP_ID, GFP_KERNEL);
+	} else {
+		res = ida_alloc_min(&mnt_group_ida, 1, GFP_KERNEL);
 	}
-	res = ida_alloc_min(&mnt_group_ida, 1, GFP_KERNEL);
-bypass_orig_flow:
 #else
 	int res = ida_alloc_min(&mnt_group_ida, 1, GFP_KERNEL);
 #endif
@@ -188,22 +185,6 @@ bypass_orig_flow:
  */
 void mnt_release_group_id(struct mount *mnt)
 {
-#ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
-	/* - when boot-completed stage is triggered in core_hook.c,
-	 *   susfs_is_boot_completed_triggered will be set to true.
-	 * - Please note that if susfs_is_boot_completed_triggered is true, then
-	 *   it no longer checks for the sus mnt_group_id, and the allocated
-	 *   sus mnt_group_id will stay in kernel memory forever, and if user
-	 *   suddenly umounts the sus mount in global mnt namespace, the ida_free()
-	 *   function will throw error to kernel log, but it won't affect the system,
-	 *   so it is fine.
-	 */
-	if (!susfs_is_boot_completed_triggered && mnt->mnt_group_id >= DEFAULT_KSU_MNT_GROUP_ID) {
-		ida_free(&susfs_ksu_mnt_group_ida, mnt->mnt_group_id);
-		mnt->mnt_group_id = 0;
-		return;
-	}
-#endif
 	ida_free(&mnt_group_ida, mnt->mnt_group_id);
 	mnt->mnt_group_id = 0;
 }
