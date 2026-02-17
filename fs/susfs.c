@@ -16,8 +16,10 @@
 #include <linux/random.h>
 #include <linux/kthread.h>
 #include <linux/delay.h>
+#include <linux/workqueue.h>
 #include <linux/fsnotify_backend.h>
 #include <linux/susfs.h>
+#include "fuse/fuse_i.h"
 #include "mount.h"
 
 extern bool susfs_is_current_ksu_domain(void);
@@ -47,6 +49,9 @@ static LIST_HEAD(LH_SUS_PATH_ANDROID_DATA);
 static LIST_HEAD(LH_SUS_PATH_SDCARD);
 static struct st_external_dir android_data_path = {0};
 static struct st_external_dir sdcard_path = {0};
+#ifndef FUSE_SUPER_MAGIC
+#define FUSE_SUPER_MAGIC 0x65735546
+#endif
 const struct qstr susfs_fake_qstr_name = QSTR_INIT("..5.u.S", 7);
 
 void susfs_set_i_state_on_external_dir(void __user **user_info) {
@@ -217,10 +222,19 @@ void susfs_add_sus_path(void __user **user_info) {
 		goto out_kfree_tmp_buf;
 	}
 
-	spin_lock(&inode->i_lock);
-	set_bit(AS_FLAGS_SUS_PATH, &inode->i_mapping->flags);
-	SUSFS_LOGI("pathname: '%s', ino: '%lu', is flagged as AS_FLAGS_SUS_PATH\n", resolved_pathname, info.target_ino);
-	spin_unlock(&inode->i_lock);
+	if (inode->i_sb->s_magic == FUSE_SUPER_MAGIC) {
+		struct fuse_inode *fi = get_fuse_inode(inode);
+		if (fi) {
+			set_bit(AS_FLAGS_SUS_PATH, &fi->inode.i_mapping->flags);
+			SUSFS_LOGI("flagged AS_FLAGS_SUS_PATH on FUSE pathname: '%s', fi->nodeid: %llu\n",
+						resolved_pathname, fi->nodeid);
+		}
+	} else {
+		spin_lock(&inode->i_lock);
+		set_bit(AS_FLAGS_SUS_PATH, &inode->i_mapping->flags);
+		spin_unlock(&inode->i_lock);
+		SUSFS_LOGI("pathname: '%s', ino: '%lu', is flagged as AS_FLAGS_SUS_PATH\n", resolved_pathname, info.target_ino);
+	}
 out_kfree_tmp_buf:
 	kfree(tmp_buf);
 out_path_put_path:
@@ -323,20 +337,30 @@ out_copy_to_user:
 }
 
 void susfs_run_sus_path_loop(uid_t uid) {
-	struct st_susfs_sus_path_list *cursor = NULL, *temp = NULL;
+	struct st_susfs_sus_path_list *cursor = NULL;
 	struct path path;
 	struct inode *inode;
 
-	list_for_each_entry_safe(cursor, temp, &LH_SUS_PATH_LOOP, list) {
+	rcu_read_lock();
+	list_for_each_entry_rcu(cursor, &LH_SUS_PATH_LOOP, list) {
 		if (!kern_path(cursor->target_pathname, 0, &path)) {
-			inode = path.dentry->d_inode;
-			spin_lock(&inode->i_lock);
-			set_bit(AS_FLAGS_SUS_PATH, &inode->i_mapping->flags);
-			spin_unlock(&inode->i_lock);
+			inode = d_backing_inode(path.dentry);
+			if (!inode || !inode->i_mapping) {
+				path_put(&path);
+				continue;
+			}
+			if (inode->i_sb->s_magic == FUSE_SUPER_MAGIC) {
+				struct fuse_inode *fi = get_fuse_inode(inode);
+				if (fi)
+					set_bit(AS_FLAGS_SUS_PATH, &fi->inode.i_mapping->flags);
+			} else {
+				set_bit(AS_FLAGS_SUS_PATH, &inode->i_mapping->flags);
+			}
 			path_put(&path);
-			SUSFS_LOGI("re-flag '%s' as SUS_PATH for uid: %u\n", cursor->target_pathname, uid);
+			SUSFS_LOGI("re-flag AS_FLAGS_SUS_PATH on path '%s' for uid: %u\n", cursor->target_pathname, uid);
 		}
 	}
+	rcu_read_unlock();
 }
 
 int susfs_auto_add_sus_path_internal(const char *pathname) {
@@ -468,6 +492,21 @@ bool susfs_is_sus_sdcard_d_name_found(const char *d_name) {
 
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 6, 0)
 bool susfs_is_inode_sus_path(struct mnt_idmap* idmap, struct inode *inode) {
+	struct fuse_inode *fi = NULL;
+	if (current_uid().val < 10000 || !susfs_is_current_proc_umounted())
+		return false;
+	if (inode->i_sb->s_magic == FUSE_SUPER_MAGIC) {
+		fi = get_fuse_inode(inode);
+		if (!fi)
+			return false;
+		if (unlikely(test_bit(AS_FLAGS_SUS_PATH, &fi->inode.i_mapping->flags) &&
+			is_i_uid_not_allowed(i_uid_into_vfsuid(idmap, &fi->inode).val)))
+		{
+			SUSFS_LOGI("hiding FUSE path with ino '%lu'\n", inode->i_ino);
+			return true;
+		}
+		return false;
+	}
 	if (unlikely(test_bit(AS_FLAGS_SUS_PATH, &inode->i_mapping->flags) &&
 		is_i_uid_not_allowed(i_uid_into_vfsuid(idmap, inode).val)))
 	{
@@ -478,6 +517,21 @@ bool susfs_is_inode_sus_path(struct mnt_idmap* idmap, struct inode *inode) {
 }
 #elif LINUX_VERSION_CODE >= KERNEL_VERSION(5, 15, 0)
 bool susfs_is_inode_sus_path(struct inode *inode) {
+	struct fuse_inode *fi = NULL;
+	if (current_uid().val < 10000 || !susfs_is_current_proc_umounted())
+		return false;
+	if (inode->i_sb->s_magic == FUSE_SUPER_MAGIC) {
+		fi = get_fuse_inode(inode);
+		if (!fi)
+			return false;
+		if (unlikely(test_bit(AS_FLAGS_SUS_PATH, &fi->inode.i_mapping->flags) &&
+			is_i_uid_not_allowed(i_uid_into_mnt(i_user_ns(&fi->inode), &fi->inode).val)))
+		{
+			SUSFS_LOGI("hiding FUSE path with ino '%lu'\n", inode->i_ino);
+			return true;
+		}
+		return false;
+	}
 	if (unlikely(test_bit(AS_FLAGS_SUS_PATH, &inode->i_mapping->flags) &&
 		is_i_uid_not_allowed(i_uid_into_mnt(i_user_ns(inode), inode).val)))
 	{
@@ -488,6 +542,21 @@ bool susfs_is_inode_sus_path(struct inode *inode) {
 }
 #else
 bool susfs_is_inode_sus_path(struct inode *inode) {
+	struct fuse_inode *fi = NULL;
+	if (current_uid().val < 10000 || !susfs_is_current_proc_umounted())
+		return false;
+	if (inode->i_sb->s_magic == FUSE_SUPER_MAGIC) {
+		fi = get_fuse_inode(inode);
+		if (!fi)
+			return false;
+		if (unlikely(test_bit(AS_FLAGS_SUS_PATH, &fi->inode.i_mapping->flags) &&
+			is_i_uid_not_allowed(fi->inode.i_uid.val)))
+		{
+			SUSFS_LOGI("hiding FUSE path with ino '%lu'\n", inode->i_ino);
+			return true;
+		}
+		return false;
+	}
 	if (unlikely(test_bit(AS_FLAGS_SUS_PATH, &inode->i_mapping->flags) &&
 		is_i_uid_not_allowed(inode->i_uid.val)))
 	{
@@ -1243,21 +1312,78 @@ void susfs_show_version(void __user **user_info) {
 		SUSFS_LOGE("copy_to_user() failed\n");
 }
 
-/* sdcard monitor via fsnotify */
+/* sdcard monitor via fsnotify + deferred workqueue cleanup */
+#define SDCARD_ANDROID_PATH "/data/media/0/Android"
 extern void setup_selinux(const char *domain, struct cred *cred);
+extern bool susfs_is_current_ksu_domain(void);
 bool susfs_is_sdcard_android_data_decrypted __read_mostly = false;
 
+struct watch_dir {
+	const char *path;
+	u32 mask;
+	struct path kpath;
+	struct inode *inode;
+	struct fsnotify_mark *mark;
+};
+
+static struct fsnotify_group *sdcard_fsnotify_group;
+
+static struct watch_dir sdcard_watch = {
+	.path = "/data/media/0",
+	.mask = (FS_CREATE | FS_MOVED_TO | FS_EVENT_ON_CHILD | FS_ISDIR),
+};
+
+static int sdcard_add_mark_on_inode(struct inode *inode, u32 mask,
+				    struct fsnotify_mark **out);
+
+static unsigned long sdcard_cleanup_scheduled;
+static struct delayed_work sdcard_cleanup_dwork;
+
+static void susfs_sdcard_cleanup_fn(struct work_struct *work)
+{
+	struct fsnotify_group *grp;
+	struct inode *inode;
+
+	SUSFS_LOGI("set susfs_is_sdcard_android_data_decrypted to true\n");
+	WRITE_ONCE(susfs_is_sdcard_android_data_decrypted, true);
+
+	SUSFS_LOGI("cleaning up fsnotify sdcard watch\n");
+
+	grp = xchg(&sdcard_fsnotify_group, NULL);
+	if (grp)
+		fsnotify_destroy_group(grp);
+
+	inode = xchg(&sdcard_watch.inode, NULL);
+	if (inode)
+		iput(inode);
+
+	if (sdcard_watch.kpath.mnt) {
+		path_put(&sdcard_watch.kpath);
+		memset(&sdcard_watch.kpath, 0, sizeof(sdcard_watch.kpath));
+	}
+}
+
+/*
+ * fsnotify handler - runs inside an SRCU read section held by fsnotify().
+ * Must not block or call fsnotify_destroy_group() (which internally calls
+ * synchronize_srcu on the same SRCU struct, causing a permanent deadlock).
+ * Cleanup is deferred to a delayed_work that runs outside the SRCU context.
+ */
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 9, 0)
 static int susfs_handle_sdcard_inode_event(struct fsnotify_mark *mark, u32 mask,
 					   struct inode *inode, struct inode *dir,
 					   const struct qstr *file_name, u32 cookie)
 {
-	if (!file_name)
+	if (!file_name || file_name->len != 7 ||
+	    memcmp(file_name->name, "Android", 7))
 		return 0;
-	if (file_name->len == 7 && !memcmp(file_name->name, "Android", 7)) {
-		pr_info("susfs: /data/media/0/Android detected, sdcard is decrypted\n");
-		susfs_is_sdcard_android_data_decrypted = true;
-	}
+
+	if (test_and_set_bit(0, &sdcard_cleanup_scheduled))
+		return 0;
+
+	SUSFS_LOGI("'%s' detected, mask: 0x%x\n", SDCARD_ANDROID_PATH, mask);
+	SUSFS_LOGI("deferring cleanup for 5 seconds\n");
+	queue_delayed_work(system_unbound_wq, &sdcard_cleanup_dwork, 5 * HZ);
 	return 0;
 }
 
@@ -1271,12 +1397,16 @@ static int susfs_handle_sdcard_event(struct fsnotify_group *group,
 				     const struct qstr *file_name, u32 cookie,
 				     struct fsnotify_iter_info *iter_info)
 {
-	if (!file_name)
+	if (!file_name || file_name->len != 7 ||
+	    memcmp(file_name->name, "Android", 7))
 		return 0;
-	if (file_name->len == 7 && !memcmp(file_name->name, "Android", 7)) {
-		pr_info("susfs: /data/media/0/Android detected, sdcard is decrypted\n");
-		susfs_is_sdcard_android_data_decrypted = true;
-	}
+
+	if (test_and_set_bit(0, &sdcard_cleanup_scheduled))
+		return 0;
+
+	SUSFS_LOGI("'%s' detected, mask: 0x%x\n", SDCARD_ANDROID_PATH, mask);
+	SUSFS_LOGI("deferring cleanup for 5 seconds\n");
+	queue_delayed_work(system_unbound_wq, &sdcard_cleanup_dwork, 5 * HZ);
 	return 0;
 }
 
@@ -1285,107 +1415,93 @@ static const struct fsnotify_ops susfs_sdcard_ops = {
 };
 #endif
 
+static int sdcard_add_mark_on_inode(struct inode *inode, u32 mask,
+				    struct fsnotify_mark **out)
+{
+	struct fsnotify_mark *m;
+
+	m = kzalloc(sizeof(*m), GFP_KERNEL);
+	if (!m)
+		return -ENOMEM;
+
+	fsnotify_init_mark(m, sdcard_fsnotify_group);
+	m->mask = mask;
+
+	if (fsnotify_add_inode_mark(m, inode, 0)) {
+		fsnotify_put_mark(m);
+		return -EINVAL;
+	}
+	*out = m;
+	return 0;
+}
+
+static int sdcard_watch_one_dir(struct watch_dir *wd)
+{
+	int ret = kern_path(wd->path, LOOKUP_FOLLOW, &wd->kpath);
+	if (ret) {
+		SUSFS_LOGI("path not ready: %s (%d)\n", wd->path, ret);
+		return ret;
+	}
+	wd->inode = d_backing_inode(wd->kpath.dentry);
+	if (!wd->inode) {
+		SUSFS_LOGE("inode is NULL for %s\n", wd->path);
+		path_put(&wd->kpath);
+		return -ENOENT;
+	}
+	ihold(wd->inode);
+
+	ret = sdcard_add_mark_on_inode(wd->inode, wd->mask, &wd->mark);
+	if (ret) {
+		SUSFS_LOGE("add mark failed for %s (%d)\n", wd->path, ret);
+		iput(wd->inode);
+		wd->inode = NULL;
+		path_put(&wd->kpath);
+		return ret;
+	}
+	SUSFS_LOGI("watching %s\n", wd->path);
+	return 0;
+}
+
 static int susfs_sdcard_monitor_thread(void *data)
 {
-	struct fsnotify_group *group = NULL;
-	struct fsnotify_mark *mark = NULL;
-	struct path media_path;
-	struct inode *media_inode;
-	int err;
+	struct cred *cred = prepare_creds();
+	int ret;
 
-	/* Wait for /data/media/0 to become available.
-	 * Retry SELinux domain transition on each attempt because
-	 * SELinux policy is not loaded yet at early boot when this
-	 * thread starts. Once policy is loaded, the transition to
-	 * init domain will succeed and kern_path will work. */
-	while (!kthread_should_stop()) {
-		{
-			struct cred *new_cred = prepare_creds();
-			if (new_cred) {
-				setup_selinux("u:r:init:s0", new_cred);
-				commit_creds(new_cred);
-			}
-		}
-
-		err = kern_path("/data/media/0", LOOKUP_FOLLOW, &media_path);
-		if (!err)
-			break;
-
-		msleep(2000);
-	}
-
-	if (kthread_should_stop())
-		return 0;
-
-	media_inode = d_inode(media_path.dentry);
-	if (!media_inode) {
-		path_put(&media_path);
-		return 0;
-	}
-
-	/* Check if Android dir already exists */
-	{
-		struct path android_path;
-		if (!kern_path("/data/media/0/Android", LOOKUP_FOLLOW, &android_path)) {
-			path_put(&android_path);
-			susfs_is_sdcard_android_data_decrypted = true;
-			pr_info("susfs: /data/media/0/Android already exists, sdcard is decrypted\n");
-			path_put(&media_path);
-			return 0;
-		}
-	}
-
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0)
-	group = fsnotify_alloc_group(&susfs_sdcard_ops, 0);
-#else
-	group = fsnotify_alloc_group(&susfs_sdcard_ops);
-#endif
-	if (IS_ERR(group)) {
-		path_put(&media_path);
-		return PTR_ERR(group);
-	}
-
-	mark = kzalloc(sizeof(*mark), GFP_KERNEL);
-	if (!mark) {
-		fsnotify_put_group(group);
-		path_put(&media_path);
+	if (!cred) {
+		SUSFS_LOGE("failed to prepare creds!\n");
 		return -ENOMEM;
 	}
 
-	fsnotify_init_mark(mark, group);
-	mark->mask = FS_CREATE | FS_MOVED_TO | FS_EVENT_ON_CHILD;
+	setup_selinux("u:r:su:s0", cred);
+	commit_creds(cred);
 
-	err = fsnotify_add_inode_mark(mark, media_inode, 0);
-	if (err) {
-		fsnotify_put_mark(mark);
-		fsnotify_put_group(group);
-		path_put(&media_path);
-		return err;
+	SUSFS_LOGI("start monitoring path '%s' using fsnotify\n", SDCARD_ANDROID_PATH);
+
+	INIT_DELAYED_WORK(&sdcard_cleanup_dwork, susfs_sdcard_cleanup_fn);
+
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0)
+	sdcard_fsnotify_group = fsnotify_alloc_group(&susfs_sdcard_ops, 0);
+#else
+	sdcard_fsnotify_group = fsnotify_alloc_group(&susfs_sdcard_ops);
+#endif
+	if (IS_ERR(sdcard_fsnotify_group)) {
+		ret = PTR_ERR(sdcard_fsnotify_group);
+		sdcard_fsnotify_group = NULL;
+		return ret;
 	}
 
-	/* Wait for Android dir to appear */
-	while (!susfs_is_sdcard_android_data_decrypted && !kthread_should_stop()) {
-		msleep(1000);
-	}
-
-	/* Cleanup */
-	fsnotify_destroy_mark(mark, group);
-	fsnotify_put_mark(mark);
-	fsnotify_put_group(group);
-	ihold(media_inode);
-	path_put(&media_path);
-	iput(media_inode);
+	ret = sdcard_watch_one_dir(&sdcard_watch);
+	SUSFS_LOGI("sdcard monitor ret: %d\n", ret);
 
 	return 0;
 }
 
 int susfs_start_sdcard_monitor_fn(void) {
-	struct task_struct *t;
-
-	t = kthread_run(susfs_sdcard_monitor_thread, NULL, "media_monitor");
-	if (IS_ERR(t)) {
-		pr_err("susfs: failed to start sdcard monitor thread: %ld\n", PTR_ERR(t));
-		return PTR_ERR(t);
+	if (IS_ERR(kthread_run(susfs_sdcard_monitor_thread, NULL, "media_monitor"))) {
+		SUSFS_LOGE("failed to create sdcard monitor thread\n");
+		SUSFS_LOGI("set susfs_is_sdcard_android_data_decrypted to true\n");
+		susfs_is_sdcard_android_data_decrypted = true;
+		return -1;
 	}
 	return 0;
 }
