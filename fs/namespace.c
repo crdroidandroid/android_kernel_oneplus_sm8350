@@ -4409,21 +4409,28 @@ void susfs_reorder_mnt_id(void) {
 	struct mount *mnt;
 	int first_mnt_id = 0;
 
-	if (!mnt_ns) {
+	// Do not reorder the mnt_id if there is no any ksu mount at all
+	if (atomic64_read(&susfs_ksu_mounts) == 0)
 		return;
-	}
 
-	get_mnt_ns(mnt_ns);
+	down_read(&namespace_sem);
+	lock_mount_hash();
+
+	if (list_empty(&mnt_ns->list))
+		goto out_unlock;
+
 	first_mnt_id = list_first_entry(&mnt_ns->list, struct mount, mnt_list)->mnt_id;
+
 	list_for_each_entry(mnt, &mnt_ns->list, mnt_list) {
-		// It is very important that we don't reorder the sus mount if it is not umounted
-		if (mnt->mnt_id == DEFAULT_KSU_MNT_ID) {
+		if (mnt->mnt_id == DEFAULT_KSU_MNT_ID)
 			continue;
-		}
 		WRITE_ONCE(mnt->mnt.susfs_mnt_id_backup, READ_ONCE(mnt->mnt_id));
 		WRITE_ONCE(mnt->mnt_id, first_mnt_id++);
 	}
-	put_mnt_ns(mnt_ns);
+
+out_unlock:
+	unlock_mount_hash();
+	up_read(&namespace_sem);
 }
 #endif
 #ifdef CONFIG_KSU_SUSFS
