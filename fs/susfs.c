@@ -422,11 +422,11 @@ static inline bool is_i_uid_not_allowed(uid_t i_uid) {
 }
 
 bool susfs_is_base_dentry_android_data_dir(struct dentry* base) {
-	return (base && !IS_ERR(base) && base->d_inode && (base->d_inode->i_mapping->flags & BIT_ANDROID_DATA_ROOT_DIR));
+	return (base && !IS_ERR(base) && base->d_inode && test_bit(AS_FLAGS_ANDROID_DATA_ROOT_DIR, &base->d_inode->i_mapping->flags));
 }
 
 bool susfs_is_base_dentry_sdcard_dir(struct dentry* base) {
-	return (base && !IS_ERR(base) && base->d_inode && (base->d_inode->i_mapping->flags & BIT_ANDROID_SDCARD_ROOT_DIR));
+	return (base && !IS_ERR(base) && base->d_inode && test_bit(AS_FLAGS_SDCARD_ROOT_DIR, &base->d_inode->i_mapping->flags));
 }
 
 bool susfs_is_sus_android_data_d_name_found(const char *d_name) {
@@ -468,7 +468,7 @@ bool susfs_is_sus_sdcard_d_name_found(const char *d_name) {
 
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 6, 0)
 bool susfs_is_inode_sus_path(struct mnt_idmap* idmap, struct inode *inode) {
-	if (unlikely(inode->i_mapping->flags & BIT_SUS_PATH &&
+	if (unlikely(test_bit(AS_FLAGS_SUS_PATH, &inode->i_mapping->flags) &&
 		is_i_uid_not_allowed(i_uid_into_vfsuid(idmap, inode).val)))
 	{
 		pr_debug("susfs: hiding path with ino '%lu'\n", inode->i_ino);
@@ -478,7 +478,7 @@ bool susfs_is_inode_sus_path(struct mnt_idmap* idmap, struct inode *inode) {
 }
 #elif LINUX_VERSION_CODE >= KERNEL_VERSION(5, 15, 0)
 bool susfs_is_inode_sus_path(struct inode *inode) {
-	if (unlikely(inode->i_mapping->flags & BIT_SUS_PATH &&
+	if (unlikely(test_bit(AS_FLAGS_SUS_PATH, &inode->i_mapping->flags) &&
 		is_i_uid_not_allowed(i_uid_into_mnt(i_user_ns(inode), inode).val)))
 	{
 		pr_debug("susfs: hiding path with ino '%lu'\n", inode->i_ino);
@@ -488,7 +488,7 @@ bool susfs_is_inode_sus_path(struct inode *inode) {
 }
 #else
 bool susfs_is_inode_sus_path(struct inode *inode) {
-	if (unlikely(inode->i_mapping->flags & BIT_SUS_PATH &&
+	if (unlikely(test_bit(AS_FLAGS_SUS_PATH, &inode->i_mapping->flags) &&
 		is_i_uid_not_allowed(inode->i_uid.val)))
 	{
 		pr_debug("susfs: hiding path with ino '%lu'\n", inode->i_ino);
@@ -548,7 +548,7 @@ static int susfs_update_sus_kstat_inode(char *target_pathname) {
 		return 1;
 	}
 
-	if (!(inode->i_mapping->flags & BIT_SUS_KSTAT)) {
+	if (!test_bit(AS_FLAGS_SUS_KSTAT, &inode->i_mapping->flags)) {
 		spin_lock(&inode->i_lock);
 		set_bit(AS_FLAGS_SUS_KSTAT, &inode->i_mapping->flags);
 		spin_unlock(&inode->i_lock);
@@ -787,7 +787,7 @@ int susfs_auto_add_sus_kstat_internal(const char *pathname, long long spoofed_si
 	new_entry->info.spoofed_blocks = spoofed_blocks;
 
 	/* Set inode flag */
-	if (!(inode->i_mapping->flags & BIT_SUS_KSTAT)) {
+	if (!test_bit(AS_FLAGS_SUS_KSTAT, &inode->i_mapping->flags)) {
 		spin_lock(&inode->i_lock);
 		set_bit(AS_FLAGS_SUS_KSTAT, &inode->i_mapping->flags);
 		spin_unlock(&inode->i_lock);

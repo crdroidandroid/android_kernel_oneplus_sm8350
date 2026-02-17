@@ -41,7 +41,7 @@ void generic_fillattr(struct inode *inode, struct kstat *stat)
 {
 #ifdef CONFIG_KSU_SUSFS_SUS_KSTAT
 	if (!susfs_is_system_uid() &&
-			unlikely(inode->i_mapping->flags & BIT_SUS_KSTAT)) {
+			unlikely(test_bit(AS_FLAGS_SUS_KSTAT, &inode->i_mapping->flags))) {
 		susfs_sus_ino_for_generic_fillattr(inode->i_ino, stat);
 		stat->mode = inode->i_mode;
 		stat->rdev = inode->i_rdev;

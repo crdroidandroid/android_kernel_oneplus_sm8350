@@ -917,7 +917,7 @@ static ssize_t mem_rw(struct file *file, char __user *buf,
 		vma = find_vma(mm, addr);
 		if (vma && vma->vm_file) {
 			struct inode *inode = file_inode(vma->vm_file);
-			if (unlikely(inode->i_mapping->flags & BIT_SUS_MAPS) && susfs_is_current_proc_umounted() && !susfs_is_system_uid()) {
+			if (unlikely(test_bit(AS_FLAGS_SUS_MAP, &inode->i_mapping->flags)) && susfs_is_current_proc_umounted() && !susfs_is_system_uid()) {
 				if (write) {
 					copied = -EFAULT;
 				} else {
@@ -2388,7 +2388,7 @@ proc_map_files_readdir(struct file *file, struct dir_context *ctx)
 		if (!vma->vm_file)
 			continue;
 #ifdef CONFIG_KSU_SUSFS_SUS_MAP
-		if (unlikely(file_inode(vma->vm_file)->i_mapping->flags & BIT_SUS_MAPS) &&
+		if (unlikely(test_bit(AS_FLAGS_SUS_MAP, &file_inode(vma->vm_file)->i_mapping->flags)) &&
 			susfs_is_current_proc_umounted() && !susfs_is_system_uid())
 		{
 			continue;
