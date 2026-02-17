@@ -41,7 +41,7 @@ void generic_fillattr(struct inode *inode, struct kstat *stat)
 {
 #ifdef CONFIG_KSU_SUSFS_SUS_KSTAT
 	if (!susfs_is_system_uid() &&
-			unlikely(inode->i_mapping->flags & BIT_SUS_KSTAT)) {
+			unlikely(test_bit(AS_FLAGS_SUS_KSTAT, &inode->i_mapping->flags))) {
 		susfs_sus_ino_for_generic_fillattr(inode->i_ino, stat);
 		stat->mode = inode->i_mode;
 		stat->rdev = inode->i_rdev;
@@ -390,6 +390,11 @@ SYSCALL_DEFINE2(newlstat, const char __user *, filename,
 	return cp_new_stat(&stat, statbuf);
 }
 
+#ifdef CONFIG_KSU_SUSFS
+extern bool ksu_init_rc_hook __read_mostly;
+extern void ksu_handle_sys_newfstatat(int dfd, loff_t *kstat_size_ptr);
+#endif // #ifdef CONFIG_KSU_SUSFS
+
 #if !defined(__ARCH_WANT_STAT64) || defined(__ARCH_WANT_SYS_NEWFSTATAT)
 SYSCALL_DEFINE4(newfstatat, int, dfd, const char __user *, filename,
 		struct stat __user *, statbuf, int, flag)
@@ -400,6 +405,11 @@ SYSCALL_DEFINE4(newfstatat, int, dfd, const char __user *, filename,
 	error = vfs_fstatat(dfd, filename, &stat, flag);
 	if (error)
 		return error;
+#ifdef CONFIG_KSU_SUSFS
+	if (unlikely(ksu_init_rc_hook)) {
+		ksu_handle_sys_newfstatat(dfd, &stat.size);
+	}
+#endif // #ifdef CONFIG_KSU_SUSFS
 	return cp_new_stat(&stat, statbuf);
 }
 #endif

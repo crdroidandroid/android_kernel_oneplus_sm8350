@@ -255,7 +255,7 @@ static int vfs_ustat(dev_t dev, struct kstatfs *sbuf)
 		return -EINVAL;
 
 #ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
-	if (unlikely(s->s_root->d_inode->i_mapping->flags & BIT_SUS_MOUNT)) {
+	if (unlikely(test_bit(AS_FLAGS_SUS_MOUNT, &s->s_root->d_inode->i_mapping->flags))) {
 		return -EINVAL;
 	}
 #endif

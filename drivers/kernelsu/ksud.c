@@ -681,6 +681,23 @@ void ksu_handle_vfs_fstat(int fd, loff_t *kstat_size_ptr) {
 }
 #endif // #ifdef CONFIG_KSU_SUSFS
 
+#ifdef CONFIG_KSU_SUSFS
+void ksu_handle_sys_newfstatat(int dfd, loff_t *kstat_size_ptr) {
+	loff_t new_size = *kstat_size_ptr + ksu_rc_len;
+	struct file *file = fget(dfd);
+
+	if (!file)
+		return;
+
+	if (is_init_rc(file)) {
+		pr_info("stat init.rc");
+		pr_info("adding ksu_rc_len: %lld -> %lld", *kstat_size_ptr, new_size);
+		*kstat_size_ptr = new_size;
+	}
+	fput(file);
+}
+#endif // #ifdef CONFIG_KSU_SUSFS
+
 static void stop_init_rc_hook()
 {
 #ifndef CONFIG_KSU_SUSFS
