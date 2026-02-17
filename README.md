@@ -301,14 +301,14 @@ There is no need to compile the kernel separately — `brunch` handles everythin
 
 ## Upstreamed crDroid Android Repos
 
-OnePlus 9 Pro (lemonadep) repos:
+### OnePlus 9 Pro (lemonadep) repos:
 https://github.com/crdroidandroid/android_device_oneplus_lemonadep
 https://github.com/crdroidandroid/android_device_oneplus_sm8350-common
 https://gitlab.com/crdroidandroid/proprietary_vendor_oneplus-lemonadep
 https://github.com/crdroidandroid/android_hardware_oplus
 https://gitlab.com/crdroidandroid/proprietary_vendor_oneplus_sm8350-common
 
-OnePlus 9 (lemonade) repos:
+### OnePlus 9 (lemonade) repos:
 https://github.com/crdroidandroid/android_device_oneplus_lemonade
 https://github.com/crdroidandroid/android_device_oneplus_sm8350-common
 https://gitlab.com/crdroidandroid/proprietary_vendor_oneplus_lemonade
