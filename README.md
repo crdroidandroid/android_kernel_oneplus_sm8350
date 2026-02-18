@@ -13,10 +13,10 @@ While AI did the heavy lifting, human oversight remained mandatory. Every commit
 
 > - **NO WARRANTY.** This software is provided "as-is" without any warranty of any kind, express or implied. Use at your own risk. You've been **WARNED!!!**
 > - **Device brick risk**: Flashing custom kernels and ROMs can permanently brick your device. You are solely responsible for any damage to *your device*, *data loss*, *eye twitching*, *mental blackouts*, or *thermonuclear war*.
-> - **Prebuilt ZIP compatibility**: The prebuilt ROM+kernel zip available in the [releases](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/releases) section is for **OnePlus 9 Pro (lemonadep)** and **OnePlus 9 (lemonade)**. The prebuilt ZIP files are **NOT** compatible with each other. Flashing it on an incompatible device **WILL** brick it.
+> - **Prebuilt ZIP compatibility**: The prebuilt ROM+kernel zip available in the [releases](https://github.com/bcrtvkcs/aesir_kernel_oneplus_sm8350/releases) section is for **OnePlus 9 Pro (lemonadep)** and **OnePlus 9 (lemonade)**. The prebuilt ZIP files are **NOT** compatible with each other. Flashing it on an incompatible device **WILL** brick it.
 > - **For the other devices**; This repository is **NOT** compatible to build for any other Snapdragon 888 (SM8350/Lahaina) devices.
 
-### Although everything has been tested, this project is still a work in progress and may contain bugs. If you encounter a bug or have a feature request, please [let me know](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/issues).
+### Although everything has been tested, this project is still a work in progress and may contain bugs. If you encounter a bug or have a feature request, please [let me know](https://github.com/bcrtvkcs/aesir_kernel_oneplus_sm8350/issues).
 
 ## Problem
 
@@ -31,7 +31,7 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 ### Instructions for **OnePlus 9 Pro (lemonadep)**
 
 1. Follow the official [crDroid installation guide for OnePlus 9 Pro](https://crdroid.net/lemonadep/12/install).
-2. At the **zip flashing step**, flash the zip you downloaded from this repository's [releases](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/releases) *instead of the stock crDroid zip*.
+2. At the **zip flashing step**, flash the zip you downloaded from this repository's [releases](https://github.com/bcrtvkcs/aesir_kernel_oneplus_sm8350/releases) *instead of the stock crDroid zip*.
 3. After booting up, install the latest version of [KernelSU Next manager](https://github.com/KernelSU-Next/KernelSU-Next/releases) on your device. Alternatively, you can use the [nightly manager](https://t.me/ksunext_ci).
 4. (Optional) Open KernelSU Next manager and install the a meta-module for Magick Mount module management alongside OverlayFS. *Hybrid Mount* recommended.
 5. Install the [BRENE module](https://github.com/rrr333nnn333/BRENE) by rrr333nnn333 from within the manager to control SuSFS features.
@@ -45,7 +45,7 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 ### Instructions for **OnePlus 9 (lemonade)**
 
 1. Follow the official [crDroid installation guide for OnePlus 9](https://crdroid.net/lemonade/12/install).
-2. At the **zip flashing step**, flash the zip you downloaded from this repository's [releases](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/releases) *instead of the stock crDroid zip*.
+2. At the **zip flashing step**, flash the zip you downloaded from this repository's [releases](https://github.com/bcrtvkcs/aesir_kernel_oneplus_sm8350/releases) *instead of the stock crDroid zip*.
 3. After booting up, install the latest version of [KernelSU Next manager](https://github.com/KernelSU-Next/KernelSU-Next/releases) on your device. Alternatively, you can use the [nightly manager](https://t.me/ksunext_ci).
 4. (Optional) Open KernelSU Next manager and install the a meta-module for Magick Mount module management alongside OverlayFS. *Hybrid Mount* recommended.
 5. Install the [BRENE module](https://github.com/rrr333nnn333/BRENE) by rrr333nnn333 from within the manager to control SuSFS features.
@@ -54,7 +54,7 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 
 > If you are using [Bindhosts](https://github.com/bindhosts/bindhosts), select Mode 0 (default) in the module settings. Otherwise, any application will be able to **SEE** your modified hosts file.
 
-> I can't test the OnePlus 9 (lemonade)'s prebuilt zip because I don't have the device. It probably works fine, but there might be something I don't know about. Just in case. If you would like to test it and share your results, I would be appriciate it. If you encounter a bug or want to have a feature request, please [let me know](https://github.com/bcrtvkcs/android_kernel_oneplus_sm8350/issues).
+> I can't test the OnePlus 9 (lemonade)'s prebuilt zip because I don't have the device. It probably works fine, but there might be something I don't know about. Just in case. If you would like to test it and share your results, I would be appriciate it. If you encounter a bug or want to have a feature request, please [let me know](https://github.com/bcrtvkcs/aesir_kernel_oneplus_sm8350/issues).
 
 > The prebuilt zip in Releases contains the full crDroid 12.7 ROM (latest) + this custom kernel. The installation process is identical to a standard crDroid installation. The build script retrieves the sources directly from the [crDroid upstream repositories](#upstreamed-crdroid-android-repos). Whenever an update is released on the official crDroid website, I rebuild the ROM and kernel and post them in the Releases section. Alternatively, you can [build the ROM with my custom kernel repository yourself](#building-from-source).
 
@@ -227,7 +227,7 @@ Replace the kernel entry with your fork's repository.
   <project path="device/oneplus/lemonadep" remote="crdroid" name="crdroidandroid/android_device_oneplus_lemonadep" revision="16.0" />
   <project path="device/oneplus/sm8350-common" remote="crdroid" name="crdroidandroid/android_device_oneplus_sm8350-common" revision="16.0" />
   <project path="vendor/oneplus/lemonadep" remote="crdroid-gitlab" name="crdroidandroid/proprietary_vendor_oneplus-lemonadep" revision="16.0" />
-  <project path="kernel/oneplus/sm8350" remote="github" name="bcrtvkcs/android_kernel_oneplus_sm8350" revision="16.0" />
+  <project path="kernel/oneplus/sm8350" remote="github" name="bcrtvkcs/aesir_kernel_oneplus_sm8350" revision="16.0" />
   <project path="hardware/oplus" remote="crdroid" name="crdroidandroid/android_hardware_oplus" revision="16.0" />
   <project path="vendor/oneplus/sm8350-common" remote="crdroid-gitlab" name="crdroidandroid/proprietary_vendor_oneplus_sm8350-common" revision="16.0" />
 </manifest>
@@ -241,7 +241,7 @@ Replace the kernel entry with your fork's repository.
   <project path="device/oneplus/lemonade" remote="crdroid" name="crdroidandroid/android_device_oneplus_lemonade" revision="16.0" />
   <project path="device/oneplus/sm8350-common" remote="crdroid" name="crdroidandroid/android_device_oneplus_sm8350-common" revision="16.0" />
   <project path="vendor/oneplus/lemonade" remote="crdroid-gitlab" name="crdroidandroid/proprietary_vendor_oneplus_lemonade" revision="16.0" />
-  <project path="kernel/oneplus/sm8350" remote="github" name="bcrtvkcs/android_kernel_oneplus_sm8350" revision="16.0" />
+  <project path="kernel/oneplus/sm8350" remote="github" name="bcrtvkcs/aesir_kernel_oneplus_sm8350" revision="16.0" />
   <project path="hardware/oplus" remote="crdroid" name="crdroidandroid/android_hardware_oplus" revision="16.0" />
   <project path="vendor/oneplus/sm8350-common" remote="crdroid-gitlab" name="crdroidandroid/proprietary_vendor_oneplus_sm8350-common" revision="16.0" />
 </manifest>
