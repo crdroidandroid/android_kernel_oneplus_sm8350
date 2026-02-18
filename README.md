@@ -1,6 +1,6 @@
 # crDroid 12.7 (latest) + KernelSU Next v3.0.1 + SuSFS v2.0.0 for OnePlus 9 Pro (lemonadep) & OnePlus 9 (lemonade)
 
-This is a custom kernel source for the **OnePlus 9 Pro (lemonadep)** and the **OnePlus 9 (lemonade)**. It's [upstreamed](#upstreamed-crdroid-android-repos) from [crDroid Project](https://crdroid.net) with **KernelSU Next v3.0.1** + **SuSFS v2.0.0** integrated directly into the kernel source.
+Æsir Kernel is a custom kernel source for the **OnePlus 9 Pro (lemonadep)** and the **OnePlus 9 (lemonade)**. It's [upstreamed](#upstreamed-crdroid-android-repos) from [crDroid Project](https://crdroid.net) with **KernelSU Next v3.0.1** + **SuSFS v2.0.0** integrated directly into the kernel source.
 
 **I know what I'm doing. Take me to the** [installation](#installation)
 
@@ -40,7 +40,7 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 
 > If you are using [Bindhosts](https://github.com/bindhosts/bindhosts), select Mode 0 (default) in the module settings. Otherwise, any application will be able to **SEE** your modified hosts file.
 
-> The prebuilt zip in Releases contains the full crDroid 12.7 ROM (latest) + this custom kernel. The installation process is identical to a standard crDroid installation. The build script retrieves the sources directly from the [crDroid upstream repositories](#upstreamed-crdroid-android-repos). Whenever an update is released on the official crDroid website, I rebuild the ROM and kernel and post them in the Releases section. Alternatively, you can [build the ROM with my custom kernel repository yourself](#building-from-source).
+> The prebuilt zip in Releases contains the full crDroid 12.7 ROM (latest) + Æsir Kernel. The installation process is identical to a standard crDroid installation. The build script retrieves the sources directly from the [crDroid upstream repositories](#upstreamed-crdroid-android-repos). Whenever an update is released on the official crDroid website, I rebuild the ROM and the kernel and post them in the Releases section. Alternatively, you can [build the ROM with my custom kernel repository yourself](#building-from-source).
 
 ### Instructions for **OnePlus 9 (lemonade)**
 
@@ -56,7 +56,7 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 
 > I can't test the OnePlus 9 (lemonade)'s prebuilt zip because I don't have the device. It probably works fine, but there might be something I don't know about. Just in case. If you would like to test it and share your results, I would be appriciate it. If you encounter a bug or want to have a feature request, please [let me know](https://github.com/bcrtvkcs/aesir_kernel_oneplus_sm8350/issues).
 
-> The prebuilt zip in Releases contains the full crDroid 12.7 ROM (latest) + this custom kernel. The installation process is identical to a standard crDroid installation. The build script retrieves the sources directly from the [crDroid upstream repositories](#upstreamed-crdroid-android-repos). Whenever an update is released on the official crDroid website, I rebuild the ROM and kernel and post them in the Releases section. Alternatively, you can [build the ROM with my custom kernel repository yourself](#building-from-source).
+> The prebuilt zip in Releases contains the full crDroid 12.7 ROM (latest) + Æsir Kernel. The installation process is identical to a standard crDroid installation. The build script retrieves the sources directly from the [crDroid upstream repositories](#upstreamed-crdroid-android-repos). Whenever an update is released on the official crDroid website, I rebuild the ROM and the kernel and post them in the Releases section. Alternatively, you can [build the ROM with my custom kernel repository yourself](#building-from-source).
 
 ### If you'd like to support the project, feel free to leave a star ⭐
 
@@ -73,7 +73,7 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 | **SELinux** | Enforcing |
 | **Hook Mode** | GKI1 — Inline (manual) syscall hooks |
 
-### SuSFS v2.0.0 Kernel Features
+### SuSFS v2.0.0 Features
 
 | Feature | Status |
 |---------|--------|
@@ -98,7 +98,7 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 
 ### Inline Syscall Hooks
 
-Instead of using kprobes (which can be detected), this kernel uses **9 inline hooks** placed directly in kernel source files:
+Instead of using kprobes (which can be detected), Æsir Kernel uses **9 inline hooks** placed directly in kernel source files:
 
 | File | Hook |
 |------|------|
@@ -113,7 +113,7 @@ Instead of using kprobes (which can be detected), this kernel uses **9 inline ho
 
 ## Performance Optimizations
 
-This kernel includes a comprehensive set of performance and battery life optimizations applied directly at the source level — no Magisk modules or post-boot scripts required. All tweaks are active from the moment the kernel boots.
+Æsir Kernel includes a comprehensive set of performance and battery life optimizations applied directly at the source level — no Magisk modules or post-boot scripts required. All tweaks are active from the moment the kernel boots.
 
 ### Network & I/O
 
@@ -173,7 +173,7 @@ Disabled at compile time: `PROFILING`, `SCHEDSTATS`, `DEBUG_INFO`, `DEBUG_STACK_
 
 ### crDroid 12.7 (Android 16) (latest) — OnePlus 9 Pro (lemonadep) or OnePlus 9 (lemonade)  Build Guide
 
-This kernel is built as part of the full crDroid ROM — there is no need to compile the kernel separately. The `brunch` build system handles everything automatically.
+Æsir Kernel is built as part of the full crDroid ROM — there is no need to compile the kernel separately. The `brunch` build system handles everything automatically.
 
 ### 1. Requirements
 
@@ -213,7 +213,7 @@ repo sync -c --no-clone-bundle --no-tags -j$(nproc)
 
 This will take several hours on the first run.
 
-### 5. Integrate Your Custom Kernel (Critical Step)
+### 5. Integrate The Kernel (Critical Step)
 
 The crDroid build system uses **local manifests** to override the default kernel source with your own fork. Edit (or create) the file `.repo/local_manifests/roomservice.xml` in your crDroid source tree.
 
