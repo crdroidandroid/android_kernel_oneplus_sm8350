@@ -1,0 +1,20 @@
+Kernel: 5.4.302-qgki-g44c493c173f4
+BRAND: OnePlus
+MODEL: LE2127
+PRODUCT: OnePlus9Pro
+MANUFACTURER: OnePlus
+ANDROID: 16
+SDK: 36
+PREVIEW_SDK: 0
+FINGERPRINT: OnePlus/OnePlus9Pro/OnePlus9Pro:14/UKQ1.230924.001/R.209d31b_1-39324b:user/release-keys
+DEVICE: OnePlus9Pro
+Manager: (v3.0.1-33-g6ab4a99c, 33000)
+SELinux: Enforcing
+KernelRelease: 5.4.302-qgki-g44c493c173f4
+KernelVersion: #27 SMP PREEMPT Wed Feb 18 05:20:40 +03 2026
+Machine: aarch64
+Nodename: localhost
+Sysname: Linux
+KernelSU: 32992
+SafeMode: false
+LKM: false

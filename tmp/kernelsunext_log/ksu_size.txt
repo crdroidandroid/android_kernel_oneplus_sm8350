@@ -1,0 +1,4 @@
+11K	/data/adb/ksu/backup
+2.6M	/data/adb/ksu/bin
+25M	/data/adb/ksu/log
+43K	/data/adb/ksu/profile
