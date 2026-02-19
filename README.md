@@ -6,7 +6,7 @@
 
 ÆSIR Kernel is a custom kernel source for the **OnePlus 9 Pro (lemonadep)** and the **OnePlus 9 (lemonade)**. It's [upstreamed](#upstreamed-crdroid-android-repos) from [crDroid Project](https://crdroid.net) with **KernelSU Next v3.0.1** + **SuSFS v2.0.0** integrated directly into the kernel source.
 
-Follow this link to join the [Telegram channel](https://t.me/aesirkernel).
+Follow this link to join the [Telegram channel](https://t.me/aesirkernel)
 
 **I know what I'm doing. Take me to the** [installation](#installation)
 
