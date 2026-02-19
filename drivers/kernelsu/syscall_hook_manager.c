@@ -236,7 +236,6 @@ static inline bool check_syscall_fastpath(int nr)
 {
 	switch (nr) {
 	case __NR_newfstatat:
-	case __NR_statx:
 	case __NR_faccessat:
 	case __NR_execve:
 	case __NR_setresuid:
@@ -286,8 +285,8 @@ static void ksu_sys_enter_handler(void *data, struct pt_regs *regs, long id)
 {
     if (unlikely(check_syscall_fastpath(id))) {
         if (ksu_su_compat_enabled) {
-            // Handle newfstatat and statx
-            if (id == __NR_newfstatat || id == __NR_statx) {
+            // Handle newfstatat
+            if (id == __NR_newfstatat) {
                 int *dfd = (int *)&PT_REGS_PARM1(regs);
                 const char __user **filename_user =
                     (const char __user **)&PT_REGS_PARM2(regs);
