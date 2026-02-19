@@ -737,7 +737,7 @@ int sde_connector_update_hbm(struct drm_connector *connector)
 			mutex_lock(&dsi_display->panel->panel_lock);
 
 			if (!dsi_display->panel->panel_initialized) {
-				dsi_display->panel->is_hbm_enabled = true;
+				dsi_display->panel->is_hbm_enabled = false;
 				pr_err("panel not initialized, failed to Exit OnscreenFingerprint\n");
 				mutex_unlock(&dsi_display->panel->panel_lock);
 				return 0;

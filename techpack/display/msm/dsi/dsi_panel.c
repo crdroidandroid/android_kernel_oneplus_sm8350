@@ -5537,6 +5537,7 @@ int dsi_panel_set_nolp(struct dsi_panel *panel)
 	}
 
 	set_oplus_display_power_status(OPLUS_DISPLAY_POWER_ON);
+	panel->is_hbm_enabled = false;
 #endif
 exit:
 	mutex_unlock(&panel->panel_lock);
@@ -5985,6 +5986,7 @@ int dsi_panel_enable(struct dsi_panel *panel)
 
 #ifdef OPLUS_BUG_STABILITY
 	panel->need_power_on_backlight = true;
+	panel->is_hbm_enabled = false;
 	set_oplus_display_power_status(OPLUS_DISPLAY_POWER_ON);
 #endif
 
