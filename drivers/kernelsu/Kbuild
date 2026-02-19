@@ -26,7 +26,7 @@ obj-$(CONFIG_KSU) += kernelsu.o
 
 # KernelSU-Next v3.0.1 - hardcoded version for in-tree build
 KSU_VERSION_TAG := v3.0.1
-KSU_GIT_VERSION := 2992
+KSU_GIT_VERSION := 3006
 $(eval KSU_VERSION=$(shell expr 30000 + $(KSU_GIT_VERSION)))
 $(info -- KernelSU-Next version: $(KSU_VERSION))
 $(info -- KernelSU-Next tag: $(KSU_VERSION_TAG))
