@@ -43,6 +43,7 @@ extern atomic_t oplus_datadimming_vblank_ref;
 extern int oplus_fod_on_vblank;
 extern int oplus_fod_off_vblank;
 extern bool oplus_skip_datadimming_sync;
+extern int oplus_dimlayer_hbm;
 extern int oplus_dimlayer_hbm_vblank_count;
 extern atomic_t oplus_dimlayer_hbm_vblank_ref;
 extern int oplus_dc2_alpha;
