@@ -38,9 +38,10 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 
 1. Follow the official [crDroid installation guide for OnePlus 9 Pro](https://crdroid.net/lemonadep/12/install).
 2. At the **zip flashing step**, flash the zip you downloaded from this repository's [releases](https://github.com/bcrtvkcs/aesir_kernel_oneplus_sm8350/releases) *instead of the stock crDroid zip*.
-3. After booting up, install the latest version of [KernelSU Next manager](https://github.com/KernelSU-Next/KernelSU-Next/releases) on your device. Alternatively, you can use the [nightly manager](https://t.me/ksunext_ci).
-4. (Optional) Open KernelSU Next manager and install the a meta-module for Magick Mount module management alongside OverlayFS. *Hybrid Mount* recommended.
-5. Install the [BRENE module](https://github.com/rrr333nnn333/BRENE) by rrr333nnn333 from within the manager to control SuSFS features.
+3. (Optional GAaps) When asked to sideload [GApps](https://nikgapps.com/crdroid-official), choose 'Yes' to reboot to recovery or 'No' if you don't want gapps and want to reboot to system. Now if you choosed to install GApps, simply sideload GApps.zip the same way you installed crDroid.zip then reboot to system.
+4. After booting up, install the latest version of [KernelSU Next manager](https://github.com/KernelSU-Next/KernelSU-Next/releases) on your device. Alternatively, you can use the [nightly manager](https://t.me/ksunext_ci).
+5. (Optional) Open KernelSU Next manager and install the a meta-module for Magick Mount module management alongside OverlayFS. *Hybrid Mount* recommended.
+6. Install the [BRENE module](https://github.com/rrr333nnn333/BRENE) by rrr333nnn333 from within the manager to control SuSFS features.
 
 > In step 5, you can also use the [susfs4ksu module](https://github.com/sidex15/susfs4ksu-module/actions/workflows/build.yml) nightly builds from sidex15, but [BRENE module](https://github.com/rrr333nnn333/BRENE) **hides better**.
 
@@ -52,9 +53,10 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 
 1. Follow the official [crDroid installation guide for OnePlus 9](https://crdroid.net/lemonade/12/install).
 2. At the **zip flashing step**, flash the zip you downloaded from this repository's [releases](https://github.com/bcrtvkcs/aesir_kernel_oneplus_sm8350/releases) *instead of the stock crDroid zip*.
-3. After booting up, install the latest version of [KernelSU Next manager](https://github.com/KernelSU-Next/KernelSU-Next/releases) on your device. Alternatively, you can use the [nightly manager](https://t.me/ksunext_ci).
-4. (Optional) Open KernelSU Next manager and install the a meta-module for Magick Mount module management alongside OverlayFS. *Hybrid Mount* recommended.
-5. Install the [BRENE module](https://github.com/rrr333nnn333/BRENE) by rrr333nnn333 from within the manager to control SuSFS features.
+3. (Optional GAaps) When asked to sideload [GApps](https://nikgapps.com/crdroid-official), choose 'Yes' to reboot to recovery or 'No' if you don't want gapps and want to reboot to system. Now if you choosed to install GApps, simply sideload GApps.zip the same way you installed crDroid.zip then reboot to system.
+4. After booting up, install the latest version of [KernelSU Next manager](https://github.com/KernelSU-Next/KernelSU-Next/releases) on your device. Alternatively, you can use the [nightly manager](https://t.me/ksunext_ci).
+5. (Optional) Open KernelSU Next manager and install the a meta-module for Magick Mount module management alongside OverlayFS. *Hybrid Mount* recommended.
+6. Install the [BRENE module](https://github.com/rrr333nnn333/BRENE) by rrr333nnn333 from within the manager to control SuSFS features.
 
 > In step 5, you can also use the [susfs4ksu module](https://github.com/sidex15/susfs4ksu-module/actions/workflows/build.yml) nightly builds from sidex15, but [BRENE module](https://github.com/rrr333nnn333/BRENE) **hides better**.
 
