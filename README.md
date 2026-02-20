@@ -74,7 +74,7 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 | **ROM** | crDroid 12.7 (Android 16) (latest) |
 | **Device** | OnePlus 9 Pro (lemonadep) or OnePlus 9 (lemonade) |
 | **SoC** | Qualcomm Snapdragon 888 (SM8350/Lahaina) |
-| **KernelSU Next** | v3.0.1 (version code 32992) |
+| **KernelSU Next** | v3.0.1 (version code 33006) |
 | **SuSFS** | v2.0.0 |
 | **SELinux** | Enforcing |
 | **Hook Mode** | GKI1 — Inline (manual) syscall hooks |
