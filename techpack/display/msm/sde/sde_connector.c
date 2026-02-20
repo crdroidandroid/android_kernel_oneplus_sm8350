@@ -236,7 +236,11 @@ static int sde_backlight_device_update_status(struct backlight_device *bd)
 	if (!bl_lvl && brightness)
 		bl_lvl = 1;
 
+	pr_err("BRIGHTNESS_DEBUG: sde_backlight brightness=%d bl_lvl=%d allow=%d\n",
+		brightness, bl_lvl, c_conn->allow_bl_update);
+
 	if (!c_conn->allow_bl_update) {
+		pr_err("BRIGHTNESS_DEBUG: BLOCKED by allow_bl_update=0 bl_lvl=%d\n", bl_lvl);
 		c_conn->unset_bl_level = bl_lvl;
 		return 0;
 	}

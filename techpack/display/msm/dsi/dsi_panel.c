@@ -965,7 +965,11 @@ static int dsi_panel_update_backlight(struct dsi_panel *panel,
 		bl_lvl = (((bl_lvl & 0xff) << 8) | (bl_lvl >> 8));
 
 #ifdef OPLUS_BUG_STABILITY
+	pr_err("BRIGHTNESS_DEBUG: update_backlight bl_lvl=%d scene=%d is_hbm=%d hbm_mode=%d\n",
+		bl_lvl, get_oplus_display_scene(), panel->is_hbm_enabled, oplus_display_get_hbm_mode());
+
 	if ((get_oplus_display_scene() == OPLUS_DISPLAY_AOD_SCENE) && ( bl_lvl == 1)) {
+		pr_err("BRIGHTNESS_DEBUG: BLOCKED by AOD_SCENE bl_lvl=%d\n", bl_lvl);
 		pr_err("dsi_cmd AOD mode return bl_lvl:%d\n",bl_lvl);
 		return 0;
 	}
@@ -978,6 +982,7 @@ static int dsi_panel_update_backlight(struct dsi_panel *panel,
 	}
 
 	if (panel->is_hbm_enabled && (bl_lvl != 0)) {
+		pr_err("BRIGHTNESS_DEBUG: BLOCKED by is_hbm_enabled bl_lvl=%d\n", bl_lvl);
 		pr_err("backlight smooth check racing issue is_hbm_enabled\n");
 		return 0;
 	}
@@ -988,6 +993,8 @@ static int dsi_panel_update_backlight(struct dsi_panel *panel,
 	}
 
 	if (oplus_display_get_hbm_mode()) {
+		pr_err("BRIGHTNESS_DEBUG: BLOCKED by hbm_mode=%d bl_lvl=%d\n",
+			oplus_display_get_hbm_mode(), bl_lvl);
 		pr_err("backlight smooth check racing issue oplus_display_get_hbm_mode\n");
 		return rc;
 	}

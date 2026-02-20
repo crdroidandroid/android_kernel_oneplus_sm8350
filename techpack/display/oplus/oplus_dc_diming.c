@@ -576,6 +576,10 @@ int sde_connector_update_hbm(struct drm_connector *connector)
 		unsigned int fps_period_us =
 			1000000/dsi_display->modes->timing.refresh_rate + 1;
 
+		pr_err("BRIGHTNESS_DEBUG: HBM state change fp_mode=%d is_hbm=%d dimlayer_hbm=%d hbm_mode=%d\n",
+			fingerprint_mode, dsi_display->panel->is_hbm_enabled,
+			oplus_dimlayer_hbm, oplus_display_get_hbm_mode());
+
 		if (oplus_fod_on_vblank >= 0) {
 			panel->cur_mode->priv_info->fod_on_vblank = oplus_fod_on_vblank;
 		}
@@ -846,6 +850,8 @@ int sde_connector_update_hbm(struct drm_connector *connector)
 				}
 
 			} else if (oplus_display_get_hbm_mode()) {
+				pr_err("BRIGHTNESS_DEBUG: FOD exit SKIPPED HBM OFF due to hbm_mode=%d\n",
+					oplus_display_get_hbm_mode());
 				/* Do nothing to skip hbm off */
 			} else if (OPLUS_DISPLAY_AOD_SCENE == get_oplus_display_scene()) {
 				if ((!strcmp(dsi_display->panel->oplus_priv.vendor_name, "S6E3HC3") && (panel->panel_id2 >= 5)) ||
