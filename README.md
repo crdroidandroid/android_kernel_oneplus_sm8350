@@ -30,7 +30,7 @@ Stock crDroid kernel does not include the newest KernelSU Next or the newest roo
 
 ## Solution
 
-This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-Next) v3.0.1 and [SuSFS](https://gitlab.com/simonpunk/susfs4ksu) v2.0.0 directly into the kernel source tree, shipped as a single flashable crDroid 12.7 (Android 16) ROM (latest) zip. Instead of kprobes, root is implemented through **9 inline syscall hooks** hand-placed in kernel source files — making detection significantly harder. SuSFS hides all root artifacts (paths, mounts, maps, kernel symbols) while SELinux remains Enforcing and Play Integrity passes at DEVICE level.
+This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-Next) v3.0.1 and [SuSFS](https://gitlab.com/simonpunk/susfs4ksu/-/tree/abf5866ea052c4109e1f1c001655773d5d1ac298) v2.0.0 directly into the kernel source tree, shipped as a single flashable crDroid 12.7 (Android 16) ROM (latest) zip. Instead of kprobes, root is implemented through **9 inline syscall hooks** hand-placed in kernel source files — making detection significantly harder. SuSFS hides all root artifacts (paths, mounts, maps, kernel symbols) while SELinux remains Enforcing and Play Integrity passes at DEVICE level.
 
 ## Installation
 
