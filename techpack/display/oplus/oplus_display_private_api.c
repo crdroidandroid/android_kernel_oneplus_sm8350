@@ -2067,6 +2067,8 @@ static ssize_t oplus_display_set_dimlayer_hbm(struct kobject *obj,
 	oplus_dimlayer_hbm = value;
 
 #ifdef OPLUS_BUG_STABILITY
+	pr_err("BRIGHTNESS_DEBUG: oplus_dimlayer_hbm CHANGED to %d\n", oplus_dimlayer_hbm);
+	dump_stack();
 	pr_err("debug for oplus_display_set_dimlayer_hbm set oplus_dimlayer_hbm = %d\n",
 	       oplus_dimlayer_hbm);
 #endif

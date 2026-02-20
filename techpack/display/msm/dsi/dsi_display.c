@@ -304,6 +304,7 @@ int dsi_display_set_backlight(struct drm_connector *connector,
 
 	/* Add some delay to avoid screen flash */
 	if (panel->need_power_on_backlight && bl_lvl) {
+		pr_err("BRIGHTNESS_DEBUG: POST_ON_BACKLIGHT triggered bl_lvl=%d\n", bl_lvl);
 		panel->need_power_on_backlight = false;
 		rc = dsi_display_clk_ctrl(dsi_display->dsi_clk_handle,
 			DSI_CORE_CLK, DSI_CLK_ON);
@@ -330,8 +331,10 @@ int dsi_display_set_backlight(struct drm_connector *connector,
 #endif /* OPLUS_BUG_STABILITY */
 	panel->bl_config.bl_level = bl_lvl;
 #ifdef OPLUS_BUG_STABILITY
-	if (oplus_ffl_trigger_finish == false)
+	if (oplus_ffl_trigger_finish == false) {
+		pr_err("BRIGHTNESS_DEBUG: BLOCKED by FFL bl_lvl=%d\n", bl_lvl);
 		goto error;
+	}
 #endif /* OPLUS_BUG_STABILITY */
 
 	/* scale backlight */
@@ -359,6 +362,8 @@ int dsi_display_set_backlight(struct drm_connector *connector,
 	}
 #endif /*OPLUS_BUG_STABILITY*/
 
+	pr_err("BRIGHTNESS_DEBUG: writing bl_temp=%u to panel (bl_lvl=%d lcd_closebl=%d)\n",
+		(u32)bl_temp, bl_lvl, lcd_closebl_flag);
 	rc = dsi_panel_set_backlight(panel, (u32)bl_temp);
 	if (rc)
 		DSI_ERR("unable to set backlight\n");
