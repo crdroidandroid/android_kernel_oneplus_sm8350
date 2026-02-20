@@ -100,7 +100,7 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 | ~~Magic Mount Support~~ | Deprecated |
 | ~~OverlayFS Auto Kstat Support~~ | Deprecated |
 
-> **Note on deprecated features:** SuSFS v2.0.0 intentionally removed the legacy per-mount management features (try_umount, auto mounts, magic mount, overlayfs auto kstat). These have been replaced by a single unified **SUS Mount Support** mechanism (`hide_sus_mnts_for_non_su_procs`) that hides all suspicious mounts from non-root processes at once — simpler configuration, smaller attack surface, same result.
+> **Deprecated features:** SuSFS v2.0.0 intentionally removed the legacy per-mount management features (try_umount, auto mounts, magic mount, overlayfs auto kstat). These have been replaced by a single unified **SUS Mount Support** mechanism (`hide_sus_mnts_for_non_su_procs`) that hides all suspicious mounts from non-root processes at once — simpler configuration, smaller attack surface, same result.
 
 ### Inline Syscall Hooks
 
