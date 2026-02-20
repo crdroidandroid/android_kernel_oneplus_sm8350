@@ -221,7 +221,7 @@ This will take several hours on the first run.
 
 ### 5. Integrate The Kernel (Critical Step)
 
-The crDroid build system uses **local manifests** to override the default kernel source with your own fork. Edit (or create) the file `.repo/local_manifests/roomservice.xml` in your crDroid source tree.
+The crDroid build system uses **local manifests** to override the default kernel source with your own fork. Create (or edir) the file `.repo/local_manifests/roomservice.xml` in your crDroid source tree.
 
 Replace the kernel entry with your fork's repository.
 
