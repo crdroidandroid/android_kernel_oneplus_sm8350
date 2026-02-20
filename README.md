@@ -259,7 +259,7 @@ Sync kernel repo.
 repo sync kernel/oneplus/sm8350 --force-sync
 ```
 
-### 6. Set Up ccache (Optional but Recommended)
+### 6. Set Up ccache
 
 ```bash
 export USE_CCACHE=1
