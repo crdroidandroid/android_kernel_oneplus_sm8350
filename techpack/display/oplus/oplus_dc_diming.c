@@ -671,6 +671,8 @@ int sde_connector_update_hbm(struct drm_connector *connector)
 								usleep_range(6 * 1000, 6 * 1000 + 100);
 							}
 						}
+						pr_err("BRIGHTNESS_DEBUG: HBM_ON SENT TO PANEL (FOD enter, normal) dimlayer_hbm=%d bl_level=%d\n",
+							oplus_dimlayer_hbm, dsi_display->panel->bl_config.bl_level);
 						SDE_ATRACE_BEGIN("DSI_CMD_HBM_ON");
 						rc = dsi_panel_tx_cmd_set(dsi_display->panel, DSI_CMD_HBM_ON);
 						SDE_ATRACE_END("DSI_CMD_HBM_ON");
@@ -712,6 +714,7 @@ int sde_connector_update_hbm(struct drm_connector *connector)
 					if (OPLUS_DISPLAY_AOD_SCENE == get_oplus_display_scene()) {
 						if ((!strcmp(dsi_display->panel->oplus_priv.vendor_name, "AMB670YF01") && (panel->panel_id2 >= 5)) ||
 							(!strcmp(dsi_display->panel->oplus_priv.vendor_name, "S6E3HC3") && (panel->panel_id2 >= 5))) {
+						pr_err("BRIGHTNESS_DEBUG: AOD_HBM_ON_PVT SENT (FOD enter, AOD scene) dimlayer_hbm=%d\n", oplus_dimlayer_hbm);
 							rc = dsi_panel_tx_cmd_set(dsi_display->panel, DSI_CMD_AOD_HBM_ON_PVT);
 						} else if (!strcmp(dsi_display->panel->oplus_priv.vendor_name, "AMB655X") ||
 								!strcmp(dsi_display->panel->oplus_priv.vendor_name, "AMS662ZS01")) {
@@ -720,6 +723,7 @@ int sde_connector_update_hbm(struct drm_connector *connector)
 							rc = dsi_panel_tx_cmd_set(dsi_display->panel, DSI_CMD_HBM_ON);
 						}
 					} else {
+						pr_err("BRIGHTNESS_DEBUG: HBM_ON SENT (FOD enter, non-AOD alt path) dimlayer_hbm=%d\n", oplus_dimlayer_hbm);
 						rc = dsi_panel_tx_cmd_set(dsi_display->panel, DSI_CMD_HBM_ON);
 					}
 				} else {
@@ -875,6 +879,8 @@ int sde_connector_update_hbm(struct drm_connector *connector)
 					}
 					dsi_panel_seed_mode(dsi_display->panel, seed_mode);
 					dsi_panel_tx_cmd_set(dsi_display->panel, DSI_CMD_HBM_AOR_RESTORE);
+					pr_err("BRIGHTNESS_DEBUG: HBM_OFF SENT (FOD exit) bl_level=%d hbm_mode=%d\n",
+						panel->bl_config.bl_level, oplus_display_get_hbm_mode());
 					rc = dsi_panel_tx_cmd_set(dsi_display->panel, DSI_CMD_HBM_OFF);
 					oplus_panel_update_backlight_unlock(panel);
 				}

@@ -1249,6 +1249,8 @@ static int dsi_panel_update_backlight(struct dsi_panel *panel,
 	rc = mipi_dsi_dcs_set_display_brightness(dsi, bl_lvl);
 	if (rc < 0)
 		DSI_ERR("failed to update dcs backlight:%d\n", bl_lvl);
+	else
+		pr_err("BRIGHTNESS_DEBUG: PANEL WRITE SUCCESS bl_lvl=%d\n", bl_lvl);
 
 #ifdef OPLUS_BUG_STABILITY
 	if (OPLUS_DEBUG_LOG_BACKLIGHT & oplus_dsi_log_type) {
