@@ -30,7 +30,7 @@ Stock crDroid kernel does not include the newest KernelSU Next or the newest roo
 
 ## Solution
 
-This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-Next) v3.0.1 and [SuSFS](https://gitlab.com/simonpunk/susfs4ksu/-/tree/abf5866ea052c4109e1f1c001655773d5d1ac298) v2.0.0 directly into the kernel source tree, shipped as a single flashable crDroid 12.7 (Android 16) ROM (latest) zip. Instead of kprobes, root is implemented through **9 inline syscall hooks** hand-placed in kernel source files — making detection significantly harder. SuSFS hides all root artifacts (paths, mounts, maps, kernel symbols) while SELinux remains Enforcing and Play Integrity passes at DEVICE level.
+This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-Next) v3.0.1 and [SuSFS](https://gitlab.com/simonpunk/susfs4ksu/-/tree/abf5866ea052c4109e1f1c001655773d5d1ac298) v2.0.0 directly into the kernel source tree, shipped as a single flashable crDroid 12.7 (Android 16) ROM (latest) zip. Instead of kprobes, root is implemented through **9 inline syscall hooks** hand-placed in kernel source files - making detection significantly harder. SuSFS hides all root artifacts (paths, mounts, maps, kernel symbols) while SELinux remains Enforcing and Play Integrity passes at DEVICE level.
 
 ## Installation
 
@@ -77,7 +77,7 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 | **KernelSU Next** | v3.0.1 (version code 33006) |
 | **SuSFS** | v2.0.0 |
 | **SELinux** | Enforcing |
-| **Hook Mode** | GKI1 — Inline (manual) syscall hooks |
+| **Hook Mode** | GKI1 - Inline (manual) syscall hooks |
 
 ### SuSFS v2.0.0 Features
 
@@ -100,7 +100,7 @@ This fork integrates [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-N
 | ~~Magic Mount Support~~ | Deprecated |
 | ~~OverlayFS Auto Kstat Support~~ | Deprecated |
 
-> **Deprecated features:** SuSFS v2.0.0 intentionally removed the legacy per-mount management features (try_umount, auto mounts, magic mount, overlayfs auto kstat). These have been replaced by a single unified **SUS Mount Support** mechanism (`hide_sus_mnts_for_non_su_procs`) that hides all suspicious mounts from non-root processes at once — simpler configuration, smaller attack surface, same result.
+> **Deprecated features:** SuSFS v2.0.0 intentionally removed the legacy per-mount management features (try_umount, auto mounts, magic mount, overlayfs auto kstat). These have been replaced by a single unified **SUS Mount Support** mechanism (`hide_sus_mnts_for_non_su_procs`) that hides all suspicious mounts from non-root processes at once - simpler configuration, smaller attack surface, same result.
 
 ### Inline Syscall Hooks
 
@@ -119,16 +119,16 @@ Instead of using kprobes (which can be detected), ÆSIR Kernel uses **9 inline h
 
 ## Performance Optimizations
 
-ÆSIR Kernel includes a comprehensive set of performance and battery life optimizations applied directly at the source level — no Magisk modules or post-boot scripts required. All tweaks are active from the moment the kernel boots.
+ÆSIR Kernel includes a comprehensive set of performance and battery life optimizations applied directly at the source level - no Magisk modules or post-boot scripts required. All tweaks are active from the moment the kernel boots.
 
 ### Network & I/O
 
 | Optimization | Details |
 |-------------|---------|
-| **BBR TCP Congestion Control** | Google's BBR algorithm as default — better throughput and lower latency than CUBIC, especially on lossy mobile networks |
+| **BBR TCP Congestion Control** | Google's BBR algorithm as default - better throughput and lower latency than CUBIC, especially on lossy mobile networks |
 | **FQ/FQ_CODEL Qdisc** | Fair Queue and CoDel packet scheduling for reduced bufferbloat |
 | **TCP Timestamps Disabled** | Saves 12 bytes per TCP packet header; reduces overhead on mobile connections |
-| **BFQ I/O Scheduler** | Budget Fair Queueing as default — optimized for interactive workloads and flash storage |
+| **BFQ I/O Scheduler** | Budget Fair Queueing as default - optimized for interactive workloads and flash storage |
 | **Block I/O Stats Disabled** | Per-I/O accounting overhead removed from all block devices by default |
 | **MMC SPI CRC Disabled** | Eliminates unnecessary CRC checks on storage transfers (modern UFS/eMMC have hardware ECC) |
 
@@ -137,11 +137,11 @@ Instead of using kprobes (which can be detected), ÆSIR Kernel uses **9 inline h
 | Optimization | Details |
 |-------------|---------|
 | **Schedutil Governor** | Frequency scaling driven directly by the scheduler's utilization signals |
-| **Tunable Scaling: None** | Prevents auto-scaling of scheduler granularity values by CPU count — our tuned values are used as-is |
-| **Min Granularity: 1ms** | CFS minimum timeslice increased from 750us — fewer context switches, better throughput |
-| **Wakeup Granularity: 1.5ms** | Wakeup preemption threshold raised from 1ms — reduces unnecessary task preemption |
-| **Migration Cost: 200us** | Reduced from 500us — scheduler migrates tasks across CPUs faster for lower latency while avoiding excessive cross-cluster thrashing |
-| **Child Runs First** | Forked child processes run before parent — reduces Copy-on-Write page faults on fork+exec |
+| **Tunable Scaling: None** | Prevents auto-scaling of scheduler granularity values by CPU count - our tuned values are used as-is |
+| **Min Granularity: 1ms** | CFS minimum timeslice increased from 750us - fewer context switches, better throughput |
+| **Wakeup Granularity: 1.5ms** | Wakeup preemption threshold raised from 1ms - reduces unnecessary task preemption |
+| **Migration Cost: 200us** | Reduced from 500us - scheduler migrates tasks across CPUs faster for lower latency while avoiding excessive cross-cluster thrashing |
+| **Child Runs First** | Forked child processes run before parent - reduces Copy-on-Write page faults on fork+exec |
 | **Colocation Threshold: 20** | Top-app tasks receive sched boost at lower utilization than stock (35), balancing responsiveness with thermal efficiency |
 | **Perf CPU Overhead: 10%** | Perf sampling CPU time limit reduced from 25% to 10% |
 
@@ -150,36 +150,36 @@ Instead of using kprobes (which can be detected), ÆSIR Kernel uses **9 inline h
 | Optimization | Details |
 |-------------|---------|
 | **ZRAM with LZ4** | Compressed RAM swap using the fast LZ4 algorithm instead of lzo-rle |
-| **Page Cluster: 0** | Swap read-ahead disabled — unnecessary with ZRAM since data is already in memory |
+| **Page Cluster: 0** | Swap read-ahead disabled - unnecessary with ZRAM since data is already in memory |
 | **VFS Cache Pressure: 50** | Dentry/inode caches retained longer, reducing filesystem metadata I/O |
-| **Dirty Ratio: 30%** | Allows more dirty pages in RAM before forcing writeback — balances burst write performance with Dynamic Fsync screen-on flush safety |
-| **VM Stat Interval: 30s** | Per-CPU vmstat counter flush reduced from every 1s to every 30s — less jitter |
+| **Dirty Ratio: 30%** | Allows more dirty pages in RAM before forcing writeback - balances burst write performance with Dynamic Fsync screen-on flush safety |
+| **VM Stat Interval: 30s** | Per-CPU vmstat counter flush reduced from every 1s to every 30s - less jitter |
 
 ### Power Management
 
 | Optimization | Details |
 |-------------|---------|
-| **Power-Efficient Workqueues** | Enabled by default — workqueue tasks prefer idle CPUs |
-| **Timer Migration Disabled** | Timers stay on their CPU instead of migrating to busy cores — idle CPUs reach deeper sleep states |
+| **Power-Efficient Workqueues** | Enabled by default - workqueue tasks prefer idle CPUs |
+| **Timer Migration Disabled** | Timers stay on their CPU instead of migrating to busy cores - idle CPUs reach deeper sleep states |
 | **Dynamic Fsync** | Fsync calls are skipped while the screen is off; all pending data is flushed when the screen turns on (`/sys/kernel/dyn_fsync/Fsync_enabled`) |
 
 ### GPU
 
 | Optimization | Details |
 |-------------|---------|
-| **Adrenoboost** | GPU frequency boost on heavy workloads — three levels configurable via `/sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost` (0=off, 1=light, 2=medium, 3=aggressive) |
+| **Adrenoboost** | GPU frequency boost on heavy workloads - three levels configurable via `/sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost` (0=off, 1=light, 2=medium, 3=aggressive) |
 
 ### Debug Overhead Removed
 
-Disabled at compile time: `PROFILING`, `SCHEDSTATS`, `DEBUG_INFO`, `DEBUG_STACK_USAGE`, `DEBUG_MEMORY_INIT`, `FUNCTION_ERROR_INJECTION` — reduces kernel image size and eliminates runtime tracing overhead.
+Disabled at compile time: `PROFILING`, `SCHEDSTATS`, `DEBUG_INFO`, `DEBUG_STACK_USAGE`, `DEBUG_MEMORY_INIT`, `FUNCTION_ERROR_INJECTION` - reduces kernel image size and eliminates runtime tracing overhead.
 
 > **Note:** All runtime-tuneable parameters (scheduler, VM, network) can still be adjusted via `sysctl` or `sysfs` if you want to override the defaults.
 
 ## Building from Source
 
-### crDroid 12.7 (Android 16) (latest) — OnePlus 9 Pro (lemonadep) or OnePlus 9 (lemonade)  Build Guide
+### crDroid 12.7 (Android 16) - OnePlus 9 Pro (lemonadep) or OnePlus 9 (lemonade)  Build Guide
 
-ÆSIR Kernel is built as part of the full crDroid ROM — there is no need to compile the kernel separately. The `brunch` build system handles everything automatically.
+ÆSIR Kernel is built as part of the full crDroid ROM - there is no need to compile the kernel separately. The `brunch` build system handles everything automatically.
 
 ### 1. Requirements
 
@@ -309,7 +309,7 @@ or
 repo sync → edit local_manifests to use your kernel fork → repo sync → brunch lemonadep or brunch lemonade
 ```
 
-There is no need to compile the kernel separately — `brunch` handles everything.
+There is no need to compile the kernel separately - `brunch` handles everything.
 
 ## Upstreamed crDroid Android Repos
 
@@ -330,21 +330,21 @@ https://gitlab.com/crdroidandroid/proprietary_vendor_oneplus_sm8350-common
 ## Credits
 
 #### Core
-- [KernelSU-Next](https://github.com/KernelSU-Next/KernelSU-Next) — Kernel-based root solution
-- [SuSFS](https://gitlab.com/simonpunk/susfs4ksu/-/tree/abf5866ea052c4109e1f1c001655773d5d1ac298) — Root hiding subsystem by simonpunk
-- [crDroid](https://crdroid.net/) — Custom Android ROM
+- [KernelSU-Next](https://github.com/KernelSU-Next/KernelSU-Next) - Kernel-based root solution
+- [SuSFS](https://gitlab.com/simonpunk/susfs4ksu/-/tree/abf5866ea052c4109e1f1c001655773d5d1ac298) - Root hiding subsystem by simonpunk
+- [crDroid](https://crdroid.net/) - Custom Android ROM
 
 #### Performance Optimizations
-- [NotZeetaa / YAKT](https://github.com/NotZeetaa/YAKT) — Yet Another Kernel Tweaker; runtime tuning defaults ported to source
-- [kdrag0n](https://github.com/kdrag0n) — VM stat interval optimization
-- [tytydraco](https://github.com/tytydraco) — Colocation threshold tweak
-- [flar2 / Aaron Segaert](https://github.com/flar2) — Dynamic Fsync and Adrenoboost implementations (blu_spark / ElementalX)
-- [arter97](https://github.com/arter97) — BBR TCP, LZ4 ZRAM, schedutil defaults (arter97-kernel)
-- [engstk / McQuaid](https://github.com/engstk) — Power-efficient workqueues, debug debloat (blu_spark)
-- [Nathan Chancellor / Eva Kernel](https://github.com/nathanchance) — Power-efficient workqueues reference
+- [NotZeetaa / YAKT](https://github.com/NotZeetaa/YAKT) - Yet Another Kernel Tweaker; runtime tuning defaults ported to source
+- [kdrag0n](https://github.com/kdrag0n) - VM stat interval optimization
+- [tytydraco](https://github.com/tytydraco) - Colocation threshold tweak
+- [flar2 / Aaron Segaert](https://github.com/flar2) - Dynamic Fsync and Adrenoboost implementations (blu_spark / ElementalX)
+- [arter97](https://github.com/arter97) - BBR TCP, LZ4 ZRAM, schedutil defaults (arter97-kernel)
+- [engstk / McQuaid](https://github.com/engstk) - Power-efficient workqueues, debug debloat (blu_spark)
+- [Nathan Chancellor / Eva Kernel](https://github.com/nathanchance) - Power-efficient workqueues reference
 
 #### Tooling
-- [Claude Code](https://claude.ai/code) — AI-assisted kernel integration
+- [Claude Code](https://claude.ai/code) - AI-assisted kernel integration
 
 ---
 
