@@ -253,6 +253,12 @@ Replace the kernel entry with your fork's repository.
 </manifest>
 ```
 
+Sync kernel repo.
+
+```bash
+repo sync kernel/oneplus/sm8350 --force-sync
+```
+
 ### 6. Set Up ccache (Optional but Recommended)
 
 ```bash
