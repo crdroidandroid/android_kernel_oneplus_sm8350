@@ -1031,6 +1031,13 @@ int ksu_handle_sys_reboot(int magic1, int magic2, unsigned int cmd, void __user 
 			return 0;
 		}
 #endif // #ifdef CONFIG_KSU_SUSFS_SUS_MAP
+#ifdef CONFIG_KSU_SUSFS_HIDE_RESETPROP_TRACES
+		if (cmd == CMD_SUSFS_HIDE_RESETPROP_TRACES) {
+			susfs_hide_resetprop_traces(&user_info);
+			SUSFS_PR_INFO("susfs: CMD_SUSFS_HIDE_RESETPROP_TRACES\n");
+			return 0;
+		}
+#endif // #ifdef CONFIG_KSU_SUSFS_HIDE_RESETPROP_TRACES
 		if (cmd == CMD_SUSFS_ENABLE_AVC_LOG_SPOOFING) {
 			susfs_set_avc_log_spoofing(&user_info);
 			SUSFS_PR_INFO("susfs: CMD_SUSFS_ENABLE_AVC_LOG_SPOOFING\n");

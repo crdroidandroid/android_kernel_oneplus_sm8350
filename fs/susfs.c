@@ -1194,6 +1194,282 @@ out_copy_to_user:
 }
 #endif // #ifdef CONFIG_KSU_SUSFS_SUS_MAP
 
+/* hide_resetprop_traces */
+#ifdef CONFIG_KSU_SUSFS_HIDE_RESETPROP_TRACES
+/*
+ * Android property area format (from bionic):
+ *
+ * prop_area header (128 bytes at file offset 0):
+ *   uint32_t bytes_used    (offset 0)
+ *   uint32_t serial        (offset 4)  - global serial counter
+ *   uint32_t magic         (offset 8)  - 0x504f5250 ("PROP")
+ *   uint32_t version       (offset 12) - 0xfc6ed0ab
+ *   uint32_t reserved[28]  (offset 16-127)
+ *
+ * Data section starts at offset 128.
+ * All offsets within prop_bt/prop_info are relative to data start.
+ *
+ * prop_bt (binary trie node):
+ *   uint32_t namelen
+ *   uint32_t prop       - offset to prop_info (0 = no property here)
+ *   uint32_t left       - offset to left child
+ *   uint32_t right      - offset to right child
+ *   uint32_t children   - offset to children
+ *   char     name[namelen]
+ *
+ * prop_info:
+ *   uint32_t serial     - bits [31:1] count, bit [0] dirty flag
+ *   char     value[92]  - PROP_VALUE_MAX
+ *   char     name[]     - full property name (null-terminated)
+ */
+
+#define PROP_AREA_MAGIC       0x504f5250
+#define PROP_AREA_HEADER_SIZE 128
+
+struct susfs_prop_area_header {
+	uint32_t bytes_used;
+	uint32_t serial;
+	uint32_t magic;
+	uint32_t version;
+	uint32_t reserved[28];
+};
+
+struct susfs_prop_bt {
+	uint32_t namelen;
+	uint32_t prop;
+	uint32_t left;
+	uint32_t right;
+	uint32_t children;
+	/* char name[namelen] follows */
+};
+
+#define SUSFS_PROP_BT_FIXED_SIZE (sizeof(uint32_t) * 5)
+
+/* Stack-based iterative tree walk to sanitize prop_info serial counters */
+static int susfs_sanitize_prop_tree(char *data, uint32_t bytes_used)
+{
+	uint32_t stack[256];
+	int sp = 0, prop_count = 0;
+	struct susfs_prop_bt *node;
+	uint32_t *serial_ptr;
+	uint32_t offset;
+
+	if (bytes_used <= SUSFS_PROP_BT_FIXED_SIZE)
+		return 0;
+
+	/* Push root node at offset 0 in data section */
+	stack[sp++] = 0;
+
+	while (sp > 0) {
+		offset = stack[--sp];
+
+		/* Validate offset is within bounds */
+		if (offset + SUSFS_PROP_BT_FIXED_SIZE > bytes_used)
+			continue;
+
+		node = (struct susfs_prop_bt *)(data + offset);
+
+		/* Push child nodes if valid (check bounds and avoid re-visiting offset 0
+		 * which is the root we already processed) */
+		if (node->children != 0 && node->children + SUSFS_PROP_BT_FIXED_SIZE <= bytes_used && sp < 255)
+			stack[sp++] = node->children;
+		if (node->right != 0 && node->right + SUSFS_PROP_BT_FIXED_SIZE <= bytes_used && sp < 255)
+			stack[sp++] = node->right;
+		if (node->left != 0 && node->left + SUSFS_PROP_BT_FIXED_SIZE <= bytes_used && sp < 255)
+			stack[sp++] = node->left;
+
+		/* If this node has a property, sanitize its serial */
+		if (node->prop != 0 && node->prop + sizeof(uint32_t) <= bytes_used) {
+			serial_ptr = (uint32_t *)(data + node->prop);
+			/* Reset serial to 2: indicates "set once, clean" (count=1, dirty=0) */
+			*serial_ptr = 2;
+			prop_count++;
+		}
+	}
+
+	return prop_count;
+}
+
+struct susfs_prop_dir_ctx {
+	struct dir_context ctx;
+	char *dir_path;
+	int total_files;
+	int total_props;
+	int errors;
+};
+
+static int susfs_prop_dir_filldir(struct dir_context *ctx, const char *name,
+				  int namlen, loff_t offset, u64 ino,
+				  unsigned int d_type)
+{
+	struct susfs_prop_dir_ctx *pctx =
+		container_of(ctx, struct susfs_prop_dir_ctx, ctx);
+	char filepath[SUSFS_MAX_LEN_PATHNAME];
+	struct file *fp;
+	struct susfs_prop_area_header header;
+	char *buf = NULL;
+	loff_t pos;
+	ssize_t ret;
+	loff_t file_size;
+	int prop_count;
+
+	/* Skip . and .. */
+	if (name[0] == '.' && (namlen == 1 || (namlen == 2 && name[1] == '.')))
+		return 0;
+
+	/* Only process regular files */
+	if (d_type != DT_REG && d_type != DT_UNKNOWN)
+		return 0;
+
+	/* Build full path */
+	ret = snprintf(filepath, sizeof(filepath), "%s/%.*s",
+		       pctx->dir_path, namlen, name);
+	if (ret < 0 || ret >= sizeof(filepath)) {
+		pctx->errors++;
+		return 0;
+	}
+
+	fp = filp_open(filepath, O_RDWR, 0);
+	if (IS_ERR(fp)) {
+		SUSFS_LOGE("Failed to open property file: '%s'\n", filepath);
+		pctx->errors++;
+		return 0;
+	}
+
+	/* Read header to validate */
+	pos = 0;
+	ret = kernel_read(fp, &header, sizeof(header), &pos);
+	if (ret != sizeof(header)) {
+		SUSFS_LOGE("Failed to read header from '%s'\n", filepath);
+		pctx->errors++;
+		goto out_close;
+	}
+
+	/* Validate magic */
+	if (header.magic != PROP_AREA_MAGIC) {
+		/* Not a property area file, skip silently */
+		goto out_close;
+	}
+
+	/* Validate bytes_used is reasonable */
+	file_size = i_size_read(file_inode(fp));
+	if (file_size < PROP_AREA_HEADER_SIZE ||
+	    header.bytes_used > (file_size - PROP_AREA_HEADER_SIZE)) {
+		SUSFS_LOGE("Invalid bytes_used in '%s'\n", filepath);
+		pctx->errors++;
+		goto out_close;
+	}
+
+	if (header.bytes_used == 0) {
+		/* Empty property area, skip */
+		goto out_close;
+	}
+
+	/* Allocate buffer for data section */
+	buf = kmalloc(header.bytes_used, GFP_KERNEL);
+	if (!buf) {
+		SUSFS_LOGE("No memory for property data from '%s'\n", filepath);
+		pctx->errors++;
+		goto out_close;
+	}
+
+	/* Read data section */
+	pos = PROP_AREA_HEADER_SIZE;
+	ret = kernel_read(fp, buf, header.bytes_used, &pos);
+	if (ret != header.bytes_used) {
+		SUSFS_LOGE("Failed to read data from '%s' (got %zd, expected %u)\n",
+			   filepath, ret, header.bytes_used);
+		pctx->errors++;
+		goto out_free;
+	}
+
+	/* Sanitize the property tree */
+	prop_count = susfs_sanitize_prop_tree(buf, header.bytes_used);
+
+	if (prop_count > 0) {
+		/* Write sanitized data back */
+		pos = PROP_AREA_HEADER_SIZE;
+		ret = kernel_write(fp, buf, header.bytes_used, &pos);
+		if (ret != header.bytes_used) {
+			SUSFS_LOGE("Failed to write data to '%s'\n", filepath);
+			pctx->errors++;
+			goto out_free;
+		}
+
+		/* Reset global serial to prop_count (each prop set increments by 1) */
+		header.serial = prop_count;
+		pos = 0;
+		ret = kernel_write(fp, &header, sizeof(header), &pos);
+		if (ret != sizeof(header)) {
+			SUSFS_LOGE("Failed to write header to '%s'\n", filepath);
+			pctx->errors++;
+			goto out_free;
+		}
+
+		pctx->total_props += prop_count;
+		pctx->total_files++;
+		SUSFS_LOGI("Sanitized '%s': %d properties\n", filepath, prop_count);
+	}
+
+out_free:
+	kfree(buf);
+out_close:
+	filp_close(fp, NULL);
+	return 0;
+}
+
+void susfs_hide_resetprop_traces(void __user **user_info)
+{
+	struct st_susfs_hide_resetprop_traces info;
+	struct file *dir;
+	struct susfs_prop_dir_ctx pctx = {
+		.ctx.actor = susfs_prop_dir_filldir,
+		.total_files = 0,
+		.total_props = 0,
+		.errors = 0,
+	};
+
+	if (copy_from_user(&info, *user_info, sizeof(info))) {
+		SUSFS_LOGE("failed copying from userspace\n");
+		info.err = -EFAULT;
+		goto out_copy_to_user;
+	}
+
+	/* Ensure null termination */
+	info.prop_dir[SUSFS_MAX_LEN_PATHNAME - 1] = '\0';
+
+	SUSFS_LOGI("Sanitizing property areas in: '%s'\n", info.prop_dir);
+
+	dir = filp_open(info.prop_dir, O_RDONLY | O_DIRECTORY, 0);
+	if (IS_ERR(dir)) {
+		SUSFS_LOGE("Failed to open directory: '%s'\n", info.prop_dir);
+		info.err = PTR_ERR(dir);
+		goto out_copy_to_user;
+	}
+
+	pctx.dir_path = info.prop_dir;
+	/* Remove trailing slash if present */
+	{
+		size_t len = strlen(info.prop_dir);
+		if (len > 1 && info.prop_dir[len - 1] == '/')
+			info.prop_dir[len - 1] = '\0';
+	}
+
+	iterate_dir(dir, &pctx.ctx);
+
+	filp_close(dir, NULL);
+
+	SUSFS_LOGI("Done: %d files, %d properties sanitized, %d errors\n",
+		   pctx.total_files, pctx.total_props, pctx.errors);
+
+	info.err = pctx.errors ? -EIO : 0;
+
+out_copy_to_user:
+	if (copy_to_user(*user_info, &info, sizeof(info)))
+		SUSFS_LOGE("copy_to_user() failed\n");
+}
+#endif // #ifdef CONFIG_KSU_SUSFS_HIDE_RESETPROP_TRACES
+
 /* susfs avc log spoofing */
 extern bool susfs_is_avc_log_spoofing_enabled;
 void susfs_set_avc_log_spoofing(void __user **user_info) {
@@ -1281,6 +1557,11 @@ void susfs_get_enabled_features(void __user **user_info) {
 #endif
 #ifdef CONFIG_KSU_SUSFS_SUS_MAP
 	err = copy_config_to_buf("CONFIG_KSU_SUSFS_SUS_MAP\n", buf_ptr, &copied_size, SUSFS_ENABLED_FEATURES_SIZE);
+	if (err) goto out;
+	buf_ptr = info->enabled_features + copied_size;
+#endif
+#ifdef CONFIG_KSU_SUSFS_HIDE_RESETPROP_TRACES
+	err = copy_config_to_buf("CONFIG_KSU_SUSFS_HIDE_RESETPROP_TRACES\n", buf_ptr, &copied_size, SUSFS_ENABLED_FEATURES_SIZE);
 	if (err) goto out;
 	buf_ptr = info->enabled_features + copied_size;
 #endif
