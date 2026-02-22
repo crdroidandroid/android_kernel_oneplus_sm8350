@@ -242,6 +242,9 @@ static int oplus_get_panel_brightness_to_alpha(void)
 	struct dsi_display *display = get_main_display();
 	int index = 0;
 	uint32_t brightness_panel = 0;
+	static int prev_alpha = -1;
+	static int prev_bl = -1;
+	int result;
 
 	if (!display || !display->panel) {
 		DSI_ERR("invalid display/panel\n");
@@ -249,23 +252,29 @@ static int oplus_get_panel_brightness_to_alpha(void)
 	}
 
 	if (oplus_panel_alpha) {
-		return oplus_panel_alpha;
+		result = oplus_panel_alpha;
+		goto log_check;
 	}
 
 	/* force dim layer alpha in AOD scene */
 	if (oplus_aod_dim_alpha != CUST_A_NO) {
-		if (oplus_aod_dim_alpha == CUST_A_TRANS)
-			return 0;
-		else if (oplus_aod_dim_alpha == CUST_A_OPAQUE)
-			return 255;
+		if (oplus_aod_dim_alpha == CUST_A_TRANS) {
+			result = 0;
+			goto log_check;
+		} else if (oplus_aod_dim_alpha == CUST_A_OPAQUE) {
+			result = 255;
+			goto log_check;
+		}
 	}
 
 	if (hbm_mode) {
-		return 0;
+		result = 0;
+		goto log_check;
 	}
 
 	if (!oplus_ffl_trigger_finish) {
-		return brightness_to_alpha(FFL_FP_LEVEL);
+		result = brightness_to_alpha(FFL_FP_LEVEL);
+		goto log_check;
 	}
 
 	if (apollo_backlight_enable) {
@@ -278,14 +287,26 @@ static int oplus_get_panel_brightness_to_alpha(void)
 					p_apollo_backlight->panel_bl_list[index],
 					p_apollo_backlight->apollo_bl_list[index]);
 				brightness_panel = p_apollo_backlight->panel_bl_list[index];
-				return brightness_to_alpha(brightness_panel);
+				result = brightness_to_alpha(brightness_panel);
+				goto log_check;
 			}
 		} else {
 			DSI_ERR("invalid p_apollo_backlight\n");
 		}
 	}
 
-	return brightness_to_alpha(display->panel->bl_config.bl_level);
+	result = brightness_to_alpha(display->panel->bl_config.bl_level);
+
+log_check:
+	if (result != prev_alpha || display->panel->bl_config.bl_level != prev_bl) {
+		pr_err("BRIGHTNESS_AOD_DEBUG: alpha=%d, bl_level=%d, hbm_mode=%d, is_hbm=%d, ffl_done=%d, aod_dim=%d, panel_alpha=%d\n",
+		       result, display->panel->bl_config.bl_level, hbm_mode,
+		       display->panel->is_hbm_enabled, oplus_ffl_trigger_finish,
+		       oplus_aod_dim_alpha, oplus_panel_alpha);
+		prev_alpha = result;
+		prev_bl = display->panel->bl_config.bl_level;
+	}
+	return result;
 }
 
 int dsi_panel_parse_oplus_fod_config(struct dsi_panel *panel)

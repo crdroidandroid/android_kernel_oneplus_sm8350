@@ -294,6 +294,11 @@ int dsi_display_set_backlight(struct drm_connector *connector,
 	}
 
 #ifdef OPLUS_BUG_STABILITY
+	pr_err("BRIGHTNESS_AOD_DEBUG: set_backlight called, bl_lvl=%d, cur_bl=%d, is_hbm=%d, hbm_mode=%d, need_pon_bl=%d, ffl_done=%d\n",
+	       bl_lvl, panel->bl_config.bl_level, panel->is_hbm_enabled,
+	       oplus_display_get_hbm_mode(), panel->need_power_on_backlight,
+	       oplus_ffl_trigger_finish);
+
 	if ((bl_lvl == 0 && panel->bl_config.bl_level != 0) ||
 	    (bl_lvl != 0 && panel->bl_config.bl_level == 0)){
 		pr_err("backlight level changed %d -> %d\n",

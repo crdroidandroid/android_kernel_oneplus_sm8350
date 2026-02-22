@@ -236,6 +236,8 @@ int __oplus_display_set_hbm(int mode)
 	mutex_lock(&oplus_hbm_lock);
 
 	if (mode != hbm_mode) {
+		pr_err("BRIGHTNESS_AOD_DEBUG: hbm_mode changing %d -> %d\n",
+		       hbm_mode, mode);
 		hbm_mode = mode;
 	}
 
