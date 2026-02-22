@@ -1192,6 +1192,32 @@ out_copy_to_user:
 	if (copy_to_user(*user_info, &info, sizeof(info)))
 		SUSFS_LOGE("copy_to_user() failed\n");
 }
+
+int susfs_auto_add_sus_map_internal(const char *pathname) {
+	struct path path;
+	struct inode *inode;
+	int err;
+
+	err = kern_path(pathname, LOOKUP_FOLLOW, &path);
+	if (err) {
+		SUSFS_LOGI("auto_add_sus_map: '%s' not found, skipping\n", pathname);
+		return err;
+	}
+
+	inode = d_inode(path.dentry);
+	if (!inode) {
+		path_put(&path);
+		return -EINVAL;
+	}
+
+	spin_lock(&inode->i_lock);
+	set_bit(AS_FLAGS_SUS_MAP, &inode->i_mapping->flags);
+	spin_unlock(&inode->i_lock);
+
+	SUSFS_LOGI("auto_add_sus_map: '%s' flagged\n", pathname);
+	path_put(&path);
+	return 0;
+}
 #endif // #ifdef CONFIG_KSU_SUSFS_SUS_MAP
 
 /* hide_resetprop_traces */
