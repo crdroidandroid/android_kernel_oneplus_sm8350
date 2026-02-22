@@ -5392,7 +5392,9 @@ int dsi_panel_set_lp1(struct dsi_panel *panel)
 	}
 
 #ifdef OPLUS_BUG_STABILITY
-	pr_err("debug for dsi_panel_set_lp1\n");
+	pr_err("BRIGHTNESS_AOD_DEBUG: LP1 (AOD entry), bl_level=%d, is_hbm=%d, hbm_mode=%d, power_mode=%d\n",
+	       panel->bl_config.bl_level, panel->is_hbm_enabled,
+	       oplus_display_get_hbm_mode(), panel->power_mode);
 #endif
 
 	mutex_lock(&panel->panel_lock);
@@ -5489,7 +5491,9 @@ int dsi_panel_set_nolp(struct dsi_panel *panel)
 	}
 
 #ifdef OPLUS_BUG_STABILITY
-	pr_err("debug for dsi_panel_set_nolp\n");
+	pr_err("BRIGHTNESS_AOD_DEBUG: NOLP (AOD exit), bl_level=%d, is_hbm=%d, hbm_mode=%d, power_mode=%d\n",
+	       panel->bl_config.bl_level, panel->is_hbm_enabled,
+	       oplus_display_get_hbm_mode(), panel->power_mode);
 #endif
 
 	if (panel->is_twm_en) {

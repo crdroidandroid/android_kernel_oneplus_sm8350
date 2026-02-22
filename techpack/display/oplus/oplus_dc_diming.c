@@ -591,6 +591,10 @@ int sde_connector_update_hbm(struct drm_connector *connector)
 
 		pr_err("OnscreenFingerprint mode: %s",
 		       fingerprint_mode ? "Enter" : "Exit");
+		pr_err("BRIGHTNESS_AOD_DEBUG: FOD is_hbm_enabled changing %d -> %d, bl_level=%d, scene=%d\n",
+		       dsi_display->panel->is_hbm_enabled, fingerprint_mode,
+		       dsi_display->panel->bl_config.bl_level,
+		       get_oplus_display_scene());
 
 		dsi_display->panel->is_hbm_enabled = fingerprint_mode;
 
