@@ -1379,6 +1379,8 @@ void sde_connector_helper_bridge_enable(struct drm_connector *connector)
 	c_conn->allow_bl_update = true;
 
 	if (!sde_in_trusted_vm(sde_kms) && c_conn->bl_device) {
+		pr_err("BRIGHTNESS_AOD_DEBUG: bridge_enable, bd_brightness=%d, unset_bl=%d\n",
+		       c_conn->bl_device->props.brightness, c_conn->unset_bl_level);
 		c_conn->bl_device->props.power = FB_BLANK_UNBLANK;
 		c_conn->bl_device->props.state &= ~BL_CORE_FBBLANK;
 		backlight_update_status(c_conn->bl_device);
