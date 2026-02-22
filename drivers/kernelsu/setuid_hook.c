@@ -170,7 +170,7 @@ void susfs_on_post_fs_data(void)
 #endif
 
 #ifdef CONFIG_KSU_SUSFS_SUS_MAP
-	/* Auto-hide vendor lineage binaries/libs from proc maps */
+	/* Auto-hide lineage files from proc maps */
 	susfs_auto_add_sus_map_internal("/vendor/bin/hw/vendor.lineage.health-service.default");
 	susfs_auto_add_sus_map_internal("/vendor/bin/hw/vendor.lineage.livedisplay-service.oplus");
 	susfs_auto_add_sus_map_internal("/vendor/bin/hw/vendor.lineage.powershare-service.oplus");
@@ -179,6 +179,12 @@ void susfs_on_post_fs_data(void)
 	susfs_auto_add_sus_map_internal("/vendor/lib64/vendor.lineage.livedisplay-V1-ndk.so");
 	susfs_auto_add_sus_map_internal("/vendor/lib64/vendor.lineage.powershare-V1-ndk.so");
 	susfs_auto_add_sus_map_internal("/vendor/lib64/vendor.lineage.touch-V1-ndk.so");
+	/* Overlay APKs, framework JARs and idmaps still leaking */
+	susfs_auto_add_sus_map_internal("/product/overlay/framework-res__lineage_lemonadep__auto_generated_rro_product.apk");
+	susfs_auto_add_sus_map_internal("/vendor/overlay/org.lineageos.platform-res__lineage_lemonadep__auto_generated_rro_vendor.apk");
+	susfs_auto_add_sus_map_internal("/system/framework/org.lineageos.platform-res.apk");
+	susfs_auto_add_sus_map_internal("/data/resource-cache/product@overlay@framework-res__lineage_lemonadep__auto_generated_rro_product.apk@idmap");
+	susfs_auto_add_sus_map_internal("/data/resource-cache/vendor@overlay@org.lineageos.platform-res__lineage_lemonadep__auto_generated_rro_vendor.apk@idmap");
 #endif
 }
 
