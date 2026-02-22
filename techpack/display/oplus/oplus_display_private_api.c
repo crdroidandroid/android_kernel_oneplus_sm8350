@@ -488,19 +488,13 @@ static ssize_t oplus_display_set_hbm(struct kobject *obj,
 		return -EINVAL;
 	}
 
-	if (!strcmp(display->panel->oplus_priv.vendor_name, "AMB670YF01")) {
-		/* Skip both hbm_mode global and DSI commands for AMB670YF01.
-		 * crDroid framework incorrectly writes hbm_mode=1 which would
-		 * set the global hbm_mode flag, affecting brightness alpha
-		 * calculations and other display state checks. FOD fingerprint
-		 * HBM uses a separate path (sde_connector_update_hbm) via
-		 * is_hbm_enabled and is not affected by hbm_mode. */
-	} else {
-		__oplus_display_set_hbm(temp_save);
-	}
+	__oplus_display_set_hbm(temp_save);
 
 	if (!strcmp(display->panel->oplus_priv.vendor_name, "AMB670YF01")) {
-		/* DSI commands also skipped - see above */
+		/* Skip DSI commands for AMB670YF01 - crDroid framework incorrectly
+		 * writes hbm_mode=1 which sends DSI_CMD_NORMAL_HBM_ON (max brightness)
+		 * and blocks all brightness updates. FOD fingerprint HBM uses a
+		 * separate path (sde_connector_update_hbm) and is not affected. */
 	} else if (!strcmp(display->panel->oplus_priv.vendor_name, "S6E3HC3")) {
 		if((hbm_mode > 1) &&(hbm_mode <= 10)) {
 			ret = dsi_display_normal_hbm_on(get_main_display());

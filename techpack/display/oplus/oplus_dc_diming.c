@@ -145,8 +145,6 @@ void dsi_panel_tx_cmd_hbm_post_check(struct dsi_panel *panel, enum dsi_cmd_set_t
 		case DSI_CMD_SET_NOLP:
 		case DSI_CMD_SET_OFF:
 		case DSI_CMD_SET_NOLP_PVT:
-		case DSI_CMD_SET_LP1:
-		case DSI_CMD_SET_LP1_PVT:
 			oplus_hbm_status.hbm_pvt_status = 0;
 			break;
 		default:
@@ -166,9 +164,7 @@ void dsi_panel_tx_cmd_hbm_post_check(struct dsi_panel *panel, enum dsi_cmd_set_t
 			break;
 		case DSI_CMD_SET_NOLP:
 		case DSI_CMD_SET_OFF:
-		case DSI_CMD_SET_NOLP_PVT:
-		case DSI_CMD_SET_LP1:
-		case DSI_CMD_SET_LP1_PVT: {
+		case DSI_CMD_SET_NOLP_PVT: {
 			oplus_hbm_status.hbm_pvt_status = 0;
 			if (!strcmp(panel->oplus_priv.vendor_name, "AMS643YE01")) {
 				if (enable_global_hbm_flags) {
@@ -591,10 +587,6 @@ int sde_connector_update_hbm(struct drm_connector *connector)
 
 		pr_err("OnscreenFingerprint mode: %s",
 		       fingerprint_mode ? "Enter" : "Exit");
-		pr_err("BRIGHTNESS_AOD_DEBUG: FOD is_hbm_enabled changing %d -> %d, bl_level=%d, scene=%d\n",
-		       dsi_display->panel->is_hbm_enabled, fingerprint_mode,
-		       dsi_display->panel->bl_config.bl_level,
-		       get_oplus_display_scene());
 
 		dsi_display->panel->is_hbm_enabled = fingerprint_mode;
 

@@ -49,7 +49,6 @@ extern int lcd_closebl_flag;
 extern int lcd_closebl_flag_fp;
 /* Add for ffl feature */
 extern bool oplus_ffl_trigger_finish;
-extern int oplus_display_get_hbm_mode(void);
 #endif
 
 #if defined(OPLUS_FEATURE_PXLW_IRIS5)
@@ -294,11 +293,6 @@ int dsi_display_set_backlight(struct drm_connector *connector,
 	}
 
 #ifdef OPLUS_BUG_STABILITY
-	pr_err("BRIGHTNESS_AOD_DEBUG: set_backlight called, bl_lvl=%d, cur_bl=%d, is_hbm=%d, hbm_mode=%d, need_pon_bl=%d, ffl_done=%d\n",
-	       bl_lvl, panel->bl_config.bl_level, panel->is_hbm_enabled,
-	       oplus_display_get_hbm_mode(), panel->need_power_on_backlight,
-	       oplus_ffl_trigger_finish);
-
 	if ((bl_lvl == 0 && panel->bl_config.bl_level != 0) ||
 	    (bl_lvl != 0 && panel->bl_config.bl_level == 0)){
 		pr_err("backlight level changed %d -> %d\n",
@@ -310,8 +304,6 @@ int dsi_display_set_backlight(struct drm_connector *connector,
 
 	/* Add some delay to avoid screen flash */
 	if (panel->need_power_on_backlight && bl_lvl) {
-		pr_err("BRIGHTNESS_AOD_DEBUG: POST_ON_BACKLIGHT triggered, bl_lvl=%d, saved_bl_level=%d, is_hbm=%d, hbm_mode=%d\n",
-		       bl_lvl, panel->bl_config.bl_level, panel->is_hbm_enabled, oplus_display_get_hbm_mode());
 		panel->need_power_on_backlight = false;
 		rc = dsi_display_clk_ctrl(dsi_display->dsi_clk_handle,
 			DSI_CORE_CLK, DSI_CLK_ON);
