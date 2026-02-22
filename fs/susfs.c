@@ -372,10 +372,8 @@ int susfs_auto_add_sus_path_internal(const char *pathname) {
 	int err = 0;
 
 	err = kern_path(pathname, 0, &path);
-	if (err) {
-		SUSFS_LOGI("auto_add_sus_path: path '%s' not found, skipping\n", pathname);
+	if (err)
 		return err;
-	}
 
 	if (!path.dentry->d_inode) {
 		err = -EINVAL;
@@ -397,10 +395,8 @@ int susfs_auto_add_sus_path_internal(const char *pathname) {
 
 	/* Check if already in the loop list */
 	list_for_each_entry_safe(cursor, temp, &LH_SUS_PATH_LOOP, list) {
-		if (unlikely(!strcmp(cursor->info.target_pathname, resolved_pathname))) {
-			SUSFS_LOGI("auto_add_sus_path: '%s' already in LH_SUS_PATH_LOOP\n", resolved_pathname);
+		if (unlikely(!strcmp(cursor->info.target_pathname, resolved_pathname)))
 			goto out_set_flag;
-		}
 	}
 
 	new_list = kmalloc(sizeof(struct st_susfs_sus_path_list), GFP_KERNEL);
@@ -417,13 +413,11 @@ int susfs_auto_add_sus_path_internal(const char *pathname) {
 	spin_lock(&susfs_spin_lock_sus_path);
 	list_add_tail(&new_list->list, &LH_SUS_PATH_LOOP);
 	spin_unlock(&susfs_spin_lock_sus_path);
-	SUSFS_LOGI("auto_add_sus_path: '%s' added to LH_SUS_PATH_LOOP\n", resolved_pathname);
 
 out_set_flag:
 	spin_lock(&inode->i_lock);
 	set_bit(AS_FLAGS_SUS_PATH, &inode->i_mapping->flags);
 	spin_unlock(&inode->i_lock);
-	SUSFS_LOGI("auto_add_sus_path: '%s' flagged as AS_FLAGS_SUS_PATH\n", resolved_pathname);
 out_kfree:
 	kfree(tmp_buf);
 out_path_put:
@@ -814,10 +808,8 @@ int susfs_auto_add_sus_kstat_internal(const char *pathname, long long spoofed_si
 	int err = 0;
 
 	err = kern_path(pathname, LOOKUP_FOLLOW, &p);
-	if (err) {
-		SUSFS_LOGI("auto_add_sus_kstat: path '%s' not found, skipping\n", pathname);
+	if (err)
 		return err;
-	}
 
 	inode = d_inode(p.dentry);
 	if (!inode) {
@@ -827,10 +819,8 @@ int susfs_auto_add_sus_kstat_internal(const char *pathname, long long spoofed_si
 
 	/* Get real stat values */
 	err = vfs_getattr(&p, &real_stat, STATX_BASIC_STATS, AT_STATX_SYNC_AS_STAT);
-	if (err) {
-		SUSFS_LOGE("auto_add_sus_kstat: vfs_getattr failed for '%s'\n", pathname);
+	if (err)
 		goto out_path_put;
-	}
 
 	new_entry = kzalloc(sizeof(*new_entry), GFP_KERNEL);
 	if (!new_entry) {
@@ -866,8 +856,6 @@ int susfs_auto_add_sus_kstat_internal(const char *pathname, long long spoofed_si
 	spin_lock(&susfs_spin_lock_sus_kstat);
 	hash_add(SUS_KSTAT_HLIST, &new_entry->node, inode->i_ino);
 	spin_unlock(&susfs_spin_lock_sus_kstat);
-	SUSFS_LOGI("auto_add_sus_kstat: '%s' (ino=%lu) spoofed size=%lld blocks=%llu\n",
-		pathname, inode->i_ino, spoofed_size, spoofed_blocks);
 
 out_path_put:
 	path_put(&p);
@@ -1116,10 +1104,8 @@ int susfs_auto_add_open_redirect_internal(const char *target, const char *redire
 	int err = 0;
 
 	err = kern_path(target, LOOKUP_FOLLOW, &path_target);
-	if (err) {
-		SUSFS_LOGI("auto_add_open_redirect: target '%s' not found, skipping\n", target);
+	if (err)
 		return err;
-	}
 
 	inode_target = d_inode(path_target.dentry);
 	if (!inode_target) {
@@ -1146,8 +1132,6 @@ int susfs_auto_add_open_redirect_internal(const char *target, const char *redire
 	spin_lock(&susfs_spin_lock_open_redirect);
 	hash_add(OPEN_REDIRECT_HLIST, &new_entry->node, inode_target->i_ino);
 	spin_unlock(&susfs_spin_lock_open_redirect);
-	SUSFS_LOGI("auto_add_open_redirect: '%s' -> '%s' (ino=%lu)\n",
-		target, redirect, inode_target->i_ino);
 
 out_path_put:
 	path_put(&path_target);
@@ -1199,10 +1183,8 @@ int susfs_auto_add_sus_map_internal(const char *pathname) {
 	int err;
 
 	err = kern_path(pathname, LOOKUP_FOLLOW, &path);
-	if (err) {
-		SUSFS_LOGI("auto_add_sus_map: '%s' not found, skipping\n", pathname);
+	if (err)
 		return err;
-	}
 
 	inode = d_inode(path.dentry);
 	if (!inode) {
@@ -1214,7 +1196,6 @@ int susfs_auto_add_sus_map_internal(const char *pathname) {
 	set_bit(AS_FLAGS_SUS_MAP, &inode->i_mapping->flags);
 	spin_unlock(&inode->i_lock);
 
-	SUSFS_LOGI("auto_add_sus_map: '%s' flagged\n", pathname);
 	path_put(&path);
 	return 0;
 }
@@ -1501,38 +1482,6 @@ void susfs_hide_resetprop_traces(void __user **user_info)
 out_copy_to_user:
 	if (copy_to_user(*user_info, &info, sizeof(info)))
 		SUSFS_LOGE("copy_to_user() failed\n");
-}
-/*
- * Kernel-internal auto-trigger: sanitize /dev/__properties__
- * Called from on_boot_completed when all resetprop modifications are done.
- */
-void susfs_auto_hide_resetprop_traces(void)
-{
-	static const char prop_dir[] = "/dev/__properties__";
-	struct file *dir;
-	struct susfs_prop_dir_ctx pctx = {
-		.ctx.actor = susfs_prop_dir_filldir,
-		.total_files = 0,
-		.total_props = 0,
-		.errors = 0,
-	};
-	char dir_path[sizeof(prop_dir)];
-
-	memcpy(dir_path, prop_dir, sizeof(prop_dir));
-
-	dir = filp_open(dir_path, O_RDONLY | O_DIRECTORY, 0);
-	if (IS_ERR(dir)) {
-		pr_info("susfs: auto resetprop: failed to open %s (%ld)\n",
-			dir_path, PTR_ERR(dir));
-		return;
-	}
-
-	pctx.dir_path = dir_path;
-	iterate_dir(dir, &pctx.ctx);
-	filp_close(dir, NULL);
-
-	pr_info("susfs: auto resetprop: %d files, %d props sanitized, %d errors\n",
-		pctx.total_files, pctx.total_props, pctx.errors);
 }
 #endif // #ifdef CONFIG_KSU_SUSFS_HIDE_RESETPROP_TRACES
 
@@ -1864,10 +1813,8 @@ int susfs_create_file_with_content(const char *filepath, const char *content, si
 
 	/* Create /data/adb/.susfs/ directory if needed */
 	ret = kern_path("/data/adb", LOOKUP_FOLLOW, &parent_path);
-	if (ret) {
-		SUSFS_LOGE("create_file: /data/adb not found\n");
+	if (ret)
 		return ret;
-	}
 	dir = d_inode(parent_path.dentry);
 	inode_lock(dir);
 	dentry = lookup_one_len(".susfs", parent_path.dentry, 6);
@@ -1881,21 +1828,13 @@ int susfs_create_file_with_content(const char *filepath, const char *content, si
 
 	/* Create and write the file */
 	filp = filp_open(filepath, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (IS_ERR(filp)) {
-		SUSFS_LOGE("create_file: failed to open '%s': %ld\n", filepath, PTR_ERR(filp));
+	if (IS_ERR(filp))
 		return PTR_ERR(filp);
-	}
 
 	ret = kernel_write(filp, content, len, &pos);
 	filp_close(filp, NULL);
 
-	if (ret < 0) {
-		SUSFS_LOGE("create_file: failed to write '%s': %d\n", filepath, ret);
-		return ret;
-	}
-
-	SUSFS_LOGI("create_file: '%s' created (%zu bytes)\n", filepath, len);
-	return 0;
+	return ret < 0 ? ret : 0;
 }
 
 /* susfs_init */
