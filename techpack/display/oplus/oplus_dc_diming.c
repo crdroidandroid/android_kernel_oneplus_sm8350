@@ -145,6 +145,8 @@ void dsi_panel_tx_cmd_hbm_post_check(struct dsi_panel *panel, enum dsi_cmd_set_t
 		case DSI_CMD_SET_NOLP:
 		case DSI_CMD_SET_OFF:
 		case DSI_CMD_SET_NOLP_PVT:
+		case DSI_CMD_SET_LP1:
+		case DSI_CMD_SET_LP1_PVT:
 			oplus_hbm_status.hbm_pvt_status = 0;
 			break;
 		default:
@@ -164,7 +166,9 @@ void dsi_panel_tx_cmd_hbm_post_check(struct dsi_panel *panel, enum dsi_cmd_set_t
 			break;
 		case DSI_CMD_SET_NOLP:
 		case DSI_CMD_SET_OFF:
-		case DSI_CMD_SET_NOLP_PVT: {
+		case DSI_CMD_SET_NOLP_PVT:
+		case DSI_CMD_SET_LP1:
+		case DSI_CMD_SET_LP1_PVT: {
 			oplus_hbm_status.hbm_pvt_status = 0;
 			if (!strcmp(panel->oplus_priv.vendor_name, "AMS643YE01")) {
 				if (enable_global_hbm_flags) {
