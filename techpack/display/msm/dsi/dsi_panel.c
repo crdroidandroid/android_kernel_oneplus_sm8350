@@ -5434,6 +5434,9 @@ int dsi_panel_set_lp1(struct dsi_panel *panel)
 	mutex_lock(&panel->panel_lock);
 	oplus_update_aod_light_mode_unlock(panel);
 	panel->need_power_on_backlight = true;
+	panel->is_hbm_enabled = false;
+	if (oplus_display_get_hbm_mode())
+		__oplus_display_set_hbm(0);
 	set_oplus_display_power_status(OPLUS_DISPLAY_POWER_DOZE);
 #endif
 exit:

@@ -836,7 +836,8 @@ int sde_connector_update_hbm(struct drm_connector *connector)
 						}
 					}
 
-					if (oplus_display_get_hbm_mode()) {
+					if (oplus_display_get_hbm_mode() &&
+					    strcmp(panel->oplus_priv.vendor_name, "AMB670YF01")) {
 						if ((!strcmp(panel->oplus_priv.vendor_name, "S6E3HC3") && (panel->panel_id2 >= 5)) ||
 							(!strcmp(panel->oplus_priv.vendor_name, "AMB670YF01") && (panel->panel_id2 >= 5))) {
 							rc = dsi_panel_tx_cmd_set(dsi_display->panel, DSI_CMD_AOD_HBM_ON_PVT);

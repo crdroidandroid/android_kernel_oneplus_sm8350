@@ -488,14 +488,14 @@ static ssize_t oplus_display_set_hbm(struct kobject *obj,
 		return -EINVAL;
 	}
 
+	if (!strcmp(display->panel->oplus_priv.vendor_name, "AMB670YF01")) {
+		/* Skip entirely for AMB670YF01 - see oplus_display_panel_set_hbm */
+		return count;
+	}
+
 	__oplus_display_set_hbm(temp_save);
 
-	if (!strcmp(display->panel->oplus_priv.vendor_name, "AMB670YF01")) {
-		/* Skip DSI commands for AMB670YF01 - crDroid framework incorrectly
-		 * writes hbm_mode=1 which sends DSI_CMD_NORMAL_HBM_ON (max brightness)
-		 * and blocks all brightness updates. FOD fingerprint HBM uses a
-		 * separate path (sde_connector_update_hbm) and is not affected. */
-	} else if (!strcmp(display->panel->oplus_priv.vendor_name, "S6E3HC3")) {
+	if (!strcmp(display->panel->oplus_priv.vendor_name, "S6E3HC3")) {
 		if((hbm_mode > 1) &&(hbm_mode <= 10)) {
 			ret = dsi_display_normal_hbm_on(get_main_display());
 		} else if(hbm_mode == 1) {
