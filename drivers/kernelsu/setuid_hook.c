@@ -18,6 +18,7 @@
 #include <linux/fs.h>
 #include <linux/stat.h>
 #include <linux/workqueue.h>
+#include <linux/vmalloc.h>
 #endif // #ifdef CONFIG_KSU_SUSFS
 
 #include "allowlist.h"
@@ -60,6 +61,101 @@ extern bool susfs_hide_sus_mnts_for_non_su_procs;
 extern void susfs_reorder_mnt_id(void);
 #endif // #ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
 
+#ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT
+static bool susfs_sepolicy_redirect_done = false;
+
+static void susfs_try_setup_sepolicy_redirect(const char *caller)
+{
+	static const char * const sepolicy_paths[] = {
+		"/system_ext/etc/selinux/system_ext_sepolicy.cil",
+		NULL
+	};
+	const char *src_path;
+	struct file *filp;
+	struct kstat kst;
+	struct path p;
+	char *buf, *scan;
+	loff_t pos = 0;
+	ssize_t nread;
+	int err, i;
+
+	if (susfs_sepolicy_redirect_done)
+		return;
+
+	for (i = 0; sepolicy_paths[i]; i++) {
+		src_path = sepolicy_paths[i];
+
+		err = kern_path(src_path, LOOKUP_FOLLOW, &p);
+		if (err) {
+			pr_info("susfs: %s: sepolicy '%s' not found (err=%d)\n",
+				caller, src_path, err);
+			continue;
+		}
+
+		err = vfs_getattr(&p, &kst, STATX_SIZE, AT_STATX_SYNC_AS_STAT);
+		path_put(&p);
+		if (err || kst.size == 0 || kst.size > (16 * 1024 * 1024)) {
+			pr_info("susfs: %s: sepolicy '%s' size check failed (err=%d, size=%lld)\n",
+				caller, src_path, err, kst.size);
+			continue;
+		}
+
+		filp = filp_open(src_path, O_RDONLY, 0);
+		if (IS_ERR(filp)) {
+			pr_warn("susfs: %s: failed to open '%s': %ld\n",
+				caller, src_path, PTR_ERR(filp));
+			continue;
+		}
+
+		buf = vmalloc(kst.size);
+		if (!buf) {
+			filp_close(filp, NULL);
+			pr_warn("susfs: %s: vmalloc(%lld) failed for sepolicy\n",
+				caller, kst.size);
+			continue;
+		}
+
+		nread = kernel_read(filp, buf, kst.size, &pos);
+		filp_close(filp, NULL);
+
+		if (nread != kst.size) {
+			pr_warn("susfs: %s: read %zd != %lld for '%s'\n",
+				caller, nread, kst.size, src_path);
+			vfree(buf);
+			continue;
+		}
+
+		/* Replace "lineage" -> "org_ext" (same 7-char length, preserves file size) */
+		for (scan = buf; scan <= buf + nread - 7; scan++) {
+			if (scan[0] == 'l' && !memcmp(scan, "lineage", 7))
+				memcpy(scan, "org_ext", 7);
+			else if (scan[0] == 'L' && !memcmp(scan, "Lineage", 7))
+				memcpy(scan, "Org_ext", 7);
+		}
+
+		err = susfs_create_file_with_content(
+			"/data/adb/.susfs/system_ext_sepolicy_clean.cil",
+			buf, nread);
+		vfree(buf);
+
+		if (err) {
+			pr_warn("susfs: %s: failed to write clean sepolicy: %d\n",
+				caller, err);
+			continue;
+		}
+
+		susfs_auto_add_open_redirect_internal(
+			src_path,
+			"/data/adb/.susfs/system_ext_sepolicy_clean.cil");
+
+		pr_info("susfs: %s: sepolicy redirect set for '%s'\n",
+			caller, src_path);
+		susfs_sepolicy_redirect_done = true;
+		break;
+	}
+}
+#endif /* CONFIG_KSU_SUSFS_OPEN_REDIRECT */
+
 void susfs_on_post_fs_data(void)
 {
 	pr_info("susfs: post_fs_data triggered (v2.0.0 + auto-init)\n");
@@ -67,6 +163,22 @@ void susfs_on_post_fs_data(void)
 #ifdef CONFIG_KSU_SUSFS_SUS_PATH
 	/* Auto-hide /system/addon.d - not present on stock Android */
 	susfs_auto_add_sus_path_internal("/system/addon.d");
+#endif
+
+#ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT
+	susfs_try_setup_sepolicy_redirect("post_fs_data");
+#endif
+
+#ifdef CONFIG_KSU_SUSFS_SUS_MAP
+	/* Auto-hide vendor lineage binaries/libs from proc maps */
+	susfs_auto_add_sus_map_internal("/vendor/bin/hw/vendor.lineage.health-service.default");
+	susfs_auto_add_sus_map_internal("/vendor/bin/hw/vendor.lineage.livedisplay-service.oplus");
+	susfs_auto_add_sus_map_internal("/vendor/bin/hw/vendor.lineage.powershare-service.oplus");
+	susfs_auto_add_sus_map_internal("/vendor/bin/hw/vendor.lineage.touch-service.oplus");
+	susfs_auto_add_sus_map_internal("/vendor/lib64/vendor.lineage.health-V2-ndk.so");
+	susfs_auto_add_sus_map_internal("/vendor/lib64/vendor.lineage.livedisplay-V1-ndk.so");
+	susfs_auto_add_sus_map_internal("/vendor/lib64/vendor.lineage.powershare-V1-ndk.so");
+	susfs_auto_add_sus_map_internal("/vendor/lib64/vendor.lineage.touch-V1-ndk.so");
 #endif
 }
 

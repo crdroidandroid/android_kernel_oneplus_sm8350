@@ -22,7 +22,7 @@
 #include <linux/pkeys.h>
 #include <linux/mm_inline.h>
 #include <linux/ctype.h>
-#if defined(CONFIG_KSU_SUSFS_SUS_KSTAT) || defined(CONFIG_KSU_SUSFS_SUS_MAP)
+#ifdef CONFIG_KSU_SUSFS
 #include <linux/susfs_def.h>
 #endif
 
@@ -30,6 +30,31 @@
 #include <asm/tlb.h>
 #include <asm/tlbflush.h>
 #include "internal.h"
+
+#ifdef CONFIG_KSU_SUSFS
+/*
+ * Check if an anonymous VMA name contains "lineage" - if so, hide it
+ * from proc maps for non-system umounted processes.
+ */
+static bool susfs_should_print_anon_name(struct vm_area_struct *vma)
+{
+	const char __user *name = vma_get_anon_name(vma);
+	char buf[64];
+	long copied;
+
+	if (!name)
+		return true;
+
+	copied = strncpy_from_user(buf, name, sizeof(buf));
+	if (copied <= 0)
+		return true;
+
+	if (strnstr(buf, "lineage", copied))
+		return false;
+
+	return true;
+}
+#endif
 
 #define SEQ_PUT_DEC(str, val) \
 		seq_put_decimal_ull_width(m, str, (val) << (PAGE_SHIFT-10), 8)
@@ -441,6 +466,11 @@ bypass_orig_flow:
 		}
 
 		if (vma_get_anon_name(vma)) {
+#ifdef CONFIG_KSU_SUSFS
+			if (susfs_is_current_proc_umounted() && !susfs_is_system_uid() &&
+			    !susfs_should_print_anon_name(vma))
+				goto done;
+#endif
 			seq_pad(m, ' ');
 			seq_print_vma_name(m, vma);
 		}
@@ -955,7 +985,12 @@ bypass_orig_flow:
 #endif
 
 	show_map_vma(m, vma);
-	if (vma_get_anon_name(vma)) {
+	if (vma_get_anon_name(vma)
+#ifdef CONFIG_KSU_SUSFS
+	    && !(susfs_is_current_proc_umounted() && !susfs_is_system_uid() &&
+		 !susfs_should_print_anon_name(vma))
+#endif
+	) {
 		seq_puts(m, "Name:           ");
 		seq_print_vma_name(m, vma);
 		seq_putc(m, '\n');

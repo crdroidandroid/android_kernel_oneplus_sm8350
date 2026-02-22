@@ -219,6 +219,7 @@ int susfs_auto_add_open_redirect_internal(const char *target, const char *redire
 /* sus_map */
 #ifdef CONFIG_KSU_SUSFS_SUS_MAP
 void susfs_add_sus_map(void __user **user_info);
+int susfs_auto_add_sus_map_internal(const char *pathname);
 #endif
 
 /* hide_resetprop_traces */
