@@ -1278,11 +1278,19 @@ static int susfs_sanitize_prop_tree(char *data, uint32_t bytes_used)
 		if (node->left != 0 && node->left + SUSFS_PROP_BT_FIXED_SIZE <= bytes_used && sp < 255)
 			stack[sp++] = node->left;
 
-		/* If this node has a property, sanitize its serial */
+		/* If this node has a property, sanitize its serial.
+		 *
+		 * Bionic prop_info serial format:
+		 *   bits 24-31: value length (SERIAL_VALUE_LEN)
+		 *   bits  1-23: update counter (increments by 2 per update)
+		 *   bit      0: dirty flag
+		 *
+		 * For properties loaded from files at boot (ro.*), counter = 0.
+		 * Preserve the length bits, reset counter and dirty to 0.
+		 */
 		if (node->prop != 0 && node->prop + sizeof(uint32_t) <= bytes_used) {
 			serial_ptr = (uint32_t *)(data + node->prop);
-			/* Reset serial to 2: indicates "set once, clean" (count=1, dirty=0) */
-			*serial_ptr = 2;
+			*serial_ptr = *serial_ptr & 0xFF000000;
 			prop_count++;
 		}
 	}
