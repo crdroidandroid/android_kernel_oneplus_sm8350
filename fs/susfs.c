@@ -1502,6 +1502,38 @@ out_copy_to_user:
 	if (copy_to_user(*user_info, &info, sizeof(info)))
 		SUSFS_LOGE("copy_to_user() failed\n");
 }
+/*
+ * Kernel-internal auto-trigger: sanitize /dev/__properties__
+ * Called from on_boot_completed when all resetprop modifications are done.
+ */
+void susfs_auto_hide_resetprop_traces(void)
+{
+	static const char prop_dir[] = "/dev/__properties__";
+	struct file *dir;
+	struct susfs_prop_dir_ctx pctx = {
+		.ctx.actor = susfs_prop_dir_filldir,
+		.total_files = 0,
+		.total_props = 0,
+		.errors = 0,
+	};
+	char dir_path[sizeof(prop_dir)];
+
+	memcpy(dir_path, prop_dir, sizeof(prop_dir));
+
+	dir = filp_open(dir_path, O_RDONLY | O_DIRECTORY, 0);
+	if (IS_ERR(dir)) {
+		pr_info("susfs: auto resetprop: failed to open %s (%ld)\n",
+			dir_path, PTR_ERR(dir));
+		return;
+	}
+
+	pctx.dir_path = dir_path;
+	iterate_dir(dir, &pctx.ctx);
+	filp_close(dir, NULL);
+
+	pr_info("susfs: auto resetprop: %d files, %d props sanitized, %d errors\n",
+		pctx.total_files, pctx.total_props, pctx.errors);
+}
 #endif // #ifdef CONFIG_KSU_SUSFS_HIDE_RESETPROP_TRACES
 
 /* susfs avc log spoofing */

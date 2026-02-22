@@ -142,6 +142,12 @@ void on_boot_completed(void)
         susfs_schedule_hosts_check();
     }
 #endif
+#ifdef CONFIG_KSU_SUSFS_HIDE_RESETPROP_TRACES
+    {
+        extern void susfs_auto_hide_resetprop_traces(void);
+        susfs_auto_hide_resetprop_traces();
+    }
+#endif
     track_throne(true);
     ksu_avc_spoof_late_init();
 }
