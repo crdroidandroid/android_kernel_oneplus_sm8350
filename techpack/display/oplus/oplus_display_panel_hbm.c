@@ -264,16 +264,17 @@ int oplus_display_panel_set_hbm(void *buf)
 		return -EINVAL;
 	}
 
-	if (!strcmp(display->panel->oplus_priv.vendor_name, "AMB670YF01")) {
-		/* Skip entirely for AMB670YF01 - crDroid framework incorrectly
-		 * writes hbm_mode=1 which corrupts brightness state: the global
-		 * hbm_mode variable causes DSI_CMD_AOD_HBM_ON_PVT to be sent
-		 * during fingerprint exit (oplus_dc_diming.c), setting panel to
-		 * max brightness (0x0EFF). It also makes dim layer alpha return 0,
-		 * removing all screen dimming. FOD uses a separate path
-		 * (sde_connector_update_hbm via is_hbm_enabled). */
-		return 0;
-	}
+	/* Block all hbm_mode writes from userspace for all panels.
+	 * crDroid framework incorrectly writes hbm_mode=1 which corrupts
+	 * AOD brightness state: the global hbm_mode variable causes
+	 * DSI_CMD_AOD_HBM_ON to be sent during fingerprint exit
+	 * (oplus_dc_diming.c:839), and makes dim layer alpha return 0
+	 * (oplus_onscreenfingerprint.c:263). FOD uses a completely
+	 * separate path (panel->is_hbm_enabled).
+	 * Originally fixed for AMB670YF01 only; now extended to all panels. */
+	pr_info("%s: blocked hbm_mode write (%d) - FOD uses is_hbm_enabled\n",
+		__func__, (*temp_save));
+	return 0;
 
 	__oplus_display_set_hbm((*temp_save));
 

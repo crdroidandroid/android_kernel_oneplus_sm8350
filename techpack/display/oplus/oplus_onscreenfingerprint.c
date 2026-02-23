@@ -34,7 +34,6 @@ extern int oplus_dimlayer_dither_threshold;
 extern u32 oplus_last_backlight;
 extern int oplus_dimlayer_hbm;
 extern int oplus_panel_alpha;
-extern int hbm_mode;
 extern bool oplus_ffl_trigger_finish;
 extern struct oplus_apollo_backlight_list *p_apollo_backlight;
 extern int dynamic_osc_clock;
@@ -260,9 +259,9 @@ static int oplus_get_panel_brightness_to_alpha(void)
 			return 255;
 	}
 
-	if (hbm_mode) {
-		return 0;
-	}
+	/* Removed: hbm_mode dim layer bypass.
+	 * The legacy hbm_mode global would disable the dim layer,
+	 * causing AOD brightness corruption. FOD uses is_hbm_enabled. */
 
 	if (!oplus_ffl_trigger_finish) {
 		return brightness_to_alpha(FFL_FP_LEVEL);

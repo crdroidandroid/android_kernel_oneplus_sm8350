@@ -836,15 +836,10 @@ int sde_connector_update_hbm(struct drm_connector *connector)
 						}
 					}
 
-					if (oplus_display_get_hbm_mode() &&
-					    strcmp(panel->oplus_priv.vendor_name, "AMB670YF01")) {
-						if ((!strcmp(panel->oplus_priv.vendor_name, "S6E3HC3") && (panel->panel_id2 >= 5)) ||
-							(!strcmp(panel->oplus_priv.vendor_name, "AMB670YF01") && (panel->panel_id2 >= 5))) {
-							rc = dsi_panel_tx_cmd_set(dsi_display->panel, DSI_CMD_AOD_HBM_ON_PVT);
-						} else {
-							rc = dsi_panel_tx_cmd_set(dsi_display->panel, DSI_CMD_AOD_HBM_ON);
-						}
-					}
+					/* Removed: hbm_mode-triggered AOD HBM ON.
+					 * The legacy hbm_mode global (set incorrectly by crDroid)
+					 * would re-enable AOD max brightness here, undoing the
+					 * backlight restoration above. FOD uses is_hbm_enabled. */
 				}
 
 			} else if (OPLUS_DISPLAY_AOD_SCENE == get_oplus_display_scene()) {
