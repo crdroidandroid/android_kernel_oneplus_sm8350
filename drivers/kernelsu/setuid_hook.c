@@ -64,7 +64,7 @@ extern void susfs_reorder_mnt_id(void);
 #ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT
 static bool susfs_sepolicy_redirect_done = false;
 
-static void susfs_try_setup_sepolicy_redirect(const char *caller)
+static void susfs_try_setup_sepolicy_redirect(void)
 {
 	static const char * const sepolicy_paths[] = {
 		"/system_ext/etc/selinux/system_ext_sepolicy.cil",
@@ -86,32 +86,21 @@ static void susfs_try_setup_sepolicy_redirect(const char *caller)
 		src_path = sepolicy_paths[i];
 
 		err = kern_path(src_path, LOOKUP_FOLLOW, &p);
-		if (err) {
-			pr_info("susfs: %s: sepolicy '%s' not found (err=%d)\n",
-				caller, src_path, err);
+		if (err)
 			continue;
-		}
 
 		err = vfs_getattr(&p, &kst, STATX_SIZE, AT_STATX_SYNC_AS_STAT);
 		path_put(&p);
-		if (err || kst.size == 0 || kst.size > (16 * 1024 * 1024)) {
-			pr_info("susfs: %s: sepolicy '%s' size check failed (err=%d, size=%lld)\n",
-				caller, src_path, err, kst.size);
+		if (err || kst.size == 0 || kst.size > (16 * 1024 * 1024))
 			continue;
-		}
 
 		filp = filp_open(src_path, O_RDONLY, 0);
-		if (IS_ERR(filp)) {
-			pr_warn("susfs: %s: failed to open '%s': %ld\n",
-				caller, src_path, PTR_ERR(filp));
+		if (IS_ERR(filp))
 			continue;
-		}
 
 		buf = vmalloc(kst.size);
 		if (!buf) {
 			filp_close(filp, NULL);
-			pr_warn("susfs: %s: vmalloc(%lld) failed for sepolicy\n",
-				caller, kst.size);
 			continue;
 		}
 
@@ -119,8 +108,6 @@ static void susfs_try_setup_sepolicy_redirect(const char *caller)
 		filp_close(filp, NULL);
 
 		if (nread != kst.size) {
-			pr_warn("susfs: %s: read %zd != %lld for '%s'\n",
-				caller, nread, kst.size, src_path);
 			vfree(buf);
 			continue;
 		}
@@ -138,18 +125,13 @@ static void susfs_try_setup_sepolicy_redirect(const char *caller)
 			buf, nread);
 		vfree(buf);
 
-		if (err) {
-			pr_warn("susfs: %s: failed to write clean sepolicy: %d\n",
-				caller, err);
+		if (err)
 			continue;
-		}
 
 		susfs_auto_add_open_redirect_internal(
 			src_path,
 			"/data/adb/.susfs/system_ext_sepolicy_clean.cil");
 
-		pr_info("susfs: %s: sepolicy redirect set for '%s'\n",
-			caller, src_path);
 		susfs_sepolicy_redirect_done = true;
 		break;
 	}
@@ -158,15 +140,13 @@ static void susfs_try_setup_sepolicy_redirect(const char *caller)
 
 void susfs_on_post_fs_data(void)
 {
-	pr_info("susfs: post_fs_data triggered (v2.0.0 + auto-init)\n");
-
 #ifdef CONFIG_KSU_SUSFS_SUS_PATH
 	/* Auto-hide /system/addon.d - not present on stock Android */
 	susfs_auto_add_sus_path_internal("/system/addon.d");
 #endif
 
 #ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT
-	susfs_try_setup_sepolicy_redirect("post_fs_data");
+	susfs_try_setup_sepolicy_redirect();
 #endif
 
 #ifdef CONFIG_KSU_SUSFS_SUS_MAP
@@ -195,7 +175,7 @@ static const char susfs_clean_hosts_content[] =
 static struct delayed_work susfs_hosts_delayed_work;
 static bool susfs_hosts_hide_done = false;
 
-static void susfs_try_setup_hosts_hide(const char *caller)
+static void susfs_try_setup_hosts_hide(void)
 {
 	struct path p;
 	struct kstat kst;
@@ -206,36 +186,24 @@ static void susfs_try_setup_hosts_hide(const char *caller)
 
 	/* Check if hosts file is abnormally large (> 1KB means adblock list) */
 	err = kern_path("/system/etc/hosts", LOOKUP_FOLLOW, &p);
-	if (err) {
-		pr_info("susfs: %s: hosts path not found (err=%d)\n", caller, err);
+	if (err)
 		return;
-	}
 
 	err = vfs_getattr(&p, &kst, STATX_SIZE, AT_STATX_SYNC_AS_STAT);
 	path_put(&p);
-	if (err) {
-		pr_warn("susfs: %s: vfs_getattr failed (err=%d)\n", caller, err);
+	if (err)
 		return;
-	}
 
-	if (kst.size <= 1024) {
-		pr_info("susfs: %s: hosts file is %lld bytes, no hiding needed\n",
-			caller, kst.size);
+	if (kst.size <= 1024)
 		return;
-	}
-
-	pr_info("susfs: %s: hosts file is %lld bytes, setting up auto-hide\n",
-		caller, kst.size);
 
 	/* 1. Create a clean hosts file for redirection */
 	err = susfs_create_file_with_content(
 		"/data/adb/.susfs/hosts_clean",
 		susfs_clean_hosts_content,
 		sizeof(susfs_clean_hosts_content) - 1);
-	if (err) {
-		pr_warn("susfs: failed to create clean hosts file: %d\n", err);
+	if (err)
 		return;
-	}
 
 #ifdef CONFIG_KSU_SUSFS_SUS_KSTAT
 	/* 2. Spoof stat to show small file size */
@@ -257,7 +225,7 @@ static void susfs_try_setup_hosts_hide(const char *caller)
 
 static void susfs_hosts_check_work_fn(struct work_struct *work)
 {
-	susfs_try_setup_hosts_hide("delayed_check");
+	susfs_try_setup_hosts_hide();
 }
 
 void susfs_schedule_hosts_check(void)
@@ -266,14 +234,11 @@ void susfs_schedule_hosts_check(void)
 		return;
 	INIT_DELAYED_WORK(&susfs_hosts_delayed_work, susfs_hosts_check_work_fn);
 	schedule_delayed_work(&susfs_hosts_delayed_work, msecs_to_jiffies(30000));
-	pr_info("susfs: scheduled delayed hosts check (30s)\n");
 }
 
 void susfs_on_module_mounted(void)
 {
-	pr_info("susfs: on_module_mounted auto-init\n");
-
-	susfs_try_setup_hosts_hide("on_module_mounted");
+	susfs_try_setup_hosts_hide();
 }
 
 static inline bool is_zygote_isolated_service_uid(uid_t uid)
