@@ -722,6 +722,7 @@ extern u32 oplus_backlight_delta;
 extern ktime_t oplus_backlight_time;
 extern int oplus_dimlayer_bl_enabled;
 extern int oplus_dimlayer_bl_enable_real;
+extern int oplus_dimlayer_hbm;
 extern int oplus_dimlayer_bl_alpha;
 extern int oplus_dimlayer_bl_alpha_v2;
 extern int oplus_dsi_log_type;
@@ -5435,6 +5436,11 @@ int dsi_panel_set_lp1(struct dsi_panel *panel)
 	oplus_update_aod_light_mode_unlock(panel);
 	panel->need_power_on_backlight = true;
 	panel->is_hbm_enabled = false;
+	/* Clear stale dimlayer_hbm from previous fingerprint session.
+	 * If not cleared, sde_crtc atomic check derives fingerprint_mode=true
+	 * from (oplus_dimlayer_hbm && bl_level!=0), which triggers spurious
+	 * AOD HBM ON commands and 100% brightness during AOD. */
+	oplus_dimlayer_hbm = 0;
 	if (oplus_display_get_hbm_mode())
 		__oplus_display_set_hbm(0);
 	set_oplus_display_power_status(OPLUS_DISPLAY_POWER_DOZE);

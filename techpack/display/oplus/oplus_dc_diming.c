@@ -552,6 +552,15 @@ int sde_connector_update_hbm(struct drm_connector *connector)
 
 	fingerprint_mode = sde_crtc_get_fingerprint_mode(c_conn->encoder->crtc->state);
 
+	/* Block spurious fingerprint_mode during DOZE/AOD.
+	 * oplus_dimlayer_hbm may be stale from a previous fingerprint
+	 * session, causing false fingerprint_mode in sde_crtc atomic check. */
+	if (fingerprint_mode &&
+	    get_oplus_display_power_status() == OPLUS_DISPLAY_POWER_DOZE &&
+	    !sde_crtc_get_fingerprint_pressed(c_conn->encoder->crtc->state)) {
+		fingerprint_mode = false;
+	}
+
 	if (OPLUS_DISPLAY_AOD_SCENE == get_oplus_display_scene()) {
 		if (sde_crtc_get_fingerprint_pressed(c_conn->encoder->crtc->state)) {
 			sde_crtc_set_onscreenfinger_defer_sync(c_conn->encoder->crtc->state, true);
