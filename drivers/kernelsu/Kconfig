@@ -27,8 +27,7 @@ config KSU_ALLOWLIST_WORKAROUND
 config KSU_MANUAL_HOOK
 	bool "KernelSU manual hook mode."
 	depends on KSU && KSU != m
-	default y if !KPROBES
-	default n
+	default y
 	help
 	  Enable manual hook support.
 
