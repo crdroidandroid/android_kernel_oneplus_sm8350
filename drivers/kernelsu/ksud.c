@@ -214,7 +214,7 @@ static struct callback_head on_post_fs_data_cb = { .func =
 							on_post_fs_data_cbfun };
 
 static bool check_argv(struct user_arg_ptr argv, int index,
-		       const char *expected, char *buf, size_t buf_len)
+			const char *expected, char *buf, size_t buf_len)
 {
 	const char __user *p;
 	int argc;
@@ -244,8 +244,8 @@ static void ksu_initialize_selinux_tw_func(struct callback_head *cb)
 
 // IMPORTANT NOTE: the call from execve_handler_pre WON'T provided correct value for envp and flags in GKI version
 int ksu_handle_execveat_ksud(int *fd, struct filename **filename_ptr,
-				struct user_arg_ptr *argv,
-				struct user_arg_ptr *envp, int *flags)
+                             struct user_arg_ptr *argv,
+                             struct user_arg_ptr *envp, int *flags)
 {
 #ifndef KSU_KPROBES_HOOK
 	if (!ksu_execveat_hook) {
