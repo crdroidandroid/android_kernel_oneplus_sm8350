@@ -201,6 +201,11 @@ void susfs_add_sus_kstat(void __user **user_info);
 void susfs_update_sus_kstat(void __user **user_info);
 #endif
 
+/* try_umount */
+#ifdef CONFIG_KSU_SUSFS_TRY_UMOUNT
+void susfs_add_try_umount(void __user **user_info);
+#endif
+
 /* spoof_uname */
 #ifdef CONFIG_KSU_SUSFS_SPOOF_UNAME
 void susfs_set_uname(void __user **user_info);

@@ -190,6 +190,52 @@ int ksu_handle_umount(uid_t old_uid, uid_t new_uid)
 }
 #endif // #if defined(CONFIG_KSU_SUSFS) || !defined(CONFIG_KSU_SUSFS_TRY_UMOUNT)
 
+#if defined(CONFIG_KSU_SUSFS) && defined(CONFIG_KSU_SUSFS_TRY_UMOUNT)
+static void susfs_umount_tw_func(struct callback_head *cb)
+{
+	struct umount_tw *tw = container_of(cb, struct umount_tw, cb);
+	const struct cred *saved = override_creds(ksu_cred);
+
+	struct mount_entry *entry;
+	down_read(&mount_list_lock);
+	list_for_each_entry(entry, &mount_list, list) {
+		pr_info("%s: unmounting: %s flags 0x%x\n", __func__, entry->umountable, entry->flags);
+		try_umount(entry->umountable, entry->flags);
+	}
+	up_read(&mount_list_lock);
+
+	revert_creds(saved);
+	kfree(tw);
+}
+
+void susfs_try_umount(uid_t uid)
+{
+	struct umount_tw *tw;
+
+	if (!ksu_kernel_umount_enabled) {
+		return;
+	}
+
+	if (!ksu_cred) {
+		return;
+	}
+
+	pr_info("susfs_try_umount for uid: %d, pid: %d\n", uid, current->pid);
+
+	tw = kzalloc(sizeof(*tw), GFP_ATOMIC);
+	if (!tw)
+		return;
+
+	tw->cb.func = susfs_umount_tw_func;
+
+	int err = task_work_add(current, &tw->cb, TWA_RESUME);
+	if (err) {
+		kfree(tw);
+		pr_warn("susfs_try_umount: add task_work failed\n");
+	}
+}
+#endif // #if defined(CONFIG_KSU_SUSFS) && defined(CONFIG_KSU_SUSFS_TRY_UMOUNT)
+
 void ksu_kernel_umount_init(void)
 {
 	if (ksu_register_feature_handler(&kernel_umount_handler)) {

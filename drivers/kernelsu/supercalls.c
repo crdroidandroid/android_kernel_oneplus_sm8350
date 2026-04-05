@@ -762,6 +762,13 @@ static int add_try_umount(void __user *arg)
     return 0;
 }
 
+#ifdef CONFIG_KSU_SUSFS_TRY_UMOUNT
+void susfs_add_try_umount(void __user **user_info)
+{
+    add_try_umount((void __user *)*user_info);
+}
+#endif
+
 // IOCTL handlers mapping table
 static const struct ksu_ioctl_cmd_map ksu_ioctl_handlers[] = {
     { .cmd = KSU_IOCTL_GRANT_ROOT,
