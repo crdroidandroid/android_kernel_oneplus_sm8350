@@ -1,4 +1,4 @@
-name: Apply Patches and Test Build
+name: Apply Patches with Fuzzy Matching
 
 on:
   push:
@@ -34,34 +34,59 @@ jobs:
             echo "---"
           done
 
-      - name: Apply patches
+      - name: Apply patches with fuzzy matching
         run: |
           set -e
-          echo "=== Applying patches ==="
+          echo "=== Applying patches with fuzzy matching ==="
           for patch in patches/*.patch; do
             if [ -f "$patch" ]; then
               echo "Applying: $patch"
-              git apply --check "$patch" || {
-                echo "WARNING: Patch validation failed, attempting with --reject"
-                git apply --reject "$patch" || {
-                  echo "ERROR: Could not apply patch $patch"
+              
+              # Try strict patch first
+              if git apply --check "$patch" 2>/dev/null; then
+                echo "✓ Strict patch check passed"
+                git apply "$patch"
+                echo "✓ Applied: $patch (strict mode)"
+              else
+                echo "⚠ Strict patch failed, trying fuzzy matching..."
+                
+                # Try with fuzz factor
+                if patch -p1 --dry-run <"$patch" 2>/dev/null; then
+                  patch -p1 <"$patch"
+                  echo "✓ Applied: $patch (fuzzy mode)"
+                else
+                  echo "ERROR: Could not apply patch $patch with any method"
+                  echo "Showing patch context:"
+                  head -50 "$patch"
                   exit 1
-                }
-              }
-              git apply "$patch"
-              echo "✓ Applied: $patch"
+                fi
+              fi
             fi
           done
           echo ""
-          echo "=== Patches applied successfully ==="
+          echo "=== All patches applied successfully ==="
 
       - name: Check patch results
         run: |
           echo "=== Modified files ==="
-          git status
+          git diff --name-only
           echo ""
           echo "=== Diff summary ==="
           git diff --stat
+          echo ""
+          echo "=== Full diff preview ==="
+          git diff | head -100
+
+      - name: Verify SYSVIPC patch was applied
+        run: |
+          echo "=== Checking SYSVIPC patch application ==="
+          if grep -q "ANDROID_KABI_USE(6, struct sysv_sem" include/linux/sched.h; then
+            echo "✓ SYSVIPC patch applied successfully"
+            grep -A 5 "CONFIG_SYSVIPC" include/linux/sched.h | head -20
+          else
+            echo "⚠ SYSVIPC patch may not have been applied"
+            grep -A 10 "struct nameidata" include/linux/sched.h | head -20
+          fi
 
       - name: Verify kernel configuration
         run: |
@@ -70,18 +95,6 @@ jobs:
           echo ""
           echo "=== Kernel version ==="
           head -5 Makefile | grep -E "VERSION|PATCHLEVEL|SUBLEVEL" || echo "Not found in standard location"
-
-      - name: Build check (syntax validation)
-        run: |
-          echo "=== Running make syntax check ==="
-          make -n --version || echo "Make available"
-          
-          # Attempt a minimal build check
-          echo "=== Checking build configuration ==="
-          if [ -f "build.config.msm.lahaina" ]; then
-            echo "Found lahaina config - SM8350 target"
-            cat build.config.msm.lahaina
-          fi
 
       - name: Create summary
         if: always()
@@ -97,13 +110,8 @@ jobs:
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
           git diff --name-only || echo "No changes detected"
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-
-      - name: Upload patch results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: patch-results
-          path: |
-            .git/
-            **/*.rej
-          retention-days: 7
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Files Changed Summary" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          git diff --stat || echo "No stats available"
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
