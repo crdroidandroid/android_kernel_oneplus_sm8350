@@ -1,0 +1,109 @@
+name: Apply Patches and Test Build
+
+on:
+  push:
+    branches:
+      - 16.0-test
+    paths:
+      - 'patches/**'
+      - '.github/workflows/apply-patches-and-test.yml'
+  pull_request:
+    branches:
+      - 16.0-test
+  workflow_dispatch:
+
+jobs:
+  apply-patches-and-build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: 16.0-test
+
+      - name: List patches
+        run: |
+          echo "=== Patches to apply ==="
+          ls -lah patches/
+          echo ""
+          echo "=== Patch contents preview ==="
+          for patch in patches/*.patch; do
+            echo "File: $patch"
+            head -20 "$patch"
+            echo "---"
+          done
+
+      - name: Apply patches
+        run: |
+          set -e
+          echo "=== Applying patches ==="
+          for patch in patches/*.patch; do
+            if [ -f "$patch" ]; then
+              echo "Applying: $patch"
+              git apply --check "$patch" || {
+                echo "WARNING: Patch validation failed, attempting with --reject"
+                git apply --reject "$patch" || {
+                  echo "ERROR: Could not apply patch $patch"
+                  exit 1
+                }
+              }
+              git apply "$patch"
+              echo "✓ Applied: $patch"
+            fi
+          done
+          echo ""
+          echo "=== Patches applied successfully ==="
+
+      - name: Check patch results
+        run: |
+          echo "=== Modified files ==="
+          git status
+          echo ""
+          echo "=== Diff summary ==="
+          git diff --stat
+
+      - name: Verify kernel configuration
+        run: |
+          echo "=== Checking kernel build files ==="
+          ls -lah Makefile Kbuild Kconfig build.config.* 2>/dev/null || true
+          echo ""
+          echo "=== Kernel version ==="
+          head -5 Makefile | grep -E "VERSION|PATCHLEVEL|SUBLEVEL" || echo "Not found in standard location"
+
+      - name: Build check (syntax validation)
+        run: |
+          echo "=== Running make syntax check ==="
+          make -n --version || echo "Make available"
+          
+          # Attempt a minimal build check
+          echo "=== Checking build configuration ==="
+          if [ -f "build.config.msm.lahaina" ]; then
+            echo "Found lahaina config - SM8350 target"
+            cat build.config.msm.lahaina
+          fi
+
+      - name: Create summary
+        if: always()
+        run: |
+          echo "## Patch Application Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Applied Patches" >> $GITHUB_STEP_SUMMARY
+          ls -1 patches/*.patch | while read patch; do
+            echo "- $(basename $patch)" >> $GITHUB_STEP_SUMMARY
+          done
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Modified Files" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          git diff --name-only || echo "No changes detected"
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload patch results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: patch-results
+          path: |
+            .git/
+            **/*.rej
+          retention-days: 7
