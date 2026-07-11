@@ -30,9 +30,6 @@
 #include "fuse/fuse_i.h"
 #include "mount.h"
 
-DEFINE_STATIC_KEY_FALSE(ksu_init_rc_hook_key_false);
-DEFINE_STATIC_KEY_FALSE(ksu_input_hook_key_false);
-
 extern bool susfs_is_current_ksu_domain(void);
 extern void setup_selinux(const char *domain, struct cred *cred);
 extern struct cred *ksu_cred;
@@ -141,7 +138,7 @@ out_copy_to_user:
 	SUSFS_LOGI("CMD_SUSFS_ADD_SUS_PATH_LOOP -> ret: %d\n", info.err);
 }
 
-static void susfs_run_sus_path_loop(void) {
+void susfs_run_sus_path_loop(void) {
 	struct st_susfs_sus_path_list *cursor = NULL;
 	struct path path;
 	struct inode *inode;
@@ -1542,12 +1539,6 @@ void susfs_try_umount(uid_t uid)
 
 /* susfs_init */
 void susfs_init(void) {
-	static_branch_enable(&ksu_init_rc_hook_key_false);
-	static_branch_enable(&ksu_input_hook_key_false);
-	static_branch_enable(&susfs_is_sdcard_android_data_not_decrypted);
-	static_branch_disable(&susfs_is_uname_spoof_buffer_set);
-	static_branch_disable(&susfs_is_avc_log_spoofing_enabled);
-	static_branch_disable(&susfs_is_fake_cmdline_or_bootconfig_buffer_set);
 	SUSFS_LOGI("susfs is initialized! version: " SUSFS_VERSION " \n");
 }
 
