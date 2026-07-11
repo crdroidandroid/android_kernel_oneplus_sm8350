@@ -376,7 +376,7 @@ static int input_get_disposition(struct input_dev *dev,
 }
 
 #ifdef CONFIG_KSU
-extern struct static_key_false ksu_input_hook_key_false;
+DECLARE_STATIC_KEY_FALSE(ksu_input_hook_key_false);
 extern int ksu_handle_input_handle_event(unsigned int *type, unsigned int *code, int *value);
 #endif
 

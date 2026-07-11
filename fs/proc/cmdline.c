@@ -5,14 +5,14 @@
 #include <linux/seq_file.h>
 
 #ifdef CONFIG_KSU_SUSFS_SPOOF_CMDLINE_OR_BOOTCONFIG
-extern struct static_key_true susfs_set_fake_cmdline_or_bootconfig_key_true;
+DECLARE_STATIC_KEY_FALSE(susfs_is_fake_cmdline_or_bootconfig_buffer_set);
 extern void susfs_spoof_cmdline_or_bootconfig(struct seq_file *m);
 #endif
 
 static int cmdline_proc_show(struct seq_file *m, void *v)
 {
 #ifdef CONFIG_KSU_SUSFS_SPOOF_CMDLINE_OR_BOOTCONFIG
-	if (static_branch_likely(&susfs_set_fake_cmdline_or_bootconfig_key_true)) {
+	if (static_branch_unlikely(&susfs_is_fake_cmdline_or_bootconfig_buffer_set)) {
 		susfs_spoof_cmdline_or_bootconfig(m);
 		seq_putc(m, '\n');
 		return 0;
