@@ -99,7 +99,7 @@ int ksu_handle_setresuid(uid_t ruid, uid_t euid, uid_t suid)
     uid_t old_uid = current_uid().val;
 
 #ifndef CONFIG_KSU_SUSFS
-    pr_debug("handle_setresuid from %d to %d\n", old_uid, new_uid);
+    pr_info("handle_setresuid from %d to %d\n", old_uid, new_uid);
 
     if (unlikely(is_uid_manager(new_uid))) {
 
@@ -150,12 +150,13 @@ int ksu_handle_setresuid(uid_t ruid, uid_t euid, uid_t suid)
     return 0;
 #else
     if (!susfs_is_sid_equal(current_cred(), susfs_zygote_sid)) {
+		pr_info("handle_setresuid (non-zygote) from %d to %d\n", old_uid, new_uid);
 		/*
 		 * Non-zygote caller (e.g. su from a terminal app).
-		 * Process seccomp bypass for allowlisted uids and return;
-		 * SUSFS umount and zygote-specific hooks are skipped.
+		 * Check the caller's original UID against the allowlist
+		 * (not new_uid=0, which would fail is_ksu_domain() check).
 		 */
-		if (ksu_is_allow_uid_for_current(new_uid)) {
+		if (__ksu_is_allow_uid(old_uid)) {
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 10, 0)
 			if (current->seccomp.mode == SECCOMP_MODE_FILTER &&
 			    current->seccomp.filter) {
