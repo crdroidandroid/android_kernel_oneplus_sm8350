@@ -150,8 +150,36 @@ int ksu_handle_setresuid(uid_t ruid, uid_t euid, uid_t suid)
     return 0;
 #else
     if (!susfs_is_sid_equal(current_cred(), susfs_zygote_sid)) {
-        return 0;
-    }
+		/*
+		 * Non-zygote caller (e.g. su from a terminal app).
+		 * Process seccomp bypass for allowlisted uids and return;
+		 * SUSFS umount and zygote-specific hooks are skipped.
+		 */
+		if (ksu_is_allow_uid_for_current(new_uid)) {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 10, 0)
+			if (current->seccomp.mode == SECCOMP_MODE_FILTER &&
+			    current->seccomp.filter) {
+				ksu_seccomp_allow_cache(current->seccomp.filter,
+							__NR_reboot);
+			}
+#else
+			disable_seccomp(current);
+#endif
+#ifdef KSU_KPROBES_HOOK
+			ksu_set_task_tracepoint_flag(current);
+#endif
+		} else {
+#ifdef KSU_KPROBES_HOOK
+			ksu_clear_task_tracepoint_flag_if_needed(current);
+#endif
+		}
+		/*
+		 * Non-zygote processes are not eligible for SUSFS umount.
+		 * Just allow seccomp bypass for root if allowlisted;
+		 * the caller's own mount namespace is left unchanged.
+		 */
+		return 0;
+	}
 
 #ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
     if (is_zygote_isolated_service_uid(new_uid)) {
