@@ -168,6 +168,18 @@ int ksu_handle_setresuid(uid_t ruid, uid_t euid, uid_t suid)
 #ifdef KSU_KPROBES_HOOK
 			ksu_set_task_tracepoint_flag(current);
 #endif
+			/*
+			 * Transition the process to the KSU SELinux domain so
+			 * in-process filesystem access (open/read/write/stat)
+			 * is not blocked by SELinux for root-granted apps.
+			 */
+			{
+				struct cred *cred = prepare_creds();
+				if (cred) {
+					setup_selinux(KERNEL_SU_CONTEXT, cred);
+					commit_creds(cred);
+				}
+			}
 		} else {
 #ifdef KSU_KPROBES_HOOK
 			ksu_clear_task_tracepoint_flag_if_needed(current);
@@ -175,8 +187,7 @@ int ksu_handle_setresuid(uid_t ruid, uid_t euid, uid_t suid)
 		}
 		/*
 		 * Non-zygote processes are not eligible for SUSFS umount.
-		 * Just allow seccomp bypass for root if allowlisted;
-		 * the caller's own mount namespace is left unchanged.
+		 * The caller's mount namespace is left unchanged.
 		 */
 		return 0;
 	}
