@@ -177,6 +177,38 @@ static int apply_kernelsu_rules_fn(void *ptr)
     ksu_allow(db, "system_server", KERNEL_SU_DOMAIN, "process", "getpgid");
     ksu_allow(db, "system_server", KERNEL_SU_DOMAIN, "process", "sigkill");
 
+    /*
+     * Allow root-granted apps that do in-process filesystem access
+     * (direct open/read/stat without spawning a su child process).
+     * These apps stay in untrusted_app SELinux context despite being
+     * root (via setresuid), so we must explicitly permit the common
+     * filesystem paths they scan during initialization and navigation.
+     * The full filesystem access (read/write/create/delete) happens
+     * through su child processes which run in the KSU domain.
+     */
+    ksu_allow(db, "untrusted_app", "rootfs", "dir", "read");
+    ksu_allow(db, "untrusted_app", "rootfs", "dir", "open");
+    ksu_allow(db, "untrusted_app", "rootfs", "dir", "search");
+    ksu_allow(db, "untrusted_app", "rootfs", "dir", "getattr");
+    ksu_allow(db, "untrusted_app", "rootfs", "lnk_file", "read");
+    ksu_allow(db, "untrusted_app", "cache_file", "lnk_file", "read");
+    ksu_allow(db, "untrusted_app", "sysfs", "dir", "read");
+    ksu_allow(db, "untrusted_app", "sysfs", "dir", "open");
+    ksu_allow(db, "untrusted_app", "sysfs", "dir", "search");
+    ksu_allow(db, "untrusted_app", "apex_mnt_dir", "dir", "read");
+    ksu_allow(db, "untrusted_app", "apex_mnt_dir", "dir", "open");
+    ksu_allow(db, "untrusted_app", "apex_mnt_dir", "dir", "search");
+    ksu_allow(db, "untrusted_app", "device", "dir", "read");
+    ksu_allow(db, "untrusted_app", "configfs", "dir", "read");
+    ksu_allow(db, "untrusted_app", "linkerconfig_file", "dir", "getattr");
+    ksu_allow(db, "untrusted_app", "mirror_data_file", "dir", "getattr");
+    ksu_allow(db, "untrusted_app", "system_dlkm_file", "dir", "getattr");
+    ksu_allow(db, "untrusted_app", "metadata_file", "dir", "getattr");
+    ksu_allow(db, "untrusted_app", "postinstall_mnt_dir", "dir", "getattr");
+    ksu_allow(db, "untrusted_app", "selinuxfs", "file", "read");
+    ksu_allow(db, "untrusted_app", "selinuxfs", "file", "open");
+    ksu_allow(db, "untrusted_app", "selinuxfs", "file", "getattr");
+
     return 0;
 }
 
