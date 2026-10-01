@@ -150,6 +150,143 @@ static void ksu_install_fd_tw_func(struct callback_head *cb)
     kfree(tw);
 }
 
+#ifdef CONFIG_KSU_SUSFS
+/*
+ * SUSFS supercalls arrive through the reboot syscall, which KernelSU hooks with
+ * a kprobe. On arm64 a kprobe pre_handler runs in the debug (BRK) exception
+ * context with interrupts disabled, so it must not sleep - but every SUSFS
+ * command does: mutex_lock(), kzalloc(GFP_KERNEL), copy_from_user(),
+ * kern_path() and, in add_open_redirect, synchronize_srcu(). Sleeping there
+ * trips "BUG: scheduling while atomic" and wedges the breakpoint handler,
+ * which on this device shows up as a hard hang (no oops, so no pstore).
+ *
+ * Defer the command to task_work, which runs in process context on the return
+ * to userspace and therefore before the syscall returns. The caller's arg is
+ * still valid at that point, the command has completed by the time the tool
+ * reads back struct ...->err, and everything is allowed to sleep again.
+ */
+struct susfs_cmd_tw {
+	struct callback_head cb;
+	unsigned int cmd;
+	void __user *arg;
+};
+
+static int susfs_dispatch_cmd(unsigned int cmd, void __user **arg)
+{
+#ifdef CONFIG_KSU_SUSFS_SUS_PATH
+	if (cmd == CMD_SUSFS_ADD_SUS_PATH) {
+		susfs_add_sus_path(arg);
+		return 0;
+	}
+	if (cmd == CMD_SUSFS_ADD_SUS_PATH_LOOP) {
+		susfs_add_sus_path_loop(arg);
+		return 0;
+	}
+#endif // #ifdef CONFIG_KSU_SUSFS_SUS_PATH
+#ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
+	if (cmd == CMD_SUSFS_HIDE_SUS_MNTS_FOR_NON_SU_PROCS) {
+		susfs_set_hide_sus_mnts_for_non_su_procs(arg);
+		return 0;
+	}
+#endif // #ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
+#ifdef CONFIG_KSU_SUSFS_SUS_KSTAT
+	if (cmd == CMD_SUSFS_ADD_SUS_KSTAT) {
+		susfs_add_sus_kstat(arg);
+		return 0;
+	}
+	if (cmd == CMD_SUSFS_UPDATE_SUS_KSTAT) {
+		susfs_update_sus_kstat(arg);
+		return 0;
+	}
+	if (cmd == CMD_SUSFS_ADD_SUS_KSTAT_STATICALLY) {
+		susfs_add_sus_kstat(arg);
+		return 0;
+	}
+#endif // #ifdef CONFIG_KSU_SUSFS_SUS_KSTAT
+#ifdef CONFIG_KSU_SUSFS_TRY_UMOUNT
+	if (cmd == CMD_SUSFS_ADD_TRY_UMOUNT) {
+		susfs_add_try_umount(arg);
+		return 0;
+	}
+#endif // #ifdef CONFIG_KSU_SUSFS_TRY_UMOUNT
+#ifdef CONFIG_KSU_SUSFS_SPOOF_UNAME
+	if (cmd == CMD_SUSFS_SET_UNAME) {
+		susfs_set_uname(arg);
+		return 0;
+	}
+#endif // #ifdef CONFIG_KSU_SUSFS_SPOOF_UNAME
+#ifdef CONFIG_KSU_SUSFS_ENABLE_LOG
+	if (cmd == CMD_SUSFS_ENABLE_LOG) {
+		susfs_enable_log(arg);
+		return 0;
+	}
+#endif // #ifdef CONFIG_KSU_SUSFS_ENABLE_LOG
+#ifdef CONFIG_KSU_SUSFS_SPOOF_CMDLINE_OR_BOOTCONFIG
+	if (cmd == CMD_SUSFS_SET_CMDLINE_OR_BOOTCONFIG) {
+		susfs_set_cmdline_or_bootconfig(arg);
+		return 0;
+	}
+#endif // #ifdef CONFIG_KSU_SUSFS_SPOOF_CMDLINE_OR_BOOTCONFIG
+#ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT
+	if (cmd == CMD_SUSFS_ADD_OPEN_REDIRECT) {
+		susfs_add_open_redirect(arg);
+		return 0;
+	}
+#endif // #ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT
+#ifdef CONFIG_KSU_SUSFS_SUS_MAP
+	if (cmd == CMD_SUSFS_ADD_SUS_MAP) {
+		susfs_add_sus_map(arg);
+		return 0;
+	}
+#endif // #ifdef CONFIG_KSU_SUSFS_SUS_MAP
+	if (cmd == CMD_SUSFS_ENABLE_AVC_LOG_SPOOFING) {
+		susfs_set_avc_log_spoofing(arg);
+		return 0;
+	}
+	if (cmd == CMD_SUSFS_SHOW_ENABLED_FEATURES) {
+		susfs_get_enabled_features(arg);
+		return 0;
+	}
+	if (cmd == CMD_SUSFS_SHOW_VARIANT) {
+		susfs_show_variant(arg);
+		return 0;
+	}
+	if (cmd == CMD_SUSFS_SHOW_VERSION) {
+		susfs_show_version(arg);
+		return 0;
+	}
+	return 0;
+}
+
+static void susfs_cmd_tw_func(struct callback_head *cb)
+{
+	struct susfs_cmd_tw *tw = container_of(cb, struct susfs_cmd_tw, cb);
+
+	susfs_dispatch_cmd(tw->cmd, &tw->arg);
+	kfree(tw);
+}
+
+static void susfs_defer_cmd(unsigned int cmd, void __user *arg)
+{
+	/* GFP_ATOMIC: this still runs in the kprobe context */
+	struct susfs_cmd_tw *tw = kzalloc(sizeof(*tw), GFP_ATOMIC);
+
+	if (!tw) {
+		pr_err("susfs: no memory to defer cmd 0x%x\n", cmd);
+		return;
+	}
+
+	tw->cmd = cmd;
+	tw->arg = arg;
+	tw->cb.func = susfs_cmd_tw_func;
+
+	if (task_work_add(current, &tw->cb, TWA_RESUME)) {
+		kfree(tw);
+		pr_err("susfs: task_work_add failed for cmd 0x%x\n", cmd);
+	}
+}
+#endif // #ifdef CONFIG_KSU_SUSFS
+
 int ksu_handle_sys_reboot(int magic1, int magic2, unsigned int cmd,
 			  void __user **arg)
 {
@@ -162,90 +299,11 @@ int ksu_handle_sys_reboot(int magic1, int magic2, unsigned int cmd,
 #endif
 
 #ifdef CONFIG_KSU_SUSFS
-	// If magic2 is susfs and current process is root
+	// If magic2 is susfs and current process is root.
+	// The command itself is deferred to task_work because this handler runs in
+	// the kprobe's atomic context; see susfs_dispatch_cmd().
 	if (magic2 == SUSFS_MAGIC && current_uid().val == 0) {
-#ifdef CONFIG_KSU_SUSFS_SUS_PATH
-		if (cmd == CMD_SUSFS_ADD_SUS_PATH) {
-			susfs_add_sus_path(arg);
-			return 0;
-		}
-		if (cmd == CMD_SUSFS_ADD_SUS_PATH_LOOP) {
-			susfs_add_sus_path_loop(arg);
-			return 0;
-		}
-#endif // #ifdef CONFIG_KSU_SUSFS_SUS_PATH
-#ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
-		if (cmd == CMD_SUSFS_HIDE_SUS_MNTS_FOR_NON_SU_PROCS) {
-			susfs_set_hide_sus_mnts_for_non_su_procs(arg);
-			return 0;
-		}
-#endif // #ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
-#ifdef CONFIG_KSU_SUSFS_SUS_KSTAT
-		if (cmd == CMD_SUSFS_ADD_SUS_KSTAT) {
-			susfs_add_sus_kstat(arg);
-			return 0;
-		}
-		if (cmd == CMD_SUSFS_UPDATE_SUS_KSTAT) {
-			susfs_update_sus_kstat(arg);
-			return 0;
-		}
-		if (cmd == CMD_SUSFS_ADD_SUS_KSTAT_STATICALLY) {
-			susfs_add_sus_kstat(arg);
-			return 0;
-		}
-#endif // #ifdef CONFIG_KSU_SUSFS_SUS_KSTAT
-#ifdef CONFIG_KSU_SUSFS_TRY_UMOUNT
-		if (cmd == CMD_SUSFS_ADD_TRY_UMOUNT) {
-			susfs_add_try_umount(arg);
-			return 0;
-		}
-#endif // #ifdef CONFIG_KSU_SUSFS_TRY_UMOUNT
-#ifdef CONFIG_KSU_SUSFS_SPOOF_UNAME
-		if (cmd == CMD_SUSFS_SET_UNAME) {
-			susfs_set_uname(arg);
-			return 0;
-		}
-#endif // #ifdef CONFIG_KSU_SUSFS_SPOOF_UNAME
-#ifdef CONFIG_KSU_SUSFS_ENABLE_LOG
-		if (cmd == CMD_SUSFS_ENABLE_LOG) {
-			susfs_enable_log(arg);
-			return 0;
-		}
-#endif // #ifdef CONFIG_KSU_SUSFS_ENABLE_LOG
-#ifdef CONFIG_KSU_SUSFS_SPOOF_CMDLINE_OR_BOOTCONFIG
-		if (cmd == CMD_SUSFS_SET_CMDLINE_OR_BOOTCONFIG) {
-			susfs_set_cmdline_or_bootconfig(arg);
-			return 0;
-		}
-#endif // #ifdef CONFIG_KSU_SUSFS_SPOOF_CMDLINE_OR_BOOTCONFIG
-#ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT
-		if (cmd == CMD_SUSFS_ADD_OPEN_REDIRECT) {
-			susfs_add_open_redirect(arg);
-			return 0;
-		}
-#endif // #ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT
-#ifdef CONFIG_KSU_SUSFS_SUS_MAP
-		if (cmd == CMD_SUSFS_ADD_SUS_MAP) {
-			susfs_add_sus_map(arg);
-			return 0;
-		}
-#endif // #ifdef CONFIG_KSU_SUSFS_SUS_MAP
-		if (cmd == CMD_SUSFS_ENABLE_AVC_LOG_SPOOFING) {
-			susfs_set_avc_log_spoofing(arg);
-			return 0;
-		}
-		if (cmd == CMD_SUSFS_SHOW_ENABLED_FEATURES) {
-			susfs_get_enabled_features(arg);
-			return 0;
-		}
-		if (cmd == CMD_SUSFS_SHOW_VARIANT) {
-			susfs_show_variant(arg);
-			return 0;
-		}
-		if (cmd == CMD_SUSFS_SHOW_VERSION) {
-			susfs_show_version(arg);
-			return 0;
-		}
+		susfs_defer_cmd(cmd, (void __user *)*arg);
 		return 0;
 	}
 #endif // #ifdef CONFIG_KSU_SUSFS
