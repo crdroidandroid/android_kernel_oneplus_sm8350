@@ -119,7 +119,17 @@ static int __nocfi my_sel_open_handle_status(struct inode *inode, struct file *f
 		   ksu_selinux_hide_is_enabled)) {
 		struct page *data = READ_ONCE(fake_status);
 		if (data) {
-			filp->private_data = page_address(data);
+			/*
+			 * private_data must be the struct page * itself: both
+			 * sel_read_handle_status() and sel_mmap_handle_status()
+			 * call page_address()/page_to_pfn() on it. Storing
+			 * page_address(data) here instead feeds a bogus value
+			 * into page_address() and the next read of
+			 * /sys/fs/selinux/status oopses in __arch_copy_to_user
+			 * ("Unable to handle kernel paging request ...
+			 * address between user and kernel address ranges").
+			 */
+			filp->private_data = data;
 			return 0;
 		}
 	}
@@ -240,12 +250,17 @@ static __nocfi ssize_t my_selinux_transaction_write(struct file *file, const cha
 	 * root contexts (su/ksu) so root-detection gets an "invalid context"
 	 * answer while real app-context validation passes through.
 	 */
-	if (size != 0 && size <= 128) {
+	if (size != 0) {
 		char scon[128];
+		/* copy_from_user() does not NUL-terminate; keep room for it */
+		if (size >= sizeof(scon)) {
+			goto pass_through;
+		}
 		if (copy_from_user(scon, buf, size)) {
 			scon[0] = '\0';
 			size = 0;
 		} else {
+			scon[size] = '\0';
 			while (size && (scon[size - 1] == '\n' || scon[size - 1] == '\0'))
 				scon[--size] = '\0';
 		}
