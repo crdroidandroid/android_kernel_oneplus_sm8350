@@ -1429,8 +1429,15 @@ static int watch_one_dir(struct watch_dir *wd)
  */
 static SUSFS_DECL_FSNOTIFY_OPS(susfs_handle_sdcard_inode_event)
 {
-	if (!file_name || strlen((const char *)file_name) != 7 ||
-	    memcmp(file_name, "Android", 7))
+	/*
+	 * On 5.2+ file_name is a "const struct qstr *" (see susfs_fname_t in
+	 * susfs_def.h), so it must be read through the susfs_fname_len()/
+	 * susfs_fname_arg() accessors. The old strlen()/memcmp() form treated
+	 * the qstr struct itself as a char string, so this event never matched
+	 * "Android" and the /sdcard decrypted cleanup never ran.
+	 */
+	if (!file_name || susfs_fname_len(file_name) != 7 ||
+	    memcmp(susfs_fname_arg(file_name), "Android", 7))
 		return 0;
 
 	if (test_and_set_bit(0, &sdcard_cleanup_scheduled))
