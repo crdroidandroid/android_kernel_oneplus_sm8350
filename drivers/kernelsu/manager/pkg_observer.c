@@ -8,6 +8,7 @@
 #include <linux/version.h>
 #include "klog.h" // IWYU pragma: keep
 #include "throne_tracker.h"
+#include "runtime/ksud_boot.h" // ksu_boot_completed
 
 #define MASK_SYSTEM (FS_CREATE | FS_MOVE | FS_EVENT_ON_CHILD)
 
@@ -28,6 +29,21 @@ static KSU_DECL_FSNOTIFY_OPS(ksu_handle_inode_event)
 		return 0;
 	if (mask & FS_ISDIR)
 		return 0;
+
+	/*
+	 * This handler runs inside fsnotify(), which is called by
+	 * vfs_rename()/vfs_create() while the parent directory's i_rwsem is
+	 * held by the current task. track_throne() opens
+	 * /data/system/packages.list, and on a dcache miss that lookup takes
+	 * inode_lock_shared() on the same directory -- a self-deadlock on the
+	 * write-held i_rwsem (system_server then sits forever in D state until
+	 * the device is force-cycled). PackageManagerService commits
+	 * packages.list during early boot, so skip tracking until the system
+	 * has fully booted, exactly like the LSM rename hook in lsm_hooks.c.
+	 */
+	if (!ksu_boot_completed)
+		return 0;
+
 	if (ksu_fname_len(file_name) == 13 &&
 	    !memcmp(ksu_fname_arg(file_name), "packages.list", 13)) {
 		pr_info("packages.list detected: %d\n", mask);
