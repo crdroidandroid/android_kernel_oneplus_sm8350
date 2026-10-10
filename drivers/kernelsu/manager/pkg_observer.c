@@ -31,29 +31,21 @@ static KSU_DECL_FSNOTIFY_OPS(ksu_handle_inode_event)
 	if (mask & FS_ISDIR)
 		return 0;
 
-	/*
-	 * This handler runs inside fsnotify(), which is called by
-	 * vfs_rename()/vfs_create() while the parent directory's i_rwsem is
-	 * held by the current task. track_throne() opens
-	 * /data/system/packages.list, and on a dcache miss that lookup takes
-	 * inode_lock_shared() on the same directory -- a self-deadlock on the
-	 * write-held i_rwsem (system_server then sits forever in D state until
-	 * the device is force-cycled). PackageManagerService commits
-	 * packages.list during early boot, so skip tracking until the system
-	 * has fully booted, exactly like the LSM rename hook in lsm_hooks.c.
-	 *
-	 * ksu_set_ksud_present() below only touches a flag, so it stays
-	 * outside the guard.
-	 */
-	if (!ksu_boot_completed)
-		goto out_ksud;
-
 	if (ksu_fname_len(file_name) == 13 &&
 	    !memcmp(ksu_fname_arg(file_name), "packages.list", 13)) {
 		pr_info("packages.list detected: %d\n", mask);
-		track_throne(false);
+		/*
+		 * Must not call track_throne() inline here: this runs from
+		 * vfs_rename()/vfs_create() with /data/system's i_rwsem held
+		 * for writing, and track_throne() opens a file in that same
+		 * directory. Deferring to a workqueue keeps the crown
+		 * independent of userspace: crowning used to be reachable
+		 * only after ksud reported boot-completed, so a ksud that
+		 * could not report it (UAPI mismatch) left the manager
+		 * permanently unrecognised and unable to repair itself.
+		 */
+		ksu_defer_track_throne(false);
 	}
-out_ksud:
 	/* Only /data/adb has a "ksud"; keep sucompat's view of it current. */
 	if (ksu_fname_len(file_name) == 4 &&
 	    !memcmp(ksu_fname_arg(file_name), "ksud", 4)) {

@@ -9,6 +9,7 @@
 #include <linux/string.h>
 #include <linux/types.h>
 #include <linux/version.h>
+#include <linux/workqueue.h>
 
 #include "policy/allowlist.h"
 #include "manager/apk_sign.h"
@@ -423,6 +424,52 @@ out_revert_cred:
 	mutex_unlock(&throne_tracker_mutex);
 }
 
+/*
+ * Deferred track_throne() for callers that run inside fsnotify.
+ *
+ * ksu_handle_inode_event()/the LSM rename hook are invoked from
+ * vfs_rename()/vfs_create() while the target directory's i_rwsem is already
+ * held for writing. track_throne() opens /data/system/packages.list, and on a
+ * dcache miss that lookup takes inode_lock_shared() on that same i_rwsem: a
+ * self-deadlock that leaves system_server in D state until the device is
+ * force-cycled (the watchdog cannot kill an uninterruptible task).
+ *
+ * A workqueue runs in its own context with no VFS locks held, so the deferred
+ * call is safe. Requests are coalesced: a pending full search always wins over
+ * a prune-only request, and an extra run is harmless because track_throne()
+ * re-reads packages.list under its own mutex.
+ */
+static DEFINE_MUTEX(ksu_throne_defer_lock);
+static bool ksu_throne_defer_queued;
+static bool ksu_throne_defer_prune_only = true;
+static void ksu_throne_defer_work_fn(struct work_struct *work);
+static DECLARE_WORK(ksu_throne_defer_work, ksu_throne_defer_work_fn);
+
+static void ksu_throne_defer_work_fn(struct work_struct *work)
+{
+	bool prune_only;
+
+	mutex_lock(&ksu_throne_defer_lock);
+	prune_only = ksu_throne_defer_prune_only;
+	ksu_throne_defer_prune_only = true;
+	ksu_throne_defer_queued = false;
+	mutex_unlock(&ksu_throne_defer_lock);
+
+	track_throne(prune_only);
+}
+
+void ksu_defer_track_throne(bool prune_only)
+{
+	mutex_lock(&ksu_throne_defer_lock);
+	if (!prune_only)
+		ksu_throne_defer_prune_only = false;
+	if (!ksu_throne_defer_queued) {
+		ksu_throne_defer_queued = true;
+		schedule_work(&ksu_throne_defer_work);
+	}
+	mutex_unlock(&ksu_throne_defer_lock);
+}
+
 void __init ksu_throne_tracker_init()
 {
 	struct apk_path_hash *pos, *n;
@@ -435,5 +482,5 @@ void __init ksu_throne_tracker_init()
 
 void __exit ksu_throne_tracker_exit()
 {
-	// nothing to do
+	cancel_work_sync(&ksu_throne_defer_work);
 }
