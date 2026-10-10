@@ -74,12 +74,18 @@ MDIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 # as a git submodule, so the upstream git based version detection cannot work
 # here: the driver shares the kernel's git repository, and 'git describe' /
 # 'git rev-list' would report the kernel's own history instead.
-# Pin the values of the imported release instead. KSU_GIT_VERSION is the
-# upstream commit count at the tagged release (v3.4.0-legacy) and is used with
-# the same offsets as upstream so the reported ksuver matches the manager.
-KSU_GIT_VERSION := 3005
-KSU_GIT_TAG := v3.4.0-legacy
+# Pin the values of the imported revision instead. KSU_GIT_VERSION is the
+# upstream commit count of the imported legacy revision (origin/legacy
+# 8869bd76) and KSU_GIT_TAG names the release line it belongs to.
+KSU_GIT_VERSION := 3017
+KSU_GIT_TAG := v3.4.1-legacy
 KSU_GIT_VERSION_VALID := 1
+
+# The legacy line is ~316 commits behind the matching manager release, so the
+# upstream +289 offset would report 33306 while the 3.4.1 manager's own
+# versionCode is 33333. Pin the reported ksuver to the manager's value so the
+# two are not flagged as mismatched.
+KSU_VERSION_OVERRIDE := 33333
 
 # Calculate version if git version is available
 ifdef KSU_GIT_VERSION_VALID
