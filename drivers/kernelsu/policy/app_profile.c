@@ -157,11 +157,13 @@ int escape_with_root_profile(void)
 
     if (cred->euid.val == 0) {
         pr_warn("Already root, don't escape!\n");
+        ret = -EALREADY;
         goto out_abort_creds;
     }
 
     if (test_thread_flag(TIF_KSU_DISABLE_ESCAPE_WITH_ROOT)) {
         pr_warn("TIF_KSU_DISABLE_ESCAPE_WITH_ROOT found, don't escape!\n");
+        ret = -EPERM;
         goto out_abort_creds;
     }
 
