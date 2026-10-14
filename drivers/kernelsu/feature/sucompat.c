@@ -12,6 +12,7 @@
 #endif
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 14, 0)
 #include <linux/compiler_types.h>
+#else
 #include <linux/compiler.h>
 #endif
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 11, 0)
@@ -151,6 +152,7 @@ static long ksu_handle_execve_sucompat_common(const char __user **filename_user,
 {
 	const char su[] = SU_PATH;
 	const char __user *fn;
+	const char __user *fn_addr = NULL;
 	struct ksu_sulog_pending_event *pending_sucompat = NULL;
 	char path[sizeof(su) + 1];
 	long ret;
@@ -169,7 +171,10 @@ static long ksu_handle_execve_sucompat_common(const char __user **filename_user,
 	if (!ksu_is_allow_uid_for_current(current_uid().val))
 		goto do_orig_execve;
 
-	addr = untagged_addr((unsigned long)*filename_user);
+	if (get_user(fn_addr, filename_user))
+		goto do_orig_execve;
+
+	addr = untagged_addr((unsigned long)fn_addr);
 	fn = (const char __user *)addr;
 	memset(path, 0, sizeof(path));
 
@@ -190,7 +195,7 @@ static long ksu_handle_execve_sucompat_common(const char __user **filename_user,
 	ksu_compat_sulog('x');
 
     pr_info("sys_execve su found\n");
-	pending_sucompat = ksu_sulog_capture_sucompat(*filename_user, argv_user, GFP_KERNEL);
+	pending_sucompat = ksu_sulog_capture_sucompat(fn, argv_user, GFP_KERNEL);
     *filename_user = ksud_user_path();
 
 	ret = escape_with_root_profile();
@@ -250,6 +255,8 @@ int ksu_handle_execveat_sucompat(int *fd, struct filename **filename_ptr,
 	struct filename *filename;
 	const char su[] = SU_PATH;
 	static const char ksud_path[] = KSUD_PATH;
+	struct ksu_sulog_pending_event *pending_root = NULL;
+	const char *const *sucompat_argv = (const char *const *)__never_use_argv;
 
 	if (unlikely(!filename_ptr))
 		return 0;
@@ -268,9 +275,13 @@ int ksu_handle_execveat_sucompat(int *fd, struct filename **filename_ptr,
 		return 0;
 
 	pr_info("do_execveat_common su found\n");
+
+	pending_root = ksu_sulog_capture_root_execve_kern(filename->name, sucompat_argv, GFP_KERNEL);
+
 	memcpy((void *)filename->name, ksud_path, sizeof(ksud_path));
 
 	escape_with_root_profile();
+	ksu_sulog_emit_pending(pending_root, 0, GFP_KERNEL);
 
 	return 0;
 }
