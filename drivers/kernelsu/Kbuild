@@ -77,16 +77,16 @@ MDIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 # 'git rev-list' would report the kernel's own history instead.
 # Pin the values of the imported revision instead. KSU_GIT_VERSION is the
 # upstream commit count of the imported legacy revision (origin/legacy
-# 8869bd76) and KSU_GIT_TAG names the release line it belongs to.
-KSU_GIT_VERSION := 3017
-KSU_GIT_TAG := v3.4.1-legacy
+# c81cdf51) and KSU_GIT_TAG names the release line it belongs to.
+KSU_GIT_VERSION := 3024
+KSU_GIT_TAG := v3.4.2-legacy
 KSU_GIT_VERSION_VALID := 1
 
-# The legacy line is ~316 commits behind the matching manager release, so the
-# upstream +289 offset would report 33306 while the 3.4.1 manager's own
-# versionCode is 33333. Pin the reported ksuver to the manager's value so the
+# The legacy line is ~331 commits behind the matching manager release, so the
+# upstream +289 offset would report 33313 while the 3.4.2 manager's own
+# versionCode is 33355. Pin the reported ksuver to the manager's value so the
 # two are not flagged as mismatched.
-KSU_VERSION_OVERRIDE := 33333
+KSU_VERSION_OVERRIDE := 33355
 
 # Calculate version if git version is available
 ifdef KSU_GIT_VERSION_VALID
