@@ -152,7 +152,6 @@ static long ksu_handle_execve_sucompat_common(const char __user **filename_user,
 {
 	const char su[] = SU_PATH;
 	const char __user *fn;
-	const char __user *fn_addr = NULL;
 	struct ksu_sulog_pending_event *pending_sucompat = NULL;
 	char path[sizeof(su) + 1];
 	long ret;
@@ -171,10 +170,15 @@ static long ksu_handle_execve_sucompat_common(const char __user **filename_user,
 	if (!ksu_is_allow_uid_for_current(current_uid().val))
 		goto do_orig_execve;
 
-	if (get_user(fn_addr, filename_user))
-		goto do_orig_execve;
-
-	addr = untagged_addr((unsigned long)fn_addr);
+	/*
+	 * filename_user is not a user pointer to a pointer here: the syscall
+	 * tracepoint and the kprobe pass &PT_REGS_PARMx(regs), i.e. the address
+	 * of a register slot in the kernel's pt_regs. get_user() would run the
+	 * uaccess access_ok() check against that kernel address, fail, and bail
+	 * out before the su path is ever inspected -- silently disabling
+	 * sucompat while stat/faccessat (which dereference directly) still work.
+	 */
+	addr = untagged_addr((unsigned long)*filename_user);
 	fn = (const char __user *)addr;
 	memset(path, 0, sizeof(path));
 
